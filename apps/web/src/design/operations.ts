@@ -64,11 +64,12 @@ function clone<T>(v: T): T {
 export function applyOperation(doc: DesignDocument, op: EditOperation): DesignDocument {
   const next = clone(doc);
   const [head, ...rest] = op.target.split(".");
+  const propPath = op.property ? op.property.split(".") : [];
 
   /* ---------- theme / layout ---------- */
   if (head === "theme" || head === "layout") {
     if (op.action === "update") {
-      const path = [...rest, ...(op.property ? [op.property] : [])];
+      const path = [...rest, ...propPath];
       if (path.length === 0) return next;
       setPath(next as unknown as Record<string, unknown>, [head, ...path], op.value);
     }
@@ -128,7 +129,7 @@ export function applyOperation(doc: DesignDocument, op: EditOperation): DesignDo
       return next;
     }
     case "update": {
-      const path = [...rest, ...(op.property ? [op.property] : [])];
+      const path = [...rest, ...propPath];
       if (path.length === 0) return next;
       if (path[0] === "style") {
         setPath(section as unknown as Record<string, unknown>, path, op.value);
@@ -194,9 +195,11 @@ export function diffDocuments(a: DesignDocument, b: DesignDocument): DiffEntry[]
     if (!a.sections.find((x) => x.id === s.id))
       out.push({ path: `${s.type}`, before: "—", after: "added" });
   });
+  const bSet = new Set(b.sections.map((s) => s.id));
+  const aSet = new Set(a.sections.map((s) => s.id));
   if (
-    a.sections.map((s) => s.id).join() !==
-    b.sections.filter((s) => a.sections.find((x) => x.id === s.id)).map((s) => s.id).join()
+    a.sections.filter((s) => bSet.has(s.id)).map((s) => s.id).join() !==
+    b.sections.filter((s) => aSet.has(s.id)).map((s) => s.id).join()
   ) {
     out.push({ path: "sections.order", before: "previous order", after: "reordered" });
   }

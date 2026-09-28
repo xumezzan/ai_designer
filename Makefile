@@ -14,3 +14,7 @@ web:              ## run Next.js
 
 dev:              ## run both
 	$(MAKE) -j2 api web
+
+test:
+	cd apps/api && python -m pytest -q tests
+	cd apps/web && npx tsc --noEmit -p . && npx eslint src

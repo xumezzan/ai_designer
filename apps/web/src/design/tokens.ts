@@ -39,13 +39,36 @@ export const FONT_LIBRARY = {
 
 export const ALL_FONTS = [...FONT_LIBRARY.serif, ...FONT_LIBRARY.sans];
 
+/** Axis specs per family — Google Fonts rejects requests for axes a family lacks. */
+const FONT_SPEC: Record<string, string> = {
+  "Cormorant Garamond": "ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700",
+  "Playfair Display": "ital,wght@0,400..900;1,400..900",
+  Fraunces: "ital,wght@0,100..900;1,100..900",
+  "Libre Caslon Text": "ital,wght@0,400;0,700;1,400",
+  Newsreader: "ital,wght@0,200..800;1,200..800",
+  "Instrument Serif": "ital@0;1",
+  "Bodoni Moda": "ital,wght@0,400..900;1,400..900",
+  "DM Serif Display": "ital@0;1",
+  "EB Garamond": "ital,wght@0,400..800;1,400..800",
+  Inter: "wght@100..900",
+  "DM Sans": "ital,wght@0,100..1000;1,100..1000",
+  Manrope: "wght@200..800",
+  "Work Sans": "ital,wght@0,100..900;1,100..900",
+  "Space Grotesk": "wght@300..700",
+  Karla: "ital,wght@0,200..800;1,200..800",
+  Jost: "ital,wght@0,100..900;1,100..900",
+  Figtree: "ital,wght@0,300..900;1,300..900",
+  Outfit: "wght@100..900",
+};
+
 export function googleFontsHref(fonts: string[]) {
   const unique = Array.from(new Set(fonts.filter(Boolean)));
   const families = unique
-    .map(
-      (f) =>
-        `family=${encodeURIComponent(f).replace(/%20/g, "+")}:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500`
-    )
+    .map((f) => {
+      const name = f.trim().replace(/\s+/g, "+");
+      const spec = FONT_SPEC[f.trim()];
+      return `family=${name}${spec ? `:${spec}` : ""}`;
+    })
     .join("&");
   return `https://fonts.googleapis.com/css2?${families}&display=swap`;
 }

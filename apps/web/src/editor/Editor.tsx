@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, Check, Eye, Globe, Images, Layers, Monitor, Palette, Redo2, Smartphone, Sparkles, Tablet, Undo2, Users } from "lucide-react";
 import type { DesignDocument } from "@/design/schema";
 import { SiteRenderer } from "@/renderer/SiteRenderer";
@@ -15,6 +15,38 @@ import { PublishModal } from "./panels/PublishModal";
 import { InspirationBoard } from "@/components/InspirationBoard";
 
 const VIEWPORT_WIDTH = { desktop: 1280, tablet: 834, mobile: 390 } as const;
+
+/**
+ * Renders the site at a true viewport width (so desktop really is desktop)
+ * and scales it down to fit the available canvas. Pointer events and inline
+ * editing keep working inside a CSS transform.
+ */
+function ScaledFrame({ width, children, className = "", style, onClick }: { width: number; children: React.ReactNode; className?: string; style?: React.CSSProperties; onClick?: (e: React.MouseEvent) => void }) {
+  const outer = useRef<HTMLDivElement>(null);
+  const inner = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+  const [height, setHeight] = useState(0);
+  useEffect(() => {
+    const o = outer.current?.parentElement;
+    const i = inner.current;
+    if (!o || !i) return;
+    const ro = new ResizeObserver(() => {
+      const avail = o.clientWidth - 48;
+      setScale(Math.min(1, avail / width));
+      setHeight(i.offsetHeight);
+    });
+    ro.observe(o);
+    ro.observe(i);
+    return () => ro.disconnect();
+  }, [width]);
+  return (
+    <div ref={outer} className={className} style={{ ...style, boxSizing: "content-box", width: width * scale, height: height * scale || undefined, overflow: "hidden", transition: "width .3s" }} onClick={onClick}>
+      <div ref={inner} style={{ width, transform: `scale(${scale})`, transformOrigin: "top left" }}>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 export function Editor({ projectId, projectName, initialDoc }: { projectId: string; projectName: string; initialDoc: DesignDocument }) {
   const s = useEditor();
@@ -157,9 +189,10 @@ export function Editor({ projectId, projectName, initialDoc }: { projectId: stri
         {/* ------------------------------------------------ canvas */}
         <main className="flex-1 min-w-0 canvas-bg overflow-auto scrollbar-thin" onClick={() => s.select(null)}>
           <div className="min-h-full py-8 px-6 flex justify-center">
-            <div
-              className="bg-white shadow-[0_30px_80px_-40px_rgba(0,0,0,.35)] transition-[width] duration-300"
-              style={{ width: s.viewport === "desktop" ? "100%" : width, maxWidth: s.viewport === "desktop" ? 1400 : undefined, borderRadius: s.viewport === "mobile" ? 28 : 6, overflow: "hidden", border: s.viewport === "mobile" ? "8px solid #1b1a17" : undefined }}
+            <ScaledFrame
+              width={width}
+              className="bg-white shadow-[0_30px_80px_-40px_rgba(0,0,0,.35)]"
+              style={{ borderRadius: s.viewport === "mobile" ? 28 : 6, border: s.viewport === "mobile" ? "8px solid #1b1a17" : undefined }}
               onClick={(e) => e.stopPropagation()}
             >
               <SiteRenderer
@@ -172,7 +205,7 @@ export function Editor({ projectId, projectName, initialDoc }: { projectId: stri
                 onTextChange={onTextChange}
                 projectId={projectId}
               />
-            </div>
+            </ScaledFrame>
           </div>
         </main>
 

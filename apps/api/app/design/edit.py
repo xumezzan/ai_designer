@@ -221,6 +221,12 @@ def propose_edit(prompt: str, doc: dict, assets: list[str] | None = None) -> Edi
             ops.append(_upd("theme.typography", "headingFont", SERIF_LUX))
             ops.append(_upd("theme.typography", "headingWeight", 400))
         ops.append(_upd("theme.typography", "headingTracking", "tight"))
+        if typo["headingFont"] in ("Cormorant Garamond", "Libre Caslon Text", "Playfair Display", "EB Garamond", "Newsreader", "Instrument Serif", "Fraunces", "Bodoni Moda") and not typo.get("headingItalic"):
+            ops.append(_upd("theme.typography", "headingItalic", True))
+        if typo["scale"] != "display":
+            ops.append(_upd("theme.typography", "scale", "display"))
+        if sec == "hero" and hero and hero["style"].get("background") not in ("default",):
+            ops.append(_upd("hero", "style.background", "default"))
         notes.append(f"Made the {sec.replace('_', ' ')} feel more expensive: larger, quieter type; more air; no shadows or decoration.")
 
     # ---------------- sizes ----------------
@@ -284,7 +290,7 @@ def propose_edit(prompt: str, doc: dict, assets: list[str] | None = None) -> Edi
         if hero and (not sec or sec == "hero") and hero["variant"] in ("split", "asymmetric", "editorial"):
             ops.append(EditOperation(target="hero", action="set_variant", value="centered"))
         notes.append("Centered the composition.")
-    if _has(t, "по левому", "align left", "left-align", "влево", "left aligned"):
+    if _has(t, "по левому", "align left", "left-align", "влево", "left aligned") or (_has(t, "align", "выровн") and _has(t, "left", "лев")):
         sec = target
         targets = [_first(doc, sec)] if sec else _sections(doc)
         for s in targets:
