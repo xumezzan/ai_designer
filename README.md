@@ -38,13 +38,16 @@ Studio UI strings are Russian; code, identifiers, commits and docs are English.
 ## Layout
 
 ```
-app/          routes: studio, preview, public invitation, api
-lib/schema/   content.json, asset-plan.json, theme.json (zod)
-lib/theme/    toCssVars, validate (contrast, clamps, registry keys)
-registry/     keys, fonts, typesets, materials, ornaments, motion, layouts
-projects/     per-event store: content, asset plan, concept versions, media
-docs/         decisions, teardowns, critique log, backlog
-scripts/      check-fonts.ts
+app/             routes: studio, preview, public invitation, api
+lib/schema/      content.json, asset-plan.json, theme.json (zod)
+lib/theme/       toCssVars, validate (contrast, clamps, registry keys)
+lib/typography/  micro-typography for ru / uz-latn (craft layer §7.1)
+lib/layout/      the space scale, derived from the type set (§7.1)
+components/craft/  always-on craft layer: reveal choreography
+registry/        keys, fonts, typesets, materials, ornaments, motion, layouts
+projects/        per-event store: content, asset plan, concept versions, media
+docs/            decisions, teardowns, critique log, backlog
+scripts/         check-fonts.ts
 ```
 
 ## Fonts

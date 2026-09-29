@@ -85,3 +85,53 @@ committed — M1's hand-written themes are deliverables.
 layout, motion and ornament packs are schema-key-checked only until their
 registry modules land (M1 / M8). Enforcement switches on as each registry
 lands — the check code is already the single place that happens.
+
+## 2026-09-29 — Craft layer §7.1: rule set and per-locale scope
+
+`lib/typography/ru.ts` is the craft layer's typography half, one unit test per
+rule. Scope by locale: `ru` gets the full §7.1 set (quotes, em dash, non-breaking
+spaces after short words, inside initials, between number and unit, in dates);
+`uz-latn` gets apostrophes, dashes, numbers and units — Russian short words and
+month names do not apply; `en` gets nothing. Half-applying Russian conventions
+to English reads worse than applying none.
+
+Judgement calls inside the rules:
+
+- A straight mark between two letters is an apostrophe, never a quote
+  (`O'zbekiston` survives `quotes()` untouched).
+- Only spaced hyphens become em dashes, so compounds (из-за) and phone numbers
+  (+998 90 123-45-67) are safe. Four-digit year ranges are the one unspaced
+  case that converts: `1920—1990`.
+- Uzbek: U+02BB after O/o and G/g, U+02BC everywhere else. The typewriter `'` is
+  always wrong in both positions.
+- Every rule is idempotent, so a string typed twice through the pipeline does
+  not grow spaces.
+
+## 2026-09-29 — The space scale is derived, not hand-tuned
+
+`lib/layout/space.ts` computes the scale from a type set: one body line box is
+the atom, and the display/body ratio sets the multipliers. Two invariants are
+tests, not prose: the gap between meaning-blocks is at least twice the gap
+inside one, and the section step is at least 1.5× the block step — an even
+ladder is what makes a page read as a form. The hero keeps 66svh empty.
+Nothing here is a theme field; a theme picks a type set and the space follows.
+
+## 2026-09-29 — The reveal is gated on html[data-craft="js"]
+
+Load choreography must not cost readability. An inline script in the root
+layout sets `data-craft="js"` before first paint, and the craft CSS hides a
+pending block only under that attribute: with JS off, broken, or slow the
+content is simply there. `Reveal` plays once — the observer disconnects on
+first intersection and the state never returns to pending — and
+`prefers-reduced-motion: reduce` skips the motion entirely rather than
+shortening it.
+
+## 2026-09-29 — Open: size-adjust in @font-face is not implemented yet
+
+§7.1 asks for no first-screen shift via `size-adjust` in `@font-face`. That
+needs measured per-family metrics (x-height, ascent, descent) for both the web
+font and its fallback, and measuring them — decompressing woff2 from the
+fontsource tarballs — is a piece of work of its own, in the same family as
+`scripts/check-fonts.ts`. It is not in this milestone: stored metrics are never
+invented from memory, so the rule stays unimplemented rather than guessed.
+Tracked here so it is not mistaken for done.
