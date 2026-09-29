@@ -1,0 +1,92 @@
+/*
+ * Craft layer (SPEC §7.1).
+ *
+ * Theme-independent, always on, in every variant without exception, and never
+ * a field in theme.json — if the generator asks to move any of it into the
+ * theme, the answer is no. Imported once by the root layout, so it holds for
+ * the studio shell and for every published invitation.
+ */
+
+/* ---------------------------------------------------------------------------
+ * Text wrapping and hanging punctuation
+ * ------------------------------------------------------------------------ */
+
+/* Headings balance: no widow word on the last line of a display line. */
+h1,
+h2,
+h3,
+[data-level="display"],
+[data-level="display-sm"],
+[data-level="lead"] {
+  text-wrap: balance;
+}
+
+/* Paragraphs avoid a single last-line word, but keep an even right edge. */
+p,
+li,
+[data-level="body"] {
+  text-wrap: pretty;
+}
+
+/* Pull quotes and quoted lines hang their punctuation into the margin. */
+blockquote,
+[data-hang] {
+  hanging-punctuation: first last;
+}
+
+/* ---------------------------------------------------------------------------
+ * Load choreography — the page assembles rather than appears
+ * ------------------------------------------------------------------------ */
+
+:root {
+  --craft-reveal-distance: 14px;
+  --craft-reveal-duration: 700ms;
+  --craft-reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/*
+ * A block waits for its reveal only where script can play it: `data-craft` is
+ * set by an inline script in the root layout, so with JS off or broken every
+ * block renders as if already revealed.
+ */
+html[data-craft="js"] [data-reveal="pending"] {
+  opacity: 0;
+  transform: translateY(var(--craft-reveal-distance));
+}
+
+html[data-craft="js"] [data-reveal="shown"] {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--craft-reveal-duration) var(--craft-reveal-ease),
+    transform var(--craft-reveal-duration) var(--craft-reveal-ease);
+}
+
+/* ---------------------------------------------------------------------------
+ * Quality floor
+ * ------------------------------------------------------------------------ */
+
+/* Keyboard focus is never invisible, whichever palette the theme picks. */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* prefers-reduced-motion: content is present, motion is not played. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-craft="js"] [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
