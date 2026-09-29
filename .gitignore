@@ -1,17 +1,22 @@
-# node
+# dependencies
 node_modules/
+
+# next.js
 .next/
 out/
 *.tsbuildinfo
 next-env.d.ts
-# python
-__pycache__/
-*.pyc
-.venv/
-apps/api/storage/
-apps/api/*.db
-apps/api/.env
-# misc
-.DS_Store
+
+# env — see .env.example
 .env
 .env.local
+
+# licensed font files (obtain per README, never commit)
+public/fonts/*
+!public/fonts/README.md
+
+# client media uploads live in the project store but are not repository data
+projects/*/media/
+
+# misc
+.DS_Store
