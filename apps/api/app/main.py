@@ -15,8 +15,11 @@ settings = get_settings()
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
-    # Alembic migrations are the production path; create_all keeps dev frictionless.
-    Base.metadata.create_all(bind=engine)
+    # Alembic migrations are the production path (apps/api/alembic, `make migrate`,
+    # docker-compose runs `alembic upgrade head` on API start). create_all is kept
+    # only for dev/test so a fresh checkout runs without a migration step.
+    if settings.app_env in ("development", "test"):
+        Base.metadata.create_all(bind=engine)
     yield
 
 

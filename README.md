@@ -31,6 +31,30 @@ default `http://localhost:8000`), so the browser only ever uses relative URLs.
 
 Full stack with Postgres, Redis, Celery worker and MinIO (S3): `docker compose up`.
 
+## Database migrations (Alembic)
+
+The schema is versioned with Alembic (`apps/api/alembic`). `alembic/env.py`
+reads `DATABASE_URL` from `app.core.config` (env var / `.env`) and targets
+`Base.metadata` with the models from `app.models.models`.
+`Base.metadata.create_all` only runs in dev/test (`APP_ENV=development|test`)
+so a fresh checkout starts with zero setup — production-like environments run
+migrations instead: `docker compose` executes `alembic upgrade head` before
+the API starts serving.
+
+```bash
+make migrate                    # alembic upgrade head
+make revision m="add foo"       # autogenerate a new migration after a model change
+
+# manual use from apps/api:
+../../.venv/bin/alembic upgrade head          # apply
+../../.venv/bin/alembic downgrade -1          # roll back one revision
+../../.venv/bin/alembic revision --autogenerate -m "message"
+../../.venv/bin/alembic check                 # fail if models drifted from migrations
+```
+
+Already have a dev database created by `create_all`? Stamp it as migrated so
+future revisions apply on top: `cd apps/api && ../../.venv/bin/alembic stamp head`.
+
 ## Architecture
 
 ### The Design DSL — the AI never writes HTML
