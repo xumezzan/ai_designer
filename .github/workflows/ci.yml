@@ -1,6 +1,6 @@
 # Continuous integration — mirrors `make test`.
 #   api: pytest (SQLite, local storage, inline jobs, rule-based AI — no keys needed)
-#   web: TypeScript type-check + ESLint
+#   web: TypeScript type-check + ESLint + Vitest unit tests + next build
 name: CI
 
 on:
@@ -35,7 +35,7 @@ jobs:
         run: python -m pytest -q tests
 
   web:
-    name: Web · tsc + eslint
+    name: Web · tsc + eslint + vitest + build
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -57,3 +57,12 @@ jobs:
 
       - name: Lint
         run: npx eslint src
+
+      - name: Unit tests
+        run: npm test
+
+      # `next build` is static here by design: next.config.ts only declares
+      # rewrites (pure config, resolved per-request), and no page fetches at
+      # build time — so the build never needs a live API.
+      - name: Build
+        run: npm run build

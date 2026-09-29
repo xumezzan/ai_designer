@@ -1,5 +1,5 @@
 # Invito AI — developer shortcuts
-.PHONY: setup api web dev test
+.PHONY: setup api web dev test migrate revision
 
 setup:            ## install both apps
 	python3 -m venv .venv && .venv/bin/pip install -r apps/api/requirements.txt
@@ -15,6 +15,12 @@ web:              ## run Next.js
 dev:              ## run both
 	$(MAKE) -j2 api web
 
-test:             ## run API tests + web type-check/lint (same as CI)
+test:             ## run API tests + web type-check/lint/unit (same as CI)
 	cd apps/api && python -m pytest -q tests
-	cd apps/web && npx tsc --noEmit -p . && npx eslint src
+	cd apps/web && npx tsc --noEmit -p . && npx eslint src && npx vitest run
+
+migrate:          ## apply DB migrations (alembic upgrade head)
+	cd apps/api && ../../.venv/bin/alembic upgrade head
+
+revision:         ## autogenerate a new migration (uses DATABASE_URL from .env)
+	cd apps/api && ../../.venv/bin/alembic revision --autogenerate -m "$(m)"
