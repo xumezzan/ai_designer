@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+/*
+ * Tailwind is for layout utilities only (flex, grid, spacing primitives).
+ * Invitation visual tokens flow through CSS custom properties produced by
+ * lib/theme/toCssVars.ts — Tailwind colours, fonts, radii and shadows are
+ * forbidden in invitation components.
+ */
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  /* The studio UI is deliberately neutral; all attention belongs to previews. */
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  background: #f4f4f5;
+  color: #18181b;
+}
