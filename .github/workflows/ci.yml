@@ -1,6 +1,5 @@
-# Continuous integration — mirrors `make test`.
-#   api: pytest (SQLite, local storage, inline jobs, rule-based AI — no keys needed)
-#   web: TypeScript type-check + ESLint + Vitest unit tests + next build
+# Continuous integration
+# typecheck + lint + unit tests + font check + build
 name: CI
 
 on:
@@ -13,33 +12,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  api:
-    name: API · pytest
+  studio:
+    name: typecheck · lint · test · fonts · build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/api
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-          cache: pip
-          cache-dependency-path: apps/api/requirements.txt
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run tests
-        run: python -m pytest -q tests
-
-  web:
-    name: Web · tsc + eslint + vitest + build
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: apps/web
     steps:
       - uses: actions/checkout@v4
 
@@ -47,22 +22,21 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: apps/web/package-lock.json
 
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
       - name: Type-check
-        run: npx tsc --noEmit -p .
+        run: npm run typecheck
 
       - name: Lint
-        run: npx eslint src
+        run: npm run lint
 
       - name: Unit tests
         run: npm test
 
-      # `next build` is static here by design: next.config.ts only declares
-      # rewrites (pure config, resolved per-request), and no page fetches at
-      # build time — so the build never needs a live API.
+      - name: Font support check (strict)
+        run: node scripts/check-fonts.ts --strict
+
       - name: Build
         run: npm run build
