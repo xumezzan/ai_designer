@@ -1,5 +1,5 @@
 # Invito AI — developer shortcuts
-.PHONY: setup api web dev
+.PHONY: setup api web dev test
 
 setup:            ## install both apps
 	python3 -m venv .venv && .venv/bin/pip install -r apps/api/requirements.txt
@@ -15,6 +15,6 @@ web:              ## run Next.js
 dev:              ## run both
 	$(MAKE) -j2 api web
 
-test:
+test:             ## run API tests + web type-check/lint (same as CI)
 	cd apps/api && python -m pytest -q tests
 	cd apps/web && npx tsc --noEmit -p . && npx eslint src
