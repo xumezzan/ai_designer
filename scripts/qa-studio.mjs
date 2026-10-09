@@ -10,13 +10,13 @@ const playwright = process.env.STUDIO_PLAYWRIGHT_MODULE;
 const { chromium } = playwright ? await import(pathToFileURL(playwright).href) : await import("playwright");
 const base = process.env.STUDIO_QA_URL ?? "http://127.0.0.1:3147";
 const slug = `qa-studio-${randomUUID().slice(0, 8)}`;
-const destination = path.join(process.cwd(), "docs/m2");
+const destination = process.env.STUDIO_QA_OUTPUT ?? path.join(process.cwd(), "docs/m2");
 const temporary = await mkdtemp(path.join(os.tmpdir(), "studio-browser-qa-"));
 await mkdir(destination, { recursive: true });
 const browser = await chromium.launch({ headless: true, ...(process.env.STUDIO_CHROME ? { executablePath: process.env.STUDIO_CHROME } : {}) });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
 const errors = [];
-const report = { mode: process.env.STUDIO_QA_MODE ?? "development", created: false, uploads: false, saved: false, previews: [], viewports: [], modal: false, reload: false, errors };
+const report = { mode: process.env.STUDIO_QA_MODE ?? "development", created: false, uploads: false, saved: false, viewports: [], reload: false, errors };
 page.on("pageerror", (error) => errors.push(error.message));
 try {
   await page.goto(`${base}/studio`);
@@ -65,7 +65,7 @@ try {
   await page.getByAltText("Референс 1", { exact: true }).waitFor();
   await page.getByRole("button", { name: "Сохранить", exact: true }).waitFor({ state: "visible" });
   await page.getByRole("button", { name: "Сохранить", exact: true }).click();
-  await page.getByRole("status").filter({ hasText: "Сохранено." }).waitFor();
+  await page.getByRole("status").filter({ hasText: "Анкета сохранена." }).waitFor();
   stored = JSON.parse(await readFile(file, "utf8"));
   assert.equal(stored.media.length, 1);
   assert.equal(stored.refs.length, 1);
@@ -84,26 +84,8 @@ try {
   await (await chooserEvent).setFiles(invalid);
   await page.getByRole("alert").filter({ hasText: "Файл не удалось прочитать" }).waitFor();
   await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
-  assert.equal(await page.locator(".studio-preview-card").count(), 5);
-  for (const card of await page.locator(".studio-preview-card").all()) {
-    await card.scrollIntoViewIfNeeded();
-    const frame = await card.locator("iframe").elementHandle();
-    const contentFrame = await frame.contentFrame();
-    await contentFrame.locator("#hero-title").waitFor();
-    const heading = await contentFrame.locator("#hero-title").innerText();
-    assert(heading.includes("Дилшод") && heading.includes("Малика"));
-    report.previews.push({ title: await card.locator("h3").innerText(), heading, sections: await contentFrame.locator("[data-section]").count() });
-  }
-  await page.evaluate(() => window.scrollTo(0, 0));
-  await page.screenshot({ path: path.join(destination, "grid-desktop.jpg"), type: "jpeg", quality: 85, fullPage: true });
-  await page.getByRole("button", { name: "Компьютер", exact: true }).click();
-  await page.locator(".studio-preview-window iframe").first().waitFor();
-  await page.getByRole("button", { name: "Телефон", exact: true }).click();
-  await page.getByRole("button", { name: "Посмотреть Сузани · Atelier", exact: true }).click();
-  await page.locator("dialog[open] iframe").waitFor();
-  await page.keyboard.press("Escape");
-  await page.locator("dialog[open]").waitFor({ state: "detached" });
-  report.modal = true;
+  assert.equal(await page.locator(".studio-preview-card").count(), 0);
+  report.emptyDesigns = true; // New projects have no copied demonstration themes.
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     for (const tab of ["01 Анкета", "02 Фотографии и референсы", "04 Пять дизайнов"]) {
@@ -114,8 +96,6 @@ try {
     }
     if (width === 390) {
       await page.evaluate(() => window.scrollTo(0, 0));
-      const first = await page.locator(".studio-preview-card iframe").first().elementHandle();
-      await (await first.contentFrame()).locator("#hero-title").waitFor();
       await page.screenshot({ path: path.join(destination, "grid-mobile.jpg"), type: "jpeg", quality: 85 });
     }
   }

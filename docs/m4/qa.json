@@ -1,0 +1,243 @@
+{
+  "mode": "production, real Anthropic generation",
+  "fixture": "Fictional event; public-domain NASA Apollo 11 photo, downscaled copy, handcrafted geometric reference",
+  "emptyInitially": true,
+  "autoSavedBrief": true,
+  "generation": {
+    "model": "claude-sonnet-4-6",
+    "elapsedMs": 67048,
+    "style": {
+      "palette": {
+        "bg": "#12141C",
+        "surface": "#1C1F2E",
+        "ink": "#E8D9A0",
+        "muted": "#8A7D5A",
+        "accent": "#C9A84C",
+        "accentAlt": "#E8D9A0"
+      },
+      "typeSet": "ceremony",
+      "materialSet": "paper",
+      "artwork": "none",
+      "foil": {
+        "enabled": true,
+        "color": "#C9A84C"
+      },
+      "motion": {
+        "preset": "still",
+        "ambient": "none"
+      },
+      "name": "Великий Гэтсби — Чёрное Золото",
+      "mood": [
+        "glamour",
+        "geometric",
+        "opulent",
+        "noir"
+      ],
+      "rationale": "Тёмный чароит как фон, золото арт-деко для акцентов. Геометрические рамки и ромбы из референса. Никаких цветов — только чистая геометрия в духе 1920-х.",
+      "ornament": {
+        "pack": "art-deco",
+        "density": "light",
+        "color": "accent"
+      }
+    },
+    "references": 1,
+    "adjustments": []
+  },
+  "variants": [
+    {
+      "name": "Письмо — Нарратив",
+      "composition": "letter",
+      "arrangement": "offset",
+      "ornaments": [
+        "corners"
+      ],
+      "photos": [
+        {
+          "id": "5e5475a2-85d7-489f-95b5-8266cc123cbb",
+          "section": "rsvp",
+          "index": 0,
+          "position": "before"
+        },
+        {
+          "id": "a668d45d-7fc6-49b8-afb3-23c52dac09d8",
+          "section": "greeting",
+          "index": 0,
+          "position": "after"
+        }
+      ]
+    },
+    {
+      "name": "Постер — Колонны Дат",
+      "composition": "poster",
+      "arrangement": "row",
+      "ornaments": [
+        "corners",
+        "divider"
+      ],
+      "photos": [
+        {
+          "id": "5e5475a2-85d7-489f-95b5-8266cc123cbb",
+          "section": "greeting",
+          "index": 0,
+          "position": "after"
+        },
+        {
+          "id": "a668d45d-7fc6-49b8-afb3-23c52dac09d8",
+          "section": "greeting",
+          "index": 1,
+          "position": "after"
+        }
+      ]
+    },
+    {
+      "name": "Фолио — Редакционный Разворот",
+      "composition": "folio",
+      "arrangement": "stack",
+      "ornaments": [
+        "divider",
+        "corners"
+      ],
+      "photos": [
+        {
+          "id": "5e5475a2-85d7-489f-95b5-8266cc123cbb",
+          "section": "dressCode",
+          "index": 0,
+          "position": "before"
+        },
+        {
+          "id": "a668d45d-7fc6-49b8-afb3-23c52dac09d8",
+          "section": "dressCode",
+          "index": 1,
+          "position": "after"
+        }
+      ]
+    },
+    {
+      "name": "Арка — Золотая Симметрия",
+      "composition": "arch",
+      "arrangement": "offset",
+      "ornaments": [
+        "hero-frame",
+        "divider"
+      ],
+      "photos": [
+        {
+          "id": "5e5475a2-85d7-489f-95b5-8266cc123cbb",
+          "section": "venue",
+          "index": 0,
+          "position": "before"
+        },
+        {
+          "id": "a668d45d-7fc6-49b8-afb3-23c52dac09d8",
+          "section": "timeline",
+          "index": 0,
+          "position": "after"
+        }
+      ]
+    },
+    {
+      "name": "Ботаникал — Диагональ Ромбов",
+      "composition": "botanical",
+      "arrangement": "row",
+      "ornaments": [
+        "watermark",
+        "divider"
+      ],
+      "photos": [
+        {
+          "id": "5e5475a2-85d7-489f-95b5-8266cc123cbb",
+          "section": "timeline",
+          "index": 0,
+          "position": "before"
+        },
+        {
+          "id": "a668d45d-7fc6-49b8-afb3-23c52dac09d8",
+          "section": "venue",
+          "index": 0,
+          "position": "after"
+        }
+      ]
+    }
+  ],
+  "viewports": [
+    {
+      "view": "studio",
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "view": "studio",
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "view": "studio",
+      "viewport": 768,
+      "scrollWidth": 768
+    },
+    {
+      "view": "studio",
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "view": "letter",
+      "viewport": 320,
+      "lowPhotoWidth": 112
+    },
+    {
+      "view": "letter",
+      "viewport": 1440,
+      "lowPhotoWidth": 320
+    },
+    {
+      "view": "poster",
+      "viewport": 320,
+      "lowPhotoWidth": 112
+    },
+    {
+      "view": "poster",
+      "viewport": 1440,
+      "lowPhotoWidth": 320
+    },
+    {
+      "view": "folio",
+      "viewport": 320,
+      "lowPhotoWidth": 112
+    },
+    {
+      "view": "folio",
+      "viewport": 1440,
+      "lowPhotoWidth": 320
+    },
+    {
+      "view": "arch",
+      "viewport": 320,
+      "lowPhotoWidth": 112
+    },
+    {
+      "view": "arch",
+      "viewport": 1440,
+      "lowPhotoWidth": 320
+    },
+    {
+      "view": "botanical",
+      "viewport": 320,
+      "lowPhotoWidth": 112
+    },
+    {
+      "view": "botanical",
+      "viewport": 1440,
+      "lowPhotoWidth": 320
+    }
+  ],
+  "modal": true,
+  "reload": true,
+  "failedRegenerationPreserved": true,
+  "staleRevisions": [
+    "revision",
+    "planRevision",
+    "generationRevision"
+  ],
+  "errors": []
+}

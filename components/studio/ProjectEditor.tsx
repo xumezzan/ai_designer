@@ -47,6 +47,11 @@ async function responseData(response: Response) {
 export function ProjectEditor({ initial }: { initial?: Project }) {
   const router = useRouter();
   const [content, setContent] = useState<Content>(initial?.content ?? blank);
+  const [concepts, setConcepts] = useState(initial?.generation || initial?.content.slug === "demo" ? initial?.concepts ?? [] : []);
+  const [generation, setGeneration] = useState(initial?.generation ?? null);
+  const [generationRevision, setGenerationRevision] = useState(initial?.generationRevision ?? "");
+  const [generating, setGenerating] = useState(false);
+  const [elapsed, setElapsed] = useState(0);
   const [planRevision, setPlanRevision] = useState(initial?.planRevision ?? "");
   const [assetPlan, setAssetPlan] = useState(initial?.assetPlan ?? { assets: [], unifiedTreatment: "none" as const });
   const [mediaInfo, setMediaInfo] = useState(initial?.mediaInfo ?? {});
@@ -83,6 +88,43 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
     else dialog.current?.close();
   }, [modal]);
 
+  useEffect(() => {
+    if (!generating) return;
+    const start = Date.now();
+    setElapsed(0);
+    const timer = window.setInterval(() => setElapsed(Math.floor((Date.now() - start) / 1000)), 1000);
+    return () => window.clearInterval(timer);
+  }, [generating]);
+
+  async function generate() {
+    if (busy || readOnly || planDirty) return;
+    const form = document.getElementById("event-form") as HTMLFormElement;
+    if (!form.checkValidity()) { setTab("event"); form.reportValidity(); return; }
+    if (!content.brief?.trim()) { setTab("event"); setError("Опишите желаемый стиль в поле «Пожелания к дизайну»."); return; }
+    setBusy(true); setGenerating(true); setError(""); setMessage("");
+    let createdSlug = "";
+    try {
+      const slug = initial ? content.slug : content.slug.trim() || `event-${crypto.randomUUID().slice(0, 8)}`;
+      let currentRevision = revision;
+      let currentPlanRevision = planRevision;
+      let currentGenerationRevision = generationRevision;
+      if (!initial || dirty) {
+        const next = { ...content, slug, date: { ...content.date, start: resolveWallTime(localDate, content.date.timezone) } };
+        const saved = await responseData(await fetch(initial ? `/api/projects/${slug}` : "/api/projects", { method: initial ? "PUT" : "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(initial ? { content: next, revision } : next) }));
+        currentRevision = saved.revision;
+        currentPlanRevision = saved.planRevision ?? planRevision;
+        currentGenerationRevision = saved.generationRevision ?? generationRevision;
+        setContent(saved.content); setRevision(currentRevision); setDirty(false);
+        if (!initial) { createdSlug = slug; setPlanRevision(currentPlanRevision); setGenerationRevision(currentGenerationRevision); }
+      }
+      const data = await responseData(await fetch("/api/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug, revision: currentRevision, planRevision: currentPlanRevision, generationRevision: currentGenerationRevision }) }));
+      setConcepts(data.concepts); setGeneration(data.generation); setGenerationRevision(data.generationRevision);
+      setRevision(data.revision); setPlanRevision(data.planRevision); setContent(data.content); setModal(null);
+      setPreviewKey((key) => key + 1); setTab("designs"); setMessage("Созданы пять новых композиций в едином стиле вашего брифа.");
+    } catch (error) { setError((error as Error).message); }
+    finally { setBusy(false); setGenerating(false); if (createdSlug) router.replace(`/studio/${createdSlug}`); }
+  }
+
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (readOnly || busy) return;
@@ -93,7 +135,7 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
       const response = await fetch(initial ? `/api/projects/${slug}` : "/api/projects", { method: initial ? "PUT" : "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(initial ? { content: next, revision } : next) });
       const data = await responseData(response);
       setContent(data.content); setRevision(data.revision); setDirty(false); setPreviewKey((key) => key + 1);
-      setMessage("Сохранено. Все пять приглашений обновлены.");
+      setMessage(concepts.length ? "Сохранено. Данные приглашений обновлены." : "Анкета сохранена. Теперь можно создать варианты по вашему брифу.");
       if (!initial) router.replace(`/studio/${slug}`);
     } catch (error) { setError((error as Error).message); }
     finally { setBusy(false); }
@@ -135,9 +177,9 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
   }
   const tabs = [{ id: "event", label: "Анкета", number: "01" }, { id: "media", label: "Фотографии и референсы", number: "02" }, { id: "photos", label: "Настройки фото", number: "03" }, { id: "designs", label: "Пять дизайнов", number: "04" }];
   return <main className="studio-main studio-editor"><Link className="studio-back" href="/studio">← Все проекты</Link>
-    <div className="studio-page-heading"><div><p className="studio-eyebrow">{initial ? "Мастерская приглашения" : "Начнём с вашей истории"}</p><h1>{name}</h1><p className="studio-subtitle">{readOnly ? "Демо доступно для просмотра. Создайте проект, чтобы заполнить свои данные." : "Детали события, ваши фотографии и пять разных настроений."}</p></div>{readOnly ? <Link className="studio-primary" href="/studio/new">+ Свой проект</Link> : <div className="studio-save"><span>{busy ? "Сохраняем…" : (dirty || planDirty) ? "Есть изменения" : initial ? "Все изменения сохранены" : "Новый проект"}</span><button className="studio-primary" type="button" onClick={submitFromToolbar} disabled={busy || (tab === "photos" && content.media.length === 0)}>{initial ? (tab === "photos" ? "Сохранить фото" : "Сохранить") : "Создать проект"}</button></div>}</div>
+    <div className="studio-page-heading"><div><p className="studio-eyebrow">{initial ? "Мастерская приглашения" : "Начнём с вашей истории"}</p><h1>{name}</h1><p className="studio-subtitle">{readOnly ? "Демо доступно для просмотра. Создайте проект, чтобы заполнить свои данные." : "Один ваш стиль — несколько композиций приглашения."}</p></div>{readOnly ? <Link className="studio-primary" href="/studio/new">+ Свой проект</Link> : <div className="studio-save"><span>{generating ? `Создаём варианты · ${elapsed} с` : busy ? "Сохраняем…" : (dirty || planDirty) ? "Есть изменения" : initial ? "Все изменения сохранены" : "Новый проект"}</span><button className="studio-primary" type="button" onClick={submitFromToolbar} disabled={busy || (tab === "photos" && content.media.length === 0)}>{initial ? (tab === "photos" ? "Сохранить фото" : "Сохранить") : "Создать проект"}</button></div>}</div>
     <div role="status" aria-live="polite" className={message ? "studio-notice" : ""}>{message}</div>{error && <div className="studio-error" role="alert">{error}</div>}
-    <div className="studio-editor-layout"><aside className="studio-sidebar"><nav aria-label="Разделы проекта">{tabs.map((item) => <button key={item.id} type="button" aria-current={tab === item.id ? "page" : undefined} aria-label={`${item.number} ${item.label}`} onClick={() => { setTab(item.id); setError(""); }}><span>{item.number}</span><span className="studio-nav-desktop">{item.label}</span><span className="studio-nav-mobile">{item.id === "media" ? "Материалы" : item.id === "designs" ? "Дизайны" : item.id === "photos" ? "Фото" : "Анкета"}</span></button>)}</nav><p>Пять готовых композиций.<br />Одна ваша история.</p>{initial && <small>/{content.slug}</small>}</aside>
+    <div className="studio-editor-layout"><aside className="studio-sidebar"><nav aria-label="Разделы проекта">{tabs.map((item) => <button key={item.id} type="button" aria-current={tab === item.id ? "page" : undefined} aria-label={`${item.number} ${item.label}`} onClick={() => { setTab(item.id); setError(""); }}><span>{item.number}</span><span className="studio-nav-desktop">{item.label}</span><span className="studio-nav-mobile">{item.id === "media" ? "Материалы" : item.id === "designs" ? "Дизайны" : item.id === "photos" ? "Фото" : "Анкета"}</span></button>)}</nav><p>Один ваш стиль.<br />Пять новых композиций.</p>{initial && <small>/{content.slug}</small>}</aside>
     <div className="studio-editor-content">
       <div hidden={tab !== "event"}>
         <form id="event-form" onSubmit={save}><fieldset disabled={readOnly || busy}>
@@ -173,8 +215,8 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
             <label className="studio-check studio-field-wide"><input type="checkbox" checked={content.rsvp?.enabled ?? false} onChange={(e) => update({ rsvp: { enabled: e.target.checked, mode: content.rsvp?.mode ?? "telegram", target: content.rsvp?.target ?? "", askGuestCount: content.rsvp?.askGuestCount ?? true, deadline: content.rsvp?.deadline } })} />Попросить подтвердить участие</label>
             {content.rsvp?.enabled && <><Field label="Способ ответа"><select value={content.rsvp.mode} onChange={(e) => update({ rsvp: { ...content.rsvp!, mode: e.target.value as "telegram" | "phone" | "form", target: "" } })}><option value="telegram">Telegram</option><option value="phone">Телефон</option><option value="form">Форма на ваш сервер</option></select></Field><Field label={content.rsvp.mode === "telegram" ? "Имя в Telegram" : content.rsvp.mode === "phone" ? "Номер телефона" : "Адрес приёма формы"} hint={content.rsvp.mode === "form" ? "Ваш сервер должен принимать name, attendance и guests." : undefined}><input required value={content.rsvp.target} placeholder={content.rsvp.mode === "telegram" ? "@username" : content.rsvp.mode === "phone" ? "+998…" : "https://…"} onChange={(e) => update({ rsvp: { ...content.rsvp!, target: e.target.value } })} /></Field><Field label="Ответить до"><input type="date" value={content.rsvp.deadline?.slice(0, 10) ?? ""} onChange={(e) => update({ rsvp: { ...content.rsvp!, deadline: e.target.value || undefined } })} /></Field>{content.rsvp.mode === "form" && <label className="studio-check"><input type="checkbox" checked={content.rsvp.askGuestCount} onChange={(e) => update({ rsvp: { ...content.rsvp!, askGuestCount: e.target.checked } })} />Спрашивать число гостей</label>}</>}
           </div></section>
-          <section className="studio-panel"><div className="studio-panel-heading"><span>05</span><div><h2>Настроение приглашения</h2><p>Опишите материалы, цвета и ощущения, которые вам близки.</p></div></div><Field label="Пожелания к дизайну"><textarea rows={4} value={content.brief ?? ""} placeholder="Бархат, глубокий винный цвет, тонкая вышивка. Хочется тёплого семейного вечера…" onChange={(e) => update({ brief: e.target.value || undefined })} /></Field><p className="studio-help">Бриф сохраняется для дальнейшей генерации. Сейчас доступны пять готовых дизайнов коллекции.</p></section>
-        </fieldset><div className="studio-form-footer">{!readOnly && <button className="studio-primary" disabled={busy} type="submit">{busy ? "Сохраняем…" : initial ? "Сохранить и обновить приглашения" : "Создать проект и увидеть дизайны"}</button>}</div></form>
+          <section className="studio-panel"><div className="studio-panel-heading"><span>05</span><div><h2>Настроение приглашения</h2><p>Опишите материалы, цвета и ощущения, которые вам близки.</p></div></div><Field label="Пожелания к дизайну"><textarea rows={4} maxLength={10000} value={content.brief ?? ""} placeholder="Бархат, глубокий винный цвет, тонкая вышивка. Хочется тёплого семейного вечера…" onChange={(e) => update({ brief: e.target.value || undefined })} /></Field><p className="studio-help">AI создаст по этому описанию пять вариантов: общие цвета, шрифты и настроение, разное расположение блоков, фотографий и узоров.</p></section>
+        </fieldset><div className="studio-form-footer">{!readOnly && <button className="studio-primary" disabled={busy} type="submit">{busy ? "Сохраняем…" : initial ? "Сохранить анкету" : "Сохранить новый проект"}</button>}{!readOnly && <button type="button" className="studio-secondary" disabled={busy || planDirty || !content.brief?.trim() || (Boolean(initial) && !initial?.visionConfigured)} onClick={() => { void generate(); }}>{generating ? `Создаём варианты · ${elapsed} с` : initial ? "Сгенерировать 5 вариантов по брифу" : "Создать и сгенерировать 5 вариантов"}</button>}</div></form>
       </div>
       <section hidden={tab !== "media"} className="studio-panel"><div className="studio-panel-heading"><span>02</span><div><h2>Визуальная история</h2><p>Соберите фотографии события и примеры оформления.</p></div></div>{!initial ? <div className="studio-empty"><h3>Сначала создайте проект</h3><p>Заполните имена, дату и место в анкете. После сохранения можно загрузить изображения.</p><button className="studio-secondary" onClick={() => setTab("event")}>Перейти к анкете</button></div> : <>
         <input hidden ref={uploadInput} type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => { void upload(e.target.files); }} />
@@ -182,8 +224,11 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
         <p className="studio-help">Выберите роль, раздел и кадр каждого снимка в разделе «Настройки фото». Референсы хранятся отдельно от фотографий события.</p>
       </>}</section>
       <div hidden={tab !== "photos"}>{initial ? <AssetDirector content={content} revision={revision} planRevision={planRevision} initialPlan={assetPlan} info={mediaInfo} disabled={busy} readOnly={readOnly} visionConfigured={initial.visionConfigured} onBusy={setBusy} onDirty={setPlanDirty} onMessage={(text, isError) => { setMessage(isError ? "" : text); setError(isError ? text : ""); }} onSaved={(plan, nextRevision) => { setAssetPlan(plan); setPlanRevision(nextRevision); setPreviewKey((key) => key + 1); }} /> : <div className="studio-panel studio-empty"><h3>Сначала создайте проект и загрузите фото</h3><p>После этого можно выбрать фокус, защитить лица и разместить снимки.</p></div>}</div>
-      <section hidden={tab !== "designs"}><div className="studio-preview-heading"><div><h2>Одна история, пять настроений</h2><p>Готовые композиции с сохранёнными данными вашей анкеты.</p></div><div className="studio-view-toggle" aria-label="Ширина предпросмотра"><button type="button" aria-pressed={viewport === "phone"} onClick={() => setViewport("phone")}>Телефон</button><button type="button" aria-pressed={viewport === "desktop"} onClick={() => setViewport("desktop")}>Компьютер</button></div></div>{(dirty || planDirty) && <p className="studio-notice">В предпросмотре — сохранённая версия. Сохраните анкету и настройки фото, чтобы обновить приглашения.</p>}
-        {!initial ? <div className="studio-panel studio-empty"><h3>Ваши дизайны появятся после создания проекта</h3><p>Заполните анкету — и сравните все пять приглашений.</p><button className="studio-secondary" onClick={() => setTab("event")}>Заполнить анкету</button></div> : <div className="studio-preview-grid">{initial.concepts.map((concept, index) => <article className="studio-preview-card" key={concept.id}><PreviewWindow key={`${previewKey}-${viewport}`} concept={concept} slug={content.slug} revision={previewKey} viewport={viewport} onOpen={() => setModal(concept)} /><div className="studio-preview-caption"><span>0{index + 1}</span><h3>{concept.theme.meta.name}</h3><button type="button" aria-label={`Открыть ${concept.theme.meta.name}`} onClick={() => setModal(concept)}>↗</button></div><p>{concept.theme.meta.rationale}</p></article>)}</div>}
+      <section hidden={tab !== "designs"}>
+        <div className="studio-preview-heading"><div><h2>{readOnly ? "Коллекция примеров" : "Один стиль, пять композиций"}</h2><p>{readOnly ? "Готовые примеры библиотеки. В своём проекте вы создаёте варианты по брифу." : "AI создаёт новую серию по вашему описанию и референсам."}</p></div><div className="studio-view-toggle" aria-label="Ширина предпросмотра"><button type="button" aria-pressed={viewport === "phone"} onClick={() => setViewport("phone")}>Телефон</button><button type="button" aria-pressed={viewport === "desktop"} onClick={() => setViewport("desktop")}>Компьютер</button></div></div>
+        {!readOnly && <div className="studio-panel studio-generation"><Field label="Пожелания к дизайну" hint="Одно описание для всей серии. Меняются композиции, общий стиль сохраняется."><textarea rows={3} maxLength={10000} disabled={busy} value={content.brief ?? ""} placeholder="Например, великий Гэтсби: чёрный и золото, геометрия ар-деко…" onChange={(e) => update({ brief: e.target.value || undefined })} /></Field><div className="studio-generation-actions"><button type="button" className="studio-primary" disabled={busy || planDirty || !content.brief?.trim() || (Boolean(initial) && !initial?.visionConfigured)} onClick={() => { void generate(); }}>{generating ? `Создаём варианты · ${elapsed} с` : generation ? "Сгенерировать ещё 5 вариантов" : "Сгенерировать 5 вариантов"}</button><p>{generating ? "AI выбирает общий стиль и прорабатывает пять композиций. Это может занять до двух минут." : "Анкета и бриф сохранятся перед генерацией. Все варианты будут в одной палитре и типографике."}</p></div>{initial && !initial.visionConfigured && <p className="studio-help">Для генерации добавьте ключ Anthropic в .env.local и перезапустите сервер.</p>}{planDirty && <p className="studio-notice">Сначала сохраните настройки фото, чтобы в варианты попали выбранные кадры и защищённые области.</p>}{generation && <div className="studio-series-summary"><div><span className="studio-eyebrow">Общий стиль серии</span><h3>{generation.style.name}</h3><p>{generation.style.rationale}</p></div><div className="studio-series-colors" aria-label="Общая палитра">{Object.values(generation.style.palette).map((color, index) => <span key={index} style={{ background: color }} title={color} />)}</div></div>}{generation && generation.brief !== content.brief && <p className="studio-notice">Бриф изменился. Сейчас показана предыдущая серия; создайте новые варианты, чтобы применить описание.</p>}</div>}
+        {(dirty || planDirty) && concepts.length > 0 && <p className="studio-notice">В предпросмотре — сохранённые данные. Анкета сохранится при генерации; настройки фото сохраните отдельно.</p>}
+        {concepts.length === 0 ? <div className="studio-panel studio-empty"><h3>{generating ? "Готовим вашу первую серию" : "Здесь появятся варианты по вашему брифу"}</h3><p>{generating ? "Сохраняем единый стиль и меняем композицию каждого варианта." : "Опишите стиль и нажмите «Сгенерировать 5 вариантов»."}</p></div> : <div className="studio-preview-grid">{concepts.map((concept, index) => <article className="studio-preview-card" key={concept.id}><PreviewWindow key={`${previewKey}-${viewport}`} concept={concept} slug={content.slug} revision={previewKey} viewport={viewport} onOpen={() => setModal(concept)} /><div className="studio-preview-caption"><span>0{index + 1}</span><h3>{concept.theme.meta.name}</h3><button type="button" aria-label={`Открыть ${concept.theme.meta.name}`} onClick={() => setModal(concept)}>↗</button></div><p>{concept.theme.meta.rationale}</p></article>)}</div>}
       </section>
     </div></div>
     <dialog ref={dialog} aria-labelledby="studio-dialog-title" className="studio-preview-dialog" onCancel={() => setModal(null)} onClose={() => setModal(null)}><div className="studio-dialog-heading"><h2 id="studio-dialog-title">{modal?.theme.meta.name}</h2>{modal && <Link href={`/preview/${content.slug}/${modal.id}/${modal.version}`} target="_blank">Открыть отдельно ↗</Link>}<button type="button" autoFocus aria-label="Закрыть предпросмотр" onClick={() => setModal(null)}>×</button></div>{modal && <iframe title={`Полный предпросмотр: ${modal.theme.meta.name}`} src={`/preview/${content.slug}/${modal.id}/${modal.version}?embed=1&saved=${previewKey}`} sandbox="allow-scripts allow-same-origin" />}</dialog>

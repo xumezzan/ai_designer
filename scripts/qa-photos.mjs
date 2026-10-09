@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash, randomUUID } from "node:crypto";
-import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { cp, mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -10,10 +10,10 @@ const { chromium } = process.env.STUDIO_PLAYWRIGHT_MODULE ? await import(pathToF
 const base = process.env.STUDIO_QA_URL ?? "http://127.0.0.1:3147";
 const slug = `qa-photos-${randomUUID().slice(0, 8)}`;
 const directory = path.join(process.cwd(), "projects", slug);
-const out = path.join(process.cwd(), "docs/m3");
+const out = process.env.STUDIO_QA_OUTPUT ?? path.join(process.cwd(), "docs/m3");
 const temp = await mkdtemp(path.join(os.tmpdir(), "studio-photo-qa-"));
 await mkdir(out, { recursive: true });
-const source = path.join(out, "fixtures/group-source.jpg");
+const source = path.join(process.cwd(), "docs/m3/fixtures/group-source.jpg");
 const files = [path.join(temp, "studio.jpg"), path.join(temp, "flash-simulation.jpg"), path.join(temp, "low-res-group.jpg")];
 await sharp(source).jpeg({ quality: 92 }).toFile(files[0]);
 await sharp(source).resize({ width: 1200 }).modulate({ brightness: 1.6, saturation: 1.25 }).jpeg({ quality: 70 }).toFile(files[1]);
@@ -74,7 +74,7 @@ try {
   await page.evaluate(() => scrollTo(0, document.querySelector(".studio-photo-settings").getBoundingClientRect().top + scrollY - 30));
   await page.screenshot({ path: path.join(out, "editor-desktop.jpg"), type: "jpeg", quality: 85 });
   const content = JSON.parse(await readFile(path.join(directory, "content.json"), "utf8"));
-  if (!process.env.ANTHROPIC_API_KEY) {
+  if (await page.getByRole("button", { name: "Проанализировать фото", exact: true }).isDisabled()) {
     const response = await page.request.post(`${base}/api/plan-assets`, { data: { slug, revision: hash(await readFile(path.join(directory, "content.json"), "utf8")), planRevision: hash(await readFile(path.join(directory, "asset-plan.json"), "utf8")) } });
     assert.equal(response.status(), 503); assert((await response.json()).error.includes("ANTHROPIC_API_KEY"));
     assert.equal(await page.getByRole("button", { name: "Проанализировать фото", exact: true }).isDisabled(), true);
@@ -94,14 +94,14 @@ try {
   await page.getByRole("button", { name: "03 Настройки фото", exact: true }).click();
   assert.equal(await page.getByRole("combobox", { name: /^Общая обработка серии/ }).inputValue(), "bw");
   report.reload = true;
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
-  for (const card of await page.locator(".studio-preview-card").all()) {
-    await card.scrollIntoViewIfNeeded();
-    const iframe = await card.locator("iframe").elementHandle();
-    const frame = await iframe.contentFrame();
-    await frame.locator(".directed-photo").first().waitFor();
-    assert.equal(await frame.locator(".directed-photo").count(), 3);
-    report.previews.push({ title: await card.locator("h3").innerText(), photos: 3 });
+  // Legacy hand-authored fixtures are explicitly copied for this renderer test only.
+  // Production project creation is empty; real generated grids are covered by qa-generation.mjs.
+  await cp(path.join(process.cwd(), "projects/demo/concepts"), path.join(directory, "concepts"), { recursive: true });
+  for (const id of ["letter", "poster", "folio", "arch", "botanical"]) {
+    await page.goto(`${base}/preview/${slug}/${id}/1?embed=1`);
+    await page.locator(".directed-photo").first().waitFor();
+    assert.equal(await page.locator(".directed-photo").count(), 3);
+    report.previews.push({ fixture: id, photos: 3 });
   }
   // Add a new fixture version; never rewrite an existing theme snapshot.
   const theme = JSON.parse(await readFile(path.join(directory, "concepts/letter/v1.json"), "utf8"));

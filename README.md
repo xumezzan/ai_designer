@@ -2,7 +2,7 @@
 
 Internal, single-user tool for generating web invitations for events (weddings,
 anniversaries, corporate evenings) for the Uzbekistan and CIS market. The
-questionnaire and brief become 4–6 genuinely different designs; one is
+questionnaire and brief become five related compositions in one requested style; one is
 approved, refined in plain language, and published at a link.
 
 **The architectural rule that must never be broken:** the AI does not write the
@@ -35,15 +35,23 @@ npm run check-fonts             # font support table → registry/fonts.generate
 
 Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
-Current milestone: **M3 implemented; live vision acceptance pending**. Open
+Current milestone: **coherent series generation implemented and live-verified**. Open
 `/studio` to create/edit projects, upload photos and references, direct each
-photo's placement and protected crop, and compare five designs. Manual photo
+photo's placement and protected crop, and generate five related designs. New
+projects start empty; the demo collection is never copied as generated output.
+Enter one brief and use **«Сгенерировать 5 вариантов»**. The AI selects one
+shared palette, type set, material and ornament pack, then varies composition,
+section order and photo/decor placement. References inform the common style.
+Photo settings must be saved first; unused photos stay excluded. Manual photo
 settings, shared treatment and persistence work without an API key. Autoanalysis
 uses Anthropic after `ANTHROPIC_API_KEY` is added to `.env.local` and the server
 is restarted; `ANTHROPIC_MODEL` optionally overrides `claude-sonnet-4-6`.
-Verification: [M2](./docs/m2/README.md), [M3 and its limits](./docs/m3/README.md).
-A live provider call and the real mixed-camera acceptance batch remain untested
-because no key or acceptance photos are configured. Reference analysis is M4.
+Verification: [M2](./docs/m2/README.md), [M3 and its limits](./docs/m3/README.md),
+[generation and reference acceptance](./docs/m4/README.md). Real generation has
+been checked with the configured provider. Vision face/quality inference on a
+real mixed-camera acceptance batch remains a separate M3 acceptance task.
+Generation currently arranges registered elements and existing artwork;
+automatic creation of new bitmap artwork is not part of this API.
 
 Open `/demo` for five hand-authored wedding
 invitations sharing one renderer and eight section components. Open `/craft`
@@ -79,8 +87,8 @@ a valid IANA timezone.
 RSVP supports a Telegram username, an international phone number, or a native
 POST form to a configured HTTP(S) receiver. The receiver must accept `name`,
 `attendance=yes` and optional `guests`; this project does not yet store replies.
-Replace the demo phone number before using it for a real event. AI theme generation
-and public publishing belong to later milestones.
+Replace the demo phone number before using it for a real event. Theme generation
+is available in the studio; public publishing remains a later milestone.
 
 ## Layout
 
@@ -92,7 +100,7 @@ lib/typography/  micro-typography for ru / uz-latn (craft layer §7.1)
 lib/layout/      the space scale, derived from the type set (§7.1)
 components/craft/  always-on craft layer: reveal choreography
 registry/        keys, fonts, typesets, materials, ornaments, motion, layouts
-projects/        per-event store: content, asset plan, concept versions, media
+projects/        local per-event store: content, asset plan, generation pointer, immutable concept versions, media
 docs/            decisions, teardowns, critique log, backlog
 scripts/         check-fonts.ts
 ```

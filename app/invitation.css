@@ -15,7 +15,7 @@
 .hero-date-copy { display: flex; flex-direction: column; gap: var(--space-inside); }
 .hero-place { display: flex; flex-direction: column; gap: .25em; margin-top: var(--space-block); }
 .hero-next, .footer-top { display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; margin-top: var(--space-block); border: 1px solid var(--muted); border-radius: 50%; font-size: 1.25rem; }
-.hero-host { overflow-wrap: anywhere; }
+#hero-title, .hero-host { overflow-wrap: anywhere; }
 .foil-text { display: block; color: var(--foil-color); }
 @supports (background-clip: text) {
   .foil-text { background-image: var(--foil-sheen), linear-gradient(var(--foil-color), var(--foil-color)); background-size: 200% 100%, 100% 100%; background-clip: text; color: transparent; }

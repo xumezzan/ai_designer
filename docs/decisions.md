@@ -2,6 +2,46 @@
 
 Architecture decisions that constrain future work. Newest first.
 
+## 2026-10-10 — One brief, one style, five newly generated compositions
+
+The user rejected the five copied demonstration designs and explicitly asked
+for related variations in the described style. This supersedes M4's original
+cross-style diversity matrix. New projects have no designs until generation.
+Legacy demo copies remain on disk but are not shown as generated studio output.
+The read-only demo collection remains available separately.
+
+One real Anthropic structured tool call emits one shared style and exactly five
+spatial compositions. Palette, type, material, artwork, foil, ornament language
+and motion are shared by construction. Layout, section order, photo order,
+before/after placement and ornament positions vary. Shared contrast repair
+runs once, followed by pure validation of every theme. Invalid output receives
+one correction retry. No canned designs replace provider errors.
+
+The handcrafted art-deco ornament pack supplies stepped frames, geometric
+corners and diamonds for Gatsby briefs. AI emits configuration, never SVG,
+HTML or CSS. Existing registered artwork is explicitly distinguished from
+new image generation. Only bounded local design references are sent as image
+inputs; enabled photos supply ids, quality, dimensions and crop metadata.
+Photo placement overrides preserve the M3 crop, treatment and viewport limits.
+Generated full-photo previews become typographic if the eligible source is
+later disabled, removed or downgraded; the immutable snapshot is not rewritten.
+The generation validator still rejects a new full-photo output without a
+qualified photo. This prevents a later media edit from trapping the project
+behind an unreadable snapshot.
+
+Generation commits under the existing project lock, checks content/plan/series
+revisions again after the provider call, writes new immutable concept files,
+then atomically replaces generation.json as the visible-batch pointer. A
+failed or stale request cannot replace the last successful batch. Previous
+files remain available; history selection is future work. The studio saves
+pending questionnaire/brief edits before generation and reports real elapsed
+time. Pending photo settings require a separate save.
+
+All non-demo project directories are now ignored, including event facts and
+generated configurations. The previous decision to commit client facts is
+superseded. Only fictional verification artifacts belong in the repository.
+See docs/m4 for the real provider and browser checks.
+
 ## 2026-10-09 — M2: persistent studio and project-owned uploads
 
 The user chose the studio milestone after the Suzani artwork revision.
