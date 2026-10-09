@@ -2,6 +2,30 @@
 
 Architecture decisions that constrain future work. Newest first.
 
+## 2026-10-09 — Foundation audit: contrast repair and dependency updates
+
+Raw palette fields are checked with the existing `Hex` schema before colour
+maths. Malformed values remain unchanged and become field-specific validation
+errors rather than exceptions. Repair still precedes full schema validation so
+repairable inputs such as excessive ornament placements can be clamped.
+
+Contrast repair searches both lightness directions, preserving hue and
+saturation and the 0.02–0.98 lightness bounds. Ink is scored against `bg` and
+`surface` together; glass background changes happen before contrast repair.
+When no sampled foreground satisfies both backgrounds, validation rejects the
+theme. Repair does not change background colours to disguise that failure.
+
+Next.js and its ESLint config remain on the specification's version 15 line
+(15.5.27). Vitest moves to 4.1.11 to remove the vulnerable test-worker chain;
+this is a tooling upgrade and adds no direct dependency. Next.js pins an old
+PostCSS internally, so a scoped override selects compatible PostCSS 8.5.29.
+The lockfile also resolves source-map-js 1.2.2.
+
+The `braces` advisory GHSA-vfj7-8cjw-p6xm remains in the ESLint dependency
+chain: the registry's current release, 3.0.3, is still affected. This is tracked
+until an upstream fix or a reviewed tooling replacement exists; downgrading
+Next.js tooling is not an acceptable automatic audit fix.
+
 ## 2026-09-29 — Legacy stack replaced (user-approved)
 
 The repository previously held "Invito AI" (apps/web + apps/api: FastAPI,
