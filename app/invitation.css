@@ -30,7 +30,7 @@
 .countdown-section { border-block: 1px solid var(--muted); }
 .countdown-values { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-inside); max-width: 42rem; }
 .countdown-values > div { display: flex; flex-direction: column-reverse; gap: var(--space-inside); }
-.countdown-values dt { color: var(--muted); }
+.countdown-values dt { color: var(--ink); }
 .countdown-values dd { font-variant-numeric: tabular-nums; }
 .countdown-status:empty { display: none; }
 .countdown-status { margin-bottom: var(--space-block); }

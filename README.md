@@ -35,7 +35,7 @@ npm run check-fonts             # font support table → registry/fonts.generate
 
 Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
-Current milestone: **M5 versioning and refinement implemented and live-verified**. Open
+Current milestone: **M6 visual QA implemented and live-verified**. Open
 `/studio` to create/edit projects, upload photos and references, direct each
 photo's placement and protected crop, and generate five related designs. New
 projects start empty; the demo collection is never copied as generated output.
@@ -62,6 +62,25 @@ version is explicitly chosen. Change history records the source version,
 instruction, actual changed fields and any necessary safety repairs.
 See [M5 acceptance](./docs/m5/README.md). Selection is local project state;
 the public invitation route is still a later publishing milestone.
+
+New series and refinements now run visual QA at 390, 1024 and 1440px before
+returning to the editor. Each version has a badge, concrete findings and
+full-page evidence; use **«Проверить дизайн»** to check an existing version.
+QA combines browser geometry, raster contrast, fonts, protected photo crops,
+reduced motion and a measured Fast 3G / 4× CPU load with three narrow screenshot
+vision questions. Missing runtime/provider access stays incomplete. Unverified,
+incomplete and stale reports block choosing; hard findings need the separate
+**«Выбрать с замечаниями»** action. Saving new content or photo direction makes
+the old report stale while preserving the selected version.
+
+Configure an existing Playwright module (`QA_PLAYWRIGHT_MODULE`), Chromium
+executable (`QA_CHROME_EXECUTABLE`) and trusted preview origin (`QA_BASE_URL`)
+in `.env.local`; restart the server. No dependency/browser is downloaded by QA.
+The `qa/` directory and installed browser runtime must be available to the
+Node server. Run this studio as a persistent Node process: QA spawns local
+workers and loads previews from the same server. A serverless deployment would
+need a separate browser worker. Details and acceptance limits:
+[M6](./docs/m6/README.md).
 
 Open `/demo` for five hand-authored wedding
 invitations sharing one renderer and eight section components. Open `/craft`

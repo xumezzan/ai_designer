@@ -1,0 +1,2 @@
+import { finding, result } from "./result.mjs";
+export const lcp = (metrics) => metrics.lcp === null ? { id: "lcp", status: "error", samples: 0, findings: [finding({ viewport: 390 }, "main.invitation", "Не удалось измерить загрузку первого экрана.")] } : result("lcp", metrics.lcp > 2500 ? [finding({ viewport: 390 }, "main.invitation", "На медленной сети первый экран загружается дольше 2,5 секунды.", "warning", Math.round(metrics.lcp), 2500)] : []);

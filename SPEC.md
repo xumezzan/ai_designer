@@ -556,6 +556,24 @@ Narrow vision checks, each a yes/no question with a screenshot:
 - does body text sit on a busy region of a photograph;
 - is any element clearly misaligned against the others.
 
+M6 implementation detail (2026-10-10): reports bind to content, photo-plan,
+immutable-theme and production-renderer fingerprints. New generation/refinement
+runs QA before returning to the editor; retained versions can be checked on
+demand. A missing, incomplete or stale report cannot authorize selection.
+Hard findings require an explicit "choose with findings" action; existing
+selection pointers are retained and labelled if their report is stale.
+Measure, heading widow, 1–2× image density and slow-network timing are warnings;
+clipping, overlap, AA contrast, missing fonts, sub-44px targets, <1× images,
+protected-area loss and reduced-motion violations are hard findings. Narrow
+vision is performed on mobile/desktop first screens and up to two photo crops;
+uncertain visual findings require review. It does not score taste. Raster
+contrast samples glyph cores and adjacent backgrounds, excluding antialiasing
+edges. LCP/CLS use a fresh Chromium context with 1.6Mbps down/750kbps up,
+150ms latency and 4× CPU throttling. These are measured lab results.
+Playwright/Chromium are an existing external QA runtime configured by local
+environment variables, not a new production dependency. Missing runtime or
+provider access is reported as incomplete QA, never a passed check.
+
 Failures attach to the concept and surface in the studio grid as a badge. A candidate with a hard failure is not shown as approvable until fixed or explicitly overridden.
 
 ---

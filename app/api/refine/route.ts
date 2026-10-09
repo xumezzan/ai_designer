@@ -1,9 +1,10 @@
 import { projectStore, StudioError } from "@/lib/studio/store";
 import { failure, jsonBody, mutationRequest } from "@/lib/studio/http";
 import { refineTheme } from "@/lib/ai/refineTheme";
+import { checkGenerated } from "@/lib/qa/service";
 
 export const runtime = "nodejs";
-export const maxDuration = 150;
+export const maxDuration = 300;
 export async function POST(request: Request) {
   try {
     mutationRequest(request);
@@ -15,6 +16,7 @@ export async function POST(request: Request) {
     if (!project.generation?.concepts.some((concept) => concept.id === conceptId)) throw new StudioError("Выберите вариант из текущей серии.", 404);
     const source = await projectStore.version(slug, conceptId, fromVersion);
     const result = await refineTheme(source, instruction, project);
-    return Response.json(await projectStore.saveRefinement({ slug, conceptId, fromVersion, instruction, revision, planRevision, generationRevision, source, result }));
+    const saved = await projectStore.saveRefinement({ slug, conceptId, fromVersion, instruction, revision, planRevision, generationRevision, source, result });
+    return Response.json(await checkGenerated(saved, [conceptId]));
   } catch (error) { return failure(error); }
 }

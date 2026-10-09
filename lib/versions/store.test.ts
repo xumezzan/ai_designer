@@ -7,6 +7,7 @@ import { ProjectStore, type Project } from "@/lib/studio/store";
 import { fixtureSeries } from "@/lib/generation/fixture";
 import { composeSeries } from "@/lib/generation/series";
 import { applyRefinement } from "./refine";
+import { controlledReport } from "@/lib/qa/fixture";
 
 const content = Content.parse(JSON.parse(await readFile("projects/demo/content.json", "utf8")));
 let root: string, store: ProjectStore, project: Project;
@@ -17,7 +18,10 @@ beforeEach(async () => {
   project = await store.saveGeneration(project.content.slug, generated, project.revision, project.planRevision, project.generationRevision);
 });
 afterEach(async () => { await rm(root, { recursive: true, force: true }); });
-const approve = (p: Project, version: string) => store.approveVersion(p.content.slug, p.concepts[0].id, version, p.revision, p.planRevision, p.generationRevision, p.approvalRevision);
+const approve = async (p: Project, version: string) => {
+  await store.saveQa(await controlledReport(store, p, version), p.generationRevision);
+  return store.approveVersion(p.content.slug, p.concepts[0].id, version, p.revision, p.planRevision, p.generationRevision, p.approvalRevision);
+};
 const restore = (p: Project, version: string) => store.restoreVersion(p.content.slug, p.concepts[0].id, version, p.revision, p.planRevision, p.generationRevision);
 async function edit(p: Project, fromVersion: string, patch: unknown = { foil: { enabled: false } }) {
   const source = await store.version(p.content.slug, p.concepts[0].id, fromVersion);

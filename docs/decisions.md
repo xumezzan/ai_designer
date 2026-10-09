@@ -408,3 +408,24 @@ Implementation follows Anthropic's primary documentation for
 SDK transport tests use controlled responses. Real face/quality inference
 remains unverified until a key and an actual mixed-camera acceptance batch are
 available. M4 has not started.
+
+## 2026-10-10 — M6 version-bound visual QA
+
+M4 generation and M5 versioning have since been completed with the configured
+provider. M6 now checks every new series/version through existing local
+Playwright/Chromium and narrow Anthropic screenshot vision. The full findings
+and evidence belong to the immutable theme version, not the current/selected
+pointer. Content, plan, theme, renderer/build and engine fingerprints make
+staleness explicit. Unverified/incomplete/stale selection is rejected on the
+server; hard failures permit only explicit override with recorded provenance.
+Warnings preserve editorial judgment for measures, name breaks and lab timing.
+
+The browser runtime is externally configured rather than installed as a new
+dependency. Absence is a saved incomplete check. Bounded child workers and
+serialized per-project commits keep long checks outside the store lock and
+recheck revisions before publishing. Screenshots cannot be fetched by arbitrary
+path and are local ignored event data. Real clean screenshot inference and real
+automatic refinement QA were verified on fictional fixtures; positive defect
+acceptance uses deliberately broken browser CSS and protected-area geometry.
+See `docs/m6/README.md` for exact limits. M3 mixed-camera acceptance and M7 public
+publishing are still separate outstanding work.

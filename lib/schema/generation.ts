@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Theme } from "./theme";
-import { safeId } from "@/lib/projects/read";
+import { safeId } from "./ids";
 
 export const SharedStyle = Theme.pick({ palette: true, typeSet: true, materialSet: true, artwork: true, foil: true, motion: true }).extend({
   name: z.string().min(1).max(100),

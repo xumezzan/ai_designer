@@ -3,9 +3,10 @@ import { projectStore, StudioError } from "@/lib/studio/store";
 import { mutationRequest, jsonBody, failure } from "@/lib/studio/http";
 import { readDirectedPhotos } from "@/lib/assets/read";
 import { generateSeries } from "@/lib/ai/generateSeries";
+import { checkGenerated } from "@/lib/qa/service";
 
 export const runtime = "nodejs";
-export const maxDuration = 180;
+export const maxDuration = 540;
 export async function POST(request: Request) {
   try {
     mutationRequest(request);
@@ -24,6 +25,6 @@ export async function POST(request: Request) {
     }));
     const result = await generateSeries(project.content, photos, references);
     const saved = await projectStore.saveGeneration(slug, result, revision, planRevision, generationRevision);
-    return Response.json(saved);
+    return Response.json(await checkGenerated(saved));
   } catch (error) { return failure(error); }
 }

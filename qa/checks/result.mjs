@@ -1,0 +1,2 @@
+export const finding = (data, selector, message, severity = "error", observed, expected) => ({ severity, selector, viewport: data.viewport, message, ...(observed === undefined ? {} : { observed }), ...(expected === undefined ? {} : { expected }) });
+export const result = (id, findings, samples = 1) => ({ id, status: findings.some((finding) => finding.severity === "error") ? "fail" : findings.length ? "warning" : "pass", samples, findings: findings.slice(0, 200) });

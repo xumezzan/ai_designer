@@ -58,7 +58,7 @@ try {
   await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
   const brief = "Великий Гэтсби: единый чёрно-золотой ар-деко, геометрические рамки и ромбы как в референсе. Пять похожих вариантов с разным расположением фотографий, имён, даты и узоров. Не добавляй цветы.";
   await page.getByRole("textbox", { name: /^Пожелания к дизайну/ }).fill(brief);
-  const generatedResponse = page.waitForResponse((response) => response.url().endsWith("/api/generate"), { timeout: 180000 });
+  const generatedResponse = page.waitForResponse((response) => response.url().endsWith("/api/generate"), { timeout: 540000 });
   await page.getByRole("button", { name: "Сгенерировать 5 вариантов", exact: true }).click();
   const response = await generatedResponse;
   const generated = await response.json();

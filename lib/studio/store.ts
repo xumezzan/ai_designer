@@ -14,13 +14,16 @@ import { Generation } from "@/lib/schema/generation";
 import { composeSeries, sharedStyleSignature, type GeneratedSeries } from "@/lib/generation/series";
 import { Approval, VersionId, VersionRecord, type HistoryItem } from "@/lib/schema/versions";
 import { applyRefinement, type RefinedTheme } from "@/lib/versions/refine";
+import { QaReport, QA_ENGINE, type QaState } from "@/lib/schema/qa";
+import { digest, rendererRevision } from "@/lib/qa/fingerprint";
+import { approvalProblem } from "@/lib/qa/policy";
 
 export class StudioError extends Error {
   constructor(message: string, public status = 400) { super(message); }
 }
 export type Concept = { id: string; version: string; theme: Theme; history?: HistoryItem[] };
 export type Planning = { assetPlan: PhotoPlan; planRevision: string; mediaInfo: Record<string, ImageInfo> };
-export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; generation: Generation | null; generationRevision: string; approval: Approval | null; approvalRevision: string } & Planning;
+export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; generation: Generation | null; generationRevision: string; approval: Approval | null; approvalRevision: string; approvalQa?: QaState | null } & Planning;
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
 const encode = (value: unknown) => JSON.stringify(value, null, 2) + "\n";
 async function optionalText(file: string) {
@@ -73,6 +76,7 @@ export class ProjectStore {
   async read(slug: string): Promise<Project> {
     const snapshot = await this.snapshot(slug);
     const planning = await this.planning(slug, snapshot.content);
+    const qaContext = { contentRevision: snapshot.revision, planRevision: planning.planRevision, rendererRevision: await rendererRevision() };
     const root = path.join(this.directory(slug), "concepts");
     let generationText = "";
     try { generationText = await readFile(path.join(this.directory(slug), "generation.json"), "utf8"); }
@@ -88,7 +92,7 @@ export class ProjectStore {
       const hasHero = hasHeroPhoto(parsed, planning.assetPlan, planning.mediaInfo);
       const result = validateTheme(availablePhotoLayout(parsed, hasHero), { locale: snapshot.content.locale, hasHighQualityAsset: hasHero });
       if (!result.ok) throw new Error(`Invalid concept: ${result.errors.join("; ")}`);
-      return { id: entry.name, version, theme: result.theme, history: await this.history(slug, entry.name) };
+      return { id: entry.name, version, theme: result.theme, history: await this.history(slug, entry.name, qaContext) };
     }));
     if (generation && concepts.length !== 5) throw new Error("Generation references missing concepts");
     const order = ["letter", "poster", "folio", "arch", "botanical"];
@@ -96,7 +100,8 @@ export class ProjectStore {
     const approvalText = await optionalText(path.join(this.directory(slug), "approved.json"));
     const approval = approvalText ? Approval.parse(JSON.parse(approvalText)) : null;
     if (approval) await this.version(slug, approval.conceptId, approval.version);
-    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), approval, approvalRevision: hash(approvalText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
+    const approvalQa = approval ? (concepts.find((concept) => concept.id === approval.conceptId)?.history ?? await this.history(slug, approval.conceptId, qaContext)).find((entry) => entry.version === approval.version)?.qa ?? null : null;
+    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), approval, approvalQa, approvalRevision: hash(approvalText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
   }
   async version(slug: string, conceptId: string, version: string): Promise<Theme> {
     if (!safeId(conceptId) || !VersionId.safeParse(version).success) throw new StudioError("Некорректный вариант или номер версии.");
@@ -104,7 +109,7 @@ export class ProjectStore {
     if (!text) throw new StudioError("Версия не найдена.", 404);
     return Theme.parse(JSON.parse(text));
   }
-  private async history(slug: string, conceptId: string): Promise<HistoryItem[]> {
+  private async history(slug: string, conceptId: string, context?: { contentRevision: string; planRevision: string; rendererRevision: string }): Promise<HistoryItem[]> {
     const directory = path.join(this.directory(slug), "concepts", conceptId);
     const files = await readdir(directory);
     return Promise.all(files.map((file) => /^v([1-9]\d{0,4})\.json$/.exec(file)?.[1]).filter((version): version is string => Boolean(version)).sort((a, b) => Number(b) - Number(a)).map(async (version) => {
@@ -112,8 +117,37 @@ export class ProjectStore {
       const text = await optionalText(path.join(directory, `v${version}.meta.json`));
       const record = text ? VersionRecord.parse(JSON.parse(text)) : null;
       if (record && record.version !== version) throw new Error("Version provenance mismatch");
-      return { version, name: theme.meta.name, record };
+      const reportText = context ? await optionalText(path.join(directory, "qa", `v${version}.json`)) : "";
+      const report = reportText ? QaReport.parse(JSON.parse(reportText)) : null;
+      if (report && (report.slug !== slug || report.conceptId !== conceptId || report.version !== version)) throw new Error("QA identity mismatch");
+      const qa: QaState | undefined = report && context ? { report, stale: report.engine !== QA_ENGINE || report.contentRevision !== context.contentRevision || report.planRevision !== context.planRevision || report.rendererRevision !== context.rendererRevision || report.themeRevision !== digest(JSON.stringify(theme)) } : undefined;
+      return { version, name: theme.meta.name, record, ...(qa ? { qa } : {}) };
     }));
+  }
+  qaDirectory(slug: string, conceptId: string, version: string, runId: string) {
+    if (!safeId(conceptId) || !VersionId.safeParse(version).success || !/^[a-f0-9-]{36}$/.test(runId)) throw new StudioError("Некорректная проверка.");
+    return path.join(this.directory(slug, true), "concepts", conceptId, "qa", `v${version}-${runId}`);
+  }
+  async saveQa(raw: QaReport, generationRevision: string) {
+    const report = QaReport.parse(raw);
+    if (report.engine !== QA_ENGINE) throw new StudioError("Версия проверки устарела.", 409);
+    return this.locked(report.slug, report.contentRevision, async () => {
+      const project = await this.read(report.slug);
+      this.checkDesign(project, report.conceptId, report.planRevision, generationRevision);
+      const theme = await this.version(report.slug, report.conceptId, report.version);
+      if (digest(JSON.stringify(theme)) !== report.themeRevision || await rendererRevision() !== report.rendererRevision) throw new StudioError("Дизайн изменился во время проверки. Повторите её.", 409);
+      const directory = path.join(this.directory(report.slug), "concepts", report.conceptId, "qa");
+      await mkdir(directory, { recursive: true });
+      await this.atomicJson(path.join(directory, `v${report.version}.json`), report);
+      return this.read(report.slug);
+    });
+  }
+  async qaEvidence(slug: string, conceptId: string, version: string, file: string) {
+    await this.version(slug, conceptId, version);
+    const text = await optionalText(path.join(this.directory(slug), "concepts", conceptId, "qa", `v${version}.json`));
+    const report = text ? QaReport.parse(JSON.parse(text)) : null;
+    if (!report?.evidence.some((entry) => entry.file === file)) throw new StudioError("Снимок проверки не найден.", 404);
+    return readFile(path.join(this.qaDirectory(slug, conceptId, version, report.runId), file));
   }
   private checkDesign(project: Project, conceptId: string, planRevision: string, generationRevision: string) {
     if (project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Фото или варианты изменились. Обновите страницу и повторите.", 409);
@@ -136,7 +170,7 @@ export class ProjectStore {
       return this.read(slug);
     });
   }
-  async approveVersion(slug: string, conceptId: string, version: string, revision: string, planRevision: string, generationRevision: string, approvalRevision: string) {
+  async approveVersion(slug: string, conceptId: string, version: string, revision: string, planRevision: string, generationRevision: string, approvalRevision: string, qaOverride = false) {
     return this.locked(slug, revision, async () => {
       const project = await this.read(slug);
       this.checkDesign(project, conceptId, planRevision, generationRevision);
@@ -144,7 +178,10 @@ export class ProjectStore {
       const source = await this.version(slug, conceptId, version);
       const hasHero = hasHeroPhoto(source, project.assetPlan, project.mediaInfo);
       if (!validateTheme(availablePhotoLayout(source, hasHero), { locale: project.content.locale, hasHighQualityAsset: hasHero }).ok) throw new StudioError("Выбранная версия не подходит текущим данным проекта.");
-      const approval = Approval.parse({ conceptId, version, approvedAt: new Date().toISOString() });
+      const qa = project.concepts.find((concept) => concept.id === conceptId)?.history?.find((entry) => entry.version === version)?.qa;
+      const problem = approvalProblem(qa, qaOverride === true);
+      if (problem) throw new StudioError(problem, 409);
+      const approval = Approval.parse({ conceptId, version, approvedAt: new Date().toISOString(), qa: { runId: qa!.report.runId, override: qaOverride === true } });
       await this.atomicJson(path.join(this.directory(slug), "approved.json"), approval);
       return this.read(slug);
     });

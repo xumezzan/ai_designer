@@ -7,9 +7,10 @@ import { COMPOSITION_IDS } from "../../registry/keys";
 import { availablePhotoLayout, compositionPhotos } from "../assets/layout";
 import { Theme } from "../schema/theme";
 import { readDirectedPhotos } from "../assets/read";
+import { safeId } from "../schema/ids";
+export { safeId } from "../schema/ids";
 
 const root = path.join(process.cwd(), "projects");
-export const safeId = (id: string) => typeof id === "string" && /^[a-z0-9][a-z0-9-]{0,63}$/.test(id);
 async function readJson(file: string) { return JSON.parse(await readFile(file, "utf8")); }
 
 export async function readInvitation(slug: string, concept: string, version: string) {

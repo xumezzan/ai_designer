@@ -2,8 +2,10 @@
 import { useState } from "react";
 import type { Concept } from "@/lib/studio/store";
 import type { Approval } from "@/lib/schema/versions";
+import { qaStatus } from "@/lib/schema/qa";
+import { QualityReport } from "./QualityReport";
 
-export type DesignAction = "refine" | "restore" | "approve";
+export type DesignAction = "refine" | "restore" | "approve" | "qa";
 const changeLabels: Record<string, string> = {
   "palette.bg": "Фон", "palette.surface": "Поверхности", "palette.ink": "Основной текст", "palette.muted": "Второстепенный текст", "palette.accent": "Акцент", "palette.accentAlt": "Второй акцент",
   typeSet: "Шрифтовая пара", materialSet: "Материал", artwork: "Иллюстрации", "foil.enabled": "Фольга", "foil.color": "Цвет фольги",
@@ -24,19 +26,26 @@ function changeValue(value: string) {
     return typeof parsed === "string" ? valueLabels[parsed] ?? parsed : value;
   } catch { return value; }
 }
-export function ConceptControls({ concept, version, approval, disabled, pendingEdits, configured, refining, elapsed, onView, onAction }: {
+export function ConceptControls({ concept, version, approval, disabled, pendingEdits, configured, refining, checking, elapsed, onView, onAction }: {
   concept: Concept; version: string; approval: Approval | null; disabled: boolean; pendingEdits: boolean; configured: boolean;
-  refining: boolean; elapsed: number; onView: (version: string) => void;
-  onAction: (action: DesignAction, instruction?: string) => Promise<boolean>;
+  refining: boolean; checking: boolean; elapsed: number; onView: (version: string) => void;
+  onAction: (action: DesignAction, instruction?: string, qaOverride?: boolean) => Promise<boolean>;
 }) {
   const [instruction, setInstruction] = useState("");
   const selected = approval?.conceptId === concept.id && approval.version === version;
   const history = concept.history ?? [{ version: concept.version, name: concept.theme.meta.name, record: null }];
-  const record = history.find((entry) => entry.version === version)?.record;
+  const entry = history.find((entry) => entry.version === version);
+  const record = entry?.record;
+  const qa = entry?.qa;
+  const ready = qa && !qa.stale && qaStatus(qa.report) !== "incomplete";
+  const failed = ready && qaStatus(qa.report) === "failed";
   return <div className="studio-concept-controls">
     <div className="studio-version-row"><label>Версия для просмотра<span className="studio-sr-only"> {concept.theme.meta.name}</span><select value={version} disabled={disabled} onChange={(event) => onView(event.target.value)}>
       {history.map((entry) => <option key={entry.version} value={entry.version}>v{entry.version}{entry.version === concept.version ? " · текущая" : ""}{approval?.conceptId === concept.id && approval.version === entry.version ? " · выбрана" : ""}{entry.record?.fromVersion ? ` · из v${entry.record.fromVersion}` : ""}</option>)}
-    </select></label><button type="button" className={selected ? "studio-primary" : "studio-secondary"} aria-pressed={selected} disabled={disabled || pendingEdits || selected} onClick={() => { void onAction("approve"); }}>{selected ? `Выбрана v${version}` : `Выбрать v${version}`}</button></div>
+    </select></label><button type="button" className={selected ? "studio-primary" : "studio-secondary"} aria-pressed={selected} disabled={disabled || pendingEdits || selected || !ready || Boolean(failed)} onClick={() => { void onAction("approve"); }}>{selected ? `Выбрана v${version}` : `Выбрать v${version}`}</button></div>
+    <QualityReport qa={qa} pendingEdits={pendingEdits} checking={checking} elapsed={elapsed} disabled={disabled} onCheck={() => { void onAction("qa"); }} />
+    {failed && !selected && <button type="button" className="studio-secondary studio-qa-override" disabled={disabled || pendingEdits} onClick={() => { void onAction("approve", undefined, true); }}>Выбрать v{version} с замечаниями</button>}
+    {selected && approval?.qa?.override && <p className="studio-help">Версия выбрана с принятыми замечаниями.</p>}
     {version !== concept.version && <button type="button" className="studio-text-button" disabled={disabled || pendingEdits} onClick={() => { void onAction("restore"); }}>Сделать v{version} текущей</button>}
     {record?.fromVersion && <details className="studio-version-details"><summary>Изменения v{version}</summary><p>{record.summary}</p><p className="studio-help">Запрос: {record.instruction}</p><ul>{record.changes.map((change) => <li key={change.path}><strong>{changeLabels[change.path] ?? "Дизайн"}</strong>: <span>{changeValue(change.before)}</span> → <span>{changeValue(change.after)}</span></li>)}</ul>{record.adjustments.length > 0 && <p>Дополнительно скорректирована читаемость или доступность фотографии. Все изменения перечислены выше.</p>}</details>}
     <form onSubmit={async (event) => { event.preventDefault(); if (await onAction("refine", instruction)) setInstruction(""); }}>

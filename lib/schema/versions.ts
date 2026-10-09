@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { safeId } from "@/lib/projects/read";
+import { safeId } from "./ids";
 import { Theme } from "./theme";
+import type { QaState } from "./qa";
 
 export const VersionId = z.string().regex(/^[1-9]\d{0,4}$/);
 export const Change = z.object({ path: z.string().max(100), before: z.string().max(25000), after: z.string().max(25000) }).strict();
@@ -11,8 +12,8 @@ export const VersionRecord = z.object({
   changes: z.array(Change).max(100), adjustments: z.array(z.string()).max(100),
 }).strict();
 export type VersionRecord = z.infer<typeof VersionRecord>;
-export type HistoryItem = { version: string; name: string; record: VersionRecord | null };
-export const Approval = z.object({ conceptId: z.string().refine(safeId), version: VersionId, approvedAt: z.string().datetime() }).strict();
+export type HistoryItem = { version: string; name: string; record: VersionRecord | null; qa?: QaState };
+export const Approval = z.object({ conceptId: z.string().refine(safeId), version: VersionId, approvedAt: z.string().datetime(), qa: z.object({ runId: z.string().uuid(), override: z.boolean() }).strict().optional() }).strict();
 export type Approval = z.infer<typeof Approval>;
 
 // Optional fields wrap defaults so an omitted field never becomes a patch.

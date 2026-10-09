@@ -17,6 +17,16 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, re
 const report = { mode: recorded ? "production UI replay of recorded real-provider changes; no live call" : "production, real Anthropic refinement over an explicitly controlled baseline", fixture: "Fictional event, five manually prepared shared-style configs, no personal photos", approval: false, refined: false, originalImmutable: false, selectedImmutable: false, restore: false, explicitReselection: false, reload: false, failedEditPreserved: false, provider: null, viewports: [], errors: [] };
 page.on("pageerror", (error) => report.errors.push(error.message));
 const hash = (text) => createHash("sha256").update(text).digest("hex");
+async function chooseChecked(card, version) {
+  const choose = card.getByRole("button", { name: `Выбрать v${version}`, exact: true });
+  if (await choose.isDisabled()) {
+    const response = page.waitForResponse((r) => r.url().endsWith("/api/qa"), { timeout: 180000 });
+    await card.getByRole("button", { name: /Проверить (дизайн|снова)/ }).click();
+    assert.equal((await response).status(), 200);
+  }
+  if (await choose.isDisabled()) await card.getByRole("button", { name: `Выбрать v${version} с замечаниями`, exact: true }).click();
+  else await choose.click();
+}
 const snapshot = async () => ({ slug, revision: hash(await readFile(path.join(directory, "content.json"), "utf8")), planRevision: hash(await readFile(path.join(directory, "asset-plan.json"), "utf8")), generationRevision: hash(await readFile(path.join(directory, "generation.json"), "utf8")), approvalRevision: hash(await readFile(path.join(directory, "approved.json"), "utf8")) });
 try {
   const demo = JSON.parse(await readFile(path.join(process.cwd(), "projects/demo/content.json"), "utf8"));
@@ -48,7 +58,7 @@ try {
   await page.goto(`${base}/studio/${slug}`);
   await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
   const card = page.locator(".studio-preview-card").first();
-  await card.getByRole("button", { name: "Выбрать v1", exact: true }).click();
+  await chooseChecked(card, "1");
   await page.getByRole("status").filter({ hasText: "Выбрана версия v1" }).waitFor();
   const approvedText = await readFile(path.join(directory, "approved.json"), "utf8");
   report.approval = true;
@@ -75,7 +85,7 @@ try {
     await page.reload();
     await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
   } else {
-    const responsePromise = page.waitForResponse((response) => response.url().endsWith("/api/refine"), { timeout: 150000 });
+    const responsePromise = page.waitForResponse((response) => response.url().endsWith("/api/refine"), { timeout: 300000 });
     await card.getByRole("button", { name: "Создать версию из v1", exact: true }).click();
     const response = await responsePromise;
     updated = await response.json();
@@ -107,11 +117,11 @@ try {
   report.restore = true;
   assert.equal(await readFile(v2File, "utf8"), v2Text);
   await card.locator("select").selectOption("2");
-  await card.getByRole("button", { name: "Выбрать v2", exact: true }).click();
+  await chooseChecked(card, "2");
   await page.getByRole("status").filter({ hasText: "Выбрана версия v2" }).waitFor();
   assert.equal(JSON.parse(await readFile(path.join(directory, "approved.json"), "utf8")).version, "2");
   report.explicitReselection = true;
-  await card.locator("details summary").click();
+  await card.locator(".studio-version-details summary").click();
   await card.locator(".studio-concept-controls").scrollIntoViewIfNeeded();
   await page.screenshot({ path: path.join(out, "versions-desktop.jpg"), type: "jpeg", quality: 85 });
   for (const width of [320, 390, 768, 1440]) {

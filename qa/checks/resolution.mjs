@@ -1,0 +1,2 @@
+import { finding, result } from "./result.mjs";
+export const resolution = (data) => result("resolution", data.photos.filter((photo) => photo.density < 1.98).map((photo) => finding(data, photo.selector, photo.density < .98 ? "Фото увеличено сверх исходного разрешения." : "Для экрана с плотностью 2× фото недостаточно чёткое.", photo.density < .98 ? "error" : "warning", Math.round(photo.density * 100) / 100, 2)), data.photos.length);
