@@ -67,6 +67,18 @@ describe("WCAG contrast", () => {
 });
 
 describe("ensureContrast", () => {
+  it.each([
+    ["#101010", "#202020"],
+    ["#F0F0F0", "#E0E0E0"],
+    ["#777777", "#777777"],
+  ])("finds passing contrast for %s on %s in either direction", (fg, bg) => {
+    const fixed = ensureContrast(fg, bg, MIN_CONTRAST_TEXT);
+    expect(fixed.ratio).toBeGreaterThanOrEqual(MIN_CONTRAST_TEXT);
+    expect(fixed.ratio).toBeCloseTo(contrastRatio(fixed.hex, bg), 10);
+    expect(hexToHsl(fixed.hex).l).toBeGreaterThanOrEqual(0.02 - 1 / 255);
+    expect(hexToHsl(fixed.hex).l).toBeLessThanOrEqual(0.98 + 1 / 255);
+  });
+
   it("shifts lightness until the pair passes and never reaches pure black/white", () => {
     const fixed = ensureContrast("#B8B0A4", "#F2EDE4", MIN_CONTRAST_TEXT);
     expect(fixed.changed).toBe(true);
@@ -89,6 +101,49 @@ describe("ensureContrast", () => {
 });
 
 describe("repairTheme (§8.1)", () => {
+  it("repairs ink against both backgrounds without undoing the first repair", () => {
+    const original = clone({ palette: {
+      ...baseTheme.palette, bg: "#808080", surface: "#B0B0B0", ink: "#909090",
+    } });
+    const before = structuredClone(original);
+    const result = repairAndValidate(original);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(contrastRatio(result.theme.palette.ink, result.theme.palette.bg)).toBeGreaterThanOrEqual(MIN_CONTRAST_TEXT);
+      expect(contrastRatio(result.theme.palette.ink, result.theme.palette.surface)).toBeGreaterThanOrEqual(MIN_CONTRAST_TEXT);
+    }
+    expect(original).toEqual(before);
+  });
+
+  it("repairs contrast after the glass background is darkened", () => {
+    const { value } = repairTheme(clone({
+      materialSet: "glass",
+      palette: { ...baseTheme.palette, bg: "#EEEEEE", surface: "#999999", ink: "#666666", muted: "#777777" },
+    }));
+    const palette = (value as { palette: typeof baseTheme.palette }).palette;
+    expect(contrastRatio(palette.ink, palette.bg)).toBeGreaterThanOrEqual(MIN_CONTRAST_TEXT);
+    expect(contrastRatio(palette.ink, palette.surface)).toBeGreaterThanOrEqual(MIN_CONTRAST_TEXT);
+    expect(contrastRatio(palette.muted, palette.bg)).toBeGreaterThanOrEqual(MIN_CONTRAST_MUTED);
+  });
+
+  it.each(["ink", "bg", "surface", "muted"])("reports malformed %s through validation without throwing", (field) => {
+    const result = repairAndValidate(clone({ palette: { ...baseTheme.palette, [field]: "red" } }));
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors.some((error) => error.startsWith(`palette.${field}:`))).toBe(true);
+  });
+
+  it("leaves an invalid glass background for schema validation", () => {
+    const result = repairAndValidate(clone({ materialSet: "glass", palette: { ...baseTheme.palette, bg: "red" } }));
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors.some((error) => error.startsWith("palette.bg:"))).toBe(true);
+  });
+
+  it("rejects a palette when no foreground can pass against both backgrounds", () => {
+    const result = repairAndValidate(clone({ palette: { ...baseTheme.palette, bg: "#303030", surface: "#B0B0B0", ink: "#777777" } }));
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors.some((error) => error.startsWith("contrast:"))).toBe(true);
+  });
+
   it("logs and fixes contrast failures", () => {
     const { value, adjustments } = repairTheme(
       clone({ palette: { ...baseTheme.palette, ink: "#B8B0A4" } }),
