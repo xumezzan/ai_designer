@@ -510,6 +510,18 @@ Rules:
 - further edits to an approved concept create a new version and leave the approved pointer where it is until I move it explicitly;
 - the studio can preview and restore any version by pointer change alone.
 
+M5 storage detail (2026-10-10): `generation.json.concepts[].version` is the
+current preview pointer for each lineage in the active batch; `approved.json`
+is the sole selection pointer. `meta.json` contains immutable lineage facts,
+and `vN.meta.json` contains immutable refinement provenance and actual changed
+paths. No duplicated mutable approval pointer is stored in concept metadata.
+Older batches remain retained; the selection bar can preview an approved older
+batch while lineage history/restore operates on the active five concepts.
+Refinement accepts at most four theme categories in one partial patch and
+cannot change event copy or theme metadata. Unsupported free CSS/spacing or
+new bitmap requests fail explicitly. Contrast/hero safety repairs are recorded
+alongside requested changes.
+
 ---
 
 ## 11. Refinement

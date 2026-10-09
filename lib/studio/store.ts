@@ -12,15 +12,21 @@ import { photoInfo, readDirectedPhotos } from "@/lib/assets/read";
 import { availablePhotoLayout, hasHeroPhoto } from "@/lib/assets/layout";
 import { Generation } from "@/lib/schema/generation";
 import { composeSeries, sharedStyleSignature, type GeneratedSeries } from "@/lib/generation/series";
+import { Approval, VersionId, VersionRecord, type HistoryItem } from "@/lib/schema/versions";
+import { applyRefinement, type RefinedTheme } from "@/lib/versions/refine";
 
 export class StudioError extends Error {
   constructor(message: string, public status = 400) { super(message); }
 }
-export type Concept = { id: string; version: string; theme: Theme };
+export type Concept = { id: string; version: string; theme: Theme; history?: HistoryItem[] };
 export type Planning = { assetPlan: PhotoPlan; planRevision: string; mediaInfo: Record<string, ImageInfo> };
-export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; generation: Generation | null; generationRevision: string } & Planning;
+export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; generation: Generation | null; generationRevision: string; approval: Approval | null; approvalRevision: string } & Planning;
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
 const encode = (value: unknown) => JSON.stringify(value, null, 2) + "\n";
+async function optionalText(file: string) {
+  try { return await readFile(file, "utf8"); }
+  catch (error) { if ((error as NodeJS.ErrnoException).code === "ENOENT") return ""; throw error; }
+}
 
 export function validateContent(raw: unknown) {
   const result = Content.safeParse(raw);
@@ -82,12 +88,100 @@ export class ProjectStore {
       const hasHero = hasHeroPhoto(parsed, planning.assetPlan, planning.mediaInfo);
       const result = validateTheme(availablePhotoLayout(parsed, hasHero), { locale: snapshot.content.locale, hasHighQualityAsset: hasHero });
       if (!result.ok) throw new Error(`Invalid concept: ${result.errors.join("; ")}`);
-      return { id: entry.name, version, theme: result.theme };
+      return { id: entry.name, version, theme: result.theme, history: await this.history(slug, entry.name) };
     }));
     if (generation && concepts.length !== 5) throw new Error("Generation references missing concepts");
     const order = ["letter", "poster", "folio", "arch", "botanical"];
     concepts.sort((a, b) => order.indexOf(a.theme.layout.composition) - order.indexOf(b.theme.layout.composition));
-    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
+    const approvalText = await optionalText(path.join(this.directory(slug), "approved.json"));
+    const approval = approvalText ? Approval.parse(JSON.parse(approvalText)) : null;
+    if (approval) await this.version(slug, approval.conceptId, approval.version);
+    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), approval, approvalRevision: hash(approvalText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
+  }
+  async version(slug: string, conceptId: string, version: string): Promise<Theme> {
+    if (!safeId(conceptId) || !VersionId.safeParse(version).success) throw new StudioError("Некорректный вариант или номер версии.");
+    const text = await optionalText(path.join(this.directory(slug), "concepts", conceptId, `v${version}.json`));
+    if (!text) throw new StudioError("Версия не найдена.", 404);
+    return Theme.parse(JSON.parse(text));
+  }
+  private async history(slug: string, conceptId: string): Promise<HistoryItem[]> {
+    const directory = path.join(this.directory(slug), "concepts", conceptId);
+    const files = await readdir(directory);
+    return Promise.all(files.map((file) => /^v([1-9]\d{0,4})\.json$/.exec(file)?.[1]).filter((version): version is string => Boolean(version)).sort((a, b) => Number(b) - Number(a)).map(async (version) => {
+      const theme = await this.version(slug, conceptId, version);
+      const text = await optionalText(path.join(directory, `v${version}.meta.json`));
+      const record = text ? VersionRecord.parse(JSON.parse(text)) : null;
+      if (record && record.version !== version) throw new Error("Version provenance mismatch");
+      return { version, name: theme.meta.name, record };
+    }));
+  }
+  private checkDesign(project: Project, conceptId: string, planRevision: string, generationRevision: string) {
+    if (project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Фото или варианты изменились. Обновите страницу и повторите.", 409);
+    if (!project.generation || !project.generation.concepts.some((concept) => concept.id === conceptId)) throw new StudioError("Выберите вариант из текущей серии.", 404);
+  }
+  private async atomicJson(file: string, value: unknown) {
+    const pending = `${file}.${randomUUID()}.tmp`;
+    try { await writeFile(pending, encode(value), { flag: "wx" }); await rename(pending, file); }
+    finally { await rm(pending, { force: true }); }
+  }
+  async restoreVersion(slug: string, conceptId: string, version: string, revision: string, planRevision: string, generationRevision: string) {
+    return this.locked(slug, revision, async () => {
+      const project = await this.read(slug);
+      this.checkDesign(project, conceptId, planRevision, generationRevision);
+      const source = await this.version(slug, conceptId, version);
+      const hasHero = hasHeroPhoto(source, project.assetPlan, project.mediaInfo);
+      const valid = validateTheme(availablePhotoLayout(source, hasHero), { locale: project.content.locale, hasHighQualityAsset: hasHero });
+      if (!valid.ok) throw new StudioError("Эта версия не подходит текущим данным проекта.");
+      await this.atomicJson(path.join(this.directory(slug), "generation.json"), { ...project.generation!, concepts: project.generation!.concepts.map((concept) => concept.id === conceptId ? { ...concept, version } : concept) });
+      return this.read(slug);
+    });
+  }
+  async approveVersion(slug: string, conceptId: string, version: string, revision: string, planRevision: string, generationRevision: string, approvalRevision: string) {
+    return this.locked(slug, revision, async () => {
+      const project = await this.read(slug);
+      this.checkDesign(project, conceptId, planRevision, generationRevision);
+      if (project.approvalRevision !== approvalRevision) throw new StudioError("Выбранная версия изменилась. Обновите страницу.", 409);
+      const source = await this.version(slug, conceptId, version);
+      const hasHero = hasHeroPhoto(source, project.assetPlan, project.mediaInfo);
+      if (!validateTheme(availablePhotoLayout(source, hasHero), { locale: project.content.locale, hasHighQualityAsset: hasHero }).ok) throw new StudioError("Выбранная версия не подходит текущим данным проекта.");
+      const approval = Approval.parse({ conceptId, version, approvedAt: new Date().toISOString() });
+      await this.atomicJson(path.join(this.directory(slug), "approved.json"), approval);
+      return this.read(slug);
+    });
+  }
+  async saveRefinement(input: { slug: string; conceptId: string; fromVersion: string; instruction: string; revision: string; planRevision: string; generationRevision: string; source: Theme; result: RefinedTheme }) {
+    const { slug, conceptId, fromVersion, instruction, result } = input;
+    return this.locked(slug, input.revision, async () => {
+      const project = await this.read(slug);
+      this.checkDesign(project, conceptId, input.planRevision, input.generationRevision);
+      const source = await this.version(slug, conceptId, fromVersion);
+      if (JSON.stringify(source) !== JSON.stringify(input.source)) throw new StudioError("Исходная версия изменилась во время правки.", 409);
+      const checked = applyRefinement(source, result.patch, project);
+      const history = await this.history(slug, conceptId);
+      const version = String(Math.max(...history.map((item) => Number(item.version))) + 1);
+      if (!VersionId.safeParse(version).success) throw new StudioError("Достигнут предел версий этого варианта.");
+      const provenance = VersionRecord.parse({ version, fromVersion, instruction, createdAt: new Date().toISOString(), summary: result.summary, model: result.model, elapsedMs: result.elapsedMs, changes: checked.changes, adjustments: checked.adjustments });
+      const directory = path.join(this.directory(slug), "concepts", conceptId);
+      const temporary = path.join(directory, `.refine-${randomUUID()}`);
+      const targets: string[] = [];
+      let committed = false;
+      await mkdir(temporary);
+      try {
+        // Atomic hard links publish complete files with write-once semantics.
+        const { link } = await import("node:fs/promises");
+        for (const [name, value] of [[`v${version}.json`, checked.theme], [`v${version}.meta.json`, provenance]] as const) {
+          await writeFile(path.join(temporary, name), encode(value), { flag: "wx" });
+          await link(path.join(temporary, name), path.join(directory, name));
+          targets.push(path.join(directory, name));
+        }
+        await this.atomicJson(path.join(this.directory(slug), "generation.json"), { ...project.generation!, concepts: project.generation!.concepts.map((concept) => concept.id === conceptId ? { ...concept, version } : concept) });
+        committed = true;
+      } finally {
+        await rm(temporary, { recursive: true, force: true });
+        if (!committed) for (const target of targets) await rm(target, { force: true });
+      }
+      return this.read(slug);
+    });
   }
   async list() {
     await mkdir(this.root, { recursive: true });
@@ -204,6 +298,8 @@ export class ProjectStore {
           await mkdir(directory);
           created.push(directory);
           await writeFile(path.join(directory, "v1.json"), encode(concept.theme), { flag: "wx" });
+          await writeFile(path.join(directory, "meta.json"), encode({ createdAt: generation.createdAt, assignedLayout: concept.theme.layout.composition, assignedMaterial: concept.theme.materialSet }), { flag: "wx" });
+          await writeFile(path.join(directory, "v1.meta.json"), encode(VersionRecord.parse({ version: "1", fromVersion: null, createdAt: generation.createdAt, instruction: "Исходная генерация по брифу", summary: concept.theme.meta.rationale, model: result.model, elapsedMs: result.elapsedMs, changes: [], adjustments: result.adjustments })), { flag: "wx" });
         }
         await writeFile(pending, encode(generation), { flag: "wx" });
         await rename(pending, path.join(this.directory(slug), "generation.json"));

@@ -5,6 +5,7 @@ import { composeSeries, type GeneratedSeries } from "@/lib/generation/series";
 import { StudioError } from "@/lib/studio/store";
 import { SECTION_IDS, COMPOSITION_IDS, ORNAMENT_PACK_IDS, TYPE_SET_IDS } from "@/registry/keys";
 import { generateSeriesPrompt } from "./prompts/generateSeries";
+import { populatedSections } from "@/lib/invitation/sections";
 
 export type DesignReference = { base64: string };
 const string = { type: "string" };
@@ -25,9 +26,6 @@ export function seriesTool(photos: DirectedAsset[]): Anthropic.Messages.Tool {
       photos: array(object({ id: photos.length ? enumeration(photos.map((photo) => photo.asset.id)) : { ...string, maxLength: 0 }, section: enumeration(SECTION_IDS), index: { type: "integer", minimum: 0, maximum: 40 }, position: enumeration(["before", "after"]) }), photos.length, photos.length),
     }), 5, 5),
   }) as Anthropic.Messages.Tool["input_schema"] };
-}
-export function populatedSections(content: Content) {
-  return SECTION_IDS.filter((id) => id === "hero" || id === "footer" || id === "venue" || (id === "greeting" && content.greeting) || (id === "countdown" && content.date.showCountdown) || (id === "timeline" && content.timeline.length) || (id === "dressCode" && content.dressCode) || (id === "rsvp" && content.rsvp?.enabled));
 }
 export async function generateSeries(content: Content, photos: DirectedAsset[], references: DesignReference[], client?: Anthropic): Promise<GeneratedSeries> {
   if (!content.brief?.trim()) throw new StudioError("Опишите желаемый стиль в поле «Пожелания к дизайну».");
