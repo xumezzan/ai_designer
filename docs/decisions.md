@@ -2,6 +2,42 @@
 
 Architecture decisions that constrain future work. Newest first.
 
+## 2026-10-09 — M1: named compositions within one renderer
+
+The specification was amended before adding `layout.composition` with five
+ids: `letter`, `poster`, `folio`, `arch`, `botanical`; omitted values default
+to `letter`. Palette and typography alone could not express the required
+structural diversity. These are hand-built composition presets rather than
+free positioning controls. Sections do not read theme fields; the layout owns
+hierarchy, order, decoration and the single foil grant. CSS never selects a
+concept id. A single divider marks one pause, not every section boundary.
+
+Paper, two type sets, two static SVG ornament packs, `still`/`unfold` and
+`scroll-narrative` are implemented. Layout/motion/ornament registry existence
+is now enforced. `full-photo` requires M3's DirectedImage; ambient motion,
+other choreography and `card-stack` remain unavailable rather than silently
+rendering another preset. Suzani and Islamic geometry are authored in code;
+hero frames have architectural paths with a small signature motif.
+
+The filesystem preview is strictly read-only and validates stored JSON without
+automatic repair. Repair remains the separate M4 generation function. Safe
+route ids prevent directory traversal; missing files produce 404. Demo version
+1 files are the initial immutable snapshots; versioning UI is still M5.
+
+All sections render on the server except the running countdown. Its client
+props contain only date, locale and server time. It uses absolute timestamps,
+pauses while the document is hidden and clamps at zero. Unfold grants one
+entrance to the hero title; it does not animate every section. Server text
+remains readable before the observer installs, and reduced motion uses the
+existing craft rule. Optional sections are removed before wrappers/ornaments
+are placed; the hero anchor follows the next visible section in JSON order.
+
+Event date offsets, IANA timezone, coordinate bounds and RSVP destinations are
+validated. Telegram/phone are native links; form mode posts labelled fields to
+an explicitly configured receiver, with no invented internal endpoint or
+reply store. No external RSVP action was sent during QA. Demo facts and
+contacts are fictional and marked visibly. No dependency was added in M1.
+
 ## 2026-10-09 — Foundation audit: contrast repair and dependency updates
 
 Raw palette fields are checked with the existing `Hex` schema before colour

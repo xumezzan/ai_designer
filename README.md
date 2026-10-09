@@ -35,9 +35,33 @@ npm run check-fonts             # font support table → registry/fonts.generate
 
 Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
-Current milestone: **M0.5 complete**. Open `/craft` to inspect Ceremony and
-Editorial, Russian/Uzbek text, paper and the reveal layer. Measured references:
-[docs/references.md](./docs/references.md). M1's complete invitation is next.
+Current milestone: **M1 complete**. Open `/demo` for five hand-authored wedding
+invitations sharing one renderer and eight section components. Open `/craft`
+for the Ceremony/Editorial typography specimen. References are measured in
+[docs/references.md](./docs/references.md); three screenshot critique loops are
+recorded in [docs/critique.md](./docs/critique.md). Verification and its limits:
+[docs/m1-qa.md](./docs/m1-qa.md). M2's studio shell is next.
+
+## Invitation preview
+
+`/preview/demo/letter/1` reads `projects/demo/content.json`, `asset-plan.json`
+and `concepts/letter/v1.json`. The other concepts are `poster`, `folio`, `arch`
+and `botanical`. Data and contacts in this demo are fictional.
+
+Choose `layout.composition`, type set, palette, foil, ornament placements,
+motion and section order in JSON; no component changes are needed for these
+five directions. Preview reads the files on each request: refresh to see edits.
+For a new revision, copy a theme to `v2.json` and open version `/2`; retain the
+previous version. The reader validates but never repairs or rewrites stored
+themes. `composition` defaults to `letter` for older JSON. Unbuilt presets are
+rejected explicitly. Event dates require an ISO timestamp with an offset and
+a valid IANA timezone.
+
+RSVP supports a Telegram username, an international phone number, or a native
+POST form to a configured HTTP(S) receiver. The receiver must accept `name`,
+`attendance=yes` and optional `guests`; this project does not yet store replies.
+Replace the demo phone number before using it for a real event. Studio creation,
+AI generation, media direction and public publishing belong to later milestones.
 
 ## Layout
 
