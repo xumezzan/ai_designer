@@ -11,7 +11,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "check-fonts": "node scripts/check-fonts.ts"
+    "check-fonts": "node scripts/check-fonts.ts",
+    "prepare-fonts": "node scripts/prepare-fonts.mjs"
   },
   "dependencies": {
     "next": "^15.5.27",

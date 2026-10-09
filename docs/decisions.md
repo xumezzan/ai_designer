@@ -159,3 +159,41 @@ fontsource tarballs — is a piece of work of its own, in the same family as
 `scripts/check-fonts.ts`. It is not in this milestone: stored metrics are never
 invented from memory, so the rule stays unimplemented rather than guessed.
 Tracked here so it is not mistaken for done.
+
+## 2026-10-09 — M0.5 complete against four supplied references
+
+The user supplied four reference URLs after the readiness audit and requested
+milestones in order. `docs/references.md` records measured mobile/desktop type,
+tracking, palette, motion and a documented geometric whitespace proxy for all
+four. This supersedes the specification's suggested count of 5–8 references.
+Chungdoi is a service homepage, so its product UI informs M2 rather than an
+invitation layout.
+
+Ceremony uses Cormorant Garamond 300 / EB Garamond 400–500; Editorial uses
+Cormorant Garamond 600 / Golos Text 400–600. Both caps roles use the display
+face because actual glyph shaping, not the presence of an `smcp` tag, proves
+Cyrillic small caps. EB Garamond and Noto Serif Display only shape Latin small
+caps. The shared display family has a deliberate weight contrast; the body
+families distinguish the voices. Paper's two grain layers, vignette and deckle
+distortion are reduced. Derived space is now published by `toCssVars`.
+
+The earlier open font-metric task is closed. Full pinned Google Fonts TTFs
+are instantiated/subset with FontTools, preserving OpenType layout features;
+21 WOFF2 assets and three OFL licenses are committed. Source/assets/fallback
+hashes and decoded metrics are recorded. Next's bundled fontkit measures sample
+widths and vertical metrics; no runtime dependency was added. FontTools is an
+optional regeneration tool, not required by builds. Size adjustment reduces
+fallback shift for the measured system-font versions; arbitrary OS versions
+and strings cannot be promised identical wrapping.
+
+Golos's actual source lacks U+02BB despite its advertised CSS range. The
+registry now reports that limitation, and Editorial explicitly falls back to
+its paired Cormorant for that codepoint. No Uzbek apostrophe is rewritten.
+The shaping and coverage tests exercise actual WOFF2 glyphs.
+
+The earlier root-script reveal gate is superseded. A block can hide only after
+its own observer is installed; a blocked application bundle leaves all server
+text readable. Threshold zero lets blocks taller than a screen enter. Reduced
+motion skips transitions/delays and animations; focus remains visible. The
+850ms reveal follows Postamt's timing. `/craft` is a standalone craft specimen,
+with Russian root language and a marked Uzbek passage, not M1's template.

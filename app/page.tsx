@@ -1,4 +1,5 @@
 import { Reveal } from "@/components/craft/Reveal";
+import Link from "next/link";
 import { typograph } from "@/lib/typography/ru";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
           Полное описание — в SPEC.md. Статус вех и решения — в docs/decisions.md.
         </p>
       </Reveal>
+      <Link href="/craft" className="underline underline-offset-4">Проверить оформление →</Link>
     </main>
   );
 }

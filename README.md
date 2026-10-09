@@ -35,6 +35,10 @@ npm run check-fonts             # font support table → registry/fonts.generate
 
 Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
+Current milestone: **M0.5 complete**. Open `/craft` to inspect Ceremony and
+Editorial, Russian/Uzbek text, paper and the reveal layer. Measured references:
+[docs/references.md](./docs/references.md). M1's complete invitation is next.
+
 ## Layout
 
 ```
@@ -68,3 +72,8 @@ per style, one-off, web licence — one display face is enough.
 
 Licensed files live in `public/fonts/` and are **gitignored**; see
 [public/fonts/README.md](./public/fonts/README.md) for the registration steps.
+
+The current presets use committed, OFL-licensed WOFF2 files under
+`public/font-assets/`; builds make no font requests to Google. Source hashes,
+glyph shaping checks and measured fallback metrics are recorded. Regeneration:
+[public/font-assets/README.md](./public/font-assets/README.md).

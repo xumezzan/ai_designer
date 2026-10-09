@@ -4,9 +4,10 @@
  * type-set craft values and material vars come from their registries.
  */
 import type { Theme } from "../schema/theme";
-import { getTypeSet, type TypeSetLevel } from "../../registry/typesets";
+import { getTypeSet, typeSetStackFor, type TypeSetLevel } from "../../registry/typesets";
 import { getMaterialSet } from "../../registry/materials";
 import { stackFor } from "../../registry/fonts";
+import { spaceScale, spaceVars } from "../layout/space";
 
 const ORNAMENT_COLOR_VAR = {
   accent: "--accent",
@@ -33,7 +34,8 @@ export function toCssVars(theme: Theme): Record<string, string> {
     throw new Error(`Type set "${theme.typeSet}" is not registered`);
   }
   vars["--font-display"] = stackFor(typeSet.display);
-  vars["--font-body"] = stackFor(typeSet.body);
+  vars["--font-body"] = typeSetStackFor(typeSet, "body");
+  vars["--font-caps"] = stackFor(typeSet.levels.caps.role === "display" ? typeSet.display : typeSet.body);
   for (const level of Object.keys(typeSet.levels) as TypeSetLevel[]) {
     const spec = typeSet.levels[level];
     const name = levelVar(level);
@@ -44,6 +46,7 @@ export function toCssVars(theme: Theme): Record<string, string> {
     if (spec.features) vars[`--features-${name}`] = spec.features;
   }
   vars["--measure"] = `${typeSet.measure}ch`;
+  Object.assign(vars, spaceVars(spaceScale(typeSet)));
 
   const material = getMaterialSet(theme.materialSet);
   if (!material) {
