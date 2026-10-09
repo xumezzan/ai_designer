@@ -23,7 +23,7 @@ the store (`projects/`). No backend service, no database, no auth.
 
 ```bash
 npm install
-cp .env.example .env.local      # fill in when you reach M4 (generation)
+cp .env.example .env.local      # fill in for M3 photo analysis and M4 generation
 
 npm run dev                     # http://localhost:3000
 npm test                        # unit tests
@@ -35,11 +35,15 @@ npm run check-fonts             # font support table → registry/fonts.generate
 
 Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
-Current milestone: **M2 complete**. Open `/studio` to create/edit projects,
-upload photos and references, and compare five designs. The questionnaire and
-uploads persist in `projects/`; no API key is needed for this milestone.
-Verification: [docs/m2](./docs/m2/README.md). Photos are stored now; directed
-placement and reference analysis belong to M3/M4.
+Current milestone: **M3 implemented; live vision acceptance pending**. Open
+`/studio` to create/edit projects, upload photos and references, direct each
+photo's placement and protected crop, and compare five designs. Manual photo
+settings, shared treatment and persistence work without an API key. Autoanalysis
+uses Anthropic after `ANTHROPIC_API_KEY` is added to `.env.local` and the server
+is restarted; `ANTHROPIC_MODEL` optionally overrides `claude-sonnet-4-6`.
+Verification: [M2](./docs/m2/README.md), [M3 and its limits](./docs/m3/README.md).
+A live provider call and the real mixed-camera acceptance batch remain untested
+because no key or acceptance photos are configured. Reference analysis is M4.
 
 Open `/demo` for five hand-authored wedding
 invitations sharing one renderer and eight section components. Open `/craft`
@@ -75,8 +79,8 @@ a valid IANA timezone.
 RSVP supports a Telegram username, an international phone number, or a native
 POST form to a configured HTTP(S) receiver. The receiver must accept `name`,
 `attendance=yes` and optional `guests`; this project does not yet store replies.
-Replace the demo phone number before using it for a real event. AI generation,
-media direction and public publishing belong to later milestones.
+Replace the demo phone number before using it for a real event. AI theme generation
+and public publishing belong to later milestones.
 
 ## Layout
 

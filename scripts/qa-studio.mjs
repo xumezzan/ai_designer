@@ -83,7 +83,7 @@ try {
   await uploadButtons.nth(0).click();
   await (await chooserEvent).setFiles(invalid);
   await page.getByRole("alert").filter({ hasText: "Файл не удалось прочитать" }).waitFor();
-  await page.getByRole("button", { name: "03 Пять дизайнов", exact: true }).click();
+  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
   assert.equal(await page.locator(".studio-preview-card").count(), 5);
   for (const card of await page.locator(".studio-preview-card").all()) {
     await card.scrollIntoViewIfNeeded();
@@ -106,7 +106,7 @@ try {
   report.modal = true;
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const tab of ["01 Анкета", "02 Фотографии и референсы", "03 Пять дизайнов"]) {
+    for (const tab of ["01 Анкета", "02 Фотографии и референсы", "04 Пять дизайнов"]) {
       await page.getByRole("button", { name: tab, exact: true }).click();
       const dimensions = await page.evaluate(() => ({ viewport: innerWidth, scrollWidth: document.documentElement.scrollWidth }));
       assert(dimensions.scrollWidth <= dimensions.viewport, `${width} ${tab}: overflow ${dimensions.scrollWidth}`);

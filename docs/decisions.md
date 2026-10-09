@@ -286,3 +286,46 @@ text readable. Threshold zero lets blocks taller than a screen enter. Reduced
 motion skips transitions/delays and animations; focus remains visible. The
 850ms reveal follows Postamt's timing. `/craft` is a standalone craft specimen,
 with Russian root language and a marked Uzbek passage, not M1's template.
+
+
+## 2026-10-09 — M3 photo direction and safe crops
+
+The asset plan has its own SHA-256 revision, and content/plan mutations share
+one project lock. Plan saves check both revisions and all current photo ids.
+Uploads and questionnaire changes preserve pending manual settings in the UI;
+removed media is ignored by the renderer, even when its old plan entry remains.
+Plans reference photos only, never design references. Hero placement requires
+quality `high`, one hero per plan, and at least 600px short / 1200px long side.
+
+Crop calculations match CSS `object-fit: cover` and percentage
+`object-position`, including focal points at either image edge. The first
+allowed ratio containing the entire normalized protected rectangle wins. If
+none qualifies, the original aspect ratio shows the complete photo. We do not
+zoom or cut the protected region to force a layout. Photo sections are composed
+once in ScrollNarrative rather than branching inside individual sections.
+Text stays on the theme surface and never overlays an unmeasured photo.
+
+Both viewport dimensions and cropped source resolution limit every photo.
+Low declared quality or an actual short side below 480px independently caps
+it to 35% of the viewport, so relabelling low-resolution media cannot enlarge
+it. The server also normalizes this cap before saving. A unified CSS treatment
+overrides individual treatment unless it is `none`; gentle material grain uses
+the theme's existing tokens. Filters coordinate the palette, not restore lost
+detail or guarantee exposure matching.
+
+Vision uses the real Anthropic SDK with a forced structured tool, batches of
+8 images and at most 3 concurrent requests. Invalid structured output gets one
+correction retry; all ids, geometry, placements and source dimensions are
+validated. Across batches, only one hero survives and the first batch's unified
+treatment applies to the entire set. Only normalized local event photographs
+are sent as JPEGs bounded to 1024px; references, event names and copy are absent
+from the prompt. Draft analysis never overwrites a saved plan. Changes during
+analysis return 409. Missing credentials and provider failures return explicit
+errors; no synthetic analysis substitutes for the provider.
+
+Implementation follows Anthropic's primary documentation for
+[vision](https://platform.claude.com/docs/en/build-with-claude/vision) and
+[tool definitions](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools).
+SDK transport tests use controlled responses. Real face/quality inference
+remains unverified until a key and an actual mixed-camera acceptance batch are
+available. M4 has not started.

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { Content } from "@/lib/schema/content";
 import type { Project } from "@/lib/studio/store";
+import { AssetDirector } from "./AssetDirector";
 import { resolveWallTime, wallTime } from "@/lib/studio/date";
 
 const blank: Content = {
@@ -46,6 +47,10 @@ async function responseData(response: Response) {
 export function ProjectEditor({ initial }: { initial?: Project }) {
   const router = useRouter();
   const [content, setContent] = useState<Content>(initial?.content ?? blank);
+  const [planRevision, setPlanRevision] = useState(initial?.planRevision ?? "");
+  const [assetPlan, setAssetPlan] = useState(initial?.assetPlan ?? { assets: [], unifiedTreatment: "none" as const });
+  const [mediaInfo, setMediaInfo] = useState(initial?.mediaInfo ?? {});
+  const [planDirty, setPlanDirty] = useState(false);
   const [revision, setRevision] = useState(initial?.revision ?? "");
   const [localDate, setLocalDate] = useState(initial ? wallTime(initial.content.date.start, initial.content.date.timezone) : "");
   const [tab, setTab] = useState("event");
@@ -62,9 +67,9 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
   const readOnly = initial?.content.slug === "demo";
   const update = (next: Partial<Content>) => { setContent((current) => ({ ...current, ...next })); setDirty(true); setMessage(""); setError(""); };
   useEffect(() => {
-    const handler = (event: BeforeUnloadEvent) => { if (dirty) { event.preventDefault(); } };
+    const handler = (event: BeforeUnloadEvent) => { if (dirty || planDirty) { event.preventDefault(); } };
     const navigation = (event: MouseEvent) => {
-      if (!dirty || event.ctrlKey || event.metaKey || event.shiftKey || event.button !== 0) return;
+      if (!(dirty || planDirty) || event.ctrlKey || event.metaKey || event.shiftKey || event.button !== 0) return;
       const link = (event.target as Element).closest?.("a[href]") as HTMLAnchorElement | null;
       if (!link || link.target === "_blank" || new URL(link.href).pathname === location.pathname) return;
       if (!window.confirm("Есть несохранённые изменения. Выйти без сохранения?")) { event.preventDefault(); event.stopImmediatePropagation(); }
@@ -72,7 +77,7 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
     window.addEventListener("beforeunload", handler);
     document.addEventListener("click", navigation, true);
     return () => { window.removeEventListener("beforeunload", handler); document.removeEventListener("click", navigation, true); };
-  }, [dirty]);
+  }, [dirty, planDirty]);
   useEffect(() => {
     if (modal) dialog.current?.showModal();
     else dialog.current?.close();
@@ -105,6 +110,7 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
         const data = await responseData(await fetch(`/api/projects/${content.slug}/media`, { method: "POST", body: form }));
         currentRevision = data.revision; setRevision(currentRevision);
         setContent((current) => ({ ...current, media: data.content.media, refs: data.content.refs }));
+        if (data.uploadedInfo) setMediaInfo((current) => ({ ...current, [data.uploadedInfo.id]: { width: data.uploadedInfo.width, height: data.uploadedInfo.height } }));
         count++;
       }
       setMessage(`Загружено изображений: ${count}.`);
@@ -122,15 +128,16 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
   }
   const name = content.headline || content.hosts.map((host) => host.name).filter(Boolean).join(" и ") || "Новое событие";
   function submitFromToolbar() {
+    if (tab === "photos") { document.getElementById("save-photo-plan")?.click(); return; }
     const form = document.getElementById("event-form") as HTMLFormElement;
     if (!form.checkValidity()) { setTab("event"); window.setTimeout(() => form.requestSubmit(), 0); }
     else form.requestSubmit();
   }
-  const tabs = [{ id: "event", label: "Анкета", number: "01" }, { id: "media", label: "Фотографии и референсы", number: "02" }, { id: "designs", label: "Пять дизайнов", number: "03" }];
+  const tabs = [{ id: "event", label: "Анкета", number: "01" }, { id: "media", label: "Фотографии и референсы", number: "02" }, { id: "photos", label: "Настройки фото", number: "03" }, { id: "designs", label: "Пять дизайнов", number: "04" }];
   return <main className="studio-main studio-editor"><Link className="studio-back" href="/studio">← Все проекты</Link>
-    <div className="studio-page-heading"><div><p className="studio-eyebrow">{initial ? "Мастерская приглашения" : "Начнём с вашей истории"}</p><h1>{name}</h1><p className="studio-subtitle">{readOnly ? "Демо доступно для просмотра. Создайте проект, чтобы заполнить свои данные." : "Детали события, ваши фотографии и пять разных настроений."}</p></div>{readOnly ? <Link className="studio-primary" href="/studio/new">+ Свой проект</Link> : <div className="studio-save"><span>{busy ? "Сохраняем…" : dirty ? "Есть изменения" : initial ? "Все изменения сохранены" : "Новый проект"}</span><button className="studio-primary" type="button" onClick={submitFromToolbar} disabled={busy}>{initial ? "Сохранить" : "Создать проект"}</button></div>}</div>
+    <div className="studio-page-heading"><div><p className="studio-eyebrow">{initial ? "Мастерская приглашения" : "Начнём с вашей истории"}</p><h1>{name}</h1><p className="studio-subtitle">{readOnly ? "Демо доступно для просмотра. Создайте проект, чтобы заполнить свои данные." : "Детали события, ваши фотографии и пять разных настроений."}</p></div>{readOnly ? <Link className="studio-primary" href="/studio/new">+ Свой проект</Link> : <div className="studio-save"><span>{busy ? "Сохраняем…" : (dirty || planDirty) ? "Есть изменения" : initial ? "Все изменения сохранены" : "Новый проект"}</span><button className="studio-primary" type="button" onClick={submitFromToolbar} disabled={busy || (tab === "photos" && content.media.length === 0)}>{initial ? (tab === "photos" ? "Сохранить фото" : "Сохранить") : "Создать проект"}</button></div>}</div>
     <div role="status" aria-live="polite" className={message ? "studio-notice" : ""}>{message}</div>{error && <div className="studio-error" role="alert">{error}</div>}
-    <div className="studio-editor-layout"><aside className="studio-sidebar"><nav aria-label="Разделы проекта">{tabs.map((item) => <button key={item.id} type="button" aria-current={tab === item.id ? "page" : undefined} aria-label={`${item.number} ${item.label}`} onClick={() => { setTab(item.id); setError(""); }}><span>{item.number}</span><span className="studio-nav-desktop">{item.label}</span><span className="studio-nav-mobile">{item.id === "media" ? "Материалы" : item.id === "designs" ? "Дизайны" : "Анкета"}</span></button>)}</nav><p>Пять готовых композиций.<br />Одна ваша история.</p>{initial && <small>/{content.slug}</small>}</aside>
+    <div className="studio-editor-layout"><aside className="studio-sidebar"><nav aria-label="Разделы проекта">{tabs.map((item) => <button key={item.id} type="button" aria-current={tab === item.id ? "page" : undefined} aria-label={`${item.number} ${item.label}`} onClick={() => { setTab(item.id); setError(""); }}><span>{item.number}</span><span className="studio-nav-desktop">{item.label}</span><span className="studio-nav-mobile">{item.id === "media" ? "Материалы" : item.id === "designs" ? "Дизайны" : item.id === "photos" ? "Фото" : "Анкета"}</span></button>)}</nav><p>Пять готовых композиций.<br />Одна ваша история.</p>{initial && <small>/{content.slug}</small>}</aside>
     <div className="studio-editor-content">
       <div hidden={tab !== "event"}>
         <form id="event-form" onSubmit={save}><fieldset disabled={readOnly || busy}>
@@ -172,9 +179,10 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
       <section hidden={tab !== "media"} className="studio-panel"><div className="studio-panel-heading"><span>02</span><div><h2>Визуальная история</h2><p>Соберите фотографии события и примеры оформления.</p></div></div>{!initial ? <div className="studio-empty"><h3>Сначала создайте проект</h3><p>Заполните имена, дату и место в анкете. После сохранения можно загрузить изображения.</p><button className="studio-secondary" onClick={() => setTab("event")}>Перейти к анкете</button></div> : <>
         <input hidden ref={uploadInput} type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => { void upload(e.target.files); }} />
         {(["photo", "reference"] as const).map((kind) => { const sources = kind === "photo" ? content.media.map((media) => media.src) : content.refs; return <div className="studio-media-section" key={kind}><div className="studio-media-heading"><h3>{kind === "photo" ? "Ваши фотографии" : "Референсы дизайна"} <span>{sources.length}</span></h3><button type="button" className="studio-secondary" disabled={busy || readOnly} onClick={() => { uploadKind.current = kind; uploadInput.current?.click(); }}>+ Загрузить</button></div>{sources.length ? <div className="studio-media-grid">{sources.map((src, index) => <figure key={src}><Image unoptimized width={480} height={360} src={src} alt={`${kind === "photo" ? "Фотография" : "Референс"} ${index + 1}`} /><figcaption><span>{kind === "photo" ? "Фото" : "Референс"} {index + 1}</span><button type="button" aria-label={`Удалить ${kind === "photo" ? "фотографию" : "референс"} ${index + 1}`} disabled={busy || readOnly} onClick={() => { void remove(src); }}>Удалить</button></figcaption></figure>)}</div> : <div className="studio-upload-empty"><span aria-hidden="true">↑</span><p>{kind === "photo" ? "Портреты, место встречи, детали события" : "Фактуры, узоры и приглашения, которые вам нравятся"}</p><small>JPG, PNG, WebP · до 15 МБ каждый</small></div>}</div>; })}
-        <p className="studio-help">Изображения сохраняются в проекте. Размещение фотографий в приглашении и анализ референсов появятся на следующем этапе.</p>
+        <p className="studio-help">Выберите роль, раздел и кадр каждого снимка в разделе «Настройки фото». Референсы хранятся отдельно от фотографий события.</p>
       </>}</section>
-      <section hidden={tab !== "designs"}><div className="studio-preview-heading"><div><h2>Одна история, пять настроений</h2><p>Готовые композиции с сохранёнными данными вашей анкеты.</p></div><div className="studio-view-toggle" aria-label="Ширина предпросмотра"><button type="button" aria-pressed={viewport === "phone"} onClick={() => setViewport("phone")}>Телефон</button><button type="button" aria-pressed={viewport === "desktop"} onClick={() => setViewport("desktop")}>Компьютер</button></div></div>{dirty && <p className="studio-notice">В предпросмотре — сохранённая версия. Нажмите «Сохранить», чтобы обновить данные.</p>}
+      <div hidden={tab !== "photos"}>{initial ? <AssetDirector content={content} revision={revision} planRevision={planRevision} initialPlan={assetPlan} info={mediaInfo} disabled={busy} readOnly={readOnly} visionConfigured={initial.visionConfigured} onBusy={setBusy} onDirty={setPlanDirty} onMessage={(text, isError) => { setMessage(isError ? "" : text); setError(isError ? text : ""); }} onSaved={(plan, nextRevision) => { setAssetPlan(plan); setPlanRevision(nextRevision); setPreviewKey((key) => key + 1); }} /> : <div className="studio-panel studio-empty"><h3>Сначала создайте проект и загрузите фото</h3><p>После этого можно выбрать фокус, защитить лица и разместить снимки.</p></div>}</div>
+      <section hidden={tab !== "designs"}><div className="studio-preview-heading"><div><h2>Одна история, пять настроений</h2><p>Готовые композиции с сохранёнными данными вашей анкеты.</p></div><div className="studio-view-toggle" aria-label="Ширина предпросмотра"><button type="button" aria-pressed={viewport === "phone"} onClick={() => setViewport("phone")}>Телефон</button><button type="button" aria-pressed={viewport === "desktop"} onClick={() => setViewport("desktop")}>Компьютер</button></div></div>{(dirty || planDirty) && <p className="studio-notice">В предпросмотре — сохранённая версия. Сохраните анкету и настройки фото, чтобы обновить приглашения.</p>}
         {!initial ? <div className="studio-panel studio-empty"><h3>Ваши дизайны появятся после создания проекта</h3><p>Заполните анкету — и сравните все пять приглашений.</p><button className="studio-secondary" onClick={() => setTab("event")}>Заполнить анкету</button></div> : <div className="studio-preview-grid">{initial.concepts.map((concept, index) => <article className="studio-preview-card" key={concept.id}><PreviewWindow key={`${previewKey}-${viewport}`} concept={concept} slug={content.slug} revision={previewKey} viewport={viewport} onOpen={() => setModal(concept)} /><div className="studio-preview-caption"><span>0{index + 1}</span><h3>{concept.theme.meta.name}</h3><button type="button" aria-label={`Открыть ${concept.theme.meta.name}`} onClick={() => setModal(concept)}>↗</button></div><p>{concept.theme.meta.rationale}</p></article>)}</div>}
       </section>
     </div></div>

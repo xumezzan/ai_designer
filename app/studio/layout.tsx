@@ -1,5 +1,7 @@
 import Link from "next/link";
 import "./studio.css";
+import "./photos.css";
+import "@/app/photos.css";
 
 export const metadata = { title: "Студия приглашений", robots: { index: false, follow: false } };
 export default function StudioLayout({ children }: { children: React.ReactNode }) {
