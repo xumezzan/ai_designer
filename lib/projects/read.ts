@@ -4,9 +4,10 @@ import { Content } from "../schema/content";
 import { AssetPlan } from "../schema/assetPlan";
 import { validateTheme } from "../theme/validate";
 import { COMPOSITION_IDS } from "../../registry/keys";
+import { readDirectedPhotos } from "../assets/read";
 
 const root = path.join(process.cwd(), "projects");
-export const safeId = (id: string) => /^[a-z0-9][a-z0-9-]{0,63}$/.test(id);
+export const safeId = (id: string) => typeof id === "string" && /^[a-z0-9][a-z0-9-]{0,63}$/.test(id);
 async function readJson(file: string) { return JSON.parse(await readFile(file, "utf8")); }
 
 export async function readInvitation(slug: string, concept: string, version: string) {
@@ -19,9 +20,10 @@ export async function readInvitation(slug: string, concept: string, version: str
     const content = Content.parse(rawContent);
     if (content.slug !== slug) throw new Error("Project slug does not match its directory");
     const assetPlan = AssetPlan.parse(rawPlan);
-    const result = validateTheme(rawTheme, { locale: content.locale });
+    const photos = await readDirectedPhotos(content, assetPlan);
+    const result = validateTheme(rawTheme, { locale: content.locale, hasHighQualityAsset: photos.some((photo) => photo.asset.quality === "high" && photo.asset.placement?.section === "hero") });
     if (!result.ok) throw new Error(result.errors.join("; "));
-    return { content, assetPlan, theme: result.theme, adjustments: result.adjustments };
+    return { content, assetPlan, photos, theme: result.theme, adjustments: result.adjustments };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
     throw error;

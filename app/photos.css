@@ -1,0 +1,9 @@
+.directed-set { display: flex; flex-wrap: wrap; align-items: start; justify-content: center; gap: var(--space-block); padding-block: var(--space-block); }
+.directed-photo { position: relative; width: var(--photo-limit); aspect-ratio: var(--photo-ratio); overflow: hidden; flex: 0 1 auto; margin-inline: auto; background: var(--surface); }
+.directed-photo img { width: 100%; height: 100%; display: block; }
+.directed-photo::after { content: ""; position: absolute; inset: 0; pointer-events: none; background-image: var(--grain), var(--grain-fine); opacity: .045; mix-blend-mode: soft-light; }
+.directed-photo[data-treatment="warm-film"] img { filter: saturate(.75) sepia(.22) contrast(.94) brightness(.99); }
+.directed-photo[data-treatment="desaturate"] img { filter: saturate(.3) contrast(.96); }
+.directed-photo[data-treatment="bw"] img { filter: grayscale(1) contrast(.95); }
+.directed-photo[data-treatment="duotone"] img { filter: grayscale(1) sepia(.65) saturate(.7) contrast(.95); }
+[data-hero="full-photo"] .invitation-hero { min-height: auto; padding-block: var(--space-block) var(--space-section); }

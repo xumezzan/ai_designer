@@ -6,12 +6,17 @@ import { Content, type Content as EventContent } from "@/lib/schema/content";
 import { demoConcepts, safeId } from "@/lib/projects/read";
 import { validateTheme } from "@/lib/theme/validate";
 import type { Theme } from "@/lib/schema/theme";
+import { AssetPlan, type AssetPlan as PhotoPlan } from "@/lib/schema/assetPlan";
+import { heroGrade, unusedAsset, type ImageInfo } from "@/lib/assets/crop";
+import { photoInfo } from "@/lib/assets/read";
 
 export class StudioError extends Error {
   constructor(message: string, public status = 400) { super(message); }
 }
 export type Concept = { id: string; version: string; theme: Theme };
-export type Project = { content: EventContent; revision: string; concepts: Concept[] };
+export type Planning = { assetPlan: PhotoPlan; planRevision: string; mediaInfo: Record<string, ImageInfo> };
+export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean } & Planning;
+const hasHero = (planning: Planning) => planning.assetPlan.assets.some((asset) => asset.quality === "high" && asset.placement?.section === "hero" && heroGrade(planning.mediaInfo[asset.id]));
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
 const encode = (value: unknown) => JSON.stringify(value, null, 2) + "\n";
 
@@ -59,6 +64,7 @@ export class ProjectStore {
   }
   async read(slug: string): Promise<Project> {
     const snapshot = await this.snapshot(slug);
+    const planning = await this.planning(slug, snapshot.content);
     const root = path.join(this.directory(slug), "concepts");
     const directories = await readdir(root, { withFileTypes: true });
     const concepts = await Promise.all(directories.filter((entry) => entry.isDirectory() && safeId(entry.name)).map(async (entry) => {
@@ -66,13 +72,13 @@ export class ProjectStore {
       const version = files.map((file) => /^v([1-9]\d{0,4})\.json$/.exec(file)?.[1]).filter((v): v is string => Boolean(v)).sort((a, b) => Number(b) - Number(a))[0];
       if (!version) throw new Error(`No concept version: ${entry.name}`);
       const raw = JSON.parse(await readFile(path.join(root, entry.name, `v${version}.json`), "utf8"));
-      const result = validateTheme(raw, { locale: snapshot.content.locale });
+      const result = validateTheme(raw, { locale: snapshot.content.locale, hasHighQualityAsset: hasHero(planning) });
       if (!result.ok) throw new Error(`Invalid concept: ${result.errors.join("; ")}`);
       return { id: entry.name, version, theme: result.theme };
     }));
     const order = ["letter", "poster", "folio", "arch", "botanical"];
     concepts.sort((a, b) => order.indexOf(a.theme.layout.composition) - order.indexOf(b.theme.layout.composition));
-    return { ...snapshot, concepts };
+    return { ...snapshot, ...planning, concepts, visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
   }
   async list() {
     await mkdir(this.root, { recursive: true });
@@ -111,7 +117,7 @@ export class ProjectStore {
     } finally { await rm(pending, { recursive: true, force: true }); }
     return this.read(content.slug);
   }
-  private async mutate(slug: string, revision: string, change: (content: EventContent) => Promise<EventContent>) {
+  private async locked<T>(slug: string, revision: string, action: (content: EventContent) => Promise<T>) {
     const dir = this.directory(slug, true);
     await this.snapshot(slug);
     const lock = path.join(dir, ".studio-lock");
@@ -120,19 +126,51 @@ export class ProjectStore {
       if ((error as NodeJS.ErrnoException).code === "EEXIST") throw new StudioError("Проект сейчас сохраняется. Повторите через несколько секунд.", 409);
       throw error;
     }
-    const temporary = path.join(dir, `.content-${randomUUID()}.json`);
     try {
       const current = await this.snapshot(slug);
       if (current.revision !== revision) throw new StudioError("Проект изменён в другой вкладке. Скопируйте свои изменения и обновите страницу.", 409);
-      const content = validateContent(await change(current.content));
+      return await action(current.content);
+    } finally { await rm(lock, { recursive: true, force: true }); }
+  }
+  private async mutate(slug: string, revision: string, change: (content: EventContent) => Promise<EventContent>) {
+    return this.locked(slug, revision, async (current) => {
+      const content = validateContent(await change(current));
       const text = encode(content);
-      await writeFile(temporary, text, { flag: "wx" });
-      await rename(temporary, path.join(dir, "content.json"));
-      return { content, revision: hash(text) };
-    } finally {
-      await rm(temporary, { force: true });
-      await rm(lock, { recursive: true, force: true });
-    }
+      const temporary = path.join(this.directory(slug), `.content-${randomUUID()}.json`);
+      try {
+        await writeFile(temporary, text, { flag: "wx" });
+        await rename(temporary, path.join(this.directory(slug), "content.json"));
+        return { content, revision: hash(text) };
+      } finally { await rm(temporary, { force: true }); }
+    });
+  }
+  async planning(slug: string, content?: EventContent): Promise<Planning> {
+    const current = content ?? (await this.snapshot(slug)).content;
+    const text = await readFile(path.join(this.directory(slug), "asset-plan.json"), "utf8");
+    const stored = AssetPlan.parse(JSON.parse(text));
+    const mediaInfo = await photoInfo(this.directory(slug), current);
+    const assets = current.media.map((media) => stored.assets.find((asset) => asset.id === media.id) ?? unusedAsset(media.id, mediaInfo[media.id]));
+    return { assetPlan: { ...stored, assets }, planRevision: hash(text), mediaInfo };
+  }
+  async updatePlan(slug: string, raw: unknown, revision: string, planRevision: string) {
+    return this.locked(slug, revision, async (content) => {
+      const current = await this.planning(slug, content);
+      if (current.planRevision !== planRevision) throw new StudioError("Настройки фотографий изменены в другой вкладке. Обновите страницу перед сохранением.", 409);
+      const parsed = AssetPlan.safeParse(raw);
+      if (!parsed.success) throw new StudioError("Проверьте область сохранения, формат кадра и качество фото. На первом экране можно разместить только качественное фото.");
+      const plan = parsed.data;
+      if (plan.assets.length !== content.media.length || plan.assets.some((asset) => !current.mediaInfo[asset.id])) throw new StudioError("План должен содержать все фотографии проекта, без референсов и повторов.");
+      if (plan.assets.some((asset) => (asset.role === "hero" || asset.placement?.section === "hero") && !heroGrade(current.mediaInfo[asset.id]))) throw new StudioError("Фото для первого экрана должно иметь минимум 600 px по короткой стороне и 1200 px по длинной.");
+      if (plan.assets.filter((asset) => asset.placement?.section === "hero").length > 1) throw new StudioError("Для первого экрана выберите одно фото.");
+      plan.assets = plan.assets.map((asset) => asset.quality === "low" || Math.min(current.mediaInfo[asset.id].width, current.mediaInfo[asset.id].height) < 480 ? { ...asset, maxViewportShare: Math.min(asset.maxViewportShare, .35) } : asset);
+      const temporary = path.join(this.directory(slug), `.plan-${randomUUID()}.json`);
+      const text = encode(plan);
+      try {
+        await writeFile(temporary, text, { flag: "wx" });
+        await rename(temporary, path.join(this.directory(slug), "asset-plan.json"));
+      } finally { await rm(temporary, { force: true }); }
+      return { ...current, assetPlan: plan, planRevision: hash(text) };
+    });
   }
   async update(slug: string, raw: unknown, revision: string) {
     const proposed = validateContent(raw);
@@ -140,7 +178,7 @@ export class ProjectStore {
     return this.mutate(slug, revision, async (current) => {
       const project = await this.read(slug);
       for (const concept of project.concepts) {
-        if (!validateTheme(concept.theme, { locale: proposed.locale }).ok) throw new StudioError("Темы проекта не поддерживают выбранный язык.");
+        if (!validateTheme(concept.theme, { locale: proposed.locale, hasHighQualityAsset: hasHero(project) }).ok) throw new StudioError("Темы проекта не поддерживают выбранный язык.");
       }
       return { ...proposed, media: current.media, refs: current.refs };
     });
@@ -150,11 +188,14 @@ export class ProjectStore {
     if (!file.size || file.size > 15 * 1024 * 1024) throw new StudioError("Размер изображения должен быть от 1 байта до 15 МБ.");
     const bytes = Buffer.from(await file.arrayBuffer());
     let output: Buffer;
+    let dimensions: ImageInfo;
     try {
       const image = sharp(bytes, { limitInputPixels: 40000000 });
       const metadata = await image.metadata();
       if (!["jpeg", "png", "webp"].includes(metadata.format ?? "") || (metadata.pages ?? 1) > 1) throw new Error("Unsupported image");
-      output = await image.rotate().resize({ width: 2400, height: 2400, fit: "inside", withoutEnlargement: true }).webp({ quality: 90 }).toBuffer();
+      const processed = await image.rotate().resize({ width: 2400, height: 2400, fit: "inside", withoutEnlargement: true }).webp({ quality: 90 }).toBuffer({ resolveWithObject: true });
+      output = processed.data;
+      dimensions = { width: processed.info.width, height: processed.info.height };
     } catch { throw new StudioError("Файл не удалось прочитать. Выберите обычное изображение JPG, PNG или WebP."); }
     const id = randomUUID();
     const filename = `${id}.webp`;
@@ -162,13 +203,14 @@ export class ProjectStore {
     const src = `/api/projects/${slug}/media/${filename}`;
     let written = false;
     try {
-      return await this.mutate(slug, revision, async (content) => {
+      const result = await this.mutate(slug, revision, async (content) => {
         if (content.media.length + content.refs.length >= 40) throw new StudioError("В проекте уже 40 изображений. Удалите ненужные перед загрузкой.");
         await mkdir(directory, { recursive: true });
         await writeFile(path.join(directory, filename), output, { flag: "wx" });
         written = true;
         return kind === "photo" ? { ...content, media: [...content.media, { id, src }] } : { ...content, refs: [...content.refs, src] };
       });
+      return { ...result, uploadedInfo: kind === "photo" ? { id, ...dimensions } : null };
     } catch (error) {
       if (written) await rm(path.join(directory, filename), { force: true });
       throw error;

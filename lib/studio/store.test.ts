@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, test } from "vitest";
-import { mkdtemp, readFile, readdir, rm } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
@@ -92,4 +92,38 @@ test("rejects invalid dates, IANA zones and DST gaps/ambiguous times", () => {
 test("same-host writes work through Next's internal localhost URL, foreign origins fail", () => {
   expect(() => mutationRequest(new Request("http://localhost:3147/api/projects", { headers: { host: "127.0.0.1:3147", origin: "http://127.0.0.1:3147" } }))).not.toThrow();
   expect(() => mutationRequest(new Request("http://localhost:3147/api/projects", { headers: { host: "127.0.0.1:3147", origin: "https://foreign.example" } }))).toThrow("адреса");
+});
+
+test("plan revisions protect photo settings and reject foreign ids/undersized hero", async () => {
+  const project = await store.create(content(), templates);
+  const bytes = await sharp({ create: { width: 640, height: 400, channels: 3, background: "#334455" } }).png().toBuffer();
+  const photo = await store.upload("new-event", project.revision, "photo", new File([new Uint8Array(bytes)], "photo.png"));
+  const current = await store.read("new-event");
+  expect(current.assetPlan.assets[0].role).toBe("unused");
+  const asset = { ...current.assetPlan.assets[0], role: "portrait" as const, placement: { section: "greeting" as const, index: 0 } };
+  const raw = { assets: [asset], unifiedTreatment: "bw" };
+  const saved = await store.updatePlan("new-event", raw, photo.revision, current.planRevision);
+  expect(saved.assetPlan.unifiedTreatment).toBe("bw");
+  expect(saved.assetPlan.assets[0].maxViewportShare).toBe(.35);
+  await expect(store.updatePlan("new-event", raw, photo.revision, current.planRevision)).rejects.toMatchObject({ status: 409 });
+  await expect(store.updatePlan("new-event", { ...raw, assets: [{ ...asset, id: "foreign" }] }, photo.revision, saved.planRevision)).rejects.toThrow("План");
+  await expect(store.updatePlan("new-event", { ...raw, assets: [{ ...asset, quality: "high", role: "hero", placement: { section: "hero", index: 0 } }] }, photo.revision, saved.planRevision)).rejects.toThrow("600");
+  expect((await store.read("new-event")).assetPlan.unifiedTreatment).toBe("bw");
+});
+
+
+test("saving event facts preserves a valid full-photo theme and the independent photo plan", async () => {
+  const project = await store.create(content(), templates);
+  const bytes = await sharp({ create: { width: 1600, height: 1000, channels: 3, background: "#334455" } }).png().toBuffer();
+  const uploaded = await store.upload("new-event", project.revision, "photo", new File([new Uint8Array(bytes)], "photo.png"));
+  const current = await store.read("new-event");
+  const asset = { ...current.assetPlan.assets[0], role: "hero", quality: "high", placement: { section: "hero", index: 0 } };
+  const saved = await store.updatePlan("new-event", { assets: [asset], unifiedTreatment: "bw" }, uploaded.revision, current.planRevision);
+  const next = { ...theme, layout: { ...theme.layout, hero: "full-photo" } };
+  await writeFile(path.join(root, "new-event/concepts/arch/v2.json"), JSON.stringify(next));
+  await store.update("new-event", { ...current.content, greeting: "Обновлённый текст" }, uploaded.revision);
+  const result = await store.read("new-event");
+  expect(result.concepts[0].theme.layout.hero).toBe("full-photo");
+  expect(result.planRevision).toBe(saved.planRevision);
+  expect(result.content.greeting).toBe("Обновлённый текст");
 });

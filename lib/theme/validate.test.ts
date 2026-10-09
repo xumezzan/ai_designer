@@ -251,3 +251,13 @@ describe("typeSetSupportsLocale", () => {
     expect(typeSetSupportsLocale(ceremony, "en")).toBe(true);
   });
 });
+
+
+describe("directed full-photo hero", () => {
+  it("requires verified high-quality source context before rendering", () => {
+    const theme = clone({ layout: { ...baseTheme.layout, hero: "full-photo" } });
+    expect(validateTheme(theme).ok).toBe(false);
+    expect(validateTheme(theme, { hasHighQualityAsset: false }).ok).toBe(false);
+    expect(validateTheme(theme, { hasHighQualityAsset: true }).ok).toBe(true);
+  });
+});

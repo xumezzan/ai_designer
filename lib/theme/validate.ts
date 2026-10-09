@@ -226,6 +226,7 @@ export function repairTheme(raw: unknown, context?: RepairContext): RepairResult
 
 export interface ValidateOptions {
   locale?: Locale;
+  hasHighQualityAsset?: boolean;
 }
 
 export type ValidationResult =
@@ -287,6 +288,7 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
   if (!layout) errors.push(`layout "${theme.layout.preset}" has no registered preset`);
   else if (!layout.compositions.includes(theme.layout.composition)) errors.push("composition is not available in this layout");
   if (layout && !layout.heroes.includes(theme.layout.hero)) errors.push(`hero "${theme.layout.hero}" has no registered renderer`);
+  if (theme.layout.hero === "full-photo" && options?.hasHighQualityAsset !== true) errors.push("full-photo hero requires a high-quality photo in the asset plan");
   if (!getMotion(theme.motion.preset)) errors.push(`motion "${theme.motion.preset}" has no registered preset`);
   if (theme.motion.ambient !== "none") errors.push(`ambient "${theme.motion.ambient}" is not implemented`);
   if (!getOrnament(theme.ornament.pack)) errors.push("ornament has no registered preset");

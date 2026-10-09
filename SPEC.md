@@ -235,6 +235,21 @@ Rules the renderer enforces, not suggestions:
 
 `POST /api/plan-assets` produces this with a vision call. Every field is user-editable in the studio, because the model will misjudge focal points on group shots.
 
+**M3 implementation constraints (2026-10-09).** Focal coordinates and safe-area
+coordinates are bounded to 0..1; the safe rectangle must fit inside the image.
+Placement indices are nonnegative integers. A plan contains one entry per photo,
+never design-reference images, duplicate ids or unknown photo ids. Draft plans
+are saved separately from event facts with revision checks against both files.
+If every allowed crop intersects the protected area, render the whole image at
+its natural ratio. Crop choice happens on the server before rendering. Low-quality
+images are additionally limited to 35% of viewport width/height and their native
+crop pixel width; they cannot be placed in the hero. A high-quality hero must
+have at least 600px on its short side and 1200px on its long side. These are
+renderer safeguards, not a claim that pixel dimensions measure visual quality.
+The unified treatment overrides individual treatments unless set to `none`.
+Auto-analysis uses the configured Anthropic model and requires an API key; missing
+credentials are reported explicitly and manual art direction stays available.
+
 ### 5.3 `theme.json`
 
 **Schema principle: the AI picks from a menu, it does not turn knobs.**

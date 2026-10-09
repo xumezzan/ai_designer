@@ -4,6 +4,7 @@ import { readInvitation, demoConcepts } from "@/lib/projects/read";
 import { ScrollNarrative } from "@/components/layouts/ScrollNarrative";
 import "@/app/invitation.css";
 import "@/app/artwork.css";
+import "@/app/photos.css";
 import "@/app/demo/demo.css";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +23,6 @@ export default async function Preview({ params, searchParams }: { params: Promis
       <nav aria-label="Демо-темы">{demos.map((demo) => <Link key={demo.id} href={`/preview/demo/${demo.id}/${demo.version}`} aria-current={demo.id === conceptId ? "page" : undefined}>{demo.theme.meta.name}</Link>)}</nav>
       <span>Демо · данные вымышлены</span>
     </header>}
-    <ScrollNarrative content={content} theme={theme} initialNow={Date.now()} />
+    <ScrollNarrative content={content} theme={theme} photos={invitation.photos} initialNow={Date.now()} />
   </>;
 }

@@ -12,6 +12,8 @@ import { Surface } from "@/components/primitives/Surface";
 import { FoilText } from "@/components/primitives/FoilText";
 import { Ornament } from "@/components/primitives/Ornament";
 import { Artwork } from "@/components/primitives/Artwork";
+import { DirectedImage } from "@/components/primitives/DirectedImage";
+import type { DirectedAsset } from "@/lib/assets/crop";
 import { Hero } from "@/components/sections/Hero";
 import { Greeting } from "@/components/sections/Greeting";
 import { Countdown } from "@/components/sections/Countdown";
@@ -21,7 +23,7 @@ import { DressCode } from "@/components/sections/DressCode";
 import { Rsvp } from "@/components/sections/Rsvp";
 import { Footer } from "@/components/sections/Footer";
 
-export function ScrollNarrative({ content, theme, initialNow }: { content: Content; theme: Theme; initialNow: number }) {
+export function ScrollNarrative({ content, theme, initialNow, photos = [] }: { content: Content; theme: Theme; initialNow: number; photos?: DirectedAsset[] }) {
   const t = (text: string) => typograph(text, content.locale);
   const entrance = getMotion(theme.motion.preset)?.entrance;
   const names = content.headline ? t(content.headline) : content.hosts.map((host, index) =>
@@ -33,7 +35,8 @@ export function ScrollNarrative({ content, theme, initialNow }: { content: Conte
     timeline: content.timeline.length > 0, venue: true, dressCode: Boolean(content.dressCode),
     rsvp: Boolean(content.rsvp?.enabled), footer: true,
   };
-  const order = theme.layout.sectionOrder.filter((id) => available[id]);
+  const at = (id: SectionId) => photos.filter((photo) => photo.asset.placement?.section === id);
+  const order = theme.layout.sectionOrder.filter((id) => available[id] || at(id).length > 0);
   const next = order[1];
   const nextTarget = next ? { id: next, label: labels[content.locale][next === "hero" ? "invitation" : next] } : undefined;
   const sections: Record<SectionId, ReactNode> = {
@@ -54,9 +57,10 @@ export function ScrollNarrative({ content, theme, initialNow }: { content: Conte
     <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork}
       data-motion={theme.motion.preset} style={toCssVars(theme) as CSSProperties} lang={langFor(content.locale)}>
       <Surface><div className="narrative-content">
-        {order.map((id, index) => <div className={`narrative-slot slot-${id}`} key={id}>
+        {order.map((id, index) => <div className={`narrative-slot slot-${id}`} id={available[id] ? undefined : id} key={id}>
           {index === 2 && <><Ornament theme={theme} placement="divider" /><Artwork id={theme.artwork} placement="flourish" /></>}
           {sections[id]}
+          {at(id).length > 0 && <div className="directed-set" data-photo-section={id}>{at(id).map((photo) => <DirectedImage key={photo.asset.id} photo={photo} locale={content.locale} />)}</div>}
         </div>)}
       </div></Surface>
     </main>
