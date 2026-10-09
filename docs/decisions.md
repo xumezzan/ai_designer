@@ -2,6 +2,28 @@
 
 Architecture decisions that constrain future work. Newest first.
 
+## 2026-10-09 — User-requested generated backgrounds and materials
+
+The user rejected the sparse M1 designs and explicitly requested generated
+backgrounds, materials and patterns for a richer invitation. This supersedes
+SPEC's procedural-only/image-generation prohibition; the spec was amended
+before introducing `artwork` (`none` default, `suzani-atelier`).
+
+Generated art stays separate from event facts and accessible HTML. One named
+art direction contains a frame, a quiet texture and a transparent flourish,
+all local versioned assets with saved prompts, original files and hashes.
+The shared Artwork primitive uses Next Image for the frame/flourish, with an
+empty alt and aria-hidden wrapper. A material registry token provides the
+background texture; sections remain unaware of the artwork id. Artwork CSS
+is selected by the registered art direction, never by the concept directory.
+
+The original arch v1 is retained. v2 selects the new art; demo navigation now
+discovers the highest numbered theme file rather than hard-coding v1. The
+generation tool was used during design, without adding a service, dependency
+or API credential. A studio-side generation pipeline remains future work.
+The first complete direction is shown for design review before expanding
+the new visual language to every concept.
+
 ## 2026-10-09 — M1: named compositions within one renderer
 
 The specification was amended before adding `layout.composition` with five

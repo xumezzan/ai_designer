@@ -7,6 +7,11 @@ import { eventDate, remainingTime } from "./date";
 import { rsvpTarget, httpTarget } from "./links";
 import { ScrollNarrative } from "@/components/layouts/ScrollNarrative";
 import { Rsvp } from "@/components/sections/Rsvp";
+import { toCssVars } from "../theme/toCssVars";
+import { Theme } from "../schema/theme";
+import { getArtwork } from "@/registry/artwork";
+import { access } from "node:fs/promises";
+import path from "node:path";
 
 const now = Date.parse("2026-10-09T12:00:00Z");
 const demo = await readInvitation("demo", "letter", "1");
@@ -61,7 +66,7 @@ describe("five hand-authored invitations", () => {
     expect(concepts).toHaveLength(5);
     expect(new Set(concepts.map((concept) => concept.theme.layout.composition)).size).toBe(5);
     for (const concept of concepts) {
-      const invitation = (await readInvitation("demo", concept.id, "1"))!;
+      const invitation = (await readInvitation("demo", concept.id, concept.version))!;
       const { content, theme } = invitation;
       expect(invitation.adjustments).toEqual([]);
       expect(validateTheme(theme, { locale: content.locale }).ok).toBe(true);
@@ -101,5 +106,38 @@ describe("five hand-authored invitations", () => {
     expect(await readInvitation("demo", "../../letter", "1")).toBeNull();
     expect(await readInvitation("demo", "letter", "../content")).toBeNull();
     expect(await readInvitation("does-not-exist", "letter", "1")).toBeNull();
+  });
+});
+
+describe("generated invitation artwork", () => {
+  it("preserves the original snapshot and opts the new revision into real image assets", async () => {
+    const previous = (await readInvitation("demo", "arch", "1"))!;
+    const revised = (await readInvitation("demo", "arch", "2"))!;
+    expect(previous.theme.artwork).toBe("none");
+    expect(revised.theme.artwork).toBe("suzani-atelier");
+    expect(previous.content).toEqual(revised.content);
+    const previousHtml = renderToStaticMarkup(<ScrollNarrative {...previous} initialNow={now} />);
+    const revisedHtml = renderToStaticMarkup(<ScrollNarrative {...revised} initialNow={now} />);
+    expect(previousHtml).not.toContain("generated-art-hero");
+    expect(revisedHtml).toContain("generated-art-hero");
+    expect(revisedHtml).toContain("generated-art-flourish");
+    expect(revisedHtml).toContain('alt=""');
+    expect(revisedHtml).toContain("Рустам");
+    expect(revisedHtml).toContain("Амина");
+  });
+  it("references available local files and never a generation-service URL", async () => {
+    const art = getArtwork("suzani-atelier")!;
+    for (const src of [art.hero.src, art.texture, art.flourish.src]) {
+      expect(src).toMatch(/^\/artwork\/suzani-atelier\/[a-z0-9-]+\.webp$/);
+      await expect(access(path.join(process.cwd(), "public", src))).resolves.toBeUndefined();
+    }
+  });
+  it("has no raster material by default and rejects unknown art ids", () => {
+    expect(toCssVars(demo.theme)["--art-texture"]).toBeUndefined();
+    expect(Theme.safeParse({ ...demo.theme, artwork: "https://example.com/image.png" }).success).toBe(false);
+  });
+  it("links demo navigation to the latest revision while retaining v1 access", async () => {
+    expect((await demoConcepts()).find((concept) => concept.id === "arch")?.version).toBe("2");
+    expect(await readInvitation("demo", "arch", "1")).not.toBeNull();
   });
 });

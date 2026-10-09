@@ -31,9 +31,13 @@ export async function readInvitation(slug: string, concept: string, version: str
 export async function demoConcepts() {
   const entries = await readdir(path.join(root, "demo", "concepts"), { withFileTypes: true });
   const concepts = await Promise.all(entries.filter((entry) => entry.isDirectory() && safeId(entry.name)).map(async (entry) => {
-    const invitation = await readInvitation("demo", entry.name, "1");
+    const versions = (await readdir(path.join(root, "demo", "concepts", entry.name)))
+      .map((file) => /^v([1-9]\d{0,4})\.json$/.exec(file)?.[1]).filter((value): value is string => Boolean(value));
+    const version = versions.sort((a, b) => Number(b) - Number(a))[0];
+    if (!version) throw new Error(`Missing demo concept ${entry.name}`);
+    const invitation = await readInvitation("demo", entry.name, version);
     if (!invitation) throw new Error(`Missing demo concept ${entry.name}`);
-    return { id: entry.name, theme: invitation.theme };
+    return { id: entry.name, version, theme: invitation.theme };
   }));
   return concepts.sort((a, b) => COMPOSITION_IDS.indexOf(a.theme.layout.composition) - COMPOSITION_IDS.indexOf(b.theme.layout.composition));
 }

@@ -1,0 +1,37 @@
+{
+  "created": "2026-10-09",
+  "generator": "built-in image_gen",
+  "optimization": "sharp WebP quality 88; transparent flourish quality 92; original dimensions and alpha preserved",
+  "assets": [
+    {
+      "file": "public/artwork/suzani-atelier/hero-v1.webp",
+      "source": "docs/artwork/suzani-atelier/hero-source.png",
+      "width": 1024,
+      "height": 1536,
+      "alpha": false,
+      "bytes": 399076,
+      "sha256": "49c6bd86ab0e81a379e7ad431ffe5605c35813eab1e0a4f60f832a3240eb13bb",
+      "sourceSha256": "8e6954d93bd36acadf3f2affc3426073d29c61b61616c816c7573c085459acfc"
+    },
+    {
+      "file": "public/artwork/suzani-atelier/velvet-v1.webp",
+      "source": "docs/artwork/suzani-atelier/velvet-source.png",
+      "width": 1254,
+      "height": 1254,
+      "alpha": false,
+      "bytes": 389160,
+      "sha256": "af4029d62dc71f491c1ad4d1202485bf9a882a5b86be11effeab1cb561bc8f8e",
+      "sourceSha256": "08749c058ffedab1e6411bec25a122f84d05e1dbd69d61c296578fc8e21c6124"
+    },
+    {
+      "file": "public/artwork/suzani-atelier/flourish-v2.webp",
+      "source": "docs/artwork/suzani-atelier/flourish-clean-source.png",
+      "width": 2172,
+      "height": 724,
+      "alpha": true,
+      "bytes": 415810,
+      "sha256": "ba738f054d1d85169149c1bdf32fa86377fec71412b4047fec8d419295113d54",
+      "sourceSha256": "161bdfe535cf24c906245c5b5a75eeeb09fec401ac381f71964e76fa50d92baa"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+[
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "arch",
+    "foil": 1,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      384,
+      960
+    ]
+  },
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "arch",
+    "foil": 1,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      320,
+      800
+    ]
+  },
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "arch",
+    "foil": 1,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      390,
+      844
+    ]
+  },
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "arch",
+    "foil": 1,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      768,
+      1024
+    ]
+  },
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "arch",
+    "foil": 1,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      1440,
+      900
+    ]
+  }
+]

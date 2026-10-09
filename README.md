@@ -6,8 +6,8 @@ questionnaire and brief become 4–6 genuinely different designs; one is
 approved, refined in plain language, and published at a link.
 
 **The architectural rule that must never be broken:** the AI does not write the
-invitation's HTML or CSS — it produces `theme.json` only, a configuration on top
-of a hand-built component library.
+invitation's HTML or CSS — it produces `theme.json` and separate decorative art
+on top of a hand-built component library. All event copy remains live HTML.
 
 Full specification: [SPEC.md](./SPEC.md). Milestones M0 → M8, worked one at a
 time with a stop after each.
@@ -43,6 +43,15 @@ recorded in [docs/critique.md](./docs/critique.md). Verification and its limits:
 [docs/m1-qa.md](./docs/m1-qa.md). M2's studio shell is next.
 
 ## Invitation preview
+
+**Generated art revision:** `/preview/demo/arch/2` is the new Suzani Atelier
+direction: embroidered frame, velvet texture and an isolated floral flourish
+generated with the built-in image tool. The user's request supersedes the old
+procedural-only restriction. Prompts, sources and verification are in
+[docs/artwork/suzani-atelier](./docs/artwork/suzani-atelier/README.md).
+Choose `artwork: "suzani-atelier"` to apply this art direction; omit it or use
+`"none"` for the original treatment. This is a completed art direction, not yet
+an in-studio image-generation API. All five original v1 routes still work.
 
 `/preview/demo/letter/1` reads `projects/demo/content.json`, `asset-plan.json`
 and `concepts/letter/v1.json`. The other concepts are `poster`, `folio`, `arch`

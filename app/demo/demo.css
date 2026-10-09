@@ -1,4 +1,8 @@
 .demo-index { width: min(100% - 3rem, 62rem); margin: 4rem auto; }
+.demo-new-direction { padding: 2rem; background: #240b16; color: #f5e9da; margin-top: 2rem; }
+.demo-new-direction > span { display: block; font-size: .75rem; letter-spacing: .08em; }
+.demo-new-direction > a { display: inline-flex; align-items: center; min-height: 45px; font-size: 2rem; margin-block: .75rem; color: #e9cf9b; }
+.demo-new-direction p { line-height: 1.6; max-width: 50ch; }
 .demo-index > a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-underline-offset: .25em; }
 .demo-index h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); line-height: 1.06; letter-spacing: -.04em; margin-block: 2.5rem 1.5rem; }
 .demo-index > p { max-width: 50ch; color: #52525b; margin-block: .75rem; }

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { readInvitation, demoConcepts } from "@/lib/projects/read";
 import { ScrollNarrative } from "@/components/layouts/ScrollNarrative";
 import "@/app/invitation.css";
+import "@/app/artwork.css";
 import "@/app/demo/demo.css";
 
 export const dynamic = "force-dynamic";
@@ -17,7 +18,7 @@ export default async function Preview({ params }: { params: Promise<{ slug: stri
   const demos = slug === "demo" ? await demoConcepts() : [];
   return <>
     {demos.length > 0 && <header className="demo-toolbar"><Link href="/demo">← Все темы</Link>
-      <nav aria-label="Демо-темы">{demos.map((demo) => <Link key={demo.id} href={`/preview/demo/${demo.id}/1`} aria-current={demo.id === conceptId ? "page" : undefined}>{demo.theme.meta.name}</Link>)}</nav>
+      <nav aria-label="Демо-темы">{demos.map((demo) => <Link key={demo.id} href={`/preview/demo/${demo.id}/${demo.version}`} aria-current={demo.id === conceptId ? "page" : undefined}>{demo.theme.meta.name}</Link>)}</nav>
       <span>Демо · данные вымышлены</span>
     </header>}
     <ScrollNarrative content={content} theme={theme} initialNow={Date.now()} />

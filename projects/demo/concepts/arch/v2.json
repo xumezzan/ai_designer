@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "Сузани · Atelier",
+    "mood": [
+      "вышивка",
+      "бархат",
+      "семейная реликвия"
+    ],
+    "rationale": "Винный бархат, объёмная вышивка сузани и гранатовые ветви. Сгенерированная тканевая рама окружает живые имена; весь вечер продолжается на одном материале, с тонкой золотой графикой и камерным письмом для ответа."
+  },
+  "palette": {
+    "bg": "#240B16",
+    "surface": "#351822",
+    "ink": "#F5E9DA",
+    "muted": "#CDB7A6",
+    "accent": "#D7B878",
+    "accentAlt": "#B78281"
+  },
+  "typeSet": "ceremony",
+  "materialSet": "paper",
+  "foil": {
+    "enabled": true,
+    "color": "#E9CF9B"
+  },
+  "ornament": {
+    "pack": "none",
+    "density": "light",
+    "placement": [],
+    "color": "accent"
+  },
+  "layout": {
+    "preset": "scroll-narrative",
+    "composition": "arch",
+    "hero": "ornament-frame",
+    "sectionOrder": [
+      "hero",
+      "greeting",
+      "countdown",
+      "timeline",
+      "venue",
+      "dressCode",
+      "rsvp",
+      "footer"
+    ]
+  },
+  "motion": {
+    "preset": "still",
+    "ambient": "none"
+  },
+  "artwork": "suzani-atelier"
+}
