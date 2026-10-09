@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, expect, test } from "vitest";
-import { mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import sharp from "sharp";
@@ -7,6 +7,9 @@ import { ProjectStore } from "./store";
 import { Content } from "@/lib/schema/content";
 import { Theme } from "@/lib/schema/theme";
 import { resolveWallTime, wallTime } from "./date";
+import { composeSeries, sharedStyleSignature } from "@/lib/generation/series";
+import { fixtureSeries } from "@/lib/generation/fixture";
+import { readDirectedPhotos } from "@/lib/assets/read";
 import { mutationRequest } from "./http";
 
 let root: string;
@@ -18,15 +21,22 @@ const templates = [{ id: "arch", version: "2", theme }];
 beforeEach(async () => { root = await mkdtemp(path.join(os.tmpdir(), "invitation-studio-test-")); store = new ProjectStore(root); });
 afterEach(async () => { await rm(root, { recursive: true, force: true }); });
 
-test("creates five actual themes, fresh v1 snapshots, list and reload", async () => {
+test("creates an empty project without stock demo themes, then persists facts", async () => {
   const project = await store.create(content());
-  expect(project.concepts).toHaveLength(5);
-  expect(project.concepts.every((concept) => concept.version === "1")).toBe(true);
-  expect(project.concepts.find((concept) => concept.id === "arch")?.theme.artwork).toBe("suzani-atelier");
+  expect(project.concepts).toHaveLength(0);
+  expect(project.generation).toBeNull();
+  expect(await readdir(path.join(root, "new-event/concepts"))).toEqual([]);
   expect((await store.list())[0].names).toBe("Дилшод и Малика");
   expect((await store.read("new-event")).revision).toBe(project.revision);
   await expect(store.create(content())).rejects.toMatchObject({ status: 409 });
   expect((await readdir(root)).some((name) => name.startsWith(".create"))).toBe(false);
+});
+
+test("uncommitted initial generation directories stay invisible to readers", async () => {
+  await store.create(content());
+  await mkdir(path.join(root, "new-event/concepts/variant-pending-1"));
+  expect((await store.read("new-event")).concepts).toEqual([]);
+  expect((await store.list())[0].count).toBe(0);
 });
 
 test("save changes event facts, retains immutable themes and rejects stale revisions", async () => {
@@ -126,4 +136,52 @@ test("saving event facts preserves a valid full-photo theme and the independent 
   expect(result.concepts[0].theme.layout.hero).toBe("full-photo");
   expect(result.planRevision).toBe(saved.planRevision);
   expect(result.content.greeting).toBe("Обновлённый текст");
+});
+
+
+test("generation atomically selects five validated variants and retains previous immutable batches", async () => {
+  const project = await store.create({ ...content(), brief: "Тёмное ар-деко" });
+  const generated = { ...composeSeries(fixtureSeries, "ru", []), model: "controlled-test", elapsedMs: 100, references: 0 };
+  const first = await store.saveGeneration("new-event", generated, project.revision, project.planRevision, project.generationRevision);
+  expect(first.concepts).toHaveLength(5);
+  expect(first.generation?.brief).toBe("Тёмное ар-деко");
+  expect(new Set(first.concepts.map((concept) => sharedStyleSignature(concept.theme))).size).toBe(1);
+  const oldFile = path.join(root, "new-event/concepts", first.concepts[0].id, "v1.json");
+  const before = await readFile(oldFile, "utf8");
+  await expect(store.saveGeneration("new-event", generated, project.revision, project.planRevision, project.generationRevision)).rejects.toMatchObject({ status: 409 });
+  const second = await store.saveGeneration("new-event", generated, first.revision, first.planRevision, first.generationRevision);
+  expect(second.generation?.batchId).not.toBe(first.generation?.batchId);
+  expect(second.concepts).toHaveLength(5);
+  expect(await readdir(path.join(root, "new-event/concepts"))).toHaveLength(10);
+  expect(await readFile(oldFile, "utf8")).toBe(before);
+  expect(second.concepts.some((concept) => concept.id === first.concepts[0].id)).toBe(false);
+  const mixed = structuredClone(generated); mixed.themes[1].palette.bg = "#223344";
+  await expect(store.saveGeneration("new-event", mixed, second.revision, second.planRevision, second.generationRevision)).rejects.toThrow("одном стиле");
+  expect((await store.read("new-event")).generation?.batchId).toBe(second.generation?.batchId);
+  const changed = await store.update("new-event", { ...second.content, brief: "Новый бриф" }, second.revision);
+  await expect(store.saveGeneration("new-event", generated, second.revision, second.planRevision, second.generationRevision)).rejects.toMatchObject({ status: 409 });
+  expect(changed.content.brief).toBe("Новый бриф");
+});
+
+test("removing a generated hero photo keeps the project readable and allows a new generation", async () => {
+  const project = await store.create({ ...content(), brief: "Тёмное ар-деко" });
+  const bytes = await sharp({ create: { width: 1200, height: 800, channels: 3, background: "#334455" } }).png().toBuffer();
+  const uploaded = await store.upload("new-event", project.revision, "photo", new File([new Uint8Array(bytes)], "photo.png"));
+  const current = await store.read("new-event");
+  const asset = { ...current.assetPlan.assets[0], quality: "high", role: "portrait", placement: { section: "greeting", index: 0 } };
+  const plan = await store.updatePlan("new-event", { assets: [asset], unifiedTreatment: "bw" }, uploaded.revision, current.planRevision);
+  const photos = await readDirectedPhotos(uploaded.content, plan.assetPlan, path.join(root, "new-event"));
+  const series = structuredClone(fixtureSeries);
+  series.variants.forEach((variant) => { variant.photos = [{ id: asset.id, section: "hero", index: 0, position: "after" }]; });
+  series.variants[0].layout.hero = "full-photo";
+  const generated = { ...composeSeries(series, "ru", photos), model: "controlled-test", elapsedMs: 100, references: 0 };
+  const batch = await store.saveGeneration("new-event", generated, uploaded.revision, plan.planRevision, current.generationRevision);
+  const file = path.join(root, "new-event/concepts", batch.concepts[0].id, "v1.json");
+  const before = await readFile(file, "utf8");
+  await store.removeMedia("new-event", batch.revision, uploaded.content.media[0].src);
+  const removed = await store.read("new-event");
+  expect(removed.concepts[0].theme.layout.hero).toBe("typographic");
+  expect(await readFile(file, "utf8")).toBe(before);
+  const next = await store.saveGeneration("new-event", { ...composeSeries(fixtureSeries, "ru", []), model: "controlled-test", elapsedMs: 100, references: 0 }, removed.revision, removed.planRevision, removed.generationRevision);
+  expect(next.concepts).toHaveLength(5);
 });

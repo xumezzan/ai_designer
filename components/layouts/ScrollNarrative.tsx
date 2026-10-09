@@ -13,6 +13,7 @@ import { FoilText } from "@/components/primitives/FoilText";
 import { Ornament } from "@/components/primitives/Ornament";
 import { Artwork } from "@/components/primitives/Artwork";
 import { DirectedImage } from "@/components/primitives/DirectedImage";
+import { compositionPhotos } from "@/lib/assets/layout";
 import type { DirectedAsset } from "@/lib/assets/crop";
 import { Hero } from "@/components/sections/Hero";
 import { Greeting } from "@/components/sections/Greeting";
@@ -35,7 +36,9 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [] }: { c
     timeline: content.timeline.length > 0, venue: true, dressCode: Boolean(content.dressCode),
     rsvp: Boolean(content.rsvp?.enabled), footer: true,
   };
-  const at = (id: SectionId) => photos.filter((photo) => photo.asset.placement?.section === id);
+  const directed = compositionPhotos(photos, theme);
+  const at = (id: SectionId, position?: "before" | "after") => directed.filter((entry) => entry.photo.asset.placement?.section === id && (!position || entry.position === position));
+  const photoSet = (id: SectionId, position: "before" | "after") => at(id, position).length > 0 ? <div className="directed-set" data-photo-section={id} data-arrangement={theme.layout.photoArrangement} data-position={position}>{at(id, position).map(({ photo }) => <DirectedImage key={photo.asset.id} photo={photo} locale={content.locale} />)}</div> : null;
   const order = theme.layout.sectionOrder.filter((id) => available[id] || at(id).length > 0);
   const next = order[1];
   const nextTarget = next ? { id: next, label: labels[content.locale][next === "hero" ? "invitation" : next] } : undefined;
@@ -59,8 +62,9 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [] }: { c
       <Surface><div className="narrative-content">
         {order.map((id, index) => <div className={`narrative-slot slot-${id}`} id={available[id] ? undefined : id} key={id}>
           {index === 2 && <><Ornament theme={theme} placement="divider" /><Artwork id={theme.artwork} placement="flourish" /></>}
+          {photoSet(id, "before")}
           {sections[id]}
-          {at(id).length > 0 && <div className="directed-set" data-photo-section={id}>{at(id).map((photo) => <DirectedImage key={photo.asset.id} photo={photo} locale={content.locale} />)}</div>}
+          {photoSet(id, "after")}
         </div>)}
       </div></Surface>
     </main>

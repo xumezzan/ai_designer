@@ -16,7 +16,7 @@ Invitation content is authored in Russian, Uzbek (Latin), or English. Studio UI 
 ## 1. What we are building
 
 Input: an event questionnaire, a free-text brief, and reference images.
-Output: 4–6 genuinely different invitation designs generated in parallel → preview grid → approve one → refine it in plain language → publish at a link.
+Output: one visual style inferred from the brief and references → five related invitation compositions in that shared style → preview grid → approve one → refine it in plain language → publish at a link.
 
 **The architectural rule that must never be broken:**
 
@@ -677,3 +677,33 @@ Section variants worth building once the core is solid. Keep in `docs/backlog.md
 **Other** — venue with map, music, schedule.
 
 Each addition requires the same screenshot critique loop as M1. A variant that has not been through it does not enter the registry.
+
+
+## 2026-10-09 — User revision: one brief, one style, several compositions
+
+This explicit user instruction supersedes the earlier cross-style diversity
+matrix and M4 layout+material exclusion. Generate five new compositions from
+one brief and supplied references. Palette, type set, material, ornament pack,
+foil, artwork and motion stay identical across the batch. Layout hierarchy,
+section order, ornament placements and photographic placements may differ.
+Do not populate new projects with demo themes or label legacy demos as generated.
+Demo remains available as a separate gallery. Generation requires a nonempty
+brief and a real provider response; failures never fall back to demo themes.
+
+Theme additions: `layout.photoArrangement` is `row | stack | offset` (default
+row); optional `photos` is an array of `{ id, section, index, position }`, where
+section is an existing section id, index is 0..40 integer and position is
+`before | after`. Omitted photos preserve the shared asset plan. Generated
+batches must place every usable, manually-enabled photo exactly once, using its
+validated focal/safe crop, treatment and size limit. Low-resolution or low-quality
+photos never appear in the hero. Uploaded references guide style but are not
+invitation photographs. `art-deco` is a hand-built ornament registry member.
+
+A forced structured tool returns one shared style and five compositions in one
+coherent request. Validation repairs the shared palette once, checks registered
+presets/contrast/locale, exact photo ids and distinct composition decisions.
+One bounded correction retry is allowed. Store all validated variants as new
+immutable concept files, then atomically publish a generation.json pointer.
+Check content, photo-plan and generation revisions at commit time; a concurrent
+change discards the stale result. Failures keep the last successful batch.
+Old files and original demo copies are retained but not shown as current output.

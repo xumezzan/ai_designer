@@ -295,6 +295,13 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
   if (new Set(theme.layout.sectionOrder).size !== theme.layout.sectionOrder.length) errors.push("sectionOrder must not repeat a section");
   if (theme.layout.sectionOrder[0] !== "hero" || theme.layout.sectionOrder.at(-1) !== "footer") errors.push("sectionOrder must start with hero and end with footer");
 
+  if (theme.photos) {
+    if (new Set(theme.photos.map((photo) => photo.id)).size !== theme.photos.length) errors.push("photo placements must not repeat an id");
+    if (theme.photos.some((photo) => !theme.layout.sectionOrder.includes(photo.section))) errors.push("photo placement section must appear in sectionOrder");
+    if (theme.photos.filter((photo) => photo.section === "hero").length > 1) errors.push("only one hero photo is allowed");
+  }
+  if (new Set(theme.ornament.placement).size !== theme.ornament.placement.length) errors.push("ornament placements must not repeat");
+
   // Contrast thresholds (§8.1).
   const pairs: Array<[string, string, string, number]> = [
     ["ink", theme.palette.ink, "bg", MIN_CONTRAST_TEXT],

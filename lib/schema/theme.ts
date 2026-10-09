@@ -58,8 +58,17 @@ export const Theme = z.object({
     preset: z.enum(LAYOUT_IDS),
     composition: z.enum(COMPOSITION_IDS).default("letter"),
     hero: z.enum(["full-photo", "typographic", "ornament-frame"]),
+    photoArrangement: z.enum(["row", "stack", "offset"]).default("row"),
     sectionOrder: z.array(z.enum(SECTION_IDS)),
   }),
+
+  // Per-composition placement; crop/quality/treatment remain in the asset plan.
+  photos: z.array(z.object({
+    id: z.string().min(1).max(100),
+    section: z.enum(SECTION_IDS),
+    index: z.number().int().min(0).max(40),
+    position: z.enum(["before", "after"]),
+  })).max(40).optional(),
 
   motion: z.object({
     preset: z.enum(MOTION_IDS),

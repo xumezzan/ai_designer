@@ -7,3 +7,9 @@
 .directed-photo[data-treatment="bw"] img { filter: grayscale(1) contrast(.95); }
 .directed-photo[data-treatment="duotone"] img { filter: grayscale(1) sepia(.65) saturate(.7) contrast(.95); }
 [data-hero="full-photo"] .invitation-hero { min-height: auto; padding-block: var(--space-block) var(--space-section); }
+
+.directed-set[data-arrangement="stack"] { flex-direction: column; align-items: center; }
+.directed-set[data-arrangement="offset"] { justify-content: start; }
+.directed-set[data-arrangement="offset"] .directed-photo { margin-inline: 0; }
+.directed-set[data-arrangement="offset"] .directed-photo:nth-child(even) { margin-left: auto; margin-top: var(--space-block); }
+@media (max-width: 700px) { .directed-set[data-arrangement="offset"] .directed-photo:nth-child(even) { margin-top: 0; } }

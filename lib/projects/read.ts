@@ -4,6 +4,8 @@ import { Content } from "../schema/content";
 import { AssetPlan } from "../schema/assetPlan";
 import { validateTheme } from "../theme/validate";
 import { COMPOSITION_IDS } from "../../registry/keys";
+import { availablePhotoLayout, compositionPhotos } from "../assets/layout";
+import { Theme } from "../schema/theme";
 import { readDirectedPhotos } from "../assets/read";
 
 const root = path.join(process.cwd(), "projects");
@@ -21,7 +23,9 @@ export async function readInvitation(slug: string, concept: string, version: str
     if (content.slug !== slug) throw new Error("Project slug does not match its directory");
     const assetPlan = AssetPlan.parse(rawPlan);
     const photos = await readDirectedPhotos(content, assetPlan);
-    const result = validateTheme(rawTheme, { locale: content.locale, hasHighQualityAsset: photos.some((photo) => photo.asset.quality === "high" && photo.asset.placement?.section === "hero") });
+    const parsed = Theme.parse(rawTheme);
+    const hasHero = compositionPhotos(photos, parsed).some(({ photo }) => photo.asset.quality === "high" && photo.asset.placement?.section === "hero");
+    const result = validateTheme(availablePhotoLayout(parsed, hasHero), { locale: content.locale, hasHighQualityAsset: hasHero });
     if (!result.ok) throw new Error(result.errors.join("; "));
     return { content, assetPlan, photos, theme: result.theme, adjustments: result.adjustments };
   } catch (error) {

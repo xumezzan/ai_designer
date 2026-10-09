@@ -3,20 +3,22 @@ import { mkdir, readFile, readdir, rename, rm, stat, writeFile } from "node:fs/p
 import path from "node:path";
 import sharp from "sharp";
 import { Content, type Content as EventContent } from "@/lib/schema/content";
-import { demoConcepts, safeId } from "@/lib/projects/read";
+import { safeId } from "@/lib/projects/read";
 import { validateTheme } from "@/lib/theme/validate";
-import type { Theme } from "@/lib/schema/theme";
+import { Theme } from "@/lib/schema/theme";
 import { AssetPlan, type AssetPlan as PhotoPlan } from "@/lib/schema/assetPlan";
 import { heroGrade, unusedAsset, type ImageInfo } from "@/lib/assets/crop";
-import { photoInfo } from "@/lib/assets/read";
+import { photoInfo, readDirectedPhotos } from "@/lib/assets/read";
+import { availablePhotoLayout, hasHeroPhoto } from "@/lib/assets/layout";
+import { Generation } from "@/lib/schema/generation";
+import { composeSeries, sharedStyleSignature, type GeneratedSeries } from "@/lib/generation/series";
 
 export class StudioError extends Error {
   constructor(message: string, public status = 400) { super(message); }
 }
 export type Concept = { id: string; version: string; theme: Theme };
 export type Planning = { assetPlan: PhotoPlan; planRevision: string; mediaInfo: Record<string, ImageInfo> };
-export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean } & Planning;
-const hasHero = (planning: Planning) => planning.assetPlan.assets.some((asset) => asset.quality === "high" && asset.placement?.section === "hero" && heroGrade(planning.mediaInfo[asset.id]));
+export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; generation: Generation | null; generationRevision: string } & Planning;
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
 const encode = (value: unknown) => JSON.stringify(value, null, 2) + "\n";
 
@@ -66,19 +68,26 @@ export class ProjectStore {
     const snapshot = await this.snapshot(slug);
     const planning = await this.planning(slug, snapshot.content);
     const root = path.join(this.directory(slug), "concepts");
+    let generationText = "";
+    try { generationText = await readFile(path.join(this.directory(slug), "generation.json"), "utf8"); }
+    catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+    const generation = generationText ? Generation.parse(JSON.parse(generationText)) : null;
     const directories = await readdir(root, { withFileTypes: true });
-    const concepts = await Promise.all(directories.filter((entry) => entry.isDirectory() && safeId(entry.name)).map(async (entry) => {
+    const concepts = await Promise.all(directories.filter((entry) => entry.isDirectory() && safeId(entry.name) && (generation ? generation.concepts.some((concept) => concept.id === entry.name) : !entry.name.startsWith("variant-"))).map(async (entry) => {
       const files = await readdir(path.join(root, entry.name));
-      const version = files.map((file) => /^v([1-9]\d{0,4})\.json$/.exec(file)?.[1]).filter((v): v is string => Boolean(v)).sort((a, b) => Number(b) - Number(a))[0];
+      const version = generation?.concepts.find((concept) => concept.id === entry.name)?.version ?? files.map((file) => /^v([1-9]\d{0,4})\.json$/.exec(file)?.[1]).filter((v): v is string => Boolean(v)).sort((a, b) => Number(b) - Number(a))[0];
       if (!version) throw new Error(`No concept version: ${entry.name}`);
       const raw = JSON.parse(await readFile(path.join(root, entry.name, `v${version}.json`), "utf8"));
-      const result = validateTheme(raw, { locale: snapshot.content.locale, hasHighQualityAsset: hasHero(planning) });
+      const parsed = Theme.parse(raw);
+      const hasHero = hasHeroPhoto(parsed, planning.assetPlan, planning.mediaInfo);
+      const result = validateTheme(availablePhotoLayout(parsed, hasHero), { locale: snapshot.content.locale, hasHighQualityAsset: hasHero });
       if (!result.ok) throw new Error(`Invalid concept: ${result.errors.join("; ")}`);
       return { id: entry.name, version, theme: result.theme };
     }));
+    if (generation && concepts.length !== 5) throw new Error("Generation references missing concepts");
     const order = ["letter", "poster", "folio", "arch", "botanical"];
     concepts.sort((a, b) => order.indexOf(a.theme.layout.composition) - order.indexOf(b.theme.layout.composition));
-    return { ...snapshot, ...planning, concepts, visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
+    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
   }
   async list() {
     await mkdir(this.root, { recursive: true });
@@ -86,14 +95,14 @@ export class ProjectStore {
     return (await Promise.all(dirs.filter((dir) => dir.isDirectory() && safeId(dir.name)).map(async (dir) => {
       const project = await this.read(dir.name);
       const info = await stat(path.join(this.root, dir.name, "content.json"));
-      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.concepts.length, updated: info.mtimeMs };
+      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, updated: info.mtimeMs };
     }))).sort((a, b) => b.updated - a.updated);
   }
   async create(raw: unknown, templates?: Concept[]) {
     const content = validateContent(raw);
     const destination = this.directory(content.slug, true);
     if (content.media.length || content.refs.length) throw new StudioError("Загрузите изображения после создания проекта.");
-    const concepts = templates ?? await demoConcepts();
+    const concepts = templates ?? [];
     for (const concept of concepts) {
       if (!safeId(concept.id)) throw new StudioError("Некорректный шаблон.");
       const result = validateTheme(concept.theme, { locale: content.locale });
@@ -105,6 +114,7 @@ export class ProjectStore {
     try {
       await writeFile(path.join(pending, "content.json"), encode(content), { flag: "wx" });
       await writeFile(path.join(pending, "asset-plan.json"), encode({ assets: [], unifiedTreatment: "none" }), { flag: "wx" });
+      await mkdir(path.join(pending, "concepts"));
       for (const concept of concepts) {
         const dir = path.join(pending, "concepts", concept.id);
         await mkdir(dir, { recursive: true });
@@ -172,13 +182,46 @@ export class ProjectStore {
       return { ...current, assetPlan: plan, planRevision: hash(text) };
     });
   }
+  async saveGeneration(slug: string, result: GeneratedSeries, revision: string, planRevision: string, generationRevision: string) {
+    return this.locked(slug, revision, async (content) => {
+      const project = await this.read(slug);
+      if (project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект или варианты изменились во время генерации. Обновите страницу и повторите.", 409);
+      if (!content.brief?.trim()) throw new StudioError("Опишите желаемый стиль перед генерацией.");
+      if (result.themes.length !== 5 || result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0]))) throw new StudioError("Серия должна содержать пять композиций в одном стиле.");
+      const expected = { ...result.themes[0], ...result.style, ornament: { ...result.style.ornament, placement: result.themes[0].ornament.placement } };
+      if (sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
+      const photos = await readDirectedPhotos(content, project.assetPlan, this.directory(slug));
+      const validated = composeSeries({ style: result.style, variants: result.themes.map((theme) => ({ name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      const batchId = randomUUID();
+      const concepts = validated.themes.map((theme, index) => ({ id: `variant-${batchId.slice(0, 8)}-${index + 1}`, version: "1", theme }));
+      const generation = Generation.parse({ batchId, createdAt: new Date().toISOString(), brief: content.brief, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
+      const pending = path.join(this.directory(slug), `.generation-${batchId}.json`);
+      const created: string[] = [];
+      let committed = false;
+      try {
+        for (const concept of concepts) {
+          const directory = path.join(this.directory(slug), "concepts", concept.id);
+          await mkdir(directory);
+          created.push(directory);
+          await writeFile(path.join(directory, "v1.json"), encode(concept.theme), { flag: "wx" });
+        }
+        await writeFile(pending, encode(generation), { flag: "wx" });
+        await rename(pending, path.join(this.directory(slug), "generation.json"));
+        committed = true;
+      } finally {
+        await rm(pending, { force: true });
+        if (!committed) for (const directory of created) await rm(directory, { recursive: true, force: true });
+      }
+      return this.read(slug);
+    });
+  }
   async update(slug: string, raw: unknown, revision: string) {
     const proposed = validateContent(raw);
     if (proposed.slug !== slug) throw new StudioError("Адрес созданного проекта изменить нельзя.");
     return this.mutate(slug, revision, async (current) => {
       const project = await this.read(slug);
       for (const concept of project.concepts) {
-        if (!validateTheme(concept.theme, { locale: proposed.locale, hasHighQualityAsset: hasHero(project) }).ok) throw new StudioError("Темы проекта не поддерживают выбранный язык.");
+        if (!validateTheme(concept.theme, { locale: proposed.locale, hasHighQualityAsset: hasHeroPhoto(concept.theme, project.assetPlan, project.mediaInfo) }).ok) throw new StudioError("Темы проекта не поддерживают выбранный язык.");
       }
       return { ...proposed, media: current.media, refs: current.refs };
     });
