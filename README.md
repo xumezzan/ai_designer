@@ -35,7 +35,7 @@ npm run check-fonts             # font support table → registry/fonts.generate
 
 Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
-Current milestone: **coherent series generation implemented and live-verified**. Open
+Current milestone: **M5 versioning and refinement implemented and live-verified**. Open
 `/studio` to create/edit projects, upload photos and references, direct each
 photo's placement and protected crop, and generate five related designs. New
 projects start empty; the demo collection is never copied as generated output.
@@ -52,6 +52,16 @@ been checked with the configured provider. Vision face/quality inference on a
 real mixed-camera acceptance batch remains a separate M3 acceptance task.
 Generation currently arranges registered elements and existing artwork;
 automatic creation of new bitmap artwork is not part of this API.
+
+Each generated card now includes **«Выбрать vN»**, a version selector and
+**«Доработать этот вариант»**. A plain-language instruction creates the next
+immutable version through a partial merge; unmentioned fields stay intact.
+The selected version is independent of the current preview version. Refining,
+restoring or generating a new batch preserves the selection until another
+version is explicitly chosen. Change history records the source version,
+instruction, actual changed fields and any necessary safety repairs.
+See [M5 acceptance](./docs/m5/README.md). Selection is local project state;
+the public invitation route is still a later publishing milestone.
 
 Open `/demo` for five hand-authored wedding
 invitations sharing one renderer and eight section components. Open `/craft`
@@ -100,7 +110,7 @@ lib/typography/  micro-typography for ru / uz-latn (craft layer §7.1)
 lib/layout/      the space scale, derived from the type set (§7.1)
 components/craft/  always-on craft layer: reveal choreography
 registry/        keys, fonts, typesets, materials, ornaments, motion, layouts
-projects/        local per-event store: content, asset plan, generation pointer, immutable concept versions, media
+projects/        local per-event store: content, asset plan, generation/selection pointers, immutable versions and provenance, media
 docs/            decisions, teardowns, critique log, backlog
 scripts/         check-fonts.ts
 ```

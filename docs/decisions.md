@@ -2,6 +2,45 @@
 
 Architecture decisions that constrain future work. Newest first.
 
+## 2026-10-10 — M5: immutable refinement and independent selection
+
+Each active lineage has a current preview version in generation.json; the
+selected version lives only in approved.json. The latter can reference a
+retained previous batch. Choosing a version, restoring a preview and creating
+a refinement are distinct actions. Restoration changes only the current
+preview pointer. Neither refinement nor batch regeneration advances selection.
+This replaces the spec's duplicated mutable approvedVersion in concept metadata.
+
+Refinement forces one structured partial patch. Nested objects merge by key;
+arrays replace completely. Omitted fields never inherit patch-schema defaults.
+Strict allowlists reject arbitrary CSS, metadata/event-copy edits, protected
+crop changes and wholesale theme replacements. At most four theme categories
+may be edited at once. Unsupported instructions fail explicitly. The model
+receives the source theme, instruction, section ids and enabled photo metadata,
+not event facts or image bytes. Invalid responses receive one correction retry.
+
+The merged candidate runs through repair and validation with current locale,
+photo quality and populated sections. Actual before/after paths and safety
+adjustments are computed by the server. API transport tests use controlled
+responses; a real provider call and the browser acceptance independently verify
+the minimal darker/remove-floral-ornaments patch. No approved version is rewritten.
+
+Refinement commits under the shared project lock after rechecking content,
+plan, generation and immutable source data. Complete theme/provenance files are
+published using atomic hard links with no overwrite, then the generation pointer
+is replaced atomically. Pre-commit failure removes only new files. Version numbers
+increase across branches from earlier versions. vN.meta.json records immutable
+ancestry, instruction, model/timing and actual changes; initial lineage meta.json
+records creation/layout/material. Legacy v1 files without provenance remain
+readable. Approval updates also check their own revision.
+
+History and refinement operate on the active batch's five lineages. An approved
+older batch has a retained preview link; a full previous-batch browser remains
+future work. Selection does not publish the event. Full visual-QA approval gating
+and public serving remain M6/M7 respectively. The user's existing project is
+unchanged by acceptance tests; tests select/refine only UUID-named fictional
+projects. See docs/m5 for evidence and remaining limits.
+
 ## 2026-10-10 — One brief, one style, five newly generated compositions
 
 The user rejected the five copied demonstration designs and explicitly asked

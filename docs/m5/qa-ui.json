@@ -1,0 +1,58 @@
+{
+  "mode": "production UI replay of recorded real-provider changes; no live call",
+  "fixture": "Fictional event, five manually prepared shared-style configs, no personal photos",
+  "approval": true,
+  "refined": true,
+  "originalImmutable": true,
+  "selectedImmutable": true,
+  "restore": true,
+  "explicitReselection": true,
+  "reload": true,
+  "failedEditPreserved": true,
+  "provider": {
+    "model": "claude-sonnet-4-6",
+    "elapsedMs": 4349,
+    "changes": [
+      {
+        "path": "palette.bg",
+        "before": "\"#161B20\"",
+        "after": "\"#0F1318\""
+      },
+      {
+        "path": "palette.surface",
+        "before": "\"#20262C\"",
+        "after": "\"#171C21\""
+      },
+      {
+        "path": "ornament.pack",
+        "before": "\"uzbek-suzani\"",
+        "after": "\"none\""
+      },
+      {
+        "path": "ornament.placement",
+        "before": "[\"corners\",\"divider\"]",
+        "after": "[]"
+      }
+    ],
+    "adjustments": []
+  },
+  "viewports": [
+    {
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "viewport": 768,
+      "scrollWidth": 768
+    },
+    {
+      "viewport": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "errors": []
+}

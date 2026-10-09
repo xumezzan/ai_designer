@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import type { Content } from "@/lib/schema/content";
 import type { Project } from "@/lib/studio/store";
 import { AssetDirector } from "./AssetDirector";
+import { ConceptControls, type DesignAction } from "./ConceptControls";
 import { resolveWallTime, wallTime } from "@/lib/studio/date";
 
 const blank: Content = {
@@ -50,6 +51,10 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
   const [concepts, setConcepts] = useState(initial?.generation || initial?.content.slug === "demo" ? initial?.concepts ?? [] : []);
   const [generation, setGeneration] = useState(initial?.generation ?? null);
   const [generationRevision, setGenerationRevision] = useState(initial?.generationRevision ?? "");
+  const [approval, setApproval] = useState(initial?.approval ?? null);
+  const [approvalRevision, setApprovalRevision] = useState(initial?.approvalRevision ?? "");
+  const [viewVersions, setViewVersions] = useState<Record<string, string>>({});
+  const [refiningId, setRefiningId] = useState("");
   const [generating, setGenerating] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [planRevision, setPlanRevision] = useState(initial?.planRevision ?? "");
@@ -89,12 +94,28 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
   }, [modal]);
 
   useEffect(() => {
-    if (!generating) return;
+    if (!generating && !refiningId) return;
     const start = Date.now();
     setElapsed(0);
     const timer = window.setInterval(() => setElapsed(Math.floor((Date.now() - start) / 1000)), 1000);
     return () => window.clearInterval(timer);
-  }, [generating]);
+  }, [generating, refiningId]);
+
+  async function designAction(concept: Project["concepts"][number], version: string, action: DesignAction, instruction?: string) {
+    if (busy || readOnly || dirty || planDirty) return false;
+    setBusy(true); setError(""); setMessage("");
+    if (action === "refine") setRefiningId(concept.id);
+    try {
+      const data = await responseData(await fetch(`/api/${action}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: content.slug, conceptId: concept.id, version, fromVersion: version, instruction, revision, planRevision, generationRevision, approvalRevision }) }));
+      setConcepts(data.concepts); setGeneration(data.generation); setGenerationRevision(data.generationRevision);
+      setApproval(data.approval); setApprovalRevision(data.approvalRevision);
+      if (action !== "approve") setViewVersions((current) => ({ ...current, [concept.id]: data.concepts.find((next: Project["concepts"][number]) => next.id === concept.id).version }));
+      setModal(null); setPreviewKey((key) => key + 1);
+      setMessage(action === "refine" ? "Создана новая версия. Исходная и выбранная версии сохранены." : action === "restore" ? "Предыдущая версия снова текущая. Выбор сохранён без изменений." : `Выбрана версия v${version}. Решение сохранено в проекте.`);
+      return true;
+    } catch (error) { setError((error as Error).message); return false; }
+    finally { setBusy(false); setRefiningId(""); }
+  }
 
   async function generate() {
     if (busy || readOnly || planDirty) return;
@@ -119,6 +140,7 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
       }
       const data = await responseData(await fetch("/api/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug, revision: currentRevision, planRevision: currentPlanRevision, generationRevision: currentGenerationRevision }) }));
       setConcepts(data.concepts); setGeneration(data.generation); setGenerationRevision(data.generationRevision);
+      setApproval(data.approval); setApprovalRevision(data.approvalRevision); setViewVersions({});
       setRevision(data.revision); setPlanRevision(data.planRevision); setContent(data.content); setModal(null);
       setPreviewKey((key) => key + 1); setTab("designs"); setMessage("Созданы пять новых композиций в едином стиле вашего брифа.");
     } catch (error) { setError((error as Error).message); }
@@ -226,9 +248,15 @@ export function ProjectEditor({ initial }: { initial?: Project }) {
       <div hidden={tab !== "photos"}>{initial ? <AssetDirector content={content} revision={revision} planRevision={planRevision} initialPlan={assetPlan} info={mediaInfo} disabled={busy} readOnly={readOnly} visionConfigured={initial.visionConfigured} onBusy={setBusy} onDirty={setPlanDirty} onMessage={(text, isError) => { setMessage(isError ? "" : text); setError(isError ? text : ""); }} onSaved={(plan, nextRevision) => { setAssetPlan(plan); setPlanRevision(nextRevision); setPreviewKey((key) => key + 1); }} /> : <div className="studio-panel studio-empty"><h3>Сначала создайте проект и загрузите фото</h3><p>После этого можно выбрать фокус, защитить лица и разместить снимки.</p></div>}</div>
       <section hidden={tab !== "designs"}>
         <div className="studio-preview-heading"><div><h2>{readOnly ? "Коллекция примеров" : "Один стиль, пять композиций"}</h2><p>{readOnly ? "Готовые примеры библиотеки. В своём проекте вы создаёте варианты по брифу." : "AI создаёт новую серию по вашему описанию и референсам."}</p></div><div className="studio-view-toggle" aria-label="Ширина предпросмотра"><button type="button" aria-pressed={viewport === "phone"} onClick={() => setViewport("phone")}>Телефон</button><button type="button" aria-pressed={viewport === "desktop"} onClick={() => setViewport("desktop")}>Компьютер</button></div></div>
-        {!readOnly && <div className="studio-panel studio-generation"><Field label="Пожелания к дизайну" hint="Одно описание для всей серии. Меняются композиции, общий стиль сохраняется."><textarea rows={3} maxLength={10000} disabled={busy} value={content.brief ?? ""} placeholder="Например, великий Гэтсби: чёрный и золото, геометрия ар-деко…" onChange={(e) => update({ brief: e.target.value || undefined })} /></Field><div className="studio-generation-actions"><button type="button" className="studio-primary" disabled={busy || planDirty || !content.brief?.trim() || (Boolean(initial) && !initial?.visionConfigured)} onClick={() => { void generate(); }}>{generating ? `Создаём варианты · ${elapsed} с` : generation ? "Сгенерировать ещё 5 вариантов" : "Сгенерировать 5 вариантов"}</button><p>{generating ? "AI выбирает общий стиль и прорабатывает пять композиций. Это может занять до двух минут." : "Анкета и бриф сохранятся перед генерацией. Все варианты будут в одной палитре и типографике."}</p></div>{initial && !initial.visionConfigured && <p className="studio-help">Для генерации добавьте ключ Anthropic в .env.local и перезапустите сервер.</p>}{planDirty && <p className="studio-notice">Сначала сохраните настройки фото, чтобы в варианты попали выбранные кадры и защищённые области.</p>}{generation && <div className="studio-series-summary"><div><span className="studio-eyebrow">Общий стиль серии</span><h3>{generation.style.name}</h3><p>{generation.style.rationale}</p></div><div className="studio-series-colors" aria-label="Общая палитра">{Object.values(generation.style.palette).map((color, index) => <span key={index} style={{ background: color }} title={color} />)}</div></div>}{generation && generation.brief !== content.brief && <p className="studio-notice">Бриф изменился. Сейчас показана предыдущая серия; создайте новые варианты, чтобы применить описание.</p>}</div>}
-        {(dirty || planDirty) && concepts.length > 0 && <p className="studio-notice">В предпросмотре — сохранённые данные. Анкета сохранится при генерации; настройки фото сохраните отдельно.</p>}
-        {concepts.length === 0 ? <div className="studio-panel studio-empty"><h3>{generating ? "Готовим вашу первую серию" : "Здесь появятся варианты по вашему брифу"}</h3><p>{generating ? "Сохраняем единый стиль и меняем композицию каждого варианта." : "Опишите стиль и нажмите «Сгенерировать 5 вариантов»."}</p></div> : <div className="studio-preview-grid">{concepts.map((concept, index) => <article className="studio-preview-card" key={concept.id}><PreviewWindow key={`${previewKey}-${viewport}`} concept={concept} slug={content.slug} revision={previewKey} viewport={viewport} onOpen={() => setModal(concept)} /><div className="studio-preview-caption"><span>0{index + 1}</span><h3>{concept.theme.meta.name}</h3><button type="button" aria-label={`Открыть ${concept.theme.meta.name}`} onClick={() => setModal(concept)}>↗</button></div><p>{concept.theme.meta.rationale}</p></article>)}</div>}
+        {!readOnly && <div className="studio-panel studio-generation"><Field label="Пожелания к дизайну" hint="Одно описание для всей серии. Меняются композиции, общий стиль сохраняется."><textarea rows={3} maxLength={10000} disabled={busy} value={content.brief ?? ""} placeholder="Например, великий Гэтсби: чёрный и золото, геометрия ар-деко…" onChange={(e) => update({ brief: e.target.value || undefined })} /></Field><div className="studio-generation-actions"><button type="button" className="studio-primary" disabled={busy || planDirty || !content.brief?.trim() || (Boolean(initial) && !initial?.visionConfigured)} onClick={() => { void generate(); }}>{generating ? `Создаём варианты · ${elapsed} с` : generation ? "Сгенерировать ещё 5 вариантов" : "Сгенерировать 5 вариантов"}</button><p>{generating ? "AI выбирает общий стиль и прорабатывает пять композиций. Это может занять до двух минут." : "Анкета и бриф сохранятся перед генерацией. Все варианты будут в одной палитре и типографике."}</p></div>{initial && !initial.visionConfigured && <p className="studio-help">Для генерации добавьте ключ Anthropic в .env.local и перезапустите сервер.</p>}{planDirty && <p className="studio-notice">Сначала сохраните настройки фото, чтобы в варианты попали выбранные кадры и защищённые области.</p>}{generation && <div className="studio-series-summary"><div><span className="studio-eyebrow">Исходный стиль серии</span><h3>{generation.style.name}</h3><p>{generation.style.rationale}</p></div><div className="studio-series-colors" aria-label="Общая палитра">{Object.values(generation.style.palette).map((color, index) => <span key={index} style={{ background: color }} title={color} />)}</div></div>}{generation && generation.brief !== content.brief && <p className="studio-notice">Бриф изменился. Сейчас показана предыдущая серия; создайте новые варианты, чтобы применить описание.</p>}</div>}
+        {(dirty || planDirty) && concepts.length > 0 && <p className="studio-notice">В предпросмотре — сохранённые данные. Сохраните анкету и настройки фото перед выбором или доработкой варианта.</p>}
+        {approval && <div className="studio-panel studio-approved"><div><span className="studio-eyebrow">Выбранный вариант</span><h3>{concepts.find((concept) => concept.id === approval.conceptId)?.theme.meta.name ?? "Вариант из предыдущей серии"} · v{approval.version}</h3><p>Доработки и новая генерация сохраняют этот выбор. Чтобы заменить его, нажмите «Выбрать» у другой версии.</p></div><Link className="studio-secondary" href={`/preview/${content.slug}/${approval.conceptId}/${approval.version}`} target="_blank">Посмотреть выбранную версию ↗</Link></div>}
+        {concepts.length === 0 ? <div className="studio-panel studio-empty"><h3>{generating ? "Готовим вашу первую серию" : "Здесь появятся варианты по вашему брифу"}</h3><p>{generating ? "Сохраняем единый стиль и меняем композицию каждого варианта." : "Опишите стиль и нажмите «Сгенерировать 5 вариантов»."}</p></div> : <div className="studio-preview-grid">{concepts.map((concept, index) => {
+          const version = viewVersions[concept.id] ?? concept.version;
+          const showing = { ...concept, version };
+          return <article className="studio-preview-card" key={concept.id}><PreviewWindow key={`${previewKey}-${viewport}-${version}`} concept={showing} slug={content.slug} revision={previewKey} viewport={viewport} onOpen={() => setModal(showing)} /><div className="studio-preview-caption"><span>0{index + 1}</span><h3>{concept.theme.meta.name}</h3><button type="button" aria-label={`Открыть ${concept.theme.meta.name}`} onClick={() => setModal(showing)}>↗</button></div><p>{concept.theme.meta.rationale}</p>{!readOnly && <ConceptControls concept={concept} version={version} approval={approval} disabled={busy} pendingEdits={dirty || planDirty} configured={Boolean(initial?.visionConfigured)} refining={refiningId === concept.id} elapsed={elapsed} onView={(next) => setViewVersions((current) => ({ ...current, [concept.id]: next }))} onAction={(action, instruction) => designAction(concept, version, action, instruction)} />}</article>;
+        })}</div>}
+
       </section>
     </div></div>
     <dialog ref={dialog} aria-labelledby="studio-dialog-title" className="studio-preview-dialog" onCancel={() => setModal(null)} onClose={() => setModal(null)}><div className="studio-dialog-heading"><h2 id="studio-dialog-title">{modal?.theme.meta.name}</h2>{modal && <Link href={`/preview/${content.slug}/${modal.id}/${modal.version}`} target="_blank">Открыть отдельно ↗</Link>}<button type="button" autoFocus aria-label="Закрыть предпросмотр" onClick={() => setModal(null)}>×</button></div>{modal && <iframe title={`Полный предпросмотр: ${modal.theme.meta.name}`} src={`/preview/${content.slug}/${modal.id}/${modal.version}?embed=1&saved=${previewKey}`} sandbox="allow-scripts allow-same-origin" />}</dialog>
