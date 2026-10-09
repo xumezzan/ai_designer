@@ -11,6 +11,10 @@ received its own browser/vision report before the API returned. Original theme
 bytes and the independently selected v1 remained unchanged. A subsequent copy
 edit made v1 QA stale and the API rejected selection even with an override.
 The editor fits 390, 1024 and 1440px without horizontal overflow or page errors.
+The light-background foil baseline itself exposes sub-AA highlights: its
+selection exercised the explicit override button. The disabled-foil v2 received
+an independent fresh report. This checks both a genuine rendered foil defect
+and the deliberately injected defect cases.
 
 - `report.json`: live baseline report, including lab timing and fingerprints.
 - `refined-report.json`: automatically produced live report for v2.
@@ -62,7 +66,7 @@ Contrast thresholds follow [WCAG contrast minimum](https://www.w3.org/WAI/WCAG22
 Vision sees two first screens and at most two rendered photo frames. It answers
 only cropped faces, unreadable text on a busy photo and clearly broken
 alignment; it does not rank aesthetics. Uncertainty becomes a warning for
-manual review. The live clean fixture establishes real transport/inference;
+manual review. The live fixture establishes real transport/inference;
 the positive cropped-area acceptance is geometric. The real mixed-camera
 photo-analysis acceptance from M3 remains separate.
 
