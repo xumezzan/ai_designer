@@ -24,6 +24,9 @@ export type SectionId = (typeof SECTION_IDS)[number];
 export const LAYOUT_IDS = ["scroll-narrative", "card-stack"] as const;
 export type LayoutId = (typeof LAYOUT_IDS)[number];
 
+export const COMPOSITION_IDS = ["letter", "poster", "folio", "arch", "botanical"] as const;
+export type CompositionId = (typeof COMPOSITION_IDS)[number];
+
 export const TYPE_SET_IDS = ["ceremony", "editorial"] as const;
 export type TypeSetId = (typeof TYPE_SET_IDS)[number];
 

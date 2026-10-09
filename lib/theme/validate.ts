@@ -10,6 +10,9 @@ import { Theme, type Theme as ThemeType } from "../schema/theme";
 import { Hex } from "../schema/common";
 import { getTypeSet, typeSetSupportsLocale } from "../../registry/typesets";
 import { getMaterialSet } from "../../registry/materials";
+import { getLayout } from "../../registry/layouts";
+import { getMotion } from "../../registry/motion";
+import { getOrnament } from "../../registry/ornaments";
 import {
   LAYOUT_IDS,
   MATERIAL_SET_IDS,
@@ -280,6 +283,15 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
   if (!getMaterialSet(theme.materialSet)) {
     errors.push(`material set "${theme.materialSet}" has no registered preset`);
   }
+  const layout = getLayout(theme.layout.preset);
+  if (!layout) errors.push(`layout "${theme.layout.preset}" has no registered preset`);
+  else if (!layout.compositions.includes(theme.layout.composition)) errors.push("composition is not available in this layout");
+  if (layout && !layout.heroes.includes(theme.layout.hero)) errors.push(`hero "${theme.layout.hero}" has no registered renderer`);
+  if (!getMotion(theme.motion.preset)) errors.push(`motion "${theme.motion.preset}" has no registered preset`);
+  if (theme.motion.ambient !== "none") errors.push(`ambient "${theme.motion.ambient}" is not implemented`);
+  if (!getOrnament(theme.ornament.pack)) errors.push("ornament has no registered preset");
+  if (new Set(theme.layout.sectionOrder).size !== theme.layout.sectionOrder.length) errors.push("sectionOrder must not repeat a section");
+  if (theme.layout.sectionOrder[0] !== "hero" || theme.layout.sectionOrder.at(-1) !== "footer") errors.push("sectionOrder must start with hero and end with footer");
 
   // Contrast thresholds (§8.1).
   const pairs: Array<[string, string, string, number]> = [

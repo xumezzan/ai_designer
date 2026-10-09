@@ -2,6 +2,7 @@ import { z } from "zod";
 import { Hex } from "./common";
 import {
   LAYOUT_IDS,
+  COMPOSITION_IDS,
   MATERIAL_SET_IDS,
   MOTION_IDS,
   ORNAMENT_PACK_IDS,
@@ -53,6 +54,7 @@ export const Theme = z.object({
 
   layout: z.object({
     preset: z.enum(LAYOUT_IDS),
+    composition: z.enum(COMPOSITION_IDS).default("letter"),
     hero: z.enum(["full-photo", "typographic", "ornament-frame"]),
     sectionOrder: z.array(z.enum(SECTION_IDS)),
   }),

@@ -272,6 +272,7 @@ const Theme = z.object({
 
   layout: z.object({
     preset: LayoutId,
+    composition: z.enum(['letter', 'poster', 'folio', 'arch', 'botanical']).default('letter'),
     hero: z.enum(['full-photo', 'typographic', 'ornament-frame']),
     sectionOrder: z.array(SectionId),
   }),
@@ -316,6 +317,14 @@ Rules without which a material reads as cheap:
 - no pure black, no pure white. `ink` derives from the paper hue at low saturation. Note that a generic tinted near-black such as `#0B0B0B` is itself a tell — the hue must actually relate to the palette.
 
 ### 6.3 Ornaments (`registry/ornaments`)
+
+**M1 composition menu.** Within `scroll-narrative`, `layout.composition` picks
+one hand-built arrangement: `letter`, `poster`, `folio`, `arch`, or `botanical`.
+It defaults to `letter` for existing themes. This is a structural preset, not
+an alignment, spacing, size or duration control. The layout owns placement and
+hierarchy; sections are unchanged between compositions. Composition identifiers
+are independent of concept IDs and may be reused by later layout presets.
+This field lets the five M1 themes differ structurally within one layout.
 
 SVG packs with `divider`, `corner`, `frame`, `watermark` elements. `uzbek-suzani` and `geometric-islamic` are constructed as real geometry with correct repetition, not stock clipart. Colour via `currentColor`, stroke no thinner than 0.75 px at 2× DPR.
 
