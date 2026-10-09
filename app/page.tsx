@@ -19,6 +19,7 @@ export default function Home() {
         </p>
       </Reveal>
       <Link href="/craft" className="underline underline-offset-4">Проверить оформление →</Link>
+      <Link href="/demo" className="underline underline-offset-4">Посмотреть пять приглашений →</Link>
     </main>
   );
 }

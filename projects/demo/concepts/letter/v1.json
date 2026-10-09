@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "name": "Личное письмо",
+    "mood": [
+      "letter"
+    ],
+    "rationale": "Почти белый лист, лёгкий шрифт и свободные поля. Текст звучит как письмо близким; дата появляется после имён, декор и золото не нужны."
+  },
+  "palette": {
+    "bg": "#F3F1E9",
+    "surface": "#E8E4D9",
+    "ink": "#322D27",
+    "muted": "#655E53",
+    "accent": "#67513F",
+    "accentAlt": "#5C6450"
+  },
+  "typeSet": "ceremony",
+  "materialSet": "paper",
+  "foil": {
+    "enabled": false,
+    "color": "#67513F"
+  },
+  "ornament": {
+    "pack": "none",
+    "density": "light",
+    "placement": [],
+    "color": "accentAlt"
+  },
+  "layout": {
+    "preset": "scroll-narrative",
+    "composition": "letter",
+    "hero": "typographic",
+    "sectionOrder": [
+      "hero",
+      "greeting",
+      "countdown",
+      "timeline",
+      "venue",
+      "dressCode",
+      "rsvp",
+      "footer"
+    ]
+  },
+  "motion": {
+    "preset": "still",
+    "ambient": "none"
+  }
+}

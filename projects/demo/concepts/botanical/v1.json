@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "Садовая вышивка",
+    "mood": [
+      "botanical"
+    ],
+    "rationale": "Зелёная бумага, цветочная розетка на поле и имена как стебли в левой колонке. Дата смещена к краю мотива, а разделы раскрываются без анимации."
+  },
+  "palette": {
+    "bg": "#283D32",
+    "surface": "#354B3E",
+    "ink": "#ECEBDC",
+    "muted": "#BBC5AE",
+    "accent": "#C9BD89",
+    "accentAlt": "#ACBEA7"
+  },
+  "typeSet": "editorial",
+  "materialSet": "paper",
+  "foil": {
+    "enabled": true,
+    "color": "#C9BD89"
+  },
+  "ornament": {
+    "pack": "uzbek-suzani",
+    "density": "light",
+    "placement": [
+      "watermark",
+      "corners"
+    ],
+    "color": "accentAlt"
+  },
+  "layout": {
+    "preset": "scroll-narrative",
+    "composition": "botanical",
+    "hero": "ornament-frame",
+    "sectionOrder": [
+      "hero",
+      "greeting",
+      "venue",
+      "dressCode",
+      "timeline",
+      "countdown",
+      "rsvp",
+      "footer"
+    ]
+  },
+  "motion": {
+    "preset": "still",
+    "ambient": "none"
+  }
+}
