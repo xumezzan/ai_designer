@@ -9,13 +9,14 @@ import "@/app/demo/demo.css";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Приглашение · предпросмотр", robots: { index: false, follow: false } };
 
-export default async function Preview({ params }: { params: Promise<{ slug: string; conceptId: string; version: string }> }) {
+export default async function Preview({ params, searchParams }: { params: Promise<{ slug: string; conceptId: string; version: string }>; searchParams: Promise<{ embed?: string }> }) {
   const { slug, conceptId, version } = await params;
   const invitation = await readInvitation(slug, conceptId, version);
   if (!invitation) notFound();
   const { content, theme } = invitation;
   if (theme.layout.preset !== "scroll-narrative") throw new Error("Layout is not available");
-  const demos = slug === "demo" ? await demoConcepts() : [];
+  const embedded = (await searchParams).embed === "1";
+  const demos = slug === "demo" && !embedded ? await demoConcepts() : [];
   return <>
     {demos.length > 0 && <header className="demo-toolbar"><Link href="/demo">← Все темы</Link>
       <nav aria-label="Демо-темы">{demos.map((demo) => <Link key={demo.id} href={`/preview/demo/${demo.id}/${demo.version}`} aria-current={demo.id === conceptId ? "page" : undefined}>{demo.theme.meta.name}</Link>)}</nav>

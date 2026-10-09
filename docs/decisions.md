@@ -2,6 +2,37 @@
 
 Architecture decisions that constrain future work. Newest first.
 
+## 2026-10-09 — M2: persistent studio and project-owned uploads
+
+The user chose the studio milestone after the Suzani artwork revision.
+`/studio` lists filesystem projects; the editor writes deterministic facts and
+shows the five latest demo themes copied to new immutable project v1 files.
+Demo files remain read-only. No schema or production dependency was added.
+
+Creation stages a directory before atomic rename. Content edits use atomic file
+replacement, an exclusive per-project lock, and a SHA-256 revision checked by
+the server. Concurrent/stale writes fail explicitly. Media/reference collections
+are server-owned and are preserved across form edits. Existing `content.json`
+stays the only authoritative project data file; no second questionnaire model
+or database is introduced.
+
+Sharp normalizes uploaded JPEG/PNG/WebP into bounded local WebP without EXIF.
+Images live in the existing ignored media directory, served by a project route
+only while referenced. Serving uses private/no-store; thumbnails bypass the
+public Next image optimizer. Removing a reference disables serving but retains
+bytes for future snapshots. Uploads and reference analysis are separate:
+M2 never invents a vision-derived focal point, safe area or quality score.
+
+Studio wall-time inputs resolve against the event's IANA timezone. Nonexistent
+or repeated DST wall times require another time rather than an implicit guess.
+Iframe previews use the existing renderer, scaled without changing its actual
+390px/1280px viewport. Pending edits are explicitly distinguished from saved
+previews; saving reloads the frames. Keyboard previews use a native dialog.
+
+Write-origin checks compare Origin with Host, not Next's internally reconstructed
+URL. Single-user local storage requires persistent write access; serverless
+storage/auth/public deployment are outside M2. See docs/m2 for QA and limits.
+
 ## 2026-10-09 — User-requested generated backgrounds and materials
 
 The user rejected the sparse M1 designs and explicitly requested generated

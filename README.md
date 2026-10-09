@@ -35,12 +35,18 @@ npm run check-fonts             # font support table → registry/fonts.generate
 
 Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
-Current milestone: **M1 complete**. Open `/demo` for five hand-authored wedding
+Current milestone: **M2 complete**. Open `/studio` to create/edit projects,
+upload photos and references, and compare five designs. The questionnaire and
+uploads persist in `projects/`; no API key is needed for this milestone.
+Verification: [docs/m2](./docs/m2/README.md). Photos are stored now; directed
+placement and reference analysis belong to M3/M4.
+
+Open `/demo` for five hand-authored wedding
 invitations sharing one renderer and eight section components. Open `/craft`
 for the Ceremony/Editorial typography specimen. References are measured in
 [docs/references.md](./docs/references.md); three screenshot critique loops are
 recorded in [docs/critique.md](./docs/critique.md). Verification and its limits:
-[docs/m1-qa.md](./docs/m1-qa.md). M2's studio shell is next.
+[docs/m1-qa.md](./docs/m1-qa.md).
 
 ## Invitation preview
 
@@ -69,8 +75,8 @@ a valid IANA timezone.
 RSVP supports a Telegram username, an international phone number, or a native
 POST form to a configured HTTP(S) receiver. The receiver must accept `name`,
 `attendance=yes` and optional `guests`; this project does not yet store replies.
-Replace the demo phone number before using it for a real event. Studio creation,
-AI generation, media direction and public publishing belong to later milestones.
+Replace the demo phone number before using it for a real event. AI generation,
+media direction and public publishing belong to later milestones.
 
 ## Layout
 
