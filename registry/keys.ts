@@ -27,6 +27,9 @@ export type LayoutId = (typeof LAYOUT_IDS)[number];
 export const COMPOSITION_IDS = ["letter", "poster", "folio", "arch", "botanical"] as const;
 export type CompositionId = (typeof COMPOSITION_IDS)[number];
 
+export const ARTWORK_IDS = ["none", "suzani-atelier"] as const;
+export type ArtworkId = (typeof ARTWORK_IDS)[number];
+
 export const TYPE_SET_IDS = ["ceremony", "editorial"] as const;
 export type TypeSetId = (typeof TYPE_SET_IDS)[number];
 

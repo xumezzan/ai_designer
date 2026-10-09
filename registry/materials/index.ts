@@ -1,6 +1,7 @@
 /**
- * Materials (SPEC §6.2) — procedural only: feTurbulence grain, layered
- * gradients for foil sheen, SVG masks for deckle edges. No raster textures.
+ * Procedural materials (SPEC §6.2): feTurbulence grain, layered
+ * gradients for foil sheen, SVG masks for deckle edges. Generated raster art
+ * is a separate, opt-in layer in registry/artwork following the design revision.
  * Rules: grain is always multi-layer (coarse + fine at different opacities);
  * shadows are long, soft, low-opacity and tinted toward the background; foil
  * applies to one element per page (enforced by the renderer).

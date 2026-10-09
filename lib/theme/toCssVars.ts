@@ -6,6 +6,7 @@
 import type { Theme } from "../schema/theme";
 import { getTypeSet, typeSetStackFor, type TypeSetLevel } from "../../registry/typesets";
 import { getMaterialSet } from "../../registry/materials";
+import { getArtwork } from "../../registry/artwork";
 import { stackFor } from "../../registry/fonts";
 import { spaceScale, spaceVars } from "../layout/space";
 
@@ -53,6 +54,7 @@ export function toCssVars(theme: Theme): Record<string, string> {
     throw new Error(`Material set "${theme.materialSet}" is not registered`);
   }
   Object.assign(vars, material.vars);
+  Object.assign(vars, getArtwork(theme.artwork)?.vars);
 
   vars["--foil-color"] = theme.foil.color;
   // The renderer honours foil on one element per page; disabling it here

@@ -11,6 +11,7 @@ import { Reveal } from "@/components/craft/Reveal";
 import { Surface } from "@/components/primitives/Surface";
 import { FoilText } from "@/components/primitives/FoilText";
 import { Ornament } from "@/components/primitives/Ornament";
+import { Artwork } from "@/components/primitives/Artwork";
 import { Hero } from "@/components/sections/Hero";
 import { Greeting } from "@/components/sections/Greeting";
 import { Countdown } from "@/components/sections/Countdown";
@@ -36,7 +37,7 @@ export function ScrollNarrative({ content, theme, initialNow }: { content: Conte
   const next = order[1];
   const nextTarget = next ? { id: next, label: labels[content.locale][next === "hero" ? "invitation" : next] } : undefined;
   const sections: Record<SectionId, ReactNode> = {
-    hero: <div className="hero-wrapper"><Ornament theme={theme} placement="hero-frame" /><Ornament theme={theme} placement="watermark" />
+    hero: <div className="hero-wrapper"><Artwork id={theme.artwork} placement="hero" /><Ornament theme={theme} placement="hero-frame" /><Ornament theme={theme} placement="watermark" />
       <Hero content={content} title={title} titleWrapper={titleWrapper} nextTarget={nextTarget} />
       <div className="hero-corners"><Ornament theme={theme} placement="corners" /><Ornament theme={theme} placement="corners" /></div>
     </div>,
@@ -50,11 +51,11 @@ export function ScrollNarrative({ content, theme, initialNow }: { content: Conte
   };
   return <>
     <FontPreloads typeSet={theme.typeSet} locale={content.locale} />
-    <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero}
+    <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork}
       data-motion={theme.motion.preset} style={toCssVars(theme) as CSSProperties} lang={langFor(content.locale)}>
       <Surface><div className="narrative-content">
         {order.map((id, index) => <div className={`narrative-slot slot-${id}`} key={id}>
-          {index === 2 && <Ornament theme={theme} placement="divider" />}
+          {index === 2 && <><Ornament theme={theme} placement="divider" /><Artwork id={theme.artwork} placement="flourish" /></>}
           {sections[id]}
         </div>)}
       </div></Surface>

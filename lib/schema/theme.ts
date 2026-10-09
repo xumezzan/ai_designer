@@ -3,6 +3,7 @@ import { Hex } from "./common";
 import {
   LAYOUT_IDS,
   COMPOSITION_IDS,
+  ARTWORK_IDS,
   MATERIAL_SET_IDS,
   MOTION_IDS,
   ORNAMENT_PACK_IDS,
@@ -11,7 +12,7 @@ import {
 } from "../../registry/keys";
 
 /**
- * `theme.json` — the only thing the AI produces. Schema principle: the model
+ * `theme.json` selects hand-built presets and separately generated art. The model
  * picks named sets from registries; it never sets numeric craft values
  * (tracking, leading, scale ratios, grain density, durations). Those live in
  * the registries, tuned once by hand.
@@ -41,6 +42,7 @@ export const Theme = z.object({
 
   // Hand-built material. See registry/materials.
   materialSet: z.enum(MATERIAL_SET_IDS),
+  artwork: z.enum(ARTWORK_IDS).default("none"),
   foil: z.object({ enabled: z.boolean(), color: Hex }),
 
   ornament: z.object({

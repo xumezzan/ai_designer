@@ -20,7 +20,7 @@ Output: 4–6 genuinely different invitation designs generated in parallel → p
 
 **The architectural rule that must never be broken:**
 
-> The AI does not write the invitation's HTML or CSS. The AI produces **`theme.json` only** — a configuration on top of a hand-built component library.
+> The AI does not write the invitation's HTML or CSS. The AI produces **`theme.json` and decorative image assets** — configuration and art used by a hand-built component library. Names, event facts, navigation and forms remain real HTML.
 
 Free-form layout generation produces recognisably templated output and unrepeatable quality. Configuration over a hand-built library produces quality bounded by the library, and the library keeps growing.
 
@@ -36,7 +36,6 @@ Do not build, even if it seems useful:
 - a separate backend service, message queue, or worker pool — no FastAPI, no Celery, no Redis;
 - a database (the filesystem is the store until RSVP responses need collecting);
 - WebGL, three.js, heavy canvas scenes;
-- image generation through any API — every texture is procedural (SVG/CSS);
 - a drag-and-drop visual editor;
 - email delivery, analytics, A/B tests;
 - an i18n framework (three locales are set per project; UI strings live in one dictionary).
@@ -307,7 +306,9 @@ The most important registry in the project. Each set is tuned by hand and specif
 
 ### 6.2 Materials (`registry/materials`)
 
-A set of CSS custom properties plus an SVG filter. Procedural only: `feTurbulence` for paper and linen grain, layered `conic-gradient` for foil sheen, SVG `mask-image` for deckle edges, `backdrop-filter` for glass. No raster textures in the repository.
+A set of CSS custom properties plus an SVG filter. Procedural effects remain available; generated raster textures and commissioned-style illustrations are also allowed following the user's 2026-10-09 design revision. The chosen assets are stored with the project or in a versioned art registry, with prompts and provenance. Material generation must be separate from event text.
+
+**Generated artwork revision (2026-10-09).** A theme may select `artwork: 'none' | 'suzani-atelier'` (default `none`). The named art direction owns a generated hero backdrop, repeatable material texture and ornamental artwork. A shared decoration component renders it; sections do not branch on a concept ID. The first revision develops one complete premium direction before expanding the menu. Original v1 concepts remain available; revised JSON is saved as v2. Generated files are local, optimized, and carry no names, dates or buttons baked into pixels. Hero art must preserve a readable central field; long-form sections use a quiet texture and solid text surfaces. This replaces the earlier prohibition of image generation and procedural-only materials. It does not claim the future studio generation API is implemented.
 
 Rules without which a material reads as cheap:
 
