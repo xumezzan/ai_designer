@@ -15,7 +15,7 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
     photos: photos.length ? [variant.layout.photoArrangement, variant.photos] : undefined,
     ornament: series.style.ornament.pack !== "none" ? variant.ornamentPlacement : undefined,
     order: variant.layout.sectionOrder,
-  }))).size !== 5) throw new Error("Use five distinct visible compositions within the SAME style; invisible artwork/photo choices do not count");
+  }))).size !== series.variants.length) throw new Error("Use distinct visible compositions within the SAME style; invisible artwork/photo choices do not count");
   const style = series.style;
   const sample = { ...style, meta: { name: style.name, mood: style.mood, rationale: style.rationale }, ornament: { ...style.ornament, placement: [] }, layout: series.variants[0].layout };
   const repaired = repairTheme(sample);
@@ -32,6 +32,7 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
     if (placements.filter((photo) => photo.section === "hero").length > 1) throw new Error("Only one photo may be placed in hero");
     const theme = {
       palette: common.palette, typeSet: style.typeSet, materialSet: style.materialSet, artwork: style.artwork, generatedVisual: style.generatedVisual, foil: style.foil, motion: style.motion,
+      atmosphere: style.atmosphere, surface: style.surface, finishing: style.finishing, typographyScale: style.typographyScale,
       meta: { name: variant.name, mood: style.mood, rationale: variant.rationale },
       ornament: { ...style.ornament, placement: variant.ornamentPlacement }, layout: variant.layout, photos: placements,
     };
@@ -44,5 +45,5 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
 export type GeneratedSeries = ReturnType<typeof composeSeries> & Pick<Generation, "model" | "elapsedMs" | "references"> & { visual?: GeneratedVisual };
 
 export function sharedStyleSignature(theme: Theme) {
-  return JSON.stringify({ palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, artwork: theme.artwork, generatedVisual: theme.generatedVisual, foil: theme.foil, motion: theme.motion, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } });
+  return JSON.stringify({ palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, artwork: theme.artwork, generatedVisual: theme.generatedVisual, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } });
 }

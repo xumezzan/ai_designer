@@ -57,6 +57,25 @@ export function toCssVars(theme: Theme): Record<string, string> {
   Object.assign(vars, getArtwork(theme.artwork)?.vars);
 
   vars["--foil-color"] = theme.foil.color;
+  vars["--inv-grain-opacity"] = String(theme.atmosphere.grainIntensity);
+  vars["--inv-ambient-glow"] = theme.atmosphere.ambientGlow
+    ? /^(?:radial|linear)-gradient\(/i.test(theme.atmosphere.ambientGlow)
+      ? theme.atmosphere.ambientGlow
+      : `linear-gradient(${theme.atmosphere.ambientGlow}, ${theme.atmosphere.ambientGlow})`
+    : "linear-gradient(transparent, transparent)";
+  vars["--inv-vignette-strength"] = String(theme.atmosphere.vignetteStrength);
+  vars["--inv-sheen-angle"] = `${theme.finishing.sheenAngle}deg`;
+  vars["--inv-tracking-headline"] = theme.typographyScale.headlineTracking ?? typeSet.levels.display.tracking;
+  vars["--inv-tracking-meta"] = theme.typographyScale.metaTracking ?? ".12em";
+  vars["--inv-display-scale"] = { monumental: "1.2", editorial: "1", understated: ".82" }[theme.typographyScale.displayScale];
+  if (theme.typographyScale.headlineTracking) {
+    vars["--tr-display"] = theme.typographyScale.headlineTracking;
+    vars["--tr-display-sm"] = theme.typographyScale.headlineTracking;
+  }
+  if (theme.typographyScale.metaTracking) {
+    vars["--tr-small"] = theme.typographyScale.metaTracking;
+    vars["--tr-caps"] = theme.typographyScale.metaTracking;
+  }
   // The renderer honours foil on one element per page; disabling it here
   // removes the sheen for every consumer at once.
   if (!theme.foil.enabled) vars["--foil-sheen"] = "none";

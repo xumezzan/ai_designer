@@ -42,6 +42,7 @@ export function validateContent(raw: unknown) {
       "date.timezone": "Укажите часовой пояс в формате Asia/Tashkent.",
       "venue.mapUrl": "Укажите полную ссылку на карту, начиная с https://.",
       "rsvp.deadline": "Проверьте дату, до которой гости должны ответить.",
+      "variantCount": "Выберите количество вариантов от 1 до 5.",
     };
     throw new StudioError([...new Set(result.error.issues.map((issue) => issues[issue.path.join(".")] ?? "Проверьте обязательные поля анкеты и выбранные значения."))].join(" "));
   }
@@ -96,7 +97,7 @@ export class ProjectStore {
       if (!result.ok) throw new Error(`Invalid concept: ${result.errors.join("; ")}`);
       return { id: entry.name, version, theme: result.theme, history: await this.history(slug, entry.name, qaContext) };
     }));
-    if (generation && concepts.length !== 5) throw new Error("Generation references missing concepts");
+    if (generation && concepts.length !== generation.concepts.length) throw new Error("Generation references missing concepts");
     const order = ["letter", "poster", "folio", "arch", "botanical"];
     concepts.sort((a, b) => order.indexOf(a.theme.layout.composition) - order.indexOf(b.theme.layout.composition));
     const approvalText = await optionalText(path.join(this.directory(slug), "approved.json"));
@@ -228,7 +229,10 @@ export class ProjectStore {
     return (await Promise.all(dirs.filter((dir) => dir.isDirectory() && safeId(dir.name)).map(async (dir) => {
       const project = await this.read(dir.name);
       const info = await stat(path.join(this.root, dir.name, "content.json"));
-      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, updated: info.mtimeMs };
+      const first = project.generation || dir.name === "demo" ? project.concepts[0] : undefined;
+      const cover = project.approval ?? first;
+      const preview = cover ? { href: `/preview/${dir.name}/${"conceptId" in cover ? cover.conceptId : cover.id}/${cover.version}?embed=1`, selected: Boolean(project.approval) } : null;
+      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, preview, updated: info.mtimeMs };
     }))).sort((a, b) => b.updated - a.updated);
   }
   async create(raw: unknown, templates?: Concept[]) {
@@ -320,7 +324,7 @@ export class ProjectStore {
       const project = await this.read(slug);
       if (project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект или варианты изменились во время генерации. Обновите страницу и повторите.", 409);
       if (!content.brief?.trim()) throw new StudioError("Опишите желаемый стиль перед генерацией.");
-      if (result.themes.length !== 5 || result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0]))) throw new StudioError("Серия должна содержать пять композиций в одном стиле.");
+      if (result.themes.length !== (content.variantCount ?? 5) || result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0]))) throw new StudioError("Серия должна содержать выбранное количество композиций в одном стиле.");
       const expected = { ...result.themes[0], ...result.style, ornament: { ...result.style.ornament, placement: result.themes[0].ornament.placement } };
       if (sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
       const photos = await readDirectedPhotos(content, project.assetPlan, this.directory(slug));
@@ -330,7 +334,7 @@ export class ProjectStore {
       if (visual) {
         const record = VisualRecord.parse(visual.record);
         const info = await sharp(visual.data).metadata();
-        if (!visualRef || visualRef.id !== record.id || visualRef.sha256 !== record.sha256 || createHash("sha256").update(visual.data).digest("hex") !== record.sha256 || info.width !== record.width || info.height !== record.height || info.format !== "webp" || visualRef.width !== record.width || visualRef.height !== record.height) throw new StudioError("Новый визуал не соответствует серии.");
+        if (!visualRef || visualRef.id !== record.id || visualRef.sha256 !== record.sha256 || createHash("sha256").update(visual.data).digest("hex") !== record.sha256 || info.width !== record.width || info.height !== record.height || info.format !== "webp" || visualRef.width !== record.width || visualRef.height !== record.height || Boolean(visualRef.isolated) !== Boolean(record.isolated)) throw new StudioError("Новый визуал не соответствует серии.");
       } else if (visualRef && !await readGeneratedVisual(slug, visualRef.id, visualRef, this.root)) throw new StudioError("Визуал серии не найден.");
       const batchId = randomUUID();
       const concepts = validated.themes.map((theme, index) => ({ id: `variant-${batchId.slice(0, 8)}-${index + 1}`, version: "1", theme }));

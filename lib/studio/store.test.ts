@@ -30,6 +30,7 @@ test("commits original art with its batch, retains historical bytes, detects tam
   const raw = structuredClone(fixtureSeries);
   raw.style.generatedVisual = { id: record.id, sha256: record.sha256, width: record.width, height: record.height };
   const generated = { ...composeSeries(raw, "ru", []), model: "controlled-test", elapsedMs: 1, references: 0, visual: { data, record } };
+  await expect(store.saveGeneration("new-event", { ...generated, visual: { data, record: { ...record, isolated: true } } }, project.revision, project.planRevision, project.generationRevision)).rejects.toThrow("Новый визуал не соответствует серии");
   const first = await store.saveGeneration("new-event", generated, project.revision, project.planRevision, project.generationRevision);
   expect(first.concepts.every((concept) => concept.theme.generatedVisual?.id === record.id)).toBe(true);
   expect((await readGeneratedVisual("new-event", record.id, raw.style.generatedVisual, root))?.data).toEqual(data);
@@ -51,9 +52,22 @@ test("creates an empty project without stock demo themes, then persists facts", 
   expect(project.generation).toBeNull();
   expect(await readdir(path.join(root, "new-event/concepts"))).toEqual([]);
   expect((await store.list())[0].names).toBe("Дилшод и Малика");
+  expect((await store.list())[0].preview).toBeNull();
   expect((await store.read("new-event")).revision).toBe(project.revision);
   await expect(store.create(content())).rejects.toMatchObject({ status: 409 });
   expect((await readdir(root)).some((name) => name.startsWith(".create"))).toBe(false);
+});
+
+test("project cover uses the current series, then preserves the selected version across new batches", async () => {
+  const project = await store.create(content());
+  const generated = { ...composeSeries(fixtureSeries, "ru", []), model: "controlled-test", elapsedMs: 1, references: 0 };
+  const first = await store.saveGeneration("new-event", generated, project.revision, project.planRevision, project.generationRevision);
+  expect((await store.list())[0].preview).toEqual({ href: `/preview/new-event/${first.concepts[0].id}/${first.concepts[0].version}?embed=1`, selected: false });
+  const selected = first.concepts[2];
+  await writeFile(path.join(root, "new-event/approved.json"), JSON.stringify({ conceptId: selected.id, version: selected.version, approvedAt: new Date().toISOString() }));
+  const second = await store.saveGeneration("new-event", generated, first.revision, first.planRevision, first.generationRevision);
+  expect(second.concepts.some((concept) => concept.id === selected.id)).toBe(false);
+  expect((await store.list())[0].preview).toEqual({ href: `/preview/new-event/${selected.id}/${selected.version}?embed=1`, selected: true });
 });
 
 test("uncommitted initial generation directories stay invisible to readers", async () => {
@@ -208,4 +222,28 @@ test("removing a generated hero photo keeps the project readable and allows a ne
   expect(await readFile(file, "utf8")).toBe(before);
   const next = await store.saveGeneration("new-event", { ...composeSeries(fixtureSeries, "ru", []), model: "controlled-test", elapsedMs: 100, references: 0 }, removed.revision, removed.planRevision, removed.generationRevision);
   expect(next.concepts).toHaveLength(5);
+});
+
+test.each([1, 2, 3, 4, 5])("persists and lists a project with %s generated variants", async (variantCount) => {
+  const project = await store.create({ ...content(), brief: "Ар-деко", variantCount });
+  const raw = { ...fixtureSeries, variants: fixtureSeries.variants.slice(0, variantCount) };
+  const generated = { ...composeSeries(raw, "ru", []), model: "controlled-test", elapsedMs: 1, references: 0 };
+  const saved = await store.saveGeneration("new-event", generated, project.revision, project.planRevision, project.generationRevision);
+  expect(saved.concepts).toHaveLength(variantCount);
+  const reloaded = await store.read("new-event");
+  expect(reloaded.content.variantCount).toBe(variantCount);
+  expect(reloaded.generation?.concepts).toHaveLength(variantCount);
+  expect(reloaded.concepts.every(concept => concept.history?.length === 1)).toBe(true);
+  expect((await store.list())[0].count).toBe(variantCount);
+});
+
+test("wrong-count batches and invalid count preferences leave the previous project intact", async () => {
+  const project = await store.create({ ...content(), brief: "Ар-деко", variantCount: 2 });
+  const generated = { ...composeSeries(fixtureSeries, "ru", []), model: "controlled-test", elapsedMs: 1, references: 0 };
+  await expect(store.saveGeneration("new-event", generated, project.revision, project.planRevision, project.generationRevision)).rejects.toMatchObject({ status: 400 });
+  expect((await store.read("new-event")).generation).toBeNull();
+  for (const variantCount of [0, 6, 1.5]) {
+    await expect(store.update("new-event", { ...project.content, variantCount }, project.revision)).rejects.toMatchObject({ status: 400 });
+  }
+  expect((await store.read("new-event")).content.variantCount).toBe(2);
 });

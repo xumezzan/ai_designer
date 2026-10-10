@@ -8,7 +8,7 @@
 .studio-photo-mode { display: flex; border: 1px solid var(--studio-line); margin-bottom: 12px; }
 .studio-photo-mode button { min-height: 44px; font-size: 11px; padding: 8px 10px; flex: 1; }
 .studio-photo-mode button[aria-pressed="true"] { background: var(--studio-accent); color: var(--studio-paper); }
-.studio-photo-stage { position: relative; user-select: none; touch-action: none; overflow: hidden; cursor: crosshair; background: #e5e8de; }
+.studio-photo-stage { position: relative; user-select: none; touch-action: none; overflow: hidden; cursor: crosshair; background: var(--studio-inset); }
 .studio-photo-stage img { width: 100%; height: 100%; display: block; pointer-events: none; }
 .studio-safe-box { position: absolute; border: 2px solid #bbefa7; box-shadow: 0 0 0 1px #294627, 0 0 0 100vw #10180e48; pointer-events: none; }
 .studio-focal-dot { position: absolute; width: 18px; height: 18px; margin: -9px 0 0 -9px; border: 2px solid #f7f2df; border-radius: 50%; box-shadow: 0 0 0 2px #5a3627; background: #a9623c; pointer-events: none; }

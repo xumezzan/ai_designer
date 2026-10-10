@@ -14,7 +14,7 @@ export function QualityReport({ qa, pendingEdits, checking, elapsed, disabled, o
       <div className="studio-qa-evidence">{qa.report.evidence.filter((entry) => entry.file.startsWith("viewport-")).map((entry) => <a key={entry.file} href={`/api/projects/${qa.report.slug}/qa/${qa.report.conceptId}/${qa.report.version}/${entry.file}`} target="_blank" rel="noreferrer">{entry.label} ↗</a>)}</div>
       {qa.report.measurements && <p>Fast 3G · CPU ×4: LCP {qa.report.measurements.lcpMs === null ? "не измерен" : `${(qa.report.measurements.lcpMs / 1000).toFixed(2)} с`}; CLS {qa.report.measurements.cls === null ? "не измерен" : qa.report.measurements.cls.toFixed(3)}. Измерение загрузки до взаимодействия, без прокрутки.</p>}
       <p className="studio-help"><time dateTime={qa.report.createdAt}>{new Date(qa.report.createdAt).toLocaleString("ru-RU", { timeZone: "UTC" })} UTC</time> · Геометрия и пиксели всей страницы; AI проверяет первый экран и до двух фото. Предупреждения о длине строк и скорости требуют оценки человеком.</p>
+      <p className="studio-help">Проверка передаёт снимки дизайна AI для поиска видимых дефектов.</p>
     </details>}
-    <p className="studio-help">Проверка делает снимки дизайна и передаёт первый экран и до двух фото AI для поиска видимых дефектов.</p>
   </div>;
 }

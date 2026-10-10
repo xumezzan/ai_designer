@@ -70,7 +70,7 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
     measure: 58,
     levels: {
       display: {
-        size: "clamp(3.25rem, 1.5rem + 7vw, 6rem)",
+        size: "clamp(3.75rem, 1.5rem + 9vw, 8.75rem)",
         tracking: "-0.03em",
         leading: 1.08,
         weight: 300,
@@ -127,7 +127,7 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
     measure: 62,
     levels: {
       display: {
-        size: "clamp(3rem, 1.35rem + 7.2vw, 5.25rem)",
+        size: "clamp(3.5rem, 1.35rem + 9.5vw, 9rem)",
         tracking: "-0.035em",
         leading: 1.06,
         weight: 600,

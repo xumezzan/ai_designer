@@ -36,10 +36,11 @@ try {
   assert.equal(uploaded.status(), 200);
   project = await uploaded.json();
   await page.goto(`${base}/studio/${slug}`);
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
-  assert.equal(await page.getByRole("checkbox", { name: "Создать новый визуал по брифу и референсам", exact: true }).last().isChecked(), true);
+  await page.locator(".studio-results").waitFor();
+  await page.getByText("Другие настройки", { exact: true }).click();
+  await page.getByRole("checkbox", { name: "Добавить авторскую иллюстрацию", exact: true }).check();
   const responsePromise = page.waitForResponse((response) => response.url().endsWith("/api/generate"), { timeout: 540000 });
-  await page.getByRole("button", { name: "Сгенерировать 5 вариантов", exact: true }).click();
+  await page.getByRole("button", { name: "Создать дизайны", exact: true }).click();
   const response = await responsePromise;
   const body = await response.json();
   if (response.status() !== 200) { report.failure = { status: response.status(), error: body.error }; throw new Error(body.error || `HTTP ${response.status()}`); }
@@ -81,7 +82,7 @@ try {
   }
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto(`${base}/studio/${slug}`);
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.locator(".studio-results").waitFor();
   await page.getByText("Как AI понял бриф", { exact: true }).waitFor();
   await page.screenshot({ path: path.join(out, "studio-desktop.png"), fullPage: true });
   await page.setViewportSize({ width: 390, height: 844 });

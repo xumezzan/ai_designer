@@ -43,18 +43,20 @@ test("a provider rejection is sanitized and never becomes a generated series", a
   await expect(generateSeries(input, [], [], sdk)).rejects.toMatchObject({ status: 502, message: "Ключ Anthropic отклонён. Проверьте .env.local и перезапустите сервер." });
 });
 
-test("image-enabled series creates one shared original asset after interpreting the brief", async () => {
+test.each([1, 2, 5])("image-enabled series creates one shared original asset for %s requested variants", async (variantCount) => {
   vi.stubEnv("OPENAI_API_KEY", "test-only");
   const raw = structuredClone(fixtureSeries);
   raw.style.intent = { summary: "Ар-деко", cues: ["Геометрия"], avoid: ["Цветы"], referenceNotes: "", artworkPrompt: "Gold Art Deco fan on charcoal paper" };
   raw.variants.forEach((variant, index) => { variant.layout.visualPlacement = ["band", "side-left", "side-right", "medallion", "inset"][index] as typeof variant.layout.visualPlacement; });
+  raw.variants = raw.variants.slice(0, variantCount);
   const data = await sharp({ create: { width: 1536, height: 1024, channels: 3, background: "#161B20" } }).webp().toBuffer();
   const openai = vi.fn<typeof fetch>(async () => Response.json({ data: [{ b64_json: data.toString("base64") }] }));
   vi.stubGlobal("fetch", openai);
   const anthropic = vi.fn(async () => Response.json(message(raw)));
   const sdk = new Anthropic({ apiKey: "test-key", maxRetries: 0, fetch: anthropic });
   try {
-    const result = await generateSeries(input, [], [], sdk, { createVisual: true });
+    const result = await generateSeries({ ...input, variantCount }, [], [], sdk, { createVisual: true });
+    expect(result.themes).toHaveLength(variantCount);
     expect(result.visual?.record.references).toBe(0);
     expect(result.style.generatedVisual).toBeDefined();
     expect(new Set(result.themes.map((theme) => theme.generatedVisual?.id)).size).toBe(1);
@@ -79,4 +81,37 @@ test("OpenAI failure stops the series without a second paid attempt or Anthropic
     expect(openai).toHaveBeenCalledTimes(1);
     expect(anthropic).toHaveBeenCalledTimes(1);
   } finally { vi.unstubAllGlobals(); vi.unstubAllEnvs(); }
+});
+
+test.each([1, 2, 3, 4, 5])("requests exactly %s variants through the tool schema, prompt and saved preference", async (variantCount) => {
+  let request: Record<string, unknown> = {};
+  const raw = { ...fixtureSeries, variants: fixtureSeries.variants.slice(0, variantCount) };
+  const sdk = new Anthropic({ apiKey: "test-key", maxRetries: 0, fetch: async (_url, options) => {
+    request = JSON.parse(String(options?.body));
+    return Response.json(message(raw));
+  } });
+  const result = await generateSeries({ ...input, variantCount }, [], [], sdk);
+  expect(result.themes).toHaveLength(variantCount);
+  const tools = request.tools as { input_schema: { properties: { variants: { minItems: number; maxItems: number } } } }[];
+  expect(tools[0].input_schema.properties.variants).toMatchObject({ minItems: variantCount, maxItems: variantCount });
+  expect(request.system).toContain(`exactly ${variantCount} related compositions`);
+  expect(JSON.stringify(request.messages)).toContain(`exactly ${variantCount} compositions`);
+});
+
+test.each([0, 6, 1.5, NaN])("invalid count %s is rejected before requesting a provider", async (variantCount) => {
+  const transport = vi.fn(async () => Response.json(message(fixtureSeries)));
+  const sdk = new Anthropic({ apiKey: "test-key", maxRetries: 0, fetch: transport });
+  await expect(generateSeries({ ...input, variantCount }, [], [], sdk)).rejects.toMatchObject({ status: 400 });
+  expect(transport).not.toHaveBeenCalled();
+});
+
+test("a response with the wrong count is corrected instead of silently trimming or expanding it", async () => {
+  let calls = 0;
+  const sdk = new Anthropic({ apiKey: "test-key", maxRetries: 0, fetch: async () => {
+    calls++;
+    return Response.json(message({ ...fixtureSeries, variants: fixtureSeries.variants.slice(0, calls === 1 ? 3 : 2) }));
+  } });
+  const result = await generateSeries({ ...input, variantCount: 2 }, [], [], sdk);
+  expect(result.themes).toHaveLength(2);
+  expect(calls).toBe(2);
 });

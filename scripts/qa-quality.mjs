@@ -43,7 +43,7 @@ try {
   const id = concepts[0].id;
   const payload = (p) => ({ slug, conceptId: id, version: "1", revision: p.revision, planRevision: p.planRevision, generationRevision: p.generationRevision, approvalRevision: p.approvalRevision });
   assert.equal((await page.request.post(`${base}/api/approve`, { data: { ...payload(project), qaOverride: true } })).status(), 409); result.unverifiedBlocked = true;
-  await page.goto(`${base}/studio/${slug}`); await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.goto(`${base}/studio/${slug}`); await page.locator(".studio-results").waitFor();
   const card = page.locator(".studio-preview-card").first();
   assert(await card.getByRole("button", { name: "Выбрать v1", exact: true }).isDisabled());
   const responsePromise = page.waitForResponse((r) => r.url().endsWith("/api/qa"), { timeout: 180000 });
@@ -83,7 +83,7 @@ try {
   const before = await readFile(path.join(dir, "approved.json"), "utf8");
   project = await (await page.request.get(`${base}/api/projects/${slug}`)).json();
   assert.equal((await page.request.put(`${base}/api/projects/${slug}`, { data: { revision: project.revision, content: { ...project.content, greeting: "Новый текст делает прежнюю проверку устаревшей." } } })).status(), 200);
-  await page.reload(); await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.reload(); await page.locator(".studio-results").waitFor();
   assert.equal(await card.locator(".studio-qa").getAttribute("data-qa-status"), "stale");
   project = await (await page.request.get(`${base}/api/projects/${slug}`)).json();
   assert.equal((await page.request.post(`${base}/api/approve`, { data: { ...payload(project), qaOverride: true } })).status(), 409);

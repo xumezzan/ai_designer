@@ -1,0 +1,267 @@
+/* Invitation craft: compositions share a paper vocabulary, not a card layout. */
+html:has(.invitation) { scroll-behavior: smooth; }
+.invitation { --hairline: color-mix(in srgb, var(--ink) 22%, transparent); --craft-reveal-distance: 28px; --craft-reveal-ease: cubic-bezier(.16, 1, .3, 1); }
+.invitation :is(section, footer) { scroll-margin-top: 2rem; }
+.narrative-content { width: min(100% - 5rem, 70rem); }
+.invitation :is(.hero-opening, .section-eyebrow, .dress-palette-heading, .rsvp-steps) { letter-spacing: .12em; }
+.hero-opening { border-bottom: 1px solid var(--hairline); padding-bottom: 1.4rem; margin-bottom: 0; gap: 1.5rem; }
+.hero-opening p { text-transform: uppercase; }
+.hero-line { flex: 1; width: auto; background: transparent; }
+.hero-edition { font-variant-numeric: lining-nums; }
+.hero-imprint { display: none; }
+.invitation:not([data-artwork="suzani-atelier"]):not([data-visual]) .invitation-hero {
+  display: grid; grid-template-columns: 1.1fr 1fr auto; grid-template-areas: "opening opening opening" "name name name" "date place next";
+  min-height: min(88svh, 58rem); padding-top: 2.5rem; padding-bottom: 4.5rem; column-gap: 3rem; row-gap: 2.5rem; align-content: space-between;
+}
+.hero-opening { grid-area: opening; }
+.hero-name-group { grid-area: name; margin-block: 3rem; min-width: 0; }
+.hero-date { grid-area: date; margin-top: 0; gap: 1.5rem; }
+.hero-day { font-size: clamp(4rem, 7vw, 6.5rem); line-height: .9; }
+.hero-date-copy { gap: .45rem; }
+.hero-date-copy [data-level="lead"] { font-size: 1.35rem; }
+.hero-date-copy [data-level="body"] { font-size: .875rem; color: var(--muted); }
+.hero-place { grid-area: place; align-self: center; margin-top: 0; gap: .5rem; }
+.hero-place > span:last-child { font-size: .875rem; color: var(--muted); }
+.hero-personal { font-style: italic; margin-bottom: .5rem; }
+.hero-join { font-size: .45em; font-style: italic; }
+.hero-next { grid-area: next; width: auto; height: auto; min-height: 44px; border: 0; border-radius: 0; gap: 1.4rem; margin-top: 0; justify-self: end; align-self: end; }
+.hero-next > span:last-child { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--hairline); border-radius: 50%; transition: transform 350ms; }
+.hero-next:hover > span:last-child { transform: translateY(4px); }
+.hero-next-label { font-size: .75rem; }
+.invitation:not([data-artwork="suzani-atelier"]) .hero-corners .ornament { top: 6rem; }
+.invitation:not([data-artwork="suzani-atelier"]) .ornament-hero-frame { top: 14%; opacity: .22; }
+
+.invitation[data-composition="poster"]:not([data-visual]) .invitation-hero { grid-template-columns: minmax(0, 1fr) minmax(8rem, .4fr); grid-template-areas: "opening opening" "name date" "place next"; align-items: center; }
+[data-composition="poster"] .hero-name-group { margin-top: 2rem; }
+[data-composition="poster"] .hero-date { align-self: center; margin: 0; border-left: 1px solid var(--hairline); padding-left: 2rem; gap: 1.2rem; }
+[data-composition="poster"] .hero-day { font-size: clamp(5rem, 13vw, 11rem); }
+[data-composition="poster"] .hero-date-copy [data-level="lead"] { max-width: 8ch; }
+.invitation[data-composition="folio"]:not([data-visual]) .invitation-hero { grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); grid-template-areas: "opening opening" "imprint name" "date place" "next next"; align-content: start; row-gap: 3rem; }
+[data-composition="folio"] .hero-name-group { max-width: none; margin: 1rem 0; }
+[data-composition="folio"] .hero-imprint { grid-area: imprint; display: flex; align-items: center; justify-content: start; color: transparent; -webkit-text-stroke: 1px color-mix(in srgb, var(--accent) 48%, transparent); font-family: var(--font-display); font-weight: 300; font-size: clamp(5rem, 10vw, 9.5rem); letter-spacing: -.09em; transform: rotate(-9deg); user-select: none; }
+[data-composition="folio"] .hero-date { flex-direction: row; margin: 0; }
+[data-composition="folio"] .hero-place { padding-left: 1rem; }
+[data-composition="folio"] .hero-next { justify-self: end; }
+[data-composition="folio"] .invitation-section { margin-left: 0; }
+.invitation[data-composition="arch"]:not([data-artwork="suzani-atelier"]):not([data-visual]) .invitation-hero { grid-template-columns: 1fr; grid-template-areas: "opening" "name" "date" "place" "next"; row-gap: 1.75rem; align-content: start; }
+[data-composition="arch"] .hero-opening { justify-content: space-between; }
+[data-composition="arch"] .hero-name-group { margin-block: 1.5rem; }
+[data-composition="arch"] .hero-date { justify-content: center; }
+[data-composition="arch"] .hero-next { justify-self: center; }
+.invitation[data-composition="botanical"]:not([data-visual]) .invitation-hero { grid-template-columns: minmax(0, 1fr) minmax(0, .7fr); grid-template-areas: "opening opening" "name name" ". date" "next place"; row-gap: 1.5rem; }
+[data-composition="botanical"] .hero-name-group { max-width: 12ch; margin-block: 1rem; }
+[data-composition="botanical"] :is(.hero-date, .hero-place, .hero-next) { margin-left: 0; margin-top: 0; }
+[data-composition="botanical"] .hero-next { justify-self: start; }
+[data-composition="botanical"] .venue-section { margin-left: 0; }
+[data-visual] .hero-name-group { margin-block: 1.75rem; }
+[data-visual] .hero-opening { margin-bottom: 1.5rem; }
+[data-visual^="side-"] .hero-edition { display: none; }
+[data-visual^="side-"] .hero-next { margin-top: 1.5rem; }
+
+.invitation-section { padding-block: clamp(3.5rem, 7vw, 6.5rem); }
+.greeting-section { border-top: 1px solid var(--hairline); grid-template-columns: .8fr 1fr; gap: 6rem; }
+.greeting-section h2 { max-width: 12ch; }
+.greeting-copy p:first-child { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.85rem, 2.6vw, 2.6rem); line-height: 1.3; letter-spacing: -.015em; max-width: 27ch; }
+.greeting-copy p + p { max-width: 46ch; margin-top: 2rem; }
+.countdown-section { display: grid; grid-template-columns: .8fr 1fr; gap: 1.5rem 6rem; border-color: var(--hairline); align-items: center; }
+.countdown-section h2 { margin-bottom: 0; max-width: 9ch; }
+.countdown-status { grid-column: 1 / -1; }
+.countdown-status:empty { display: none; }
+.countdown-values { width: 100%; gap: 1rem; }
+.countdown-section .countdown-values { grid-column: 2; grid-row: 1; }
+.countdown-values > div { gap: .9rem; }
+.countdown-values dd { font-size: clamp(2.25rem, 4vw, 3.75rem); font-weight: 400; line-height: 1; }
+.countdown-values dt { color: var(--muted); }
+.timeline-section { display: grid; grid-template-columns: .8fr 1fr; gap: 6rem; }
+.timeline-heading { max-width: 16rem; }
+.section-mark { display: block; color: var(--muted); font-size: 2.25rem; margin-bottom: 2.5rem; line-height: 1; }
+.timeline-list { width: 100%; }
+.timeline-list li { grid-template-columns: 5rem minmax(0, 1fr) 1.5rem; gap: 1.5rem; padding-block: 1.75rem; border-color: var(--hairline); }
+.timeline-list li:first-child { padding-top: .4rem; }
+.timeline-list time { font-size: 1.2rem; font-variant-numeric: lining-nums; }
+.timeline-list h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.9rem; line-height: 1.1; }
+.timeline-list p { font-size: .9375rem; line-height: 1.6; margin-top: .7rem; }
+.timeline-index { color: var(--muted); font-size: .6875rem; padding-top: .3rem; }
+.venue-section { border-top: 1px solid var(--hairline); grid-template-columns: .8fr 1fr; gap: 6rem; }
+.section-eyebrow { color: var(--muted); font-size: .6875rem; text-transform: uppercase; margin-bottom: 1.5rem; }
+.venue-heading h2 { max-width: 12ch; margin-bottom: 1.5rem; }
+.venue-coordinates { color: var(--muted); font-size: .6875rem; font-variant-numeric: lining-nums; letter-spacing: .07em; }
+.venue-copy address { max-width: 25ch; font-family: var(--font-display); font-size: 2rem; font-weight: 400; }
+.venue-copy p:not(.section-eyebrow) { font-size: .9375rem; max-width: 46ch; }
+.invitation-link { font-size: .8125rem; text-decoration: none; border-bottom: 1px solid var(--hairline); padding-bottom: .4rem; margin-top: 1.5rem; }
+.invitation-link:hover { border-color: var(--ink); }
+.dress-section { display: grid; grid-template-columns: .8fr 1fr; grid-template-areas: "heading palette" "copy palette"; gap: 0 6rem; max-width: none; align-items: start; border-top: 1px solid var(--hairline); }
+.dress-section h2 { grid-area: heading; max-width: 11ch; }
+.dress-section > p { grid-area: copy; font-size: .9375rem; max-width: 36ch; }
+.dress-palette { grid-area: palette; min-width: 0; }
+.dress-palette-heading { display: flex; justify-content: space-between; text-transform: uppercase; color: var(--muted); font-size: .625rem; margin-bottom: 1.2rem; gap: 1rem; }
+.dress-swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(44px, 1fr)); gap: 1rem; margin: 0; }
+.dress-swatches li { display: block; min-width: 0; }
+.dress-fabric { display: block; width: 100%; padding: .4rem; border: 1px solid transparent; cursor: pointer; transition: transform 400ms var(--craft-reveal-ease), border-color 300ms; }
+.dress-fabric[aria-pressed="true"] { border-color: var(--ink); }
+.dress-fabric:hover { transform: translateY(-4px); }
+.dress-fabric .dress-swatch { position: relative; display: block; width: 100%; height: clamp(4.5rem, 8vw, 7rem); border: 0; border-radius: 0; background: linear-gradient(115deg, color-mix(in srgb, var(--swatch) 90%, var(--surface)), var(--swatch)); clip-path: polygon(0 0, 100% 0, 100% 96%, 94% 100%, 88% 96%, 82% 100%, 76% 96%, 70% 100%, 64% 96%, 58% 100%, 52% 96%, 46% 100%, 40% 96%, 34% 100%, 28% 96%, 22% 100%, 16% 96%, 10% 100%, 4% 96%, 0 100%); }
+.dress-fabric .dress-swatch::after { content: ""; position: absolute; inset: 0; background-image: var(--grain-fine); opacity: .1; }
+.dress-fabric-number { display: block; margin-top: .7rem; font-size: .6875rem; color: var(--ink); }
+.dress-preview { display: flex; align-items: center; gap: 1.5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--hairline); }
+.dress-outfits { flex: 0 0 8.5rem; width: 8.5rem; height: 6.25rem; }
+.dress-preview p { font-size: .75rem; color: var(--ink); line-height: 1.6; }
+.dress-preview p span { display: block; margin-top: .5rem; color: var(--muted); max-width: 23ch; }
+.rsvp-section { display: grid; grid-template-columns: .8fr 1fr; gap: 6rem; margin-block: 0; padding-inline: 0; border-block: 1px solid var(--hairline); background: transparent; box-shadow: none; }
+.rsvp-heading h2 { max-width: 8ch; font-size: clamp(3rem, 5.5vw, 5.25rem); line-height: 1.03; margin-bottom: 1rem; }
+.rsvp-flourish { font-size: 3rem; color: var(--muted); display: block; margin-top: 2rem; }
+.rsvp-copy { padding-top: .15rem; }
+.rsvp-copy > p { font-size: .9375rem; }
+.rsvp-copy > p + p { margin-top: 1.25rem; color: var(--muted); }
+.invitation-button { width: min(100%, 22rem); min-height: 58px; padding: 1.1rem 1.4rem; margin-top: 2rem; font-size: .8125rem; cursor: pointer; transition: translate 500ms var(--craft-reveal-ease), background-color 250ms; }
+.invitation-button:hover { background: color-mix(in srgb, var(--ink) 88%, var(--surface)); }
+.invitation-button span { font-size: 1.3rem; }
+.invitation-calendar { width: min(100%, 22rem); margin-top: .5rem; }
+.invitation-calendar summary { display: flex; justify-content: space-between; align-items: center; min-height: 48px; cursor: pointer; gap: 1rem; padding: .65rem 0; list-style: none; font-size: .75rem; }
+.invitation-calendar summary::-webkit-details-marker { display: none; }
+.invitation-calendar summary > span { font-size: 1.4rem; transition: rotate 300ms; }
+.invitation-calendar[open] summary > span { rotate: 45deg; }
+.calendar-options { display: grid; border-block: 1px solid var(--hairline); }
+.calendar-options a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 48px; font-size: .75rem; }
+.calendar-options a:hover { text-decoration: underline; text-underline-offset: .3em; }
+.rsvp-form { margin-top: 1.5rem; max-width: 100%; gap: 1.25rem; }
+.rsvp-form-step { display: grid; gap: .75rem; }
+.rsvp-form-step[hidden] { display: none; }
+.rsvp-steps { display: flex; justify-content: space-between; font-size: .6875rem; color: var(--muted); padding-bottom: 1rem; border-bottom: 1px solid var(--hairline); }
+.rsvp-form input:not([type="checkbox"]) { background: transparent; border-width: 0 0 1px; border-color: var(--muted); padding: .75rem 0; }
+.rsvp-form label { font-size: .9375rem; }
+.rsvp-attendance input { width: 44px; height: 44px; flex-shrink: 0; }
+.rsvp-form-actions { display: flex; align-items: center; gap: 1rem; }
+.rsvp-form-actions .invitation-button { margin-top: .5rem; }
+.rsvp-back { min-height: 44px; min-width: 44px; cursor: pointer; text-decoration: underline; text-underline-offset: .3em; }
+.invitation-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 1.5rem 3rem; border-top: 0; padding-block: 3rem; }
+.invitation-footer p + p { margin: 0; font-style: italic; }
+.footer-top { margin-top: 0; margin-left: auto; border-color: var(--hairline); }
+.invitation [data-reveal-ready="true"][data-reveal="pending"] { filter: blur(3px); }
+.invitation [data-reveal-ready="true"][data-reveal="shown"] { filter: none; transition: opacity 900ms var(--craft-reveal-ease), transform 900ms var(--craft-reveal-ease), filter 900ms var(--craft-reveal-ease); }
+.invitation:has(.invitation-cover[open]:not([data-closing])) .hero-entrance { opacity: 0; transform: translateY(28px); filter: blur(4px); }
+
+/* The native dialog supplies keyboard focus and leaves the full page readable without JS. */
+.invitation-cover { position: fixed; inset: 0; border: 0; margin: 0; padding: 0; width: 100dvw; height: 100dvh; max-width: none; max-height: none; background: transparent; color: var(--ink); overflow: hidden; }
+.invitation-cover::backdrop { background: transparent; }
+.cover-leaf { position: absolute; left: 0; width: 100%; height: 51%; background: var(--bg); transition: transform 850ms cubic-bezier(.76, 0, .24, 1); }
+.cover-leaf::after { content: ""; position: absolute; inset: 0; background-image: var(--grain-fine); opacity: .06; pointer-events: none; }
+.cover-leaf-top { top: 0; }
+.cover-leaf-bottom { bottom: 0; background-color: var(--surface); border-top: 1px solid var(--hairline); }
+.cover-content { position: relative; height: calc(100% - 3rem); margin: 1.5rem; border: 1px solid var(--hairline); display: flex; align-items: center; justify-content: center; justify-content: safe center; flex-direction: column; padding: 2rem; text-align: center; overflow-y: auto; touch-action: pan-x; transition: opacity 350ms, transform 600ms var(--craft-reveal-ease); }
+.cover-eyebrow { font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; max-width: 40ch; }
+.cover-envelope { position: relative; flex-shrink: 0; width: 16rem; height: 10rem; margin-block: 3rem; background: var(--surface); border: 1px solid var(--hairline); box-shadow: var(--shadow-soft); }
+.cover-envelope::before { content: ""; position: absolute; inset: 0; background: var(--hairline); clip-path: polygon(0 0, 50% 68%, 100% 0, 100% 1%, 50% 69%, 0 1%); }
+.cover-envelope::after { content: ""; position: absolute; inset: 0; background: color-mix(in srgb, var(--bg) 70%, transparent); clip-path: polygon(0 100%, 0 0, 50% 68%, 100% 0, 100% 100%, 50% 55%); }
+.cover-monogram { position: absolute; z-index: 1; left: 50%; top: 62%; transform: translate(-50%, -50%) rotate(-8deg); display: grid; place-items: center; min-width: 3.5rem; height: 3.5rem; padding: .3rem; border-radius: 50%; border: 1px solid var(--hairline); background: var(--bg); color: var(--ink); font-family: var(--font-display); font-size: 1.5rem; box-shadow: var(--shadow-soft); }
+.cover-names { max-width: 22ch; }
+.cover-date { color: var(--muted); margin-top: .75rem; }
+.cover-open { display: flex; justify-content: space-between; align-items: center; gap: 2rem; min-height: 52px; margin-top: 2rem; padding: .75rem 0; border-block: 1px solid var(--hairline); font-size: .8125rem; cursor: pointer; }
+.cover-open:focus-visible { outline: 1px solid var(--muted); outline-offset: 6px; border-radius: 0; }
+.cover-swipe { color: var(--muted); margin-top: 1rem; font-size: .6875rem; }
+.invitation-cover[data-closing] .cover-leaf-top { transform: translateY(-100%); }
+.invitation-cover[data-closing] .cover-leaf-bottom { transform: translateY(100%); }
+.invitation-cover[data-closing] .cover-content { opacity: 0; transform: translateY(-18px); pointer-events: none; }
+
+/* The embroidered art direction retains the proportions of its original frame. */
+[data-artwork="suzani-atelier"] .hero-edition, [data-artwork="suzani-atelier"] .hero-next-label { display: none; }
+[data-artwork="suzani-atelier"] .hero-opening { border: 0; padding-bottom: 0; }
+[data-artwork="suzani-atelier"] .hero-name-group { margin-block: 0; }
+[data-artwork="suzani-atelier"] .hero-date { margin-top: 2rem; }
+[data-artwork="suzani-atelier"] .hero-next { align-self: center; }
+[data-artwork="suzani-atelier"] .countdown-section { display: block; }
+[data-artwork="suzani-atelier"] .countdown-section h2 { max-width: none; margin-bottom: 2rem; }
+[data-artwork="suzani-atelier"] .timeline-section { grid-template-columns: 1fr; gap: 1.5rem; }
+[data-artwork="suzani-atelier"] .timeline-heading { display: flex; align-items: center; gap: 1rem; max-width: none; }
+[data-artwork="suzani-atelier"] .section-mark { margin-bottom: 0; }
+[data-artwork="suzani-atelier"] .timeline-heading h2 { margin: 0; }
+[data-artwork="suzani-atelier"] .dress-section { display: block; max-width: 44rem; }
+[data-artwork="suzani-atelier"] .dress-section h2, [data-artwork="suzani-atelier"] .dress-section > p { max-width: none; }
+[data-artwork="suzani-atelier"] .dress-palette { max-width: 28rem; margin: 2.5rem auto 0; }
+[data-artwork="suzani-atelier"] .rsvp-section { display: block; padding: 3rem; margin-block: 2rem; }
+[data-artwork="suzani-atelier"] .rsvp-heading h2 { max-width: none; font-size: var(--fs-display-sm); }
+[data-artwork="suzani-atelier"] .rsvp-flourish { display: none; }
+[data-artwork="suzani-atelier"] .invitation-calendar { margin-inline: auto; }
+[data-artwork="suzani-atelier"] .rsvp-copy { padding-top: 1.25rem; }
+[data-artwork="suzani-atelier"] .invitation-footer { justify-content: center; }
+
+@media (max-width: 899px) {
+  .narrative-content { width: min(100% - 3rem, 70rem); }
+  .hero-next-label { display: none; }
+  .greeting-section, .countdown-section, .timeline-section, .venue-section, .dress-section, .rsvp-section { column-gap: 2.5rem; }
+  .dress-swatches { gap: .4rem; }
+  .dress-preview { gap: .75rem; }
+  .dress-outfits { flex-basis: 6rem; width: 6rem; }
+  [data-visual^="side-"] .hero-imprint { display: none; }
+}
+@media (max-width: 700px) {
+  .invitation:not([data-artwork="suzani-atelier"]):not([data-visual]) .invitation-hero { min-height: 41rem; min-height: min(90svh, 48rem); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "opening opening" "name name" "date date" "place next"; padding-top: 1.5rem; padding-bottom: 3rem; gap: 2rem 1rem; }
+  .hero-opening { gap: .5rem; padding-bottom: 1rem; }
+  .hero-opening p { font-size: .625rem; letter-spacing: .09em; }
+  .hero-edition { font-size: .625rem; }
+  .hero-name-group { margin-block: 1rem; }
+  .hero-day { font-size: 4rem; }
+  .hero-date { gap: 1rem; }
+  .hero-date-copy [data-level="lead"] { font-size: 1.25rem; }
+  .hero-date-copy [data-level="body"] { font-size: .8125rem; }
+  .hero-place { font-size: .9375rem; }
+  .hero-place > span:last-child { font-size: .75rem; }
+  .invitation[data-composition="poster"]:not([data-visual]) .invitation-hero { grid-template-columns: minmax(0, 1fr) 5.5rem; grid-template-areas: "opening opening" "name date" "place next"; column-gap: 1rem; }
+  [data-composition="poster"] .hero-name-group h1 { font-size: clamp(2.75rem, 11.5vw, 5rem); }
+  [data-composition="poster"] .hero-date { padding-left: .75rem; align-items: start; gap: .75rem; }
+  [data-composition="poster"] .hero-day { font-size: 3.75rem; }
+  [data-composition="poster"] .hero-date-copy [data-level="lead"] { font-size: .9375rem; }
+  [data-composition="poster"] .hero-date-copy [data-level="body"] { font-size: .6875rem; }
+  .invitation[data-composition="folio"]:not([data-visual]) .invitation-hero { align-content: space-between; }
+  [data-composition="folio"] .hero-imprint { display: none; }
+  [data-composition="folio"] .hero-place { padding-left: 0; }
+  [data-composition="folio"] .hero-date { flex-direction: row; }
+  .invitation[data-composition="arch"]:not([data-artwork="suzani-atelier"]):not([data-visual]) .invitation-hero { grid-template-areas: "opening opening" "name name" "date date" "place place" "next next"; gap: 1.5rem; }
+  .invitation[data-composition="botanical"]:not([data-visual]) .invitation-hero { grid-template-areas: "opening opening" "name name" "date date" "next place"; }
+  [data-composition="botanical"] .hero-date { margin-left: 20%; }
+  .invitation-section { padding-block: 3.5rem; }
+  .greeting-section, .countdown-section, .timeline-section, .venue-section, .dress-section, .rsvp-section { grid-template-columns: 1fr; gap: 1.75rem; }
+  .greeting-section h2 { max-width: 13ch; margin: 0; }
+  .greeting-copy p:first-child { font-size: 1.85rem; }
+  .greeting-copy p + p { font-size: .9375rem; margin-top: 1.5rem; }
+  .countdown-section h2 { max-width: none; }
+  .countdown-values { gap: .6rem; }
+  .countdown-section .countdown-values { grid-column: 1; grid-row: auto; }
+  .countdown-values dd { font-size: clamp(2rem, 8.5vw, 3.25rem); }
+  .countdown-values dt { font-size: .6875rem; }
+  .timeline-heading { display: flex; align-items: center; gap: 1rem; max-width: none; }
+  .timeline-heading h2 { margin: 0; }
+  .section-mark { margin-bottom: 0; font-size: 1.75rem; }
+  .timeline-list li { grid-template-columns: 4rem minmax(0, 1fr) 1rem; gap: .75rem; padding-block: 1.5rem; }
+  .timeline-list time { font-size: 1rem; }
+  .timeline-list h3 { font-size: 1.65rem; }
+  .timeline-list p { font-size: .875rem; }
+  .venue-section { gap: 2.25rem; }
+  .venue-heading h2 { max-width: none; }
+  .venue-copy address { font-size: 1.75rem; }
+  .dress-section { grid-template-areas: "heading" "copy" "palette"; }
+  .dress-section h2 { max-width: 13ch; margin-bottom: 0; }
+  .dress-section > p { max-width: 100%; }
+  .dress-swatches { gap: .75rem; }
+  .dress-fabric .dress-swatch { height: 5.5rem; }
+  .dress-preview { gap: 1.5rem; }
+  .dress-outfits { flex-basis: 8rem; width: 8rem; }
+  .rsvp-section { padding-inline: 0; }
+  .rsvp-heading h2 { max-width: none; font-size: 3.5rem; }
+  .rsvp-flourish { display: none; }
+  .invitation-button, .invitation-calendar { width: 100%; }
+  .invitation-footer { gap: 1rem; padding-block: 2.5rem; }
+  .invitation-footer p:first-child { width: calc(100% - 4rem); font-size: 2rem; }
+  .invitation-footer p + p { order: 3; width: 100%; font-size: .875rem; }
+  [data-artwork="suzani-atelier"] .hero-date { margin-top: 1.5rem; }
+  [data-artwork="suzani-atelier"] .rsvp-section { padding: 2rem 1.5rem; }
+  [data-artwork="suzani-atelier"] .venue-section { gap: 2rem; }
+  .cover-content { margin: 1rem; height: calc(100% - 2rem); padding: 1.5rem; }
+  .cover-envelope { width: 13rem; height: 8rem; margin-block: 2.25rem; }
+}
+@media (max-height: 650px) { .cover-envelope { margin-block: 1.25rem; height: 6rem; width: 10rem; } .cover-open { margin-top: 1rem; } }
+@media (prefers-reduced-motion: reduce) {
+  html:has(.invitation) { scroll-behavior: auto; }
+  .invitation [data-reveal] { opacity: 1; transform: none; filter: none !important; }
+  .invitation-button, .dress-fabric { translate: none !important; transform: none !important; }
+}

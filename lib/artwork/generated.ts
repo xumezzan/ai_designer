@@ -10,7 +10,7 @@ export async function readGeneratedVisual(slug: string, id: string, expected?: R
     const directory = path.join(root, slug, "art", id);
     const record = VisualRecord.parse(JSON.parse(await readFile(path.join(directory, "meta.json"), "utf8")));
     const data = await readFile(path.join(directory, "image.webp"));
-    if (record.id !== id || createHash("sha256").update(data).digest("hex") !== record.sha256 || (expected && (expected.sha256 !== record.sha256 || expected.width !== record.width || expected.height !== record.height))) throw new Error("Generated artwork integrity mismatch");
+    if (record.id !== id || createHash("sha256").update(data).digest("hex") !== record.sha256 || (expected && (expected.sha256 !== record.sha256 || expected.width !== record.width || expected.height !== record.height || Boolean(expected.isolated) !== Boolean(record.isolated)))) throw new Error("Generated artwork integrity mismatch");
     return { data, record, src: `/art/${slug}/${id}` };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;

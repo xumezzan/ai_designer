@@ -56,12 +56,13 @@ try {
   const sourceFile = path.join(directory, "concepts", id, "v1.json");
   const sourceText = await readFile(sourceFile, "utf8");
   await page.goto(`${base}/studio/${slug}`);
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.locator(".studio-results").waitFor();
   const card = page.locator(".studio-preview-card").first();
   await chooseChecked(card, "1");
   await page.getByRole("status").filter({ hasText: "Выбрана версия v1" }).waitFor();
   const approvedText = await readFile(path.join(directory, "approved.json"), "utf8");
   report.approval = true;
+  await card.locator(".studio-refine-disclosure").evaluate((element) => { element.open = true; });
   await card.locator("textarea").fill("Сделай фон и поверхность немного темнее. Убери цветочный орнамент полностью. Шрифты, золото, композицию, фотографии и остальную палитру оставь без изменений.");
   let updated;
   if (recorded) {
@@ -83,7 +84,7 @@ try {
     await writeFile(path.join(directory, "generation.json"), JSON.stringify(generation, null, 2) + "\n");
     updated = { concepts: [{ id, version: "2", theme, history: [{ version: "2", record }] }], approval: JSON.parse(approvedText) };
     await page.reload();
-    await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+    await page.locator(".studio-results").waitFor();
   } else {
     const responsePromise = page.waitForResponse((response) => response.url().endsWith("/api/refine"), { timeout: 300000 });
     await card.getByRole("button", { name: "Создать версию из v1", exact: true }).click();
@@ -134,13 +135,14 @@ try {
     if (width === 390) await page.screenshot({ path: path.join(out, "versions-mobile.jpg"), type: "jpeg", quality: 85 });
   }
   await page.reload();
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.locator(".studio-results").waitFor();
   assert.equal(await card.locator("select").inputValue(), "1"); // restored current pointer, selected pointer remains v2
   assert((await page.locator(".studio-approved").innerText()).includes("v2"));
   assert.equal(await card.locator("option").count(), 2);
   report.reload = true;
   const beforeFailure = await readFile(path.join(directory, "generation.json"), "utf8");
   await page.route("**/api/refine", (route) => route.fulfill({ status: 502, contentType: "application/json", body: JSON.stringify({ error: "Контрольная ошибка доработки" }) }));
+  await card.locator(".studio-refine-disclosure").evaluate((element) => { element.open = true; });
   await card.locator("textarea").fill("Убери фольгу");
   await card.getByRole("button", { name: "Создать версию из v1", exact: true }).click();
   await page.getByRole("alert").filter({ hasText: "Контрольная ошибка доработки" }).waitFor();

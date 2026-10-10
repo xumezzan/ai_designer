@@ -1,0 +1,19 @@
+{
+  "samples": [],
+  "checks": {
+    "calendar": true,
+    "palette": true,
+    "personalization": true,
+    "reducedMotion": true,
+    "nativeFormPost": true,
+    "scrollReveals": true,
+    "envelope": true,
+    "swipe": true,
+    "embedBypass": true,
+    "escape": true,
+    "landscapeEnvelope": true,
+    "noJsFallback": true
+  },
+  "errors": [],
+  "failures": []
+}

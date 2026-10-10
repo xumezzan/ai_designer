@@ -2,7 +2,7 @@
 
 Internal, single-user tool for generating web invitations for events (weddings,
 anniversaries, corporate evenings) for the Uzbekistan and CIS market. The
-questionnaire and brief become five related compositions in one requested style; one is
+questionnaire and brief become one to five related compositions in one requested style; one is
 approved, refined in plain language, and published at a link.
 
 **The architectural rule that must never be broken:** the AI does not write the
@@ -37,9 +37,9 @@ Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
 Current milestone: **M6 visual QA implemented and live-verified**. Open
 `/studio` to create/edit projects, upload photos and references, direct each
-photo's placement and protected crop, and generate five related designs. New
+photo's placement and protected crop, and generate one to five related designs. New
 projects start empty; the demo collection is never copied as generated output.
-Enter one brief and use **«Сгенерировать 5 вариантов»**. The AI selects one
+Enter one brief, select **«Количество вариантов»** (1–5), then generate the selected number. The choice is saved with the project; older projects default to five. The AI selects one
 shared palette, type set, material and ornament pack, then varies composition,
 section order and photo/decor placement. References inform the common style.
 Photo settings must be saved first; unused photos stay excluded. Manual photo
@@ -53,9 +53,10 @@ real mixed-camera acceptance batch remains a separate M3 acceptance task.
 For original art, add `OPENAI_API_KEY` to `.env.local`, restart the server and
 enable **«Создать новый визуал по брифу и референсам»**. Anthropic first records
 a visible interpretation of the brief; OpenAI Images creates one text-free
-illustration shared across five compositions with at least three different
-placements. Up to 16 uploaded style references are passed as image inputs.
-`OPENAI_IMAGE_MODEL` defaults to `gpt-image-2`. Native server fetch/FormData
+illustration shared across the selected compositions, using at least
+`min(3, count)` different placements. Up to 16 uploaded style references are passed as image inputs.
+`OPENAI_IMAGE_MODEL` defaults to `gpt-image-2.5-sunburst` with `high` quality.
+Set the variable to override the model. Native server fetch/FormData
 calls the Images API; no extra SDK is required. Image generation makes one
 request with no automatic paid retry. Errors retain the previous batch.
 Original immutable art, prompts, model and digest are stored under each
@@ -63,6 +64,13 @@ project's `art/`; theme JSON stores a server-issued reference. Names, dates
 and actions remain HTML outside the picture. Without this option, generation
 still works through the existing composition/ornament renderer.
 Verification: [design fidelity](./docs/fidelity/README.md).
+
+New themes also select tactile surface/finishing tokens, a restrained light and
+grain atmosphere, and editorial display/metadata contrast. Generated decorative
+accents use neutral mattes, transparent WebP and palette-aware blending; existing
+opaque plates retain their original treatment. The four curated generation
+directions, token defaults and browser evidence are documented in
+[editorial physicality](./docs/physicality/README.md).
 
 Each generated card now includes **«Выбрать vN»**, a version selector and
 **«Доработать этот вариант»**. A plain-language instruction creates the next
@@ -101,6 +109,14 @@ recorded in [docs/critique.md](./docs/critique.md). Verification and its limits:
 [docs/m1-qa.md](./docs/m1-qa.md).
 
 ## Invitation preview
+
+**Invitation design refresh:** all preview compositions now use larger display
+type, a more compact hero, editorial section grids, interactive fabric swatches,
+calendar links and an accessible envelope entrance for `unfold`. Add `?to=Имя`
+or `?guest=Имя` for a personal greeting and form prefill. Studio embeds and
+reduced motion skip the entrance; the native RSVP form remains usable without
+JavaScript. The generation prompt asks for one deliberate visual archetype.
+Details and browser evidence: [design refresh](./docs/design-refresh/README.md).
 
 **Generated art revision:** `/preview/demo/arch/2` is the new Suzani Atelier
 direction: embroidered frame, velvet texture and an isolated floral flourish

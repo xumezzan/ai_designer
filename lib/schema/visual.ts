@@ -4,6 +4,8 @@ import { z } from "zod";
 export const VisualRef = z.object({
   id: z.string().uuid(), sha256: z.string().regex(/^[a-f0-9]{64}$/),
   width: z.number().int().min(256).max(4096), height: z.number().int().min(256).max(4096),
+  // Only the server can mark a newly isolated decoration. Legacy plates stay normal.
+  isolated: z.boolean().optional(),
 }).strict();
 export const DesignIntent = z.object({
   summary: z.string().min(1).max(500),

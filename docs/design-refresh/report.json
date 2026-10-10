@@ -1,0 +1,939 @@
+{
+  "samples": [
+    {
+      "route": "demo/letter/1",
+      "width": 320,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/letter/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "warning"
+        }
+      ]
+    },
+    {
+      "route": "demo/letter/1",
+      "width": 768,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/letter/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/letter/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "warning"
+        }
+      ]
+    },
+    {
+      "route": "demo/poster/1",
+      "width": 320,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/poster/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/poster/1",
+      "width": 768,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/poster/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/poster/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/folio/1",
+      "width": 320,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/folio/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "warning"
+        }
+      ]
+    },
+    {
+      "route": "demo/folio/1",
+      "width": 768,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/folio/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/folio/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "warning"
+        }
+      ]
+    },
+    {
+      "route": "demo/arch/2",
+      "width": 320,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/arch/2",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "warning"
+        }
+      ]
+    },
+    {
+      "route": "demo/arch/2",
+      "width": 768,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/arch/2",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/arch/2",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/botanical/1",
+      "width": 320,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/botanical/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/botanical/1",
+      "width": 768,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/botanical/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "demo/botanical/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        },
+        {
+          "id": "contrast",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-1/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-1/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-1/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-2/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-2/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-2/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-3/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-3/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-3/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-4/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-4/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-4/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-5/1",
+      "width": 390,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-5/1",
+      "width": 1024,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "route": "qa-fidelity-f0ba03ee/variant-75def4a7-5/1",
+      "width": 1440,
+      "checks": [
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        },
+        {
+          "id": "tap",
+          "status": "pass"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "calendar": true,
+    "palette": true,
+    "personalization": true,
+    "reducedMotion": true,
+    "nativeFormPost": true,
+    "scrollReveals": true,
+    "envelope": true,
+    "swipe": true,
+    "embedBypass": true,
+    "escape": true,
+    "noJsFallback": true
+  },
+  "errors": [],
+  "failures": []
+}

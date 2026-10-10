@@ -1,0 +1,45 @@
+{
+  "mode": "production",
+  "generation": "local fixture, no paid calls",
+  "checks": {
+    "optionalSectionsClosed": true,
+    "liveDraft": true,
+    "oneClickGeneration": true,
+    "refinementCollapsed": true,
+    "qaGatePreserved": true,
+    "modal": true,
+    "collapsedValidation": true,
+    "photosEnabledWithoutExtraStep": true,
+    "uploadSavesDraft": true,
+    "failedGenerationPreservesDesigns": true,
+    "photoEditsAutoSave": true,
+    "revisionAndOriginProtection": true,
+    "invalidUploadAndRemove": true,
+    "reload": true,
+    "themePersistence": true,
+    "firstUploadCreatesProject": true
+  },
+  "viewports": [
+    {
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "errors": []
+}

@@ -16,7 +16,7 @@ const issues = { "soft-focus": "Нечёткий фокус", "low-res": "Низ
 type Props = {
   content: Content; revision: string; planRevision: string; initialPlan: AssetPlan; info: Record<string, ImageInfo>;
   disabled: boolean; readOnly: boolean; visionConfigured: boolean; onBusy: (busy: boolean) => void;
-  onDirty: (dirty: boolean) => void; onSaved: (plan: AssetPlan, revision: string) => void; onMessage: (message: string, error?: boolean) => void;
+  onDirty: (dirty: boolean) => void; onPlanChange?: (plan: AssetPlan) => void; onSaved: (plan: AssetPlan, revision: string) => void; onMessage: (message: string, error?: boolean) => void;
 };
 async function result(response: Response) {
   let data;
@@ -78,7 +78,8 @@ export function AssetDirector(props: Props) {
   const [draft, setDraft] = useState(props.initialPlan);
   const plan = { ...draft, assets: props.content.media.filter((media) => props.info[media.id]).map((media) => draft.assets.find((asset) => asset.id === media.id) ?? unusedAsset(media.id, props.info[media.id])) };
   function change(id: string, patch: Partial<Asset>) {
-    setDraft({ ...plan, assets: plan.assets.map((asset) => asset.id === id ? { ...asset, ...patch } : asset) });
+    const next = { ...plan, assets: plan.assets.map((asset) => asset.id === id ? { ...asset, ...patch } : asset) };
+    setDraft(next); props.onPlanChange?.(next);
     props.onDirty(true); props.onMessage("");
   }
   async function save() {
@@ -95,12 +96,12 @@ export function AssetDirector(props: Props) {
     props.onBusy(true); props.onMessage("Анализируем фотографии…");
     try {
       const data = await result(await fetch("/api/plan-assets", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: props.content.slug, revision: props.revision, planRevision: props.planRevision }) }));
-      setDraft(data.assetPlan); props.onDirty(true); props.onMessage("Анализ готов. Проверьте лица и кадры, затем сохраните настройки.");
+      setDraft(data.assetPlan); props.onPlanChange?.(data.assetPlan); props.onDirty(true); props.onMessage("Анализ готов. Проверьте лица и кадры. Настройки сохранятся при создании дизайнов.");
     } catch (error) { props.onMessage((error as Error).message, true); }
     finally { props.onBusy(false); }
   }
   return <section className="studio-panel"><div className="studio-panel-heading"><span>03</span><div><h2>Фотографии в приглашении</h2><p>Фокус, лица в кадре и единая обработка всей серии.</p></div></div>
-    {!plan.assets.length ? <div className="studio-empty"><h3>Начните с фотографий</h3><p>Загрузите снимки в разделе «Материалы». Референсы оформления не размещаются в приглашении.</p></div> : <><div className="studio-photo-actions"><label className="studio-field"><span>Общая обработка серии</span><select disabled={props.disabled || props.readOnly} value={draft.unifiedTreatment} onChange={(e) => { setDraft({ ...plan, unifiedTreatment: e.target.value as AssetPlan["unifiedTreatment"] }); props.onDirty(true); props.onMessage(""); }}>{Object.entries(treatments).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label><button type="button" className="studio-secondary" disabled={props.disabled || props.readOnly || !props.visionConfigured} onClick={() => { void analyze(); }}>Проанализировать фото</button></div>
+    {!plan.assets.length ? <div className="studio-empty"><h3>Начните с фотографий</h3><p>Добавьте снимки выше. Референсы оформления не размещаются в приглашении.</p></div> : <><div className="studio-photo-actions"><label className="studio-field"><span>Общая обработка серии</span><select disabled={props.disabled || props.readOnly} value={draft.unifiedTreatment} onChange={(e) => { const next = { ...plan, unifiedTreatment: e.target.value as AssetPlan["unifiedTreatment"] }; setDraft(next); props.onPlanChange?.(next); props.onDirty(true); props.onMessage(""); }}>{Object.entries(treatments).map(([value, label]) => <option value={value} key={value}>{label}</option>)}</select></label><button type="button" className="studio-secondary" disabled={props.disabled || props.readOnly || !props.visionConfigured} onClick={() => { void analyze(); }}>Проанализировать фото</button></div>
     {!props.visionConfigured && <p className="studio-help">Автоанализ станет доступен после подключения Anthropic. Все настройки можно задать вручную.</p>}
     <p className="studio-help">Кнопка анализа предлагает новый план для всех фотографий. Приглашения обновятся только после сохранения.</p>
     {plan.assets.map((asset, index) => <PhotoSettings key={asset.id} asset={asset} info={props.info[asset.id]} src={props.content.media.find((media) => media.id === asset.id)!.src} index={index} unified={plan.unifiedTreatment} disabled={props.disabled || props.readOnly} onChange={(patch) => change(asset.id, patch)} />)}
