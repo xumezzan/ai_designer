@@ -41,6 +41,7 @@ export const ORNAMENT_PACK_IDS = [
   "uzbek-suzani",
   "geometric-islamic",
   "art-deco",
+  "botanical-engraving",
 ] as const;
 export type OrnamentPackId = (typeof ORNAMENT_PACK_IDS)[number];
 

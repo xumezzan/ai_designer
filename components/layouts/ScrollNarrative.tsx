@@ -9,6 +9,7 @@ import type { SectionId } from "@/registry/keys";
 import { FontPreloads } from "@/components/craft/FontPreloads";
 import { Reveal } from "@/components/craft/Reveal";
 import { TextReveal } from "@/components/craft/TextReveal";
+import { HeroStock } from "@/components/craft/HeroStock";
 import { InvitationExperience } from "@/components/craft/InvitationExperience";
 import { eventDate } from "@/lib/invitation/date";
 import { Surface } from "@/components/primitives/Surface";
@@ -48,7 +49,9 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [], gener
   const next = order[1];
   const nextTarget = next ? { id: next, label: labels[content.locale][next === "hero" ? "invitation" : next] } : undefined;
   const sections: Record<SectionId, ReactNode> = {
-    hero: <div className="hero-wrapper"><Artwork id={theme.artwork} placement="hero" /><Ornament theme={theme} placement="hero-frame" /><Ornament theme={theme} placement="watermark" />
+    hero: <div className="hero-wrapper">
+      {theme.artwork === "none" && <HeroStock surface={theme.surface} monogram={monogram} signature={theme.ornament.pack === "none" && !generatedVisual} />}
+      <Artwork id={theme.artwork} placement="hero" /><Ornament theme={theme} placement="hero-frame" /><Ornament theme={theme} placement="watermark" />
       {generatedVisual && <GeneratedVisual source={generatedVisual} palette={theme.palette} isolated={theme.generatedVisual?.isolated} />}
       <Hero content={content} title={title} titleWrapper={titleWrapper} nextTarget={nextTarget} guest={guest} monogram={monogram} />
       <div className="hero-corners"><Ornament theme={theme} placement="corners" /><Ornament theme={theme} placement="corners" /></div>
@@ -63,11 +66,11 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [], gener
   };
   return <>
     <FontPreloads typeSet={theme.typeSet} locale={content.locale} />
-    <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork} data-visual={generatedVisual ? theme.layout.visualPlacement : undefined} data-name-flow={theme.layout.nameFlow}
+    <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork} data-crafted={theme.artwork === "none" ? "atelier" : undefined} data-ornament={theme.ornament.pack} data-visual={generatedVisual ? theme.layout.visualPlacement : undefined} data-name-flow={theme.layout.nameFlow}
       data-motion={theme.motion.preset} style={toCssVars(theme) as CSSProperties} lang={langFor(content.locale)}>
       <InvitationExperience names={content.hosts.map((host) => host.name).join(" & ")} monogram={monogram} date={eventDate(content).full} guest={guest} locale={content.locale} motion={theme.motion.preset} embedded={embedded}>
       <Surface surface={theme.surface}><div className="narrative-content">
-        {order.map((id, index) => <div className={`narrative-slot slot-${id}`} id={available[id] ? undefined : id} key={id}>
+        {order.map((id, index) => <div className={`narrative-slot slot-${id}`} data-has-photo={at(id).length ? "true" : undefined} data-photo-side={at(id, "before").length && !at(id, "after").length ? "before" : at(id, "after").length && !at(id, "before").length ? "after" : undefined} id={available[id] ? undefined : id} key={id}>
           {index === 2 && <><Ornament theme={theme} placement="divider" /><Artwork id={theme.artwork} placement="flourish" /></>}
           {photoSet(id, "before")}
           {entrance && id !== "hero" ? <Reveal className="section-reveal">{sections[id]}</Reveal> : sections[id]}

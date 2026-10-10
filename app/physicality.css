@@ -7,8 +7,7 @@
   opacity: .14; mix-blend-mode: soft-light;
 }
 .surface-frame[data-texture="raw-silk"]::before {
-  background: repeating-linear-gradient(92deg, transparent 0 2px, color-mix(in srgb, var(--ink) 5%, transparent) 3px 4px),
-    repeating-linear-gradient(2deg, transparent 0 3px, color-mix(in srgb, var(--ink) 3%, transparent) 4px 5px);
+  background: var(--grain-fine); opacity: .09; mix-blend-mode: soft-light;
 }
 .surface-frame[data-texture="deep-velvet"]::before {
   background: radial-gradient(ellipse at 25% 5%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 65%),
@@ -54,15 +53,171 @@
 .generated-visual[data-blend="screen"] { mix-blend-mode: screen; }
 .generated-visual[data-blend="multiply"] { mix-blend-mode: multiply; }
 
+/* The first screen is a piece of commissioned stationery, held in a lit scene. */
+.invitation[data-crafted="atelier"] {
+  --stock: color-mix(in srgb, var(--bg) 65%, var(--surface));
+  --stock-edge: color-mix(in srgb, var(--ink) 12%, transparent);
+  --stock-shadow: color-mix(in srgb, var(--ink) 15%, transparent);
+}
+.invitation[data-crafted="atelier"] .invitation-surface {
+  background: radial-gradient(ellipse at 12% 3%, color-mix(in srgb, var(--surface) 70%, transparent), transparent 38%), linear-gradient(125deg, color-mix(in srgb, var(--bg) 90%, var(--accent)), var(--bg) 80%);
+}
+.invitation[data-crafted="atelier"] .slot-hero { padding-block: clamp(1.5rem, 4vw, 3.5rem) clamp(2rem, 5vw, 5rem); }
+.invitation[data-crafted="atelier"] .hero-wrapper { isolation: isolate; padding: clamp(1.75rem, 4.5vw, 4rem); }
+.hero-stock { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.hero-stock-backing {
+  position: absolute; inset: 1.5rem -.65rem -.9rem 1rem; transform: rotate(1.2deg);
+  background: var(--surface); border: 1px solid var(--stock-edge);
+  box-shadow: 0 8px 20px -14px var(--stock-shadow);
+}
+.hero-stock-sheet {
+  position: absolute; inset: 0; overflow: hidden; background: var(--stock);
+  border: 1px solid var(--stock-edge);
+  box-shadow: 0 2px 2px -1px var(--stock-shadow), 10px 24px 42px -25px var(--stock-shadow), 24px 42px 80px -38px var(--stock-shadow);
+}
+.hero-stock-sheet::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(115deg, color-mix(in srgb, var(--bg) 50%, transparent), transparent 40%, color-mix(in srgb, var(--ink) 3%, transparent)), var(--inv-ambient-glow);
+}
+.hero-stock-fibre { position: absolute; inset: 0; background-image: var(--grain), var(--grain-fine); opacity: .17; mix-blend-mode: multiply; }
+.hero-stock-edge { position: absolute; inset: 1rem; border: 1px solid color-mix(in srgb, var(--ink) 13%, transparent); }
+.hero-stock[data-border-style="none"] .hero-stock-edge { display: none; }
+.hero-stock[data-border-style="double-hairline"] .hero-stock-edge::before { content: ""; position: absolute; inset: .4rem; border: inherit; }
+.hero-stock[data-border-style="blind-deboss"] .hero-stock-edge { border-color: color-mix(in srgb, var(--ink) 7%, transparent); box-shadow: inset 0 1px 2px color-mix(in srgb, var(--ink) 9%, transparent), 0 1px 0 color-mix(in srgb, var(--bg) 70%, transparent); }
+.hero-stock[data-border-style="frame-inset"] .hero-stock-edge { inset: 1.3rem; box-shadow: 0 0 0 .35rem var(--stock), 0 0 0 calc(.35rem + 1px) var(--stock-edge); }
+.hero-stock[data-texture="raw-silk"] .hero-stock-fibre {
+  background-image: var(--grain-fine); opacity: .12; mix-blend-mode: soft-light;
+}
+.hero-stock[data-texture="raw-silk"] .hero-stock-sheet::before {
+  background: linear-gradient(112deg, color-mix(in srgb, var(--bg) 65%, transparent), transparent 35%, color-mix(in srgb, var(--ink) 4%, transparent) 68%, transparent), var(--inv-ambient-glow);
+}
+.hero-stock[data-texture="deep-velvet"] .hero-stock-sheet {
+  background: radial-gradient(ellipse at 4% 0, color-mix(in srgb, var(--accent) 11%, var(--stock)), transparent 75%), var(--stock);
+  box-shadow: inset 1px 1px 0 color-mix(in srgb, var(--ink) 9%, transparent), 1px 3px 2px color-mix(in srgb, var(--bg) 70%, transparent), 18px 30px 70px -25px color-mix(in srgb, var(--bg) 90%, black);
+}
+.hero-stock[data-texture="deep-velvet"] .hero-stock-fibre { mix-blend-mode: soft-light; opacity: .3; }
+.hero-stock[data-texture="matte-stone"] .hero-stock-sheet::before {
+  background: linear-gradient(120deg, transparent 20%, color-mix(in srgb, var(--ink) 4%, transparent) 21%, transparent 22% 55%, color-mix(in srgb, var(--ink) 3%, transparent) 55.5%, transparent 56%), var(--inv-ambient-glow);
+}
+.hero-stock[data-texture="smooth"] .hero-stock-fibre { opacity: .06; }
+.hero-stock-signature {
+  position: absolute; right: 7%; top: 25%; width: clamp(8rem, 20vw, 17rem); aspect-ratio: 1;
+  display: grid; place-items: center; border-radius: 50%; border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  box-shadow: inset 0 1px 1px color-mix(in srgb, var(--ink) 8%, transparent), 0 1px 1px color-mix(in srgb, var(--bg) 75%, transparent);
+}
+.hero-stock-signature::before { content: ""; position: absolute; inset: .6rem; border: inherit; border-radius: inherit; }
+.hero-stock-signature span { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 5rem); font-weight: 300; font-style: italic; letter-spacing: -.065em; color: color-mix(in srgb, var(--ink) 13%, var(--stock)); text-shadow: 0 1px 0 color-mix(in srgb, var(--bg) 85%, transparent), 0 -1px 1px color-mix(in srgb, var(--ink) 12%, transparent); }
+.invitation[data-crafted="atelier"]:not([data-visual]) .invitation-hero { min-height: min(70svh, 46rem); padding: 0; row-gap: 2rem; column-gap: 2rem; }
+.invitation[data-crafted="atelier"] .hero-opening { border-color: color-mix(in srgb, var(--ink) 17%, transparent); padding-bottom: 1rem; }
+.invitation[data-crafted="atelier"] .hero-opening p { font-size: .625rem; font-weight: 500; }
+.invitation[data-crafted="atelier"] .hero-edition { font-size: .625rem; }
+.invitation[data-crafted="atelier"] .hero-name-group { margin-block: 2rem; }
+.invitation[data-crafted="atelier"][data-composition="letter"]:not([data-visual]) .hero-name-group { max-width: 72%; }
+.invitation[data-crafted="atelier"] .hero-join { font-size: .38em; font-weight: 400; color: var(--accent); }
+.invitation[data-crafted="atelier"] .hero-date-copy [data-level="lead"] { font-family: var(--font-display); font-weight: 400; font-size: 1.55rem; }
+.invitation[data-crafted="atelier"] .hero-place { max-width: 26ch; }
+.invitation[data-crafted="atelier"] .hero-next-label { display: none; }
+.invitation[data-crafted="atelier"] .surface-rails { display: none; }
+.invitation[data-crafted="atelier"] .slot-hero + .narrative-slot { margin-top: 1.5rem; }
+
+/* A folio is a spread with a spine and a different typographic centre of gravity. */
+.invitation[data-crafted="atelier"][data-composition="folio"] .hero-stock-backing { inset: -.65rem 1.5rem 1.5rem -.65rem; transform: rotate(-1.5deg); }
+.invitation[data-crafted="atelier"][data-composition="folio"] .hero-stock-sheet::after { content: ""; position: absolute; inset: 0 auto 0 43%; width: 1.2rem; background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--ink) 4%, transparent), transparent); border-left: 1px solid color-mix(in srgb, var(--ink) 8%, transparent); }
+.invitation[data-crafted="atelier"][data-composition="folio"] .hero-stock-signature { display: none; }
+.invitation[data-crafted="atelier"][data-composition="folio"]:not([data-visual]) .invitation-hero { grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); grid-template-areas: "opening opening" "imprint name" "date place" "next next"; align-content: space-between; }
+.invitation[data-crafted="atelier"][data-composition="folio"] .hero-imprint { font-size: clamp(6rem, 11vw, 11rem); color: color-mix(in srgb, var(--accent) 9%, var(--stock)); -webkit-text-stroke: 0; text-shadow: 0 1px 0 color-mix(in srgb, var(--bg) 90%, transparent), 0 -1px 1px color-mix(in srgb, var(--ink) 18%, transparent); transform: none; }
+.invitation[data-crafted="atelier"][data-composition="folio"] .hero-name-group { margin-left: 1rem; }
+.invitation[data-crafted="atelier"][data-composition="folio"] #hero-title { font-size: calc(clamp(3.5rem, 7.8vw, 7.5rem) * var(--inv-display-scale)); }
+.invitation[data-crafted="atelier"][data-composition="folio"] .hero-place { padding-left: 1rem; }
+
+/* The ceremonial composition uses an arched pressed panel, never a generic rounded card. */
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-stock-backing { inset: .8rem -.8rem -.8rem .8rem; transform: none; }
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-stock-sheet,
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-stock-backing { border-radius: 48% 48% 0 0 / 24% 24% 0 0; }
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-stock-edge { inset: 1.2rem; border-radius: 48% 48% 0 0 / 24% 24% 0 0; }
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-stock-signature { display: none; }
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-opening { max-width: 70%; margin-inline: auto; padding-top: 2rem; border: 0; }
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-edition { display: none; }
+.invitation[data-crafted="atelier"][data-composition="arch"]:not([data-visual]) .invitation-hero { align-content: center; gap: 1.75rem; }
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-name-group { margin-block: .5rem; }
+.invitation[data-crafted="atelier"][data-composition="arch"] .hero-place { margin-inline: auto; }
+
+.invitation[data-crafted="atelier"][data-composition="poster"] .hero-stock-backing { background: var(--accent-alt); inset: 1rem -1rem -1rem 1rem; transform: none; }
+.invitation[data-crafted="atelier"][data-composition="poster"] .hero-stock-signature { top: 2.75rem; right: 2.75rem; width: 5rem; }
+.invitation[data-crafted="atelier"][data-composition="poster"] .hero-stock-signature span { font-size: 1.6rem; }
+.invitation[data-crafted="atelier"][data-composition="poster"] .hero-date { border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.invitation[data-crafted="atelier"][data-composition="botanical"] .hero-stock-backing { transform: rotate(-1deg); inset: 1rem .5rem -.8rem -.6rem; }
+.invitation[data-crafted="atelier"][data-composition="botanical"] .hero-stock-signature { display: none; }
+
+/* Authored engraving occupies deliberately reserved space; it is never a faint promise. */
+.invitation[data-crafted="atelier"] .ornament[data-pack="botanical-engraving"] { z-index: 0; color: var(--ornament-color); }
+.invitation[data-crafted="atelier"] .ornament-watermark[data-pack="botanical-engraving"] { width: 30%; max-height: 58%; top: 20%; right: 7%; opacity: .68; }
+.invitation[data-crafted="atelier"][data-composition="folio"] .ornament-watermark[data-pack="botanical-engraving"] { width: 26%; top: 23%; left: 7%; right: auto; }
+.invitation[data-crafted="atelier"][data-ornament="botanical-engraving"][data-composition="folio"] .hero-imprint { visibility: hidden; }
+.invitation[data-crafted="atelier"][data-composition="botanical"] .ornament-watermark[data-pack="botanical-engraving"] { width: 30%; top: 22%; right: 7%; }
+.invitation[data-crafted="atelier"] .ornament-hero-frame[data-pack="botanical-engraving"] { width: 25%; max-height: 35%; left: auto; right: 2.5%; top: 25%; opacity: .45; transform: rotate(8deg); }
+.invitation[data-crafted="atelier"][data-composition="arch"] .ornament-hero-frame[data-pack="botanical-engraving"] { width: 14%; max-height: 30%; top: 38%; right: 4%; opacity: .5; }
+.invitation[data-crafted="atelier"] .ornament-divider[data-pack="botanical-engraving"] { width: 7rem; height: 3.5rem; margin-block: 2rem; opacity: .75; }
+.invitation[data-crafted="atelier"] .hero-corners .ornament[data-pack="botanical-engraving"] { width: 9%; height: auto; right: 2%; top: 12%; opacity: .45; }
+.invitation[data-crafted="atelier"] .hero-corners .ornament[data-pack="botanical-engraving"] + .ornament { top: auto; bottom: 10%; left: 2%; right: auto; transform: rotate(180deg); }
+
+/* Portraits are photographic inserts; the protected image box keeps its original limit. */
+.invitation[data-crafted="atelier"] .directed-photo { outline: 1px solid color-mix(in srgb, var(--ink) 13%, transparent); outline-offset: .6rem; box-shadow: 0 0 0 1rem var(--stock), 0 2px 0 calc(1rem + 1px) var(--stock-edge), 10px 24px 38px -14px var(--stock-shadow); }
+.invitation[data-crafted="atelier"] .directed-set { padding: 2rem 1.25rem 3rem; gap: 3rem; }
+.invitation[data-crafted="atelier"] .slot-greeting[data-has-photo="true"] .greeting-section { border-top: 0; }
+@media (min-width: 1000px) {
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side] { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1fr); align-items: center; gap: 4rem; padding-block: 3rem; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side] > .directed-set { grid-row: 1; padding-block: 1.5rem; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side] > .directed-set[data-position="before"] { grid-column: 1; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side] > .directed-set[data-position="after"] { grid-column: 2; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side] > :is(.greeting-section, .section-reveal) { grid-row: 1; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side="before"] > :is(.greeting-section, .section-reveal) { grid-column: 2; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side="after"] > :is(.greeting-section, .section-reveal) { grid-column: 1; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side] .greeting-section { display: block; margin: 0; padding-block: 2rem; }
+  .invitation[data-crafted="atelier"] .slot-greeting[data-photo-side] .greeting-section h2 { max-width: 11ch; margin-bottom: 2rem; }
+}
+
 @media (max-width: 700px) {
   .invitation[data-composition="poster"] #hero-title { font-size: calc(clamp(2.75rem, 11.5vw, 5rem) * var(--inv-display-scale)); }
+  .invitation[data-crafted="atelier"] .narrative-content { width: calc(100% - 2.5rem); }
+  .invitation[data-crafted="atelier"] .slot-hero { padding-block: 1.25rem 3rem; }
+  .invitation[data-crafted="atelier"] .hero-wrapper { padding: 2rem 1.25rem; }
+  .hero-stock-backing { inset: 1rem -.35rem -.55rem .5rem; transform: rotate(.8deg); }
+  .hero-stock-edge { inset: .6rem; }
+  .invitation[data-crafted="atelier"]:not([data-visual]) .invitation-hero { min-height: 39rem; gap: 1.75rem 1rem; padding: 0; }
+  .invitation[data-crafted="atelier"] .hero-opening { gap: .5rem; padding-bottom: .8rem; }
+  .invitation[data-crafted="atelier"] .hero-opening p { font-size: .55rem; letter-spacing: .12em; }
+  .invitation[data-crafted="atelier"] .hero-name-group { margin-block: 1rem; }
+  .invitation[data-crafted="atelier"][data-composition="letter"]:not([data-visual]) .hero-name-group { max-width: 100%; padding-right: 2rem; }
+  .invitation[data-crafted="atelier"] .hero-stock-signature { width: 5rem; top: auto; bottom: 11rem; right: 1.25rem; }
+  .invitation[data-crafted="atelier"] .hero-stock-signature span { font-size: 1.6rem; }
+  .invitation[data-crafted="atelier"] .hero-date-copy [data-level="lead"] { font-size: 1.2rem; }
+  .invitation[data-crafted="atelier"] .hero-date-copy [data-level="body"] { font-size: .72rem; }
+  .invitation[data-crafted="atelier"] .hero-place { font-size: .875rem; }
+  .invitation[data-crafted="atelier"][data-composition="folio"]:not([data-visual]) .invitation-hero { grid-template-columns: 3.5rem minmax(0, 1fr); grid-template-areas: "opening opening" ". name" "date date" "place place" "next next"; }
+  .invitation[data-crafted="atelier"][data-composition="folio"] .hero-stock-sheet::after { left: 16%; width: .6rem; }
+  .invitation[data-crafted="atelier"][data-composition="folio"] .hero-name-group { margin-left: 0; }
+  .invitation[data-crafted="atelier"][data-composition="folio"] #hero-title { font-size: calc(clamp(3rem, 11vw, 4.75rem) * var(--inv-display-scale)); }
+  .invitation[data-crafted="atelier"][data-composition="folio"] .hero-place { padding-left: 0; }
+  .invitation[data-crafted="atelier"][data-composition="arch"] .hero-wrapper { padding-top: 2.75rem; }
+  .invitation[data-crafted="atelier"][data-composition="arch"] .hero-opening { max-width: 100%; padding-top: 1.5rem; }
+  .invitation[data-crafted="atelier"][data-composition="arch"]:not([data-visual]) .invitation-hero { min-height: 40rem; grid-template-columns: 1fr; grid-template-areas: "opening" "name" "date" "place" "next"; gap: 1.5rem; }
+  .invitation[data-crafted="atelier"][data-composition="poster"] .hero-stock-signature { display: none; }
+  .invitation[data-crafted="atelier"] .ornament-watermark[data-pack="botanical-engraving"] { width: 26%; top: 36%; bottom: auto; right: 7%; max-height: 23%; opacity: .75; }
+  .invitation[data-crafted="atelier"][data-composition="folio"] .ornament-watermark[data-pack="botanical-engraving"] { width: 17%; top: 22%; bottom: auto; left: 3%; max-height: 32%; }
+  .invitation[data-crafted="atelier"][data-composition="botanical"] .ornament-watermark[data-pack="botanical-engraving"] { width: 27%; top: 36%; bottom: auto; right: 7%; max-height: 24%; }
+  .invitation[data-crafted="atelier"] .ornament-hero-frame[data-pack="botanical-engraving"] { width: 15%; right: 3%; top: 36%; }
+  .invitation[data-crafted="atelier"][data-composition="arch"] .ornament-hero-frame[data-pack="botanical-engraving"] { width: max(14%, 3.5rem); top: 34%; right: 1%; }
+  .invitation[data-crafted="atelier"] .hero-corners .ornament[data-pack="botanical-engraving"] { width: max(18%, 3.5rem); top: 14%; right: 5%; }
+  .invitation[data-crafted="atelier"] .hero-corners .ornament[data-pack="botanical-engraving"] + .ornament { top: auto; bottom: 3%; left: 2%; right: auto; }
+  .invitation[data-crafted="atelier"] .directed-set { padding-inline: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .text-reveal-inner { transform: none !important; }
 }
 @media (forced-colors: active) {
-  .physical-grain, .ambient-light, .physical-vignette, .surface-frame::before { display: none; }
+  .physical-grain, .ambient-light, .physical-vignette, .surface-frame::before, .hero-stock { display: none; }
   .foil-text, .foil-gold, .foil-silver, .foil-bronze, .blind-deboss { background: none; color: CanvasText; -webkit-text-fill-color: CanvasText; filter: none; text-shadow: none; }
   .surface-rails { border-color: CanvasText; box-shadow: none; }
 }

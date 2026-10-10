@@ -1,4 +1,5 @@
 import type { OrnamentPackId } from "../keys";
+import { botanicalEngraving } from "./botanical";
 
 /** Eightfold repetition and radial floral geometry, not downloaded clipart. */
 const star = "50,8 62,21 79,21 79,38 92,50 79,62 79,79 62,79 50,92 38,79 21,79 21,62 8,50 21,38 21,21 38,21";
@@ -23,6 +24,12 @@ export const ornaments: Record<OrnamentPackId, { elements: Elements }> = {
   "uzbek-suzani": { elements: {
     divider: flower, corners: flower, watermark: flower,
     "hero-frame": '<path d="M8 95V35C8 3 92 3 92 35V95"/><g transform="translate(42 6) scale(.16)">' + flower + '</g>',
+  } },
+  "botanical-engraving": { elements: {
+    "hero-frame": botanicalEngraving,
+    watermark: botanicalEngraving,
+    corners: botanicalEngraving,
+    divider: `<g transform="translate(5 5) scale(.9) rotate(68 50 50)">${botanicalEngraving}</g>`,
   } },
 };
 export function getOrnament(id: OrnamentPackId) { return ornaments[id]; }

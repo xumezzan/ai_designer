@@ -10,5 +10,8 @@ export async function rendererRevision() {
   const sources = await Promise.all(files.map(async (file) => {
     try { return await readFile(path.join(process.cwd(), file), "utf8"); } catch { return file; }
   }));
-  return digest([QA_ENGINE, build, ...sources].join("\n"));
+  const authoredArt = await Promise.all(["components/craft/HeroStock.tsx", "components/primitives/Ornament.tsx", "registry/ornaments/index.ts", "registry/ornaments/botanical.ts"].map(async (file) => {
+    try { return await readFile(path.join(process.cwd(), file), "utf8"); } catch { return file; }
+  }));
+  return digest([QA_ENGINE, build, ...sources, ...authoredArt].join("\n"));
 }
