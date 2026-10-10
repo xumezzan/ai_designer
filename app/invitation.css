@@ -20,6 +20,7 @@
 @supports (background-clip: text) {
   .foil-text { background-image: var(--foil-sheen), linear-gradient(var(--foil-color), var(--foil-color)); background-size: 200% 100%, 100% 100%; background-clip: text; color: transparent; }
 }
+
 .invitation-section { padding-block: var(--space-section); }
 .invitation-section h2 { margin-bottom: var(--space-block); }
 .invitation-section p + p { margin-top: var(--space-block); }
@@ -117,4 +118,35 @@
   [data-composition="botanical"] .hero-date, [data-composition="botanical"] .hero-place, [data-composition="botanical"] .hero-next { margin-left: 15%; }
   [data-composition="botanical"] .venue-section { margin-left: 0; }
   .ornament-hero-frame { width: 95%; top: 10%; }
+}
+
+/* Generated art is a separate plate: event text never sits on its pixels. */
+.generated-visual { position: relative; margin-block: var(--space-block); }
+.generated-visual img { display: block; width: 100%; height: auto; object-fit: contain; }
+[data-name-flow="stacked"] .hero-host, [data-name-flow="stacked"] .hero-join { display: block; }
+[data-name-flow="stacked"] .hero-join { font-size: .5em; }
+[data-visual] .invitation-hero { min-height: auto; }
+[data-visual="band"] .generated-visual { max-width: 44rem; margin-inline: auto; }
+[data-visual="band"] .invitation-hero { padding-top: var(--space-block); }
+[data-visual="medallion"] .generated-visual { max-width: 18rem; margin-inline: auto; padding: var(--space-inside); border: 1px solid var(--muted); border-radius: 50%; }
+[data-visual="medallion"] .invitation-hero { padding-top: var(--space-block); }
+[data-visual="inset"] .hero-wrapper { display: flex; flex-direction: column; }
+[data-visual="inset"] .generated-visual { order: 2; width: min(70%, 34rem); align-self: flex-end; margin-top: 0; margin-bottom: var(--space-section); padding: var(--space-inside); border: 1px solid var(--muted); }
+@media (min-width: 900px) {
+  [data-visual="side-left"] .hero-wrapper, [data-visual="side-right"] .hero-wrapper { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: var(--space-block); align-items: center; }
+  [data-visual="side-left"] .generated-visual { grid-column: 1; grid-row: 1; }
+  [data-visual="side-right"] .generated-visual { grid-column: 2; grid-row: 1; }
+  [data-visual="side-left"] .invitation-hero { grid-column: 2; grid-row: 1; }
+  [data-visual="side-right"] .invitation-hero { grid-column: 1; grid-row: 1; }
+  [data-visual^="side-"] .invitation-hero { display: block; }
+  [data-visual^="side-"] .hero-name-group { max-width: 100%; }
+  [data-visual^="side-"] .hero-date { flex-direction: row; margin-left: 0; }
+  [data-visual^="side-"] .hero-day { font-size: var(--fs-lead); line-height: 1; }
+  [data-visual^="side-"] .hero-place, [data-visual^="side-"] .hero-next { margin-left: 0; }
+}
+@media (max-width: 899px) {
+  [data-visual^="side-"] .hero-wrapper { display: flex; flex-direction: column; }
+  [data-visual="side-left"] .generated-visual { max-width: 32rem; width: 100%; align-self: flex-start; }
+  [data-visual="side-right"] .generated-visual { order: 2; max-width: 32rem; width: 100%; align-self: flex-end; margin-top: 0; margin-bottom: var(--space-section); }
+  [data-visual^="side-"] .invitation-hero { width: 100%; padding-top: var(--space-block); }
 }

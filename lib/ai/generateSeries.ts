@@ -6,6 +6,7 @@ import { StudioError } from "@/lib/studio/store";
 import { SECTION_IDS, COMPOSITION_IDS, ORNAMENT_PACK_IDS, TYPE_SET_IDS } from "@/registry/keys";
 import { generateSeriesPrompt } from "./prompts/generateSeries";
 import { populatedSections } from "@/lib/invitation/sections";
+import { generateVisual } from "./generateVisual";
 
 export type DesignReference = { base64: string };
 const string = { type: "string" };
@@ -16,25 +17,27 @@ export function seriesTool(photos: DirectedAsset[]): Anthropic.Messages.Tool {
   const hex = { type: "string", pattern: "^#[0-9A-Fa-f]{6}$" };
   return { name: "emit_design_series", description: "Create one coherent invitation design series from this brief and references. Select one shared visual style for all five compositions, then produce five distinct spatial arrangements in that exact style. Place all enabled photo ids exactly once in each variant; do not invent assets or event facts. These are renderer configuration values, not code or new image assets.", input_schema: object({
     style: object({ name: { ...string, minLength: 1, maxLength: 100 }, mood: array({ ...string, minLength: 1, maxLength: 60 }, 1, 4), rationale: { ...string, minLength: 1, maxLength: 400 },
+      intent: object({ summary: { ...string, minLength: 1, maxLength: 500 }, cues: array({ ...string, minLength: 1, maxLength: 160 }, 1, 6), avoid: array({ ...string, minLength: 1, maxLength: 160 }, 0, 6), referenceNotes: { ...string, maxLength: 800 }, artworkPrompt: { ...string, minLength: 1, maxLength: 2400 } }),
       palette: object({ bg: hex, surface: hex, ink: hex, muted: hex, accent: hex, accentAlt: hex }), typeSet: enumeration(TYPE_SET_IDS), materialSet: enumeration(["paper"]), artwork: enumeration(["none", "suzani-atelier"]),
       foil: object({ enabled: { type: "boolean" }, color: hex }), ornament: object({ pack: enumeration(ORNAMENT_PACK_IDS), density: enumeration(["light", "medium"]), color: enumeration(["accent", "accentAlt", "muted"]) }),
       motion: object({ preset: enumeration(["still", "unfold", "drift"]), ambient: enumeration(["none"]) }),
     }),
     variants: array(object({ name: { ...string, minLength: 1, maxLength: 100 }, rationale: { ...string, minLength: 1, maxLength: 400 },
-      layout: object({ preset: enumeration(["scroll-narrative"]), composition: enumeration(COMPOSITION_IDS), hero: enumeration(["typographic", "ornament-frame", "full-photo"]), photoArrangement: enumeration(["row", "stack", "offset"]), sectionOrder: array(enumeration(SECTION_IDS), 2, 8) }),
+      layout: object({ preset: enumeration(["scroll-narrative"]), composition: enumeration(COMPOSITION_IDS), hero: enumeration(["typographic", "ornament-frame", "full-photo"]), photoArrangement: enumeration(["row", "stack", "offset"]), visualPlacement: enumeration(["band", "side-left", "side-right", "medallion", "inset"]), nameFlow: enumeration(["natural", "stacked"]), sectionOrder: array(enumeration(SECTION_IDS), 2, 8) }),
       ornamentPlacement: array(enumeration(["divider", "corners", "hero-frame", "watermark"]), 0, 2),
       photos: array(object({ id: photos.length ? enumeration(photos.map((photo) => photo.asset.id)) : { ...string, maxLength: 0 }, section: enumeration(SECTION_IDS), index: { type: "integer", minimum: 0, maximum: 40 }, position: enumeration(["before", "after"]) }), photos.length, photos.length),
     }), 5, 5),
   }) as Anthropic.Messages.Tool["input_schema"] };
 }
-export async function generateSeries(content: Content, photos: DirectedAsset[], references: DesignReference[], client?: Anthropic): Promise<GeneratedSeries> {
+export async function generateSeries(content: Content, photos: DirectedAsset[], references: DesignReference[], client?: Anthropic, options: { createVisual?: boolean } = {}): Promise<GeneratedSeries> {
   if (!content.brief?.trim()) throw new StudioError("Опишите желаемый стиль в поле «Пожелания к дизайну».");
   if (!client && !process.env.ANTHROPIC_API_KEY) throw new StudioError("Добавьте ANTHROPIC_API_KEY в .env.local и перезапустите сервер, чтобы создавать варианты.", 503);
+  if (options.createVisual && !process.env.OPENAI_API_KEY?.trim()) throw new StudioError("Добавьте OPENAI_API_KEY в .env.local и перезапустите сервер для создания нового визуала.", 503);
   const start = Date.now();
   const sdk = client ?? new Anthropic({ timeout: 90000, maxRetries: 0 });
   const model = process.env.ANTHROPIC_MODEL || "claude-sonnet-4-6";
   const sections = populatedSections(content);
-  const context = { locale: content.locale, eventType: content.eventType, brief: content.brief, populatedSections: sections,
+  const context = { locale: content.locale, eventType: content.eventType, brief: content.brief, createVisual: Boolean(options.createVisual), populatedSections: sections,
     photos: photos.map((photo) => ({ id: photo.asset.id, subject: photo.asset.subject, quality: photo.asset.quality, width: photo.info.width, height: photo.info.height, currentSection: photo.asset.placement?.section, crop: photo.crop.label })) };
   const blocks: Anthropic.Messages.ContentBlockParam[] = [{ type: "text", text: JSON.stringify(context) }, ...references.flatMap((ref, index): Anthropic.Messages.ContentBlockParam[] => [{ type: "text", text: `Style reference ${index + 1}; do not place it as an event photo.` }, { type: "image", source: { type: "base64", media_type: "image/jpeg", data: ref.base64 } }])];
   let correction = "";
@@ -44,10 +47,23 @@ export async function generateSeries(content: Content, photos: DirectedAsset[], 
       try {
         const tool = response.content.filter((block) => block.type === "tool_use" && block.name === "emit_design_series");
         if (response.stop_reason === "max_tokens" || tool.length !== 1 || tool[0].type !== "tool_use") throw new Error("Emit one complete emit_design_series tool call");
-        const result = composeSeries(tool[0].input, content.locale, photos);
+        const input = tool[0].input as { style?: { generatedVisual?: unknown } };
+        if (input.style?.generatedVisual) throw new Error("Never invent a server-issued generatedVisual reference");
+        const result = composeSeries(input, content.locale, photos, Boolean(options.createVisual));
         if (result.themes.some((theme) => sections.some((section) => !theme.layout.sectionOrder.includes(section)))) throw new Error("Include every populated supplied section in every variant");
+        if (options.createVisual) {
+          if (!result.style.intent) throw new Error("Include an artwork prompt in the design intent");
+          if (new Set(result.themes.map((theme) => theme.layout.visualPlacement)).size < 3) throw new Error("Use at least three distinct artwork placements across the five variants");
+          const visual = await generateVisual(result.style, references);
+          const ref = { id: visual.record.id, sha256: visual.record.sha256, width: visual.record.width, height: visual.record.height };
+          result.style.generatedVisual = ref;
+          result.themes = result.themes.map((theme) => ({ ...theme, generatedVisual: ref, artwork: "none" }));
+          result.style.artwork = "none";
+          return { ...result, visual, model: response.model, elapsedMs: Date.now() - start, references: references.length };
+        }
         return { ...result, model: response.model, elapsedMs: Date.now() - start, references: references.length };
       } catch (error) {
+        if (error instanceof StudioError) throw error;
         if (attempt === 1) throw new StudioError("AI дважды вернул некорректные варианты. Предыдущие дизайны сохранены. Повторите генерацию.", 502);
         correction = ` Previous output was invalid: ${(error as Error).message.slice(0, 2000)}. Fix these issues and keep one shared style.`;
       }

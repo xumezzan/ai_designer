@@ -26,9 +26,16 @@ test("contrast is repaired once in the common palette rather than diverging betw
   expect(new Set(result.themes.map(sharedStyleSignature)).size).toBe(1);
 });
 test("duplicate compositions and omission of enabled photos are rejected", () => {
-  const raw = structuredClone(fixtureSeries); raw.variants[1].layout.composition = raw.variants[0].layout.composition;
+  const raw = structuredClone(fixtureSeries); raw.variants[1] = structuredClone(raw.variants[0]);
   expect(() => composeSeries(raw, "ru", [])).toThrow("distinct");
   expect(() => composeSeries(fixtureSeries, "ru", [photo])).toThrow("every");
+});
+
+test("repeated bases may vary visible generated-art placement, but invisible choices cannot fake diversity", () => {
+  const raw = structuredClone(fixtureSeries);
+  raw.variants.forEach((variant, index) => { variant.layout.composition = "letter"; variant.layout.visualPlacement = ["band", "side-left", "side-right", "medallion", "inset"][index] as typeof variant.layout.visualPlacement; variant.ornamentPlacement = []; });
+  expect(() => composeSeries(raw, "ru", [])).toThrow("distinct");
+  expect(composeSeries(raw, "ru", [], true).themes).toHaveLength(5);
 });
 test("rejects unknown ids, duplicate placements, low quality hero and disabled layout sections", () => {
   const raw = withPhotos(); raw.variants[0].photos[0].id = "reference-id";

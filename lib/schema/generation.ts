@@ -1,8 +1,10 @@
 import { z } from "zod";
 import { Theme } from "./theme";
 import { safeId } from "./ids";
+import { DesignIntent } from "./visual";
 
-export const SharedStyle = Theme.pick({ palette: true, typeSet: true, materialSet: true, artwork: true, foil: true, motion: true }).extend({
+export const SharedStyle = Theme.pick({ palette: true, typeSet: true, materialSet: true, artwork: true, generatedVisual: true, foil: true, motion: true }).extend({
+  intent: DesignIntent.optional(),
   name: z.string().min(1).max(100),
   mood: z.array(z.string().min(1).max(60)).min(1).max(4),
   rationale: z.string().min(1).max(400),

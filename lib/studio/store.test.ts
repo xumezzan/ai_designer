@@ -11,6 +11,8 @@ import { composeSeries, sharedStyleSignature } from "@/lib/generation/series";
 import { fixtureSeries } from "@/lib/generation/fixture";
 import { readDirectedPhotos } from "@/lib/assets/read";
 import { mutationRequest } from "./http";
+import { createHash, randomUUID } from "node:crypto";
+import { readGeneratedVisual } from "@/lib/artwork/generated";
 
 let root: string;
 let store: ProjectStore;
@@ -20,6 +22,28 @@ const content = () => ({ ...structuredClone(demo), slug: "new-event", hosts: [{ 
 const templates = [{ id: "arch", version: "2", theme }];
 beforeEach(async () => { root = await mkdtemp(path.join(os.tmpdir(), "invitation-studio-test-")); store = new ProjectStore(root); });
 afterEach(async () => { await rm(root, { recursive: true, force: true }); });
+
+test("commits original art with its batch, retains historical bytes, detects tampering and refuses stale writes", async () => {
+  const project = await store.create({ ...content(), brief: "Ар-деко" });
+  const data = await sharp({ create: { width: 1536, height: 1024, channels: 3, background: "#222222" } }).webp().toBuffer();
+  const record = { id: randomUUID(), sha256: createHash("sha256").update(data).digest("hex"), width: 1536, height: 1024, model: "test-fixture", prompt: "Controlled test image", createdAt: new Date().toISOString(), references: 0 };
+  const raw = structuredClone(fixtureSeries);
+  raw.style.generatedVisual = { id: record.id, sha256: record.sha256, width: record.width, height: record.height };
+  const generated = { ...composeSeries(raw, "ru", []), model: "controlled-test", elapsedMs: 1, references: 0, visual: { data, record } };
+  const first = await store.saveGeneration("new-event", generated, project.revision, project.planRevision, project.generationRevision);
+  expect(first.concepts.every((concept) => concept.theme.generatedVisual?.id === record.id)).toBe(true);
+  expect((await readGeneratedVisual("new-event", record.id, raw.style.generatedVisual, root))?.data).toEqual(data);
+  expect(await readGeneratedVisual("../escape", record.id, undefined, root)).toBeNull();
+  expect(await readGeneratedVisual("new-event", "../escape", undefined, root)).toBeNull();
+  const staleRecord = { ...record, id: randomUUID() };
+  await expect(store.saveGeneration("new-event", { ...generated, visual: { data, record: staleRecord } }, project.revision, project.planRevision, project.generationRevision)).rejects.toMatchObject({ status: 409 });
+  expect(await readdir(path.join(root, "new-event/art"))).toEqual([record.id]);
+  await store.saveGeneration("new-event", { ...composeSeries(fixtureSeries, "ru", []), model: "controlled-test", elapsedMs: 1, references: 0 }, first.revision, first.planRevision, first.generationRevision);
+  expect((await store.version("new-event", first.concepts[0].id, "1")).generatedVisual?.id).toBe(record.id);
+  expect((await readGeneratedVisual("new-event", record.id, raw.style.generatedVisual, root))?.data).toEqual(data);
+  await writeFile(path.join(root, "new-event/art", record.id, "image.webp"), "tampered");
+  await expect(readGeneratedVisual("new-event", record.id, raw.style.generatedVisual, root)).rejects.toThrow("integrity");
+});
 
 test("creates an empty project without stock demo themes, then persists facts", async () => {
   const project = await store.create(content());

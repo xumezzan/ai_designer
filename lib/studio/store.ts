@@ -17,13 +17,15 @@ import { applyRefinement, type RefinedTheme } from "@/lib/versions/refine";
 import { QaReport, QA_ENGINE, type QaState } from "@/lib/schema/qa";
 import { digest, rendererRevision } from "@/lib/qa/fingerprint";
 import { approvalProblem } from "@/lib/qa/policy";
+import { VisualRecord } from "@/lib/schema/visual";
+import { readGeneratedVisual } from "@/lib/artwork/generated";
 
 export class StudioError extends Error {
   constructor(message: string, public status = 400) { super(message); }
 }
 export type Concept = { id: string; version: string; theme: Theme; history?: HistoryItem[] };
 export type Planning = { assetPlan: PhotoPlan; planRevision: string; mediaInfo: Record<string, ImageInfo> };
-export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; generation: Generation | null; generationRevision: string; approval: Approval | null; approvalRevision: string; approvalQa?: QaState | null } & Planning;
+export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; imagesConfigured?: boolean; generation: Generation | null; generationRevision: string; approval: Approval | null; approvalRevision: string; approvalQa?: QaState | null } & Planning;
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
 const encode = (value: unknown) => JSON.stringify(value, null, 2) + "\n";
 async function optionalText(file: string) {
@@ -101,7 +103,7 @@ export class ProjectStore {
     const approval = approvalText ? Approval.parse(JSON.parse(approvalText)) : null;
     if (approval) await this.version(slug, approval.conceptId, approval.version);
     const approvalQa = approval ? (concepts.find((concept) => concept.id === approval.conceptId)?.history ?? await this.history(slug, approval.conceptId, qaContext)).find((entry) => entry.version === approval.version)?.qa ?? null : null;
-    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), approval, approvalQa, approvalRevision: hash(approvalText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
+    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), approval, approvalQa, approvalRevision: hash(approvalText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY), imagesConfigured: Boolean(process.env.OPENAI_API_KEY?.trim()) };
   }
   async version(slug: string, conceptId: string, version: string): Promise<Theme> {
     if (!safeId(conceptId) || !VersionId.safeParse(version).success) throw new StudioError("Некорректный вариант или номер версии.");
@@ -323,6 +325,13 @@ export class ProjectStore {
       if (sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
       const photos = await readDirectedPhotos(content, project.assetPlan, this.directory(slug));
       const validated = composeSeries({ style: result.style, variants: result.themes.map((theme) => ({ name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      const visual = result.visual;
+      const visualRef = validated.style.generatedVisual;
+      if (visual) {
+        const record = VisualRecord.parse(visual.record);
+        const info = await sharp(visual.data).metadata();
+        if (!visualRef || visualRef.id !== record.id || visualRef.sha256 !== record.sha256 || createHash("sha256").update(visual.data).digest("hex") !== record.sha256 || info.width !== record.width || info.height !== record.height || info.format !== "webp" || visualRef.width !== record.width || visualRef.height !== record.height) throw new StudioError("Новый визуал не соответствует серии.");
+      } else if (visualRef && !await readGeneratedVisual(slug, visualRef.id, visualRef, this.root)) throw new StudioError("Визуал серии не найден.");
       const batchId = randomUUID();
       const concepts = validated.themes.map((theme, index) => ({ id: `variant-${batchId.slice(0, 8)}-${index + 1}`, version: "1", theme }));
       const generation = Generation.parse({ batchId, createdAt: new Date().toISOString(), brief: content.brief, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
@@ -330,6 +339,14 @@ export class ProjectStore {
       const created: string[] = [];
       let committed = false;
       try {
+        if (visual) {
+          const directory = path.join(this.directory(slug), "art", visual.record.id);
+          await mkdir(path.dirname(directory), { recursive: true });
+          await mkdir(directory);
+          created.push(directory);
+          await writeFile(path.join(directory, "image.webp"), visual.data, { flag: "wx" });
+          await writeFile(path.join(directory, "meta.json"), encode(visual.record), { flag: "wx" });
+        }
         for (const concept of concepts) {
           const directory = path.join(this.directory(slug), "concepts", concept.id);
           await mkdir(directory);

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Hex } from "./common";
+import { VisualRef } from "./visual";
 import {
   LAYOUT_IDS,
   COMPOSITION_IDS,
@@ -43,6 +44,7 @@ export const Theme = z.object({
   // Hand-built material. See registry/materials.
   materialSet: z.enum(MATERIAL_SET_IDS),
   artwork: z.enum(ARTWORK_IDS).default("none"),
+  generatedVisual: VisualRef.optional(),
   foil: z.object({ enabled: z.boolean(), color: Hex }),
 
   ornament: z.object({
@@ -59,6 +61,8 @@ export const Theme = z.object({
     composition: z.enum(COMPOSITION_IDS).default("letter"),
     hero: z.enum(["full-photo", "typographic", "ornament-frame"]),
     photoArrangement: z.enum(["row", "stack", "offset"]).default("row"),
+    visualPlacement: z.enum(["band", "side-left", "side-right", "medallion", "inset"]).default("band"),
+    nameFlow: z.enum(["natural", "stacked"]).default("natural"),
     sectionOrder: z.array(z.enum(SECTION_IDS)),
   }),
 

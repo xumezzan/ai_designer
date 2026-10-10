@@ -10,12 +10,15 @@ export const maxDuration = 540;
 export async function POST(request: Request) {
   try {
     mutationRequest(request);
-    const { slug, revision, planRevision, generationRevision } = await jsonBody(request);
+    const { slug, revision, planRevision, generationRevision, createVisual = false } = await jsonBody(request);
+    if (typeof createVisual !== "boolean") throw new StudioError("Выберите, создавать ли новый визуал.");
     if (slug === "demo") throw new StudioError("Создайте свой проект для генерации вариантов.", 403);
     const project = await projectStore.read(slug);
     if (project.revision !== revision || project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект изменился. Обновите страницу перед генерацией.", 409);
     if (!project.content.brief?.trim()) throw new StudioError("Опишите желаемый стиль в поле «Пожелания к дизайну».");
     if (!project.visionConfigured) throw new StudioError("Добавьте ANTHROPIC_API_KEY в .env.local и перезапустите сервер.", 503);
+    if (createVisual && !project.imagesConfigured) throw new StudioError("Добавьте OPENAI_API_KEY в .env.local и перезапустите сервер.", 503);
+    if (createVisual && project.content.refs.length > 16) throw new StudioError("Для нового визуала оставьте не больше 16 референсов.");
     const photos = await readDirectedPhotos(project.content, project.assetPlan);
     const references = await Promise.all(project.content.refs.map(async (src) => {
       const filename = src.split("/").at(-1)!;
@@ -23,7 +26,7 @@ export async function POST(request: Request) {
       const data = await sharp(input).resize({ width: 768, height: 768, fit: "inside", withoutEnlargement: true }).flatten({ background: "#f3f0e9" }).jpeg({ quality: 80 }).toBuffer();
       return { base64: data.toString("base64") };
     }));
-    const result = await generateSeries(project.content, photos, references);
+    const result = await generateSeries(project.content, photos, references, undefined, { createVisual });
     const saved = await projectStore.saveGeneration(slug, result, revision, planRevision, generationRevision);
     return Response.json(await checkGenerated(saved));
   } catch (error) { return failure(error); }

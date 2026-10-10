@@ -8,6 +8,7 @@ import { availablePhotoLayout, compositionPhotos } from "../assets/layout";
 import { Theme } from "../schema/theme";
 import { readDirectedPhotos } from "../assets/read";
 import { safeId } from "../schema/ids";
+import { readGeneratedVisual } from "../artwork/generated";
 export { safeId } from "../schema/ids";
 
 const root = path.join(process.cwd(), "projects");
@@ -28,7 +29,9 @@ export async function readInvitation(slug: string, concept: string, version: str
     const hasHero = compositionPhotos(photos, parsed).some(({ photo }) => photo.asset.quality === "high" && photo.asset.placement?.section === "hero");
     const result = validateTheme(availablePhotoLayout(parsed, hasHero), { locale: content.locale, hasHighQualityAsset: hasHero });
     if (!result.ok) throw new Error(result.errors.join("; "));
-    return { content, assetPlan, photos, theme: result.theme, adjustments: result.adjustments };
+    const visual = parsed.generatedVisual ? await readGeneratedVisual(slug, parsed.generatedVisual.id, parsed.generatedVisual) : null;
+    if (parsed.generatedVisual && !visual) throw new Error("Generated artwork is missing");
+    return { content, assetPlan, photos, theme: result.theme, generatedVisual: visual ? { src: visual.src, width: visual.record.width, height: visual.record.height } : undefined, adjustments: result.adjustments };
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
     throw error;

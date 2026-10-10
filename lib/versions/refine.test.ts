@@ -25,6 +25,15 @@ test("a patch never inserts schema defaults; arrays replace rather than merge by
   expect(mergePatch({ ornament: { placement: ["corners", "divider"], pack: "art-deco" } }, { ornament: { placement: [] } })).toEqual({ ornament: { placement: [], pack: "art-deco" } });
   expect(themeChanges(source, source)).toEqual([]);
 });
+
+test("art placement can be refined while the original server-issued image identity stays immutable", () => {
+  const ref = { id: "72b0b3f7-f7ec-430d-a8bf-d84c43c67b88", sha256: "a".repeat(64), width: 1536, height: 1024 };
+  const original = { ...source, generatedVisual: ref };
+  const result = applyRefinement(original, { layout: { visualPlacement: "side-right" } }, context);
+  expect(result.theme.generatedVisual).toEqual(ref);
+  expect(result.changes.map((change) => change.path)).toEqual(["layout.visualPlacement"]);
+  expect(() => applyRefinement(original, { generatedVisual: { ...ref, id: "invented" } }, context)).toThrow();
+});
 test("metadata, arbitrary CSS, prototype keys, wholesale regeneration and unbuilt presets are rejected", () => {
   for (const patch of [{ meta: { name: "replacement" } }, { layout: { padding: 20 } }, JSON.parse('{"palette":{"__proto__":{"polluted":true}}}')]) expect(() => applyRefinement(source, patch, context)).toThrow();
   expect(() => applyRefinement(source, { palette: source.palette, typeSet: source.typeSet, materialSet: source.materialSet, artwork: source.artwork, foil: source.foil }, context)).toThrow("partial");

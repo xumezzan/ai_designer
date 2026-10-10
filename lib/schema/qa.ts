@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { VersionId } from "./versions";
 import { safeId } from "./ids";
-export const QA_ENGINE = "m6-1";
+export const QA_ENGINE = "m6-2";
 export const CHECK_IDS = ["overflow", "collision", "clipping", "contrast", "measure", "widow", "fonts", "tap", "resolution", "reduced-motion", "lcp", "cls", "face-crop", "busy-photo", "alignment"] as const;
 export const Finding = z.object({ severity: z.enum(["error", "warning"]), selector: z.string().max(500), viewport: z.number().int().positive(), message: z.string().max(1000), observed: z.number().finite().optional(), expected: z.number().finite().optional() }).strict();
 export const QaReport = z.object({

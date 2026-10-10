@@ -429,3 +429,21 @@ automatic refinement QA were verified on fictional fixtures; positive defect
 acceptance uses deliberately broken browser CSS and protected-area geometry.
 See `docs/m6/README.md` for exact limits. M3 mixed-camera acceptance and M7 public
 publishing are still separate outstanding work.
+
+## 2026-10-10 — Brief fidelity and OpenAI artwork
+
+The user authorized a new image service and fidelity improvements before
+publishing. Interpret the brief into visible cues/avoided cues/reference notes,
+then create one project-specific text-free image shared by five arrangements.
+`generatedVisual` is a server-issued immutable digest-bound reference;
+`visualPlacement` and `nameFlow` are semantic structural choices. Fixed font,
+spacing and material craft stays in the renderer. The five original base
+compositions are no longer mechanically forced once each; visible arrangement
+decisions must still differ. Image-enabled series need at least three different
+placements. Existing historical versions and explicit approval are preserved.
+
+Native fetch/FormData implements the official Images generation/edit endpoints;
+no dependency is installed. API keys stay server-only in ignored `.env.local`.
+One paid image request has no automatic retry/fallback; commits reject stale
+content/photo/batch revisions. Original art is never an event photograph.
+See `docs/fidelity/README.md` for real-provider acceptance and exact limits.

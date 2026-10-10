@@ -87,8 +87,12 @@ export async function snapshot(page, assets) {
       const valid = safe && safe.x * image.naturalWidth * scale - x >= -1 && safe.y * image.naturalHeight * scale - y >= -1 && (safe.x + safe.w) * image.naturalWidth * scale - x <= box.width + 1 && (safe.y + safe.h) * image.naturalHeight * scale - y <= box.height + 1;
       return { selector: selector(figure), id: figure.dataset.photoId, density: scale ? 1 / scale : 0, protected: Boolean(valid), ...rect(box) };
     });
-    const busy = photos.flatMap((photo) => fragments.filter((text) => Math.min(text.x + text.w, photo.x + photo.w) - Math.max(text.x, photo.x) > 2 && Math.min(text.y + text.h, photo.y + photo.h) - Math.max(text.y, photo.y) > 2).map((text) => ({ selector: text.selector })));
+    const visuals = [...root.querySelectorAll(".generated-visual img")].map((image) => {
+      const box = image.getBoundingClientRect();
+      return { selector: selector(image), density: image.naturalWidth / box.width, ...rect(box) };
+    });
+    const busy = [...photos, ...visuals].flatMap((photo) => fragments.filter((text) => Math.min(text.x + text.w, photo.x + photo.w) - Math.max(text.x, photo.x) > 2 && Math.min(text.y + text.h, photo.y + photo.h) - Math.max(text.y, photo.y) > 2).map((text) => ({ selector: text.selector })));
     const animations = document.getAnimations().filter((animation) => animation.playState === "running").length;
-    return { viewport: innerWidth, height: document.documentElement.scrollHeight, scrollWidth: document.documentElement.scrollWidth, fragments, clipping, fonts, measures, widows, taps, photos, busy, animations };
+    return { viewport: innerWidth, height: document.documentElement.scrollHeight, scrollWidth: document.documentElement.scrollWidth, fragments, clipping, fonts, measures, widows, taps, photos, visuals, busy, animations };
   }, assets);
 }

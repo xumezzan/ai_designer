@@ -13,6 +13,7 @@ import { FoilText } from "@/components/primitives/FoilText";
 import { Ornament } from "@/components/primitives/Ornament";
 import { Artwork } from "@/components/primitives/Artwork";
 import { DirectedImage } from "@/components/primitives/DirectedImage";
+import { GeneratedVisual, type VisualSource } from "@/components/primitives/GeneratedVisual";
 import { compositionPhotos } from "@/lib/assets/layout";
 import type { DirectedAsset } from "@/lib/assets/crop";
 import { Hero } from "@/components/sections/Hero";
@@ -24,7 +25,7 @@ import { DressCode } from "@/components/sections/DressCode";
 import { Rsvp } from "@/components/sections/Rsvp";
 import { Footer } from "@/components/sections/Footer";
 
-export function ScrollNarrative({ content, theme, initialNow, photos = [] }: { content: Content; theme: Theme; initialNow: number; photos?: DirectedAsset[] }) {
+export function ScrollNarrative({ content, theme, initialNow, photos = [], generatedVisual }: { content: Content; theme: Theme; initialNow: number; photos?: DirectedAsset[]; generatedVisual?: VisualSource }) {
   const t = (text: string) => typograph(text, content.locale);
   const entrance = getMotion(theme.motion.preset)?.entrance;
   const names = content.headline ? t(content.headline) : content.hosts.map((host, index) =>
@@ -44,6 +45,7 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [] }: { c
   const nextTarget = next ? { id: next, label: labels[content.locale][next === "hero" ? "invitation" : next] } : undefined;
   const sections: Record<SectionId, ReactNode> = {
     hero: <div className="hero-wrapper"><Artwork id={theme.artwork} placement="hero" /><Ornament theme={theme} placement="hero-frame" /><Ornament theme={theme} placement="watermark" />
+      {generatedVisual && <GeneratedVisual source={generatedVisual} />}
       <Hero content={content} title={title} titleWrapper={titleWrapper} nextTarget={nextTarget} />
       <div className="hero-corners"><Ornament theme={theme} placement="corners" /><Ornament theme={theme} placement="corners" /></div>
     </div>,
@@ -57,7 +59,7 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [] }: { c
   };
   return <>
     <FontPreloads typeSet={theme.typeSet} locale={content.locale} />
-    <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork}
+    <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork} data-visual={generatedVisual ? theme.layout.visualPlacement : undefined} data-name-flow={theme.layout.nameFlow}
       data-motion={theme.motion.preset} style={toCssVars(theme) as CSSProperties} lang={langFor(content.locale)}>
       <Surface><div className="narrative-content">
         {order.map((id, index) => <div className={`narrative-slot slot-${id}`} id={available[id] ? undefined : id} key={id}>

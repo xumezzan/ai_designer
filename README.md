@@ -50,8 +50,19 @@ Verification: [M2](./docs/m2/README.md), [M3 and its limits](./docs/m3/README.md
 [generation and reference acceptance](./docs/m4/README.md). Real generation has
 been checked with the configured provider. Vision face/quality inference on a
 real mixed-camera acceptance batch remains a separate M3 acceptance task.
-Generation currently arranges registered elements and existing artwork;
-automatic creation of new bitmap artwork is not part of this API.
+For original art, add `OPENAI_API_KEY` to `.env.local`, restart the server and
+enable **«Создать новый визуал по брифу и референсам»**. Anthropic first records
+a visible interpretation of the brief; OpenAI Images creates one text-free
+illustration shared across five compositions with at least three different
+placements. Up to 16 uploaded style references are passed as image inputs.
+`OPENAI_IMAGE_MODEL` defaults to `gpt-image-2`. Native server fetch/FormData
+calls the Images API; no extra SDK is required. Image generation makes one
+request with no automatic paid retry. Errors retain the previous batch.
+Original immutable art, prompts, model and digest are stored under each
+project's `art/`; theme JSON stores a server-issued reference. Names, dates
+and actions remain HTML outside the picture. Without this option, generation
+still works through the existing composition/ornament renderer.
+Verification: [design fidelity](./docs/fidelity/README.md).
 
 Each generated card now includes **«Выбрать vN»**, a version selector and
 **«Доработать этот вариант»**. A plain-language instruction creates the next
@@ -97,8 +108,9 @@ generated with the built-in image tool. The user's request supersedes the old
 procedural-only restriction. Prompts, sources and verification are in
 [docs/artwork/suzani-atelier](./docs/artwork/suzani-atelier/README.md).
 Choose `artwork: "suzani-atelier"` to apply this art direction; omit it or use
-`"none"` for the original treatment. This is a completed art direction, not yet
-an in-studio image-generation API. All five original v1 routes still work.
+`"none"` for the original treatment. This remains a fixed art direction;
+the new studio image-generation API instead creates project-specific artwork.
+All five original v1 routes still work.
 
 `/preview/demo/letter/1` reads `projects/demo/content.json`, `asset-plan.json`
 and `concepts/letter/v1.json`. The other concepts are `poster`, `folio`, `arch`
