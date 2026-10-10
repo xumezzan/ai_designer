@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "name": "Апрельская афиша",
+    "mood": [
+      "poster"
+    ],
+    "rationale": "Холодная голубая бумага, плотные имена и самостоятельная дата. Первым после афиши идёт место встречи: приглашение читается как программа нового городского вечера."
+  },
+  "palette": {
+    "bg": "#E5EDF1",
+    "surface": "#D4E0E6",
+    "ink": "#243D4A",
+    "muted": "#4A6270",
+    "accent": "#3E6275",
+    "accentAlt": "#64566A"
+  },
+  "typeSet": "editorial",
+  "materialSet": "paper",
+  "foil": {
+    "enabled": false,
+    "color": "#3E6275"
+  },
+  "ornament": {
+    "pack": "none",
+    "density": "light",
+    "placement": [],
+    "color": "accentAlt"
+  },
+  "layout": {
+    "preset": "scroll-narrative",
+    "composition": "poster",
+    "hero": "typographic",
+    "sectionOrder": [
+      "hero",
+      "venue",
+      "greeting",
+      "timeline",
+      "countdown",
+      "dressCode",
+      "rsvp",
+      "footer"
+    ]
+  },
+  "motion": {
+    "preset": "still",
+    "ambient": "none"
+  }
+}

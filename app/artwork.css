@@ -1,0 +1,67 @@
+.generated-art { pointer-events: none; }
+.generated-art-hero { position: absolute; inset: 0; z-index: 0; }
+.generated-art-hero img { width: 100%; height: 100%; object-fit: fill; }
+.generated-art-flourish { width: min(70%, 20rem); margin: 2rem auto; }
+.generated-art-flourish img { width: 100%; height: auto; }
+
+[data-artwork="suzani-atelier"] .invitation-surface {
+  background-color: var(--bg);
+  background-image: linear-gradient(color-mix(in srgb, var(--bg) 85%, transparent), color-mix(in srgb, var(--bg) 85%, transparent)), var(--art-texture);
+  background-size: auto, var(--art-texture-size);
+}
+[data-artwork="suzani-atelier"] .grain-overlay { display: none; }
+[data-artwork="suzani-atelier"] .narrative-content { width: min(100% - 3rem, 60rem); }
+[data-artwork="suzani-atelier"] .hero-wrapper { width: min(100vw, 36rem); margin-inline: auto; }
+[data-artwork="suzani-atelier"] .invitation-hero {
+  min-height: clamp(46rem, 90svh, 52rem);
+  padding: 10.5rem 0 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+[data-artwork="suzani-atelier"] .hero-opening { margin-bottom: 1.75rem; max-width: 60%; }
+[data-artwork="suzani-atelier"] .hero-opening p { font-size: .75rem; line-height: 1.7; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+[data-artwork="suzani-atelier"] .hero-name-group { width: 64%; max-width: 64%; }
+[data-artwork="suzani-atelier"] .hero-name-group h1 { font-size: clamp(4rem, 16vw, 6rem); line-height: .95; }
+[data-artwork="suzani-atelier"] .hero-join { font-size: .45em; line-height: 1.4; }
+[data-artwork="suzani-atelier"] .hero-date { margin-top: 2rem; gap: 1rem; max-width: 64%; }
+[data-artwork="suzani-atelier"] .hero-day { font-size: 3.75rem; line-height: 1; }
+[data-artwork="suzani-atelier"] .hero-date-copy { text-align: left; gap: .3rem; }
+[data-artwork="suzani-atelier"] .hero-date-copy [data-level="lead"] { font-size: 1.25rem; }
+[data-artwork="suzani-atelier"] .hero-date-copy [data-level="body"] { font-size: .9375rem; }
+[data-artwork="suzani-atelier"] .hero-place { max-width: 60%; margin-top: 1.75rem; font-size: .9375rem; line-height: 1.5; }
+[data-artwork="suzani-atelier"] .hero-next { margin-top: 1.75rem; border-color: var(--accent); color: var(--accent); }
+[data-artwork="suzani-atelier"] .greeting-section { padding-top: 5rem; }
+[data-artwork="suzani-atelier"] .greeting-section h2 { max-width: 12ch; margin-inline: auto; }
+[data-artwork="suzani-atelier"] .greeting-copy p:first-child { color: var(--accent); }
+[data-artwork="suzani-atelier"] .invitation-section h2 { color: var(--ink); }
+[data-artwork="suzani-atelier"] .countdown-section { max-width: 44rem; margin-inline: auto; border-color: color-mix(in srgb, var(--accent) 35%, transparent); text-align: center; }
+[data-artwork="suzani-atelier"] .countdown-values { margin-inline: auto; }
+[data-artwork="suzani-atelier"] .countdown-values dd { color: var(--accent); }
+[data-artwork="suzani-atelier"] .timeline-section { max-width: 44rem; margin-inline: auto; }
+[data-artwork="suzani-atelier"] .timeline-list time { color: var(--accent); }
+[data-artwork="suzani-atelier"] .timeline-list li { border-color: color-mix(in srgb, var(--accent) 25%, transparent); }
+[data-artwork="suzani-atelier"] .venue-section { padding: 4rem 2rem; border-block: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); background: linear-gradient(110deg, var(--surface), transparent); }
+[data-artwork="suzani-atelier"] .venue-heading > p { color: var(--accent); }
+[data-artwork="suzani-atelier"] .invitation-link { color: var(--accent); }
+[data-artwork="suzani-atelier"] .dress-section { margin-inline: auto; text-align: center; }
+[data-artwork="suzani-atelier"] .dress-swatches { justify-content: center; }
+[data-artwork="suzani-atelier"] .dress-swatch { border: 4px double var(--accent); }
+[data-artwork="suzani-atelier"] .rsvp-section { max-width: 44rem; margin-inline: auto; text-align: center; border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent); outline: 1px solid color-mix(in srgb, var(--accent) 20%, transparent); outline-offset: .5rem; }
+[data-artwork="suzani-atelier"] .rsvp-section p { margin-inline: auto; }
+[data-artwork="suzani-atelier"] .invitation-button { background: var(--accent); color: var(--bg); }
+[data-artwork="suzani-atelier"] .rsvp-form { margin-inline: auto; text-align: left; }
+[data-artwork="suzani-atelier"] .invitation-footer { border-color: color-mix(in srgb, var(--accent) 30%, transparent); text-align: center; }
+[data-artwork="suzani-atelier"] .deckle-edge { display: none; }
+
+@media (max-width: 600px) {
+  [data-artwork="suzani-atelier"] .hero-wrapper { width: 100vw; margin-left: -1.5rem; }
+  [data-artwork="suzani-atelier"] .invitation-hero { padding-top: 9rem; padding-bottom: 7.5rem; min-height: 46rem; }
+  [data-artwork="suzani-atelier"] .hero-name-group h1 { font-size: clamp(3.5rem, 17vw, 4.25rem); }
+  [data-artwork="suzani-atelier"] .hero-opening { margin-bottom: 1.25rem; }
+  [data-artwork="suzani-atelier"] .hero-date { margin-top: 1.5rem; }
+  [data-artwork="suzani-atelier"] .hero-place { font-size: .875rem; margin-top: 1.5rem; }
+  [data-artwork="suzani-atelier"] .hero-next { margin-top: 1.5rem; }
+  [data-artwork="suzani-atelier"] .venue-section { padding-inline: 1.5rem; }
+}

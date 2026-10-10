@@ -1,0 +1,32 @@
+{
+  "mode": "Production browser and real Anthropic screenshot vision; controlled fictional theme baseline",
+  "fixture": "Fictional event and existing NASA Apollo 11 group photo; no private event data",
+  "unverifiedBlocked": true,
+  "visionLive": true,
+  "badges": true,
+  "explicitApproval": true,
+  "staleBlocked": true,
+  "evidence": true,
+  "defects": [
+    "overflow",
+    "contrast",
+    "face-crop"
+  ],
+  "widths": [
+    {
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "errors": [],
+  "automaticRefinementQa": true,
+  "immutableTheme": true
+}

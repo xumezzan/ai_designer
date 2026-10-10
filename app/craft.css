@@ -7,6 +7,38 @@
  * the studio shell and for every published invitation.
  */
 
+/* Typography consumes the registered craft levels; it has no theme controls. */
+[data-level] {
+  font-family: var(--font-body);
+  font-synthesis: none;
+}
+[data-level="display"], [data-level="display-sm"] { font-family: var(--font-display); }
+[data-level="caps"] { font-family: var(--font-caps); }
+[data-level="display"] {
+  font-size: var(--fs-display); line-height: var(--lh-display); letter-spacing: var(--tr-display);
+  font-weight: var(--fw-display); font-feature-settings: var(--features-display);
+}
+[data-level="display-sm"] {
+  font-size: var(--fs-display-sm); line-height: var(--lh-display-sm); letter-spacing: var(--tr-display-sm);
+  font-weight: var(--fw-display-sm); font-feature-settings: var(--features-display-sm);
+}
+[data-level="lead"] {
+  font-size: var(--fs-lead); line-height: var(--lh-lead); letter-spacing: var(--tr-lead);
+  font-weight: var(--fw-lead); font-feature-settings: var(--features-lead);
+}
+[data-level="body"] {
+  font-size: var(--fs-body); line-height: var(--lh-body); letter-spacing: var(--tr-body);
+  font-weight: var(--fw-body); font-feature-settings: var(--features-body);
+}
+[data-level="small"] {
+  font-size: var(--fs-small); line-height: var(--lh-small); letter-spacing: var(--tr-small);
+  font-weight: var(--fw-small); font-feature-settings: var(--features-small);
+}
+[data-level="caps"] {
+  font-size: var(--fs-caps); line-height: var(--lh-caps); letter-spacing: var(--tr-caps);
+  font-weight: var(--fw-caps); font-feature-settings: var(--features-caps);
+}
+
 /* ---------------------------------------------------------------------------
  * Text wrapping and hanging punctuation
  * ------------------------------------------------------------------------ */
@@ -40,21 +72,20 @@ blockquote,
 
 :root {
   --craft-reveal-distance: 14px;
-  --craft-reveal-duration: 700ms;
+  --craft-reveal-duration: 850ms;
   --craft-reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /*
- * A block waits for its reveal only where script can play it: `data-craft` is
- * set by an inline script in the root layout, so with JS off or broken every
- * block renders as if already revealed.
+ * Only a hydrated block with a registered observer can wait for a reveal.
+ * No inline script hides server-rendered text before the app can reveal it.
  */
-html[data-craft="js"] [data-reveal="pending"] {
+[data-reveal-ready="true"][data-reveal="pending"] {
   opacity: 0;
   transform: translateY(var(--craft-reveal-distance));
 }
 
-html[data-craft="js"] [data-reveal="shown"] {
+[data-reveal-ready="true"][data-reveal="shown"] {
   opacity: 1;
   transform: none;
   transition:
@@ -75,7 +106,7 @@ html[data-craft="js"] [data-reveal="shown"] {
 
 /* prefers-reduced-motion: content is present, motion is not played. */
 @media (prefers-reduced-motion: reduce) {
-  html[data-craft="js"] [data-reveal] {
+  [data-reveal] {
     opacity: 1;
     transform: none;
     transition: none;
@@ -84,9 +115,9 @@ html[data-craft="js"] [data-reveal="shown"] {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation: none !important;
+    transition: none !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
 }

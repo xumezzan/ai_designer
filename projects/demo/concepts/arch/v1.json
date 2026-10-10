@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "Семейная сузани",
+    "mood": [
+      "arch"
+    ],
+    "rationale": "Гранатовая бумага и восьмилепестковая розетка сузани вокруг имён. Симметричная церемония и неторопливый порядок секций; золото касается только заголовка с именами."
+  },
+  "palette": {
+    "bg": "#612B36",
+    "surface": "#723A43",
+    "ink": "#F5E9DE",
+    "muted": "#DBBDAF",
+    "accent": "#E4BD88",
+    "accentAlt": "#D5A69E"
+  },
+  "typeSet": "ceremony",
+  "materialSet": "paper",
+  "foil": {
+    "enabled": true,
+    "color": "#E4BD88"
+  },
+  "ornament": {
+    "pack": "uzbek-suzani",
+    "density": "light",
+    "placement": [
+      "hero-frame",
+      "divider"
+    ],
+    "color": "accentAlt"
+  },
+  "layout": {
+    "preset": "scroll-narrative",
+    "composition": "arch",
+    "hero": "ornament-frame",
+    "sectionOrder": [
+      "hero",
+      "greeting",
+      "countdown",
+      "timeline",
+      "venue",
+      "dressCode",
+      "rsvp",
+      "footer"
+    ]
+  },
+  "motion": {
+    "preset": "unfold",
+    "ambient": "none"
+  }
+}

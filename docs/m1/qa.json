@@ -1,0 +1,341 @@
+{
+  "production": {
+    "mobile": [
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "letter",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          390,
+          844
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "poster",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          390,
+          844
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "folio",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          390,
+          844
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "arch",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          390,
+          844
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "botanical",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          390,
+          844
+        ]
+      }
+    ],
+    "tablet": [
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "letter",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          853,
+          640
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "poster",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          853,
+          640
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "folio",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          853,
+          640
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "arch",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          853,
+          640
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "botanical",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          853,
+          640
+        ]
+      }
+    ],
+    "desktop": [
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "letter",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "poster",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "folio",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "arch",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "botanical",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    ]
+  },
+  "development": {
+    "tablet": [
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "letter",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1024,
+          768
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "poster",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1024,
+          768
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "folio",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1024,
+          768
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "arch",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1024,
+          768
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "botanical",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1024,
+          768
+        ]
+      }
+    ],
+    "desktop": [
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "letter",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "poster",
+        "foil": 0,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "folio",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "arch",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      },
+      {
+        "clipped": [],
+        "collisions": [],
+        "composition": "botanical",
+        "foil": 1,
+        "overflow": false,
+        "sections": 8,
+        "taps": [],
+        "viewport": [
+          1440,
+          900
+        ]
+      }
+    ]
+  }
+}

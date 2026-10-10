@@ -2,6 +2,8 @@ import { z } from "zod";
 import { Hex } from "./common";
 import {
   LAYOUT_IDS,
+  COMPOSITION_IDS,
+  ARTWORK_IDS,
   MATERIAL_SET_IDS,
   MOTION_IDS,
   ORNAMENT_PACK_IDS,
@@ -10,7 +12,7 @@ import {
 } from "../../registry/keys";
 
 /**
- * `theme.json` — the only thing the AI produces. Schema principle: the model
+ * `theme.json` selects hand-built presets and separately generated art. The model
  * picks named sets from registries; it never sets numeric craft values
  * (tracking, leading, scale ratios, grain density, durations). Those live in
  * the registries, tuned once by hand.
@@ -40,6 +42,7 @@ export const Theme = z.object({
 
   // Hand-built material. See registry/materials.
   materialSet: z.enum(MATERIAL_SET_IDS),
+  artwork: z.enum(ARTWORK_IDS).default("none"),
   foil: z.object({ enabled: z.boolean(), color: Hex }),
 
   ornament: z.object({
@@ -53,9 +56,19 @@ export const Theme = z.object({
 
   layout: z.object({
     preset: z.enum(LAYOUT_IDS),
+    composition: z.enum(COMPOSITION_IDS).default("letter"),
     hero: z.enum(["full-photo", "typographic", "ornament-frame"]),
+    photoArrangement: z.enum(["row", "stack", "offset"]).default("row"),
     sectionOrder: z.array(z.enum(SECTION_IDS)),
   }),
+
+  // Per-composition placement; crop/quality/treatment remain in the asset plan.
+  photos: z.array(z.object({
+    id: z.string().min(1).max(100),
+    section: z.enum(SECTION_IDS),
+    index: z.number().int().min(0).max(40),
+    position: z.enum(["before", "after"]),
+  })).max(40).optional(),
 
   motion: z.object({
     preset: z.enum(MOTION_IDS),

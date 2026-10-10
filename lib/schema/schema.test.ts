@@ -32,7 +32,7 @@ describe("Content schema", () => {
       headline: "Свадьба",
       greeting: "Дорогие друзья!",
       dressCode: { title: "Formal", swatches: ["#2C2620", "#7A5C3E"] },
-      rsvp: { enabled: true, mode: "telegram", target: "@host" },
+      rsvp: { enabled: true, mode: "telegram", target: "@family_host" },
       timeline: [{ time: "16:00", title: "Сбор гостей" }],
     });
     expect(parsed.dressCode?.swatches).toHaveLength(2);

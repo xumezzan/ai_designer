@@ -1,0 +1,120 @@
+.invitation { background: var(--bg); color: var(--ink); overflow: clip; }
+.invitation-surface { position: relative; isolation: isolate; background: var(--vignette), var(--bg); }
+.grain-overlay { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+.grain-overlay span { position: absolute; inset: 0; background-image: var(--grain); opacity: var(--grain-opacity); }
+.grain-overlay span + span { background-image: var(--grain-fine); opacity: var(--grain-fine-opacity); }
+.deckle-edge { height: 14px; background: var(--surface); mask-image: var(--deckle-mask); mask-size: 100% 100%; mask-mode: luminance; }
+.narrative-content { width: min(100% - 3rem, 70rem); margin-inline: auto; }
+.hero-wrapper { position: relative; }
+.invitation-hero { min-height: calc(var(--space-hero-empty) + var(--space-hero-content)); padding-top: clamp(3rem, 7vw, 7rem); padding-bottom: var(--space-section); position: relative; z-index: 1; }
+.hero-opening { display: flex; align-items: center; gap: var(--space-block); margin-bottom: var(--space-block); }
+.hero-line { display: block; width: 5rem; height: 1px; background: var(--muted); }
+.hero-name-group { max-width: 100%; font-family: var(--font-display); font-size: var(--fs-display); font-weight: var(--fw-display); }
+.hero-join { font-size: .65em; }
+.hero-date { display: flex; align-items: center; gap: var(--space-block); margin-top: var(--space-block); }
+.hero-date-copy { display: flex; flex-direction: column; gap: var(--space-inside); }
+.hero-place { display: flex; flex-direction: column; gap: .25em; margin-top: var(--space-block); }
+.hero-next, .footer-top { display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; margin-top: var(--space-block); border: 1px solid var(--muted); border-radius: 50%; font-size: 1.25rem; }
+#hero-title, .hero-host { overflow-wrap: anywhere; }
+.foil-text { display: block; color: var(--foil-color); }
+@supports (background-clip: text) {
+  .foil-text { background-image: var(--foil-sheen), linear-gradient(var(--foil-color), var(--foil-color)); background-size: 200% 100%, 100% 100%; background-clip: text; color: transparent; }
+}
+.invitation-section { padding-block: var(--space-section); }
+.invitation-section h2 { margin-bottom: var(--space-block); }
+.invitation-section p + p { margin-top: var(--space-block); }
+.invitation-section p, .invitation-section address { max-width: var(--measure); }
+.greeting-section { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-section); }
+.greeting-copy p:first-child { max-width: 32ch; }
+.greeting-copy p + p { max-width: 46ch; }
+.countdown-section { border-block: 1px solid var(--muted); }
+.countdown-values { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-inside); max-width: 42rem; }
+.countdown-values > div { display: flex; flex-direction: column-reverse; gap: var(--space-inside); }
+.countdown-values dt { color: var(--ink); }
+.countdown-values dd { font-variant-numeric: tabular-nums; }
+.countdown-status:empty { display: none; }
+.countdown-status { margin-bottom: var(--space-block); }
+.timeline-list { max-width: 48rem; }
+.timeline-list li { display: grid; grid-template-columns: 6rem 1fr; gap: var(--space-block); padding-block: var(--space-block); border-top: 1px solid var(--muted); }
+.timeline-list li:first-child { border-top: 0; padding-top: 0; }
+.timeline-list p { color: var(--muted); margin-top: var(--space-inside); }
+.venue-section { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-section); }
+.venue-copy address { font-style: normal; margin-bottom: var(--space-block); }
+.invitation-link { display: inline-flex; align-items: center; gap: 1.5rem; min-height: 45px; margin-top: var(--space-block); text-decoration: underline; text-underline-offset: .3em; }
+.dress-section { max-width: var(--measure); }
+.dress-swatches { display: flex; flex-wrap: wrap; gap: var(--space-block); margin-top: var(--space-block); }
+.dress-swatches li { display: flex; flex-direction: column; align-items: center; gap: var(--space-inside); }
+.dress-swatch { width: 3.25rem; height: 3.25rem; border-radius: 50%; border: 1px solid var(--muted); }
+.dress-swatches li > span + span { color: var(--muted); }
+.rsvp-section { background: var(--surface); padding: var(--space-section); margin-block: var(--space-section); box-shadow: var(--shadow-soft); }
+.rsvp-section p { max-width: 42ch; }
+.invitation-button { display: inline-flex; align-items: center; justify-content: space-between; gap: 2rem; min-height: 52px; padding: 1rem 1.75rem; margin-top: var(--space-block); background: var(--ink); color: var(--surface); }
+.invitation-button:focus-visible { outline-color: var(--ink); }
+.rsvp-form { display: grid; gap: var(--space-inside); max-width: 30rem; margin-top: var(--space-block); }
+.rsvp-form input:not([type="checkbox"]) { background: var(--bg); border: 1px solid var(--muted); color: var(--ink); padding: .75rem; min-height: 48px; font-family: var(--font-body); }
+.rsvp-attendance { display: flex; align-items: center; gap: 1rem; min-height: 44px; }
+.rsvp-attendance input { width: 24px; height: 24px; accent-color: var(--ink); }
+.invitation-footer { padding-block: var(--space-section); border-top: 1px solid var(--muted); }
+.invitation-footer p + p { margin-top: var(--space-inside); }
+.ornament { color: var(--ornament-color); pointer-events: none; }
+.ornament-divider { width: 48px; height: 48px; display: block; margin-block: var(--space-block); opacity: .65; }
+.ornament-hero-frame { position: absolute; inset: 7% 0 auto auto; width: min(65%, 42rem); height: auto; opacity: .35; }
+.ornament-watermark { position: absolute; width: min(60%, 40rem); height: auto; top: 22%; right: -5%; opacity: .12; }
+.hero-corners .ornament { position: absolute; width: 72px; height: 72px; top: 2rem; right: 0; }
+.hero-corners .ornament + .ornament { top: auto; right: auto; bottom: 5rem; left: 0; }
+.ornament[data-density="medium"] { stroke-width: 1.25; }
+
+/* A named composition changes hierarchy, never individual section code. */
+[data-composition="poster"] .hero-opening { justify-content: space-between; }
+[data-composition="poster"] .invitation-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(7.5rem, .65fr); grid-template-areas: "opening opening" "name date" "place place" "next next"; column-gap: var(--space-inside); align-content: start; }
+[data-composition="poster"] .hero-opening { grid-area: opening; }
+[data-composition="poster"] .hero-name-group { grid-area: name; margin-top: var(--space-block); }
+[data-composition="poster"] .hero-host { display: block; }
+[data-composition="poster"] .hero-join { display: block; font-size: .4em; line-height: 1.3; }
+[data-composition="poster"] .hero-date { grid-area: date; flex-direction: column; align-items: start; margin-top: var(--space-block); }
+[data-composition="poster"] .hero-day { font-size: calc(var(--fs-display) * 1.6); line-height: .85; }
+[data-composition="poster"] .hero-place { grid-area: place; max-width: 30ch; }
+[data-composition="poster"] .hero-next { grid-area: next; }
+[data-composition="poster"] .greeting-section { grid-template-columns: 1.3fr 1fr; }
+[data-composition="folio"] .invitation-hero { display: grid; grid-template-columns: minmax(7rem, .55fr) minmax(0, 1fr); grid-template-areas: "opening opening" ". name" "date place" ". next"; column-gap: var(--space-inside); align-content: start; }
+[data-composition="folio"] .hero-opening { grid-area: opening; }
+[data-composition="folio"] .hero-name-group { grid-area: name; max-width: 9ch; }
+[data-composition="folio"] .hero-host { display: block; }
+[data-composition="folio"] .hero-join { display: block; font-size: .5em; }
+[data-composition="folio"] .hero-date { grid-area: date; flex-direction: column; align-items: start; }
+[data-composition="folio"] .hero-place { grid-area: place; }
+[data-composition="folio"] .hero-next { grid-area: next; }
+[data-composition="folio"] .invitation-section { margin-left: 16%; }
+[data-composition="arch"] .invitation-hero { text-align: center; }
+[data-composition="arch"] .hero-opening { justify-content: center; }
+[data-composition="arch"] .hero-line { display: none; }
+[data-composition="arch"] .hero-name-group { max-width: 10ch; margin-inline: auto; }
+[data-composition="arch"] .hero-host { display: block; }
+[data-composition="arch"] .hero-join { display: block; font-size: .5em; }
+[data-composition="arch"] .hero-date { justify-content: center; }
+[data-composition="arch"] .ornament-hero-frame { width: min(90%, 48rem); left: 50%; top: 6%; transform: translateX(-50%); opacity: .2; }
+[data-composition="arch"] .greeting-section { grid-template-columns: 1fr; text-align: center; max-width: 42rem; margin-inline: auto; }
+[data-composition="arch"] .greeting-copy p { margin-inline: auto; }
+[data-composition="botanical"] .hero-name-group { max-width: 11ch; }
+[data-composition="botanical"] .hero-host { display: block; }
+[data-composition="botanical"] .hero-join { font-size: .5em; }
+[data-composition="botanical"] .hero-date { margin-left: 42%; margin-top: var(--space-section); }
+[data-composition="botanical"] .hero-place { margin-left: 42%; }
+[data-composition="botanical"] .hero-next { margin-left: 42%; }
+[data-composition="botanical"] .ornament-watermark { width: 38%; right: -3%; top: 10%; opacity: .08; }
+[data-composition="botanical"] .greeting-section { grid-template-columns: 1fr; max-width: 42rem; }
+[data-composition="botanical"] .venue-section { margin-left: 24%; grid-template-columns: 1fr; }
+@media (max-width: 700px) {
+  .invitation-hero { padding-top: var(--space-block); }
+  .hero-date { gap: var(--space-inside); }
+  .hero-opening { gap: var(--space-inside); }
+  .hero-line { width: 3rem; }
+  .greeting-section, .venue-section { grid-template-columns: 1fr !important; gap: var(--space-inside); }
+  .timeline-list li { grid-template-columns: 4.5rem 1fr; gap: var(--space-inside); }
+  .rsvp-section { padding: var(--space-block); }
+  [data-composition="poster"] .hero-day { font-size: var(--fs-display); }
+  [data-composition="folio"] .invitation-section { margin-left: 0; }
+  [data-composition="botanical"] .hero-date, [data-composition="botanical"] .hero-place, [data-composition="botanical"] .hero-next { margin-left: 15%; }
+  [data-composition="botanical"] .venue-section { margin-left: 0; }
+  .ornament-hero-frame { width: 95%; top: 10%; }
+}

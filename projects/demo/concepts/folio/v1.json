@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "name": "После заката",
+    "mood": [
+      "folio"
+    ],
+    "rationale": "Сливовая бумага и матовое золото на именах. Узкая вертикальная колонка справа напоминает титульный лист; дата остаётся на левом поле. Один тихий вход текста."
+  },
+  "palette": {
+    "bg": "#302535",
+    "surface": "#3B2F40",
+    "ink": "#EEE4EC",
+    "muted": "#C2ADBF",
+    "accent": "#C6AB78",
+    "accentAlt": "#B29AB4"
+  },
+  "typeSet": "ceremony",
+  "materialSet": "paper",
+  "foil": {
+    "enabled": true,
+    "color": "#C6AB78"
+  },
+  "ornament": {
+    "pack": "none",
+    "density": "light",
+    "placement": [],
+    "color": "accentAlt"
+  },
+  "layout": {
+    "preset": "scroll-narrative",
+    "composition": "folio",
+    "hero": "typographic",
+    "sectionOrder": [
+      "hero",
+      "greeting",
+      "timeline",
+      "venue",
+      "countdown",
+      "dressCode",
+      "rsvp",
+      "footer"
+    ]
+  },
+  "motion": {
+    "preset": "unfold",
+    "ambient": "none"
+  }
+}

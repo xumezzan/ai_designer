@@ -11,6 +11,7 @@
  * `@font-face` from `public/fonts/` (gitignored — see public/fonts/README.md).
  */
 import generated from "./fonts.generated.json";
+import assets from "./font-assets.generated.json";
 
 export type FontRole = "display" | "body" | "script";
 export type FontClass = "serif" | "sans" | "script";
@@ -142,7 +143,9 @@ function fromGenerated(): FontEntry[] {
       support: {
         cyrillic: f.support.cyrillic,
         latinExt: f.support.latinExt,
-        uzbekApostrophe: f.support.uzbekApostrophe,
+        // Actual source glyphs take precedence over advertised CSS ranges.
+        uzbekApostrophe: id in assets.families ?
+          assets.families[id as keyof typeof assets.families].uzbekApostrophe : f.support.uzbekApostrophe,
       },
       licensed: true,
       licenseNote: "SIL Open Font License via Google Fonts",
@@ -161,12 +164,19 @@ export function getFont(id: string): FontEntry | undefined {
 }
 
 /** CSS font stack for a registered face, including the class fallback. */
-export function stackFor(id: string): string {
+export function stackFor(id: string, glyphFallback?: string): string {
   const entry = fonts[id];
   if (!entry) {
     throw new Error(`Unknown font id "${id}" — run npm run check-fonts and register it first`);
   }
-  return `"${entry.family}", ${FALLBACKS[entry.classification]}`;
+  const glyphFace = glyphFallback ? fonts[glyphFallback] : undefined;
+  if (glyphFallback && !glyphFace) throw new Error(`Unknown glyph fallback "${glyphFallback}"`);
+  const glyphStack = glyphFace ? `"${glyphFace.family}", ` : "";
+  if (id in assets.families) {
+    const managed = assets.families[id as keyof typeof assets.families];
+    return `"${entry.family}", "${entry.family} Fallback", ${glyphStack}"${managed.fallback}", ${entry.classification === "sans" ? "sans-serif" : "serif"}`;
+  }
+  return `"${entry.family}", ${glyphStack}${FALLBACKS[entry.classification]}`;
 }
 
 export function supportsLocale(id: string, locale: "ru" | "uz-latn" | "en"): boolean {

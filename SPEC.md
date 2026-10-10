@@ -16,11 +16,11 @@ Invitation content is authored in Russian, Uzbek (Latin), or English. Studio UI 
 ## 1. What we are building
 
 Input: an event questionnaire, a free-text brief, and reference images.
-Output: 4–6 genuinely different invitation designs generated in parallel → preview grid → approve one → refine it in plain language → publish at a link.
+Output: one visual style inferred from the brief and references → five related invitation compositions in that shared style → preview grid → approve one → refine it in plain language → publish at a link.
 
 **The architectural rule that must never be broken:**
 
-> The AI does not write the invitation's HTML or CSS. The AI produces **`theme.json` only** — a configuration on top of a hand-built component library.
+> The AI does not write the invitation's HTML or CSS. The AI produces **`theme.json` and decorative image assets** — configuration and art used by a hand-built component library. Names, event facts, navigation and forms remain real HTML.
 
 Free-form layout generation produces recognisably templated output and unrepeatable quality. Configuration over a hand-built library produces quality bounded by the library, and the library keeps growing.
 
@@ -36,7 +36,6 @@ Do not build, even if it seems useful:
 - a separate backend service, message queue, or worker pool — no FastAPI, no Celery, no Redis;
 - a database (the filesystem is the store until RSVP responses need collecting);
 - WebGL, three.js, heavy canvas scenes;
-- image generation through any API — every texture is procedural (SVG/CSS);
 - a drag-and-drop visual editor;
 - email delivery, analytics, A/B tests;
 - an i18n framework (three locales are set per project; UI strings live in one dictionary).
@@ -236,6 +235,21 @@ Rules the renderer enforces, not suggestions:
 
 `POST /api/plan-assets` produces this with a vision call. Every field is user-editable in the studio, because the model will misjudge focal points on group shots.
 
+**M3 implementation constraints (2026-10-09).** Focal coordinates and safe-area
+coordinates are bounded to 0..1; the safe rectangle must fit inside the image.
+Placement indices are nonnegative integers. A plan contains one entry per photo,
+never design-reference images, duplicate ids or unknown photo ids. Draft plans
+are saved separately from event facts with revision checks against both files.
+If every allowed crop intersects the protected area, render the whole image at
+its natural ratio. Crop choice happens on the server before rendering. Low-quality
+images are additionally limited to 35% of viewport width/height and their native
+crop pixel width; they cannot be placed in the hero. A high-quality hero must
+have at least 600px on its short side and 1200px on its long side. These are
+renderer safeguards, not a claim that pixel dimensions measure visual quality.
+The unified treatment overrides individual treatments unless set to `none`.
+Auto-analysis uses the configured Anthropic model and requires an API key; missing
+credentials are reported explicitly and manual art direction stays available.
+
 ### 5.3 `theme.json`
 
 **Schema principle: the AI picks from a menu, it does not turn knobs.**
@@ -272,6 +286,7 @@ const Theme = z.object({
 
   layout: z.object({
     preset: LayoutId,
+    composition: z.enum(['letter', 'poster', 'folio', 'arch', 'botanical']).default('letter'),
     hero: z.enum(['full-photo', 'typographic', 'ornament-frame']),
     sectionOrder: z.array(SectionId),
   }),
@@ -306,7 +321,9 @@ The most important registry in the project. Each set is tuned by hand and specif
 
 ### 6.2 Materials (`registry/materials`)
 
-A set of CSS custom properties plus an SVG filter. Procedural only: `feTurbulence` for paper and linen grain, layered `conic-gradient` for foil sheen, SVG `mask-image` for deckle edges, `backdrop-filter` for glass. No raster textures in the repository.
+A set of CSS custom properties plus an SVG filter. Procedural effects remain available; generated raster textures and commissioned-style illustrations are also allowed following the user's 2026-10-09 design revision. The chosen assets are stored with the project or in a versioned art registry, with prompts and provenance. Material generation must be separate from event text.
+
+**Generated artwork revision (2026-10-09).** A theme may select `artwork: 'none' | 'suzani-atelier'` (default `none`). The named art direction owns a generated hero backdrop, repeatable material texture and ornamental artwork. A shared decoration component renders it; sections do not branch on a concept ID. The first revision develops one complete premium direction before expanding the menu. Original v1 concepts remain available; revised JSON is saved as v2. Generated files are local, optimized, and carry no names, dates or buttons baked into pixels. Hero art must preserve a readable central field; long-form sections use a quiet texture and solid text surfaces. This replaces the earlier prohibition of image generation and procedural-only materials. It does not claim the future studio generation API is implemented.
 
 Rules without which a material reads as cheap:
 
@@ -316,6 +333,14 @@ Rules without which a material reads as cheap:
 - no pure black, no pure white. `ink` derives from the paper hue at low saturation. Note that a generic tinted near-black such as `#0B0B0B` is itself a tell — the hue must actually relate to the palette.
 
 ### 6.3 Ornaments (`registry/ornaments`)
+
+**M1 composition menu.** Within `scroll-narrative`, `layout.composition` picks
+one hand-built arrangement: `letter`, `poster`, `folio`, `arch`, or `botanical`.
+It defaults to `letter` for existing themes. This is a structural preset, not
+an alignment, spacing, size or duration control. The layout owns placement and
+hierarchy; sections are unchanged between compositions. Composition identifiers
+are independent of concept IDs and may be reused by later layout presets.
+This field lets the five M1 themes differ structurally within one layout.
 
 SVG packs with `divider`, `corner`, `frame`, `watermark` elements. `uzbek-suzani` and `geometric-islamic` are constructed as real geometry with correct repetition, not stock clipart. Colour via `currentColor`, stroke no thinner than 0.75 px at 2× DPR.
 
@@ -485,6 +510,18 @@ Rules:
 - further edits to an approved concept create a new version and leave the approved pointer where it is until I move it explicitly;
 - the studio can preview and restore any version by pointer change alone.
 
+M5 storage detail (2026-10-10): `generation.json.concepts[].version` is the
+current preview pointer for each lineage in the active batch; `approved.json`
+is the sole selection pointer. `meta.json` contains immutable lineage facts,
+and `vN.meta.json` contains immutable refinement provenance and actual changed
+paths. No duplicated mutable approval pointer is stored in concept metadata.
+Older batches remain retained; the selection bar can preview an approved older
+batch while lineage history/restore operates on the active five concepts.
+Refinement accepts at most four theme categories in one partial patch and
+cannot change event copy or theme metadata. Unsupported free CSS/spacing or
+new bitmap requests fail explicitly. Contrast/hero safety repairs are recorded
+alongside requested changes.
+
 ---
 
 ## 11. Refinement
@@ -518,6 +555,24 @@ Narrow vision checks, each a yes/no question with a screenshot:
 - is any face cropped by a frame edge;
 - does body text sit on a busy region of a photograph;
 - is any element clearly misaligned against the others.
+
+M6 implementation detail (2026-10-10): reports bind to content, photo-plan,
+immutable-theme and production-renderer fingerprints. New generation/refinement
+runs QA before returning to the editor; retained versions can be checked on
+demand. A missing, incomplete or stale report cannot authorize selection.
+Hard findings require an explicit "choose with findings" action; existing
+selection pointers are retained and labelled if their report is stale.
+Measure, heading widow, 1–2× image density and slow-network timing are warnings;
+clipping, overlap, AA contrast, missing fonts, sub-44px targets, <1× images,
+protected-area loss and reduced-motion violations are hard findings. Narrow
+vision is performed on mobile/desktop first screens and up to two photo crops;
+uncertain visual findings require review. It does not score taste. Raster
+contrast samples glyph cores and adjacent backgrounds, excluding antialiasing
+edges. LCP/CLS use a fresh Chromium context with 1.6Mbps down/750kbps up,
+150ms latency and 4× CPU throttling. These are measured lab results.
+Playwright/Chromium are an existing external QA runtime configured by local
+environment variables, not a new production dependency. Missing runtime or
+provider access is reported as incomplete QA, never a passed check.
 
 Failures attach to the concept and surface in the studio grid as a badge. A candidate with a hard failure is not shown as approvable until fixed or explicitly overridden.
 
@@ -652,3 +707,33 @@ Section variants worth building once the core is solid. Keep in `docs/backlog.md
 **Other** — venue with map, music, schedule.
 
 Each addition requires the same screenshot critique loop as M1. A variant that has not been through it does not enter the registry.
+
+
+## 2026-10-09 — User revision: one brief, one style, several compositions
+
+This explicit user instruction supersedes the earlier cross-style diversity
+matrix and M4 layout+material exclusion. Generate five new compositions from
+one brief and supplied references. Palette, type set, material, ornament pack,
+foil, artwork and motion stay identical across the batch. Layout hierarchy,
+section order, ornament placements and photographic placements may differ.
+Do not populate new projects with demo themes or label legacy demos as generated.
+Demo remains available as a separate gallery. Generation requires a nonempty
+brief and a real provider response; failures never fall back to demo themes.
+
+Theme additions: `layout.photoArrangement` is `row | stack | offset` (default
+row); optional `photos` is an array of `{ id, section, index, position }`, where
+section is an existing section id, index is 0..40 integer and position is
+`before | after`. Omitted photos preserve the shared asset plan. Generated
+batches must place every usable, manually-enabled photo exactly once, using its
+validated focal/safe crop, treatment and size limit. Low-resolution or low-quality
+photos never appear in the hero. Uploaded references guide style but are not
+invitation photographs. `art-deco` is a hand-built ornament registry member.
+
+A forced structured tool returns one shared style and five compositions in one
+coherent request. Validation repairs the shared palette once, checks registered
+presets/contrast/locale, exact photo ids and distinct composition decisions.
+One bounded correction retry is allowed. Store all validated variants as new
+immutable concept files, then atomically publish a generation.json pointer.
+Check content, photo-plan and generation revisions at commit time; a concurrent
+change discards the stale result. Failures keep the last successful batch.
+Old files and original demo copies are retained but not shown as current output.

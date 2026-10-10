@@ -1,0 +1,54 @@
+[
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "letter",
+    "foil": 0,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "poster",
+    "foil": 0,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "folio",
+    "foil": 1,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      1440,
+      900
+    ]
+  },
+  {
+    "clipped": [],
+    "collisions": [],
+    "composition": "botanical",
+    "foil": 1,
+    "overflow": false,
+    "sections": 8,
+    "taps": [],
+    "viewport": [
+      1440,
+      900
+    ]
+  }
+]

@@ -20,3 +20,7 @@ projects/*/media/
 
 # misc
 .DS_Store
+
+# Event projects are local client data; retain only the committed demonstration.
+projects/*/
+!projects/demo/

@@ -5,8 +5,8 @@
  * on display, positive on small caps, serif body leading 1.5–1.65, real
  * `smcp`/`onum` features, measure in characters.
  *
- * First pass inside the spec's craft ranges; refined against the M0.5
- * teardowns (docs/references.md). Font members are registry fonts.ts ids and
+ * Refined against the measured M0.5 references in docs/references.md.
+ * Font members are registry fonts.ts ids and
  * must have passed `scripts/check-fonts.ts`.
  */
 import type { TypeSetId } from "../keys";
@@ -22,6 +22,8 @@ export interface TypeLevelSpec {
   /** Unitless line-height. */
   leading: number;
   weight: number;
+  /** Optional role override; caps use the display serif's real Cyrillic smcp. */
+  role?: "display" | "body";
   /** font-feature-settings; small caps here, never text-transform + tracking. */
   features?: string;
 }
@@ -33,13 +35,16 @@ export interface TypeSet {
   /** registry/fonts.ts ids. */
   display: string;
   body: string;
+  /** Explicit same-pair fallback for glyphs absent from the body source. */
+  bodyGlyphFallback?: string;
   levels: Record<TypeSetLevel, TypeLevelSpec>;
   /** Maximum body measure in characters. */
   measure: number;
 }
 
 export function typeSetStackFor(typeSet: TypeSet, role: "display" | "body"): string {
-  return stackFor(role === "display" ? typeSet.display : typeSet.body);
+  return stackFor(role === "display" ? typeSet.display : typeSet.body,
+    role === "body" ? typeSet.bodyGlyphFallback : undefined);
 }
 
 export function typeSetSupportsLocale(
@@ -47,34 +52,35 @@ export function typeSetSupportsLocale(
   locale: "ru" | "uz-latn" | "en",
 ): boolean {
   return (
-    supportsLocale(typeSet.display, locale) && supportsLocale(typeSet.body, locale)
+    supportsLocale(typeSet.display, locale) &&
+    (supportsLocale(typeSet.body, locale) ||
+      !!(typeSet.bodyGlyphFallback && supportsLocale(typeSet.bodyGlyphFallback, locale)))
   );
 }
 
 export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
-  // Classic occasion: high-contrast display serif over a humanist serif body.
-  // The display/body gap is deliberate: 88px against 17px.
+  // Postamt's light serif, with Gatsby's deliberate display/body hierarchy.
   ceremony: {
     id: "ceremony",
     name: "Ceremony",
     description:
-      "High-contrast display serif over humanist serif body. For weddings, anniversaries, formal family events.",
-    display: "prata",
+      "Light ceremonial serif over a humanist body; measured against Postamt and Gatsby. For formal family events.",
+    display: "cormorant-garamond",
     body: "eb-garamond",
-    measure: 62,
+    measure: 58,
     levels: {
       display: {
-        size: "clamp(3.25rem, 1.5rem + 7vw, 5.5rem)",
+        size: "clamp(3.25rem, 1.5rem + 7vw, 6rem)",
         tracking: "-0.03em",
         leading: 1.08,
-        weight: 400,
+        weight: 300,
         features: "'liga' 1, 'kern' 1",
       },
       displaySm: {
         size: "clamp(2.125rem, 1.5rem + 2.6vw, 3.25rem)",
         tracking: "-0.02em",
         leading: 1.12,
-        weight: 400,
+        weight: 300,
         features: "'liga' 1, 'kern' 1",
       },
       lead: {
@@ -100,9 +106,10 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
       },
       caps: {
         size: "0.875rem",
+        role: "display",
         tracking: "0.1em",
         leading: 1.2,
-        weight: 500,
+        weight: 300,
         features: "'smcp' 1, 'onum' 1",
       },
     },
@@ -113,10 +120,11 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
     id: "editorial",
     name: "Editorial",
     description:
-      "Strong display serif over clean grotesque body. For corporate evenings, birthdays, contemporary celebrations.",
-    display: "noto-serif-display",
+      "Strong serif display over a clean grotesque, following Jafar–Sitora's role contrast. For contemporary celebrations.",
+    display: "cormorant-garamond",
     body: "golos-text",
-    measure: 66,
+    bodyGlyphFallback: "cormorant-garamond",
+    measure: 62,
     levels: {
       display: {
         size: "clamp(3rem, 1.35rem + 7.2vw, 5.25rem)",
@@ -155,6 +163,7 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
       },
       caps: {
         size: "0.8125rem",
+        role: "display",
         tracking: "0.12em",
         leading: 1.2,
         weight: 600,

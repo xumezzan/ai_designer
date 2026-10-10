@@ -1,0 +1,110 @@
+{
+  "mode": "production",
+  "created": true,
+  "uploads": true,
+  "saved": true,
+  "previews": [
+    {
+      "title": "Личное письмо",
+      "heading": "Дилшод & Малика",
+      "sections": 8
+    },
+    {
+      "title": "Апрельская афиша",
+      "heading": "Дилшод\n&\nМалика",
+      "sections": 8
+    },
+    {
+      "title": "После заката",
+      "heading": "Дилшод\n&\nМалика",
+      "sections": 8
+    },
+    {
+      "title": "Сузани · Atelier",
+      "heading": "Дилшод\n&\nМалика",
+      "sections": 8
+    },
+    {
+      "title": "Садовая вышивка",
+      "heading": "Дилшод\n&\nМалика",
+      "sections": 8
+    }
+  ],
+  "viewports": [
+    {
+      "width": 320,
+      "tab": "01 Анкета",
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "tab": "02 Фотографии и референсы",
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "width": 320,
+      "tab": "03 Пять дизайнов",
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "width": 390,
+      "tab": "01 Анкета",
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "tab": "02 Фотографии и референсы",
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "width": 390,
+      "tab": "03 Пять дизайнов",
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "width": 768,
+      "tab": "01 Анкета",
+      "viewport": 768,
+      "scrollWidth": 768
+    },
+    {
+      "width": 768,
+      "tab": "02 Фотографии и референсы",
+      "viewport": 768,
+      "scrollWidth": 768
+    },
+    {
+      "width": 768,
+      "tab": "03 Пять дизайнов",
+      "viewport": 768,
+      "scrollWidth": 768
+    },
+    {
+      "width": 1440,
+      "tab": "01 Анкета",
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "tab": "02 Фотографии и референсы",
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1440,
+      "tab": "03 Пять дизайнов",
+      "viewport": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "modal": true,
+  "reload": true,
+  "errors": []
+}

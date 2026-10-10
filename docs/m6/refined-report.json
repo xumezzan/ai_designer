@@ -1,0 +1,166 @@
+{
+  "runId": "273c45ab-505b-4bf8-8d10-9227c46b72ca",
+  "slug": "qa-quality-04702f51",
+  "conceptId": "variant-f9fdd42a-1",
+  "version": "2",
+  "createdAt": "2026-10-09T23:07:16.199Z",
+  "engine": "m6-1",
+  "contentRevision": "33550c673355224405c92d57a2707ac1e894f5b733e061e1cb4528d1d3b8f73d",
+  "planRevision": "2f15c04342d4774c587f305c3e9c9c6c30757335f27d66c7a02a595e382e274e",
+  "themeRevision": "3919a65ccdad8a4b0dac34034bb239025329779a7500efc3a5f0aefcac9ee355",
+  "rendererRevision": "5e79c72a64c1232c3c16bb3dcf8304f4cd163d123c6f398edcf9ecf083089580",
+  "viewports": [
+    390,
+    1024,
+    1440
+  ],
+  "checks": [
+    {
+      "id": "overflow",
+      "status": "pass",
+      "samples": 170,
+      "findings": []
+    },
+    {
+      "id": "collision",
+      "status": "pass",
+      "samples": 170,
+      "findings": []
+    },
+    {
+      "id": "clipping",
+      "status": "pass",
+      "samples": 170,
+      "findings": []
+    },
+    {
+      "id": "contrast",
+      "status": "fail",
+      "samples": 170,
+      "findings": [
+        {
+          "severity": "error",
+          "selector": "#countdown > dl:nth-of-type(1) > div:nth-of-type(4) > dd:nth-of-type(1)",
+          "viewport": 390,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1,
+          "expected": 3
+        },
+        {
+          "severity": "error",
+          "selector": "#countdown > dl:nth-of-type(1) > div:nth-of-type(4) > dd:nth-of-type(1)",
+          "viewport": 1024,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1,
+          "expected": 3
+        },
+        {
+          "severity": "error",
+          "selector": "#countdown > dl:nth-of-type(1) > div:nth-of-type(4) > dd:nth-of-type(1)",
+          "viewport": 1440,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1,
+          "expected": 3
+        }
+      ]
+    },
+    {
+      "id": "measure",
+      "status": "pass",
+      "samples": 3,
+      "findings": []
+    },
+    {
+      "id": "widow",
+      "status": "pass",
+      "samples": 0,
+      "findings": []
+    },
+    {
+      "id": "fonts",
+      "status": "pass",
+      "samples": 147,
+      "findings": []
+    },
+    {
+      "id": "tap",
+      "status": "pass",
+      "samples": 12,
+      "findings": []
+    },
+    {
+      "id": "resolution",
+      "status": "pass",
+      "samples": 3,
+      "findings": []
+    },
+    {
+      "id": "reduced-motion",
+      "status": "pass",
+      "samples": 3,
+      "findings": []
+    },
+    {
+      "id": "lcp",
+      "status": "pass",
+      "samples": 1,
+      "findings": []
+    },
+    {
+      "id": "cls",
+      "status": "pass",
+      "samples": 1,
+      "findings": []
+    },
+    {
+      "id": "face-crop",
+      "status": "pass",
+      "samples": 6,
+      "findings": []
+    },
+    {
+      "id": "busy-photo",
+      "status": "pass",
+      "samples": 6,
+      "findings": []
+    },
+    {
+      "id": "alignment",
+      "status": "pass",
+      "samples": 3,
+      "findings": []
+    }
+  ],
+  "visionModel": "claude-sonnet-4-6",
+  "measurements": {
+    "lcpMs": 608,
+    "cls": 0.00012460470085470086,
+    "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+  },
+  "evidence": [
+    {
+      "file": "viewport-390.png",
+      "label": "Полная страница · 390 px"
+    },
+    {
+      "file": "screen-390.png",
+      "label": "Первый экран · 390 px"
+    },
+    {
+      "file": "photo-0.png",
+      "label": "Фото · 1"
+    },
+    {
+      "file": "viewport-1024.png",
+      "label": "Полная страница · 1024 px"
+    },
+    {
+      "file": "viewport-1440.png",
+      "label": "Полная страница · 1440 px"
+    },
+    {
+      "file": "screen-1440.png",
+      "label": "Первый экран · 1440 px"
+    }
+  ]
+}

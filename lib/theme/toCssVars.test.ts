@@ -35,7 +35,7 @@ describe("toCssVars", () => {
 
   it("resolves font stacks through the font registry", () => {
     const vars = toCssVars(theme);
-    expect(vars["--font-display"]).toContain("Prata");
+    expect(vars["--font-display"]).toContain("Cormorant Garamond");
     expect(vars["--font-body"]).toContain("EB Garamond");
     expect(vars["--font-display"]).toContain("serif");
   });
@@ -45,8 +45,16 @@ describe("toCssVars", () => {
     expect(vars["--fs-display"]).toContain("clamp(");
     expect(vars["--tr-display"]).toBe("-0.03em");
     expect(vars["--lh-body"]).toBe("1.6");
-    expect(vars["--measure"]).toBe("62ch");
+    expect(vars["--measure"]).toBe("58ch");
     expect(vars["--features-caps"]).toContain("smcp");
+  });
+
+  it("publishes derived spacing and a real caps face for either pairing", () => {
+    const vars = toCssVars(theme);
+    expect(parseFloat(vars["--space-block"])).toBeGreaterThanOrEqual(2 * parseFloat(vars["--space-inside"]));
+    expect(vars["--space-hero-empty"]).toBe("66svh");
+    expect(vars["--font-caps"]).toContain("Cormorant Garamond");
+    expect(toCssVars({ ...theme, typeSet: "editorial" })["--font-caps"]).toContain("Cormorant Garamond");
   });
 
   it("carries material vars and foil", () => {

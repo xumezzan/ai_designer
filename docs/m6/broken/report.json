@@ -1,0 +1,225 @@
+{
+  "checks": [
+    {
+      "id": "overflow",
+      "status": "fail",
+      "samples": 160,
+      "findings": [
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 390,
+          "message": "Текст выходит за ширину экрана."
+        },
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 1024,
+          "message": "Текст выходит за ширину экрана."
+        },
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 1440,
+          "message": "Текст выходит за ширину экрана."
+        }
+      ]
+    },
+    {
+      "id": "collision",
+      "status": "pass",
+      "samples": 160,
+      "findings": []
+    },
+    {
+      "id": "clipping",
+      "status": "fail",
+      "samples": 160,
+      "findings": [
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 390,
+          "message": "Текст обрезан границей блока."
+        },
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 1024,
+          "message": "Текст обрезан границей блока."
+        },
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 1440,
+          "message": "Текст обрезан границей блока."
+        }
+      ]
+    },
+    {
+      "id": "contrast",
+      "status": "fail",
+      "samples": 160,
+      "findings": [
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 390,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1.42,
+          "expected": 3
+        },
+        {
+          "severity": "error",
+          "selector": "#countdown > dl:nth-of-type(1) > div:nth-of-type(4) > dd:nth-of-type(1)",
+          "viewport": 390,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1,
+          "expected": 3
+        },
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 1024,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1.41,
+          "expected": 3
+        },
+        {
+          "severity": "error",
+          "selector": "#countdown > dl:nth-of-type(1) > div:nth-of-type(4) > dd:nth-of-type(1)",
+          "viewport": 1024,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1,
+          "expected": 3
+        },
+        {
+          "severity": "error",
+          "selector": "#hero-title > span:nth-of-type(1)",
+          "viewport": 1440,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1.41,
+          "expected": 3
+        },
+        {
+          "severity": "error",
+          "selector": "#countdown > dl:nth-of-type(1) > div:nth-of-type(4) > dd:nth-of-type(1)",
+          "viewport": 1440,
+          "message": "Текст недостаточно контрастен на фактическом фоне.",
+          "observed": 1,
+          "expected": 3
+        }
+      ]
+    },
+    {
+      "id": "measure",
+      "status": "pass",
+      "samples": 0,
+      "findings": []
+    },
+    {
+      "id": "widow",
+      "status": "pass",
+      "samples": 0,
+      "findings": []
+    },
+    {
+      "id": "fonts",
+      "status": "pass",
+      "samples": 144,
+      "findings": []
+    },
+    {
+      "id": "tap",
+      "status": "pass",
+      "samples": 12,
+      "findings": []
+    },
+    {
+      "id": "resolution",
+      "status": "pass",
+      "samples": 3,
+      "findings": []
+    },
+    {
+      "id": "reduced-motion",
+      "status": "pass",
+      "samples": 3,
+      "findings": []
+    },
+    {
+      "id": "face-crop",
+      "status": "fail",
+      "samples": 3,
+      "findings": [
+        {
+          "severity": "error",
+          "selector": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > figure:nth-of-type(1)",
+          "viewport": 390,
+          "message": "Защищённая область фотографии обрезана или не задана."
+        },
+        {
+          "severity": "error",
+          "selector": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > figure:nth-of-type(1)",
+          "viewport": 1024,
+          "message": "Защищённая область фотографии обрезана или не задана."
+        },
+        {
+          "severity": "error",
+          "selector": "div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > figure:nth-of-type(1)",
+          "viewport": 1440,
+          "message": "Защищённая область фотографии обрезана или не задана."
+        }
+      ]
+    },
+    {
+      "id": "busy-photo",
+      "status": "pass",
+      "samples": 3,
+      "findings": []
+    },
+    {
+      "id": "lcp",
+      "status": "pass",
+      "samples": 1,
+      "findings": []
+    },
+    {
+      "id": "cls",
+      "status": "pass",
+      "samples": 1,
+      "findings": []
+    }
+  ],
+  "evidence": [
+    {
+      "file": "viewport-390.png",
+      "label": "Полная страница · 390 px"
+    },
+    {
+      "file": "screen-390.png",
+      "label": "Первый экран · 390 px"
+    },
+    {
+      "file": "photo-0.png",
+      "label": "Фото · 1"
+    },
+    {
+      "file": "viewport-1024.png",
+      "label": "Полная страница · 1024 px"
+    },
+    {
+      "file": "viewport-1440.png",
+      "label": "Полная страница · 1440 px"
+    },
+    {
+      "file": "screen-1440.png",
+      "label": "Первый экран · 1440 px"
+    }
+  ],
+  "measurements": {
+    "lcpMs": 592,
+    "cls": 0.00012460470085470086,
+    "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+  }
+}

@@ -1,6 +1,7 @@
 /**
- * Materials (SPEC §6.2) — procedural only: feTurbulence grain, layered
- * gradients for foil sheen, SVG masks for deckle edges. No raster textures.
+ * Procedural materials (SPEC §6.2): feTurbulence grain, layered
+ * gradients for foil sheen, SVG masks for deckle edges. Generated raster art
+ * is a separate, opt-in layer in registry/artwork following the design revision.
  * Rules: grain is always multi-layer (coarse + fine at different opacities);
  * shadows are long, soft, low-opacity and tinted toward the background; foil
  * applies to one element per page (enforced by the renderer).
@@ -41,8 +42,8 @@ const grainFine = svgUrl(
 const deckleMask = svgUrl(
   "<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' preserveAspectRatio='none'>" +
     "<filter id='dk'><feTurbulence type='fractalNoise' baseFrequency='0.04 0.09' numOctaves='3' seed='7'/>" +
-    "<feDisplacementMap in='SourceGraphic' scale='12'/></filter>" +
-    "<rect x='6' y='6' width='88' height='88' fill='white' filter='url(#dk)'/></svg>",
+    "<feDisplacementMap in='SourceGraphic' scale='2'/></filter>" +
+    "<rect x='1' y='1' width='98' height='98' fill='white' filter='url(#dk)'/></svg>",
 );
 
 export const materialSets: Partial<Record<MaterialSetId, MaterialSet>> = {
@@ -50,17 +51,17 @@ export const materialSets: Partial<Record<MaterialSetId, MaterialSet>> = {
     id: "paper",
     name: "Cotton paper",
     description:
-      "Warm cotton stock: two-layer grain, long tinted shadows, soft vignette, foil sheen physics, deckle edge.",
+      "Quiet cotton stock, following Postamt: two subtle grain layers, soft tinted shadows, restrained vignette and edge.",
     vars: {
       "--grain": grainCoarse,
       "--grain-fine": grainFine,
-      "--grain-opacity": "0.45",
-      "--grain-fine-opacity": "0.3",
+      "--grain-opacity": "0.07",
+      "--grain-fine-opacity": "0.035",
       "--vignette":
-        "radial-gradient(130% 110% at 50% 20%, transparent 52%, color-mix(in srgb, var(--ink) 9%, transparent) 100%)",
+        "radial-gradient(130% 110% at 50% 20%, transparent 60%, color-mix(in srgb, var(--ink) 3%, transparent) 100%)",
       // Long, soft, low-opacity, tinted toward the background hue — never rgba(0,0,0,.1).
       "--shadow-soft":
-        "0 30px 60px -30px color-mix(in srgb, var(--ink) 14%, transparent), 0 12px 24px -18px color-mix(in srgb, var(--ink) 8%, transparent)",
+        "0 30px 60px -30px color-mix(in srgb, var(--ink) 8%, transparent), 0 12px 24px -18px color-mix(in srgb, var(--ink) 4%, transparent)",
       // Luminance modulation only; the metal colour comes from --foil-color.
       "--foil-sheen":
         "linear-gradient(105deg, rgba(255,255,255,0) 12%, rgba(255,255,255,0.55) 32%, rgba(255,255,255,0) 48%, rgba(255,255,255,0.35) 68%, rgba(255,255,255,0) 88%), conic-gradient(from 200deg at 40% 55%, rgba(255,255,255,0.18), rgba(0,0,0,0.12), rgba(255,255,255,0.2), rgba(0,0,0,0.1), rgba(255,255,255,0.18))",
@@ -70,7 +71,7 @@ export const materialSets: Partial<Record<MaterialSetId, MaterialSet>> = {
     svgFilter:
       "<svg xmlns='http://www.w3.org/2000/svg' width='0' height='0'><defs>" +
       "<filter id='paper-edge'><feTurbulence type='fractalNoise' baseFrequency='0.035 0.07' numOctaves='3' seed='11' result='n'/>" +
-      "<feDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G'/>" +
+      "<feDisplacementMap in='SourceGraphic' in2='n' scale='2' xChannelSelector='R' yChannelSelector='G'/>" +
       "</filter></defs></svg>",
   },
 };

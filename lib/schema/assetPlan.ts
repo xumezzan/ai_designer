@@ -12,21 +12,21 @@ export const AssetPlan = z.object({
   assets: z
     .array(
       z.object({
-        id: z.string(),
+        id: z.string().min(1).max(100),
 
         role: z.enum(["hero", "portrait", "story", "gallery", "backdrop", "unused"]),
         subject: z.enum(["couple", "person", "group", "venue", "detail", "landscape"]),
 
         // Normalised 0..1. The renderer maps focal to object-position.
-        focal: z.tuple([z.number(), z.number()]),
+        focal: z.tuple([z.number().min(0).max(1), z.number().min(0).max(1)]),
 
         // Normalised box that must never be cropped away (faces, joined hands).
         safeArea: z.object({
-          x: z.number(),
-          y: z.number(),
-          w: z.number(),
-          h: z.number(),
-        }),
+          x: z.number().min(0).max(1),
+          y: z.number().min(0).max(1),
+          w: z.number().positive().max(1),
+          h: z.number().positive().max(1),
+        }).refine((box) => box.x + box.w <= 1.0000001 && box.y + box.h <= 1.0000001, "Safe area must fit inside the image"),
 
         allowedRatios: z
           .array(z.enum(["3:4", "4:5", "1:1", "3:2", "16:9"]))
@@ -50,14 +50,20 @@ export const AssetPlan = z.object({
 
         // Cap on how much screen the image may occupy.
         maxViewportShare: z.number().min(0.15).max(1),
-        placement: z.object({ section: SectionId, index: z.number() }).nullable(),
-        note: z.string().optional(),
+        placement: z.object({ section: SectionId, index: z.number().int().nonnegative().max(40) }).nullable(),
+        note: z.string().max(1000).optional(),
       }),
     )
-    .default([]),
+    .max(40).default([]),
 
   // One treatment for the whole set, so mismatched sources read as one film.
   unifiedTreatment: z.enum(["warm-film", "desaturate", "bw", "none"]),
+}).superRefine((plan, context) => {
+  if (new Set(plan.assets.map((asset) => asset.id)).size !== plan.assets.length) context.addIssue({ code: z.ZodIssueCode.custom, path: ["assets"], message: "Photo ids must be unique" });
+  plan.assets.forEach((asset, index) => {
+    if (asset.role === "unused" && asset.placement) context.addIssue({ code: z.ZodIssueCode.custom, path: ["assets", index, "placement"], message: "Unused photos cannot have a placement" });
+    if ((asset.role === "hero" || asset.placement?.section === "hero") && asset.quality !== "high") context.addIssue({ code: z.ZodIssueCode.custom, path: ["assets", index, "quality"], message: "Hero requires high quality" });
+  });
 });
 
 export type AssetPlan = z.infer<typeof AssetPlan>;
