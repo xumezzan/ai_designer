@@ -1,0 +1,292 @@
+{
+  "mode": "Browser measurements of three authored revisions; no paid providers",
+  "viewports": [
+    390,
+    1024,
+    1440
+  ],
+  "compositions": [
+    {
+      "composition": "letter",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "samples": 0,
+          "findings": 0
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "samples": 2,
+          "findings": 2
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "samples": 72,
+          "findings": 0
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "samples": 6,
+          "findings": 0
+        },
+        {
+          "id": "resolution",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "samples": 1,
+          "findings": 0
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "samples": 1,
+          "findings": 0
+        }
+      ],
+      "measurements": {
+        "lcpMs": 652,
+        "cls": 0.00007532095797720797,
+        "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+      }
+    },
+    {
+      "composition": "folio",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "samples": 93,
+          "findings": 0
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "samples": 0,
+          "findings": 0
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "samples": 2,
+          "findings": 2
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "samples": 72,
+          "findings": 0
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "samples": 6,
+          "findings": 0
+        },
+        {
+          "id": "resolution",
+          "status": "warning",
+          "samples": 3,
+          "findings": 2
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "samples": 1,
+          "findings": 0
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "samples": 1,
+          "findings": 0
+        }
+      ],
+      "measurements": {
+        "lcpMs": 656,
+        "cls": 0.00007532095797720797,
+        "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+      }
+    },
+    {
+      "composition": "arch",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "samples": 90,
+          "findings": 0
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "samples": 90,
+          "findings": 0
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "samples": 90,
+          "findings": 0
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "samples": 90,
+          "findings": 0
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "samples": 0,
+          "findings": 0
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "samples": 2,
+          "findings": 2
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "samples": 69,
+          "findings": 0
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "samples": 6,
+          "findings": 0
+        },
+        {
+          "id": "resolution",
+          "status": "warning",
+          "samples": 3,
+          "findings": 2
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "samples": 3,
+          "findings": 0
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "samples": 1,
+          "findings": 0
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "samples": 1,
+          "findings": 0
+        }
+      ],
+      "measurements": {
+        "lcpMs": 644,
+        "cls": 0.0005681223290598291,
+        "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+      }
+    }
+  ]
+}

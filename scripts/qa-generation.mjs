@@ -38,16 +38,16 @@ try {
   assert.equal(created.status(), 201);
   assert.equal((await created.json()).concepts.length, 0);
   await page.goto(`${base}/studio/${slug}`);
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.locator(".studio-results").waitFor();
   assert.equal(await page.locator(".studio-preview-card").count(), 0);
   report.emptyInitially = true;
-  await page.getByRole("button", { name: "02 Фотографии и референсы", exact: true }).click();
+  await page.getByText("Фото и референсы", { exact: true }).click();
   let chooser = page.waitForEvent("filechooser");
-  await page.getByRole("button", { name: "+ Загрузить", exact: true }).first().click();
+  await page.locator(".studio-media-heading").getByRole("button", { name: "Добавить", exact: true }).first().click();
   await (await chooser).setFiles([source, low]);
-  await page.getByRole("status").filter({ hasText: "Загружено изображений: 2." }).waitFor();
+  await page.getByRole("status").filter({ hasText: "Добавлено фото: 2." }).waitFor();
   chooser = page.waitForEvent("filechooser");
-  await page.getByRole("button", { name: "+ Загрузить", exact: true }).nth(1).click();
+  await page.locator(".studio-media-heading").getByRole("button", { name: "Добавить", exact: true }).nth(1).click();
   await (await chooser).setFiles(reference);
   await page.getByAltText("Референс 1", { exact: true }).waitFor();
   const state = await snapshot();
@@ -55,11 +55,12 @@ try {
   const savedPlan = await page.request.put(`${base}/api/projects/${slug}/asset-plan`, { data: { ...state, assetPlan } });
   assert.equal(savedPlan.status(), 200);
   await page.reload();
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.locator(".studio-results").waitFor();
+  await page.locator(".studio-brief-editor").evaluate((element) => { element.open = true; });
   const brief = "Великий Гэтсби: единый чёрно-золотой ар-деко, геометрические рамки и ромбы как в референсе. Пять похожих вариантов с разным расположением фотографий, имён, даты и узоров. Не добавляй цветы.";
   await page.getByRole("textbox", { name: /^Пожелания к дизайну/ }).fill(brief);
   const generatedResponse = page.waitForResponse((response) => response.url().endsWith("/api/generate"), { timeout: 540000 });
-  await page.getByRole("button", { name: "Сгенерировать 5 вариантов", exact: true }).click();
+  await page.getByRole("button", { name: "Создать дизайны", exact: true }).click();
   const response = await generatedResponse;
   const generated = await response.json();
   assert.equal(response.status(), 200, JSON.stringify(generated));
@@ -82,7 +83,7 @@ try {
     assert(!photos.some((photo) => photo.id === state.content.media[1].id && photo.section === "hero"));
     report.variants.push({ name: meta.name, composition: layout.composition, arrangement: layout.photoArrangement, ornaments: ornament.placement, photos });
   }
-  await page.getByRole("status").filter({ hasText: "Созданы пять новых композиций" }).waitFor();
+  await page.getByRole("status").filter({ hasText: "Готово: 5 вариантов" }).waitFor();
   const cards = page.locator(".studio-preview-card");
   assert.equal(await cards.count(), 5);
   for (const card of await cards.all()) {
@@ -131,12 +132,12 @@ try {
     }
   }
   await page.goto(`${base}/studio/${slug}`);
-  await page.getByRole("button", { name: "04 Пять дизайнов", exact: true }).click();
+  await page.locator(".studio-results").waitFor();
   assert.equal(await cards.count(), 5);
   report.reload = true;
   const before = await readFile(path.join(directory, "generation.json"), "utf8");
   await page.route("**/api/generate", (route) => route.fulfill({ status: 502, contentType: "application/json", body: JSON.stringify({ error: "Контрольная ошибка провайдера" }) }));
-  await page.getByRole("button", { name: "Сгенерировать ещё 5 вариантов", exact: true }).click();
+  await page.getByRole("button", { name: "Создать новые дизайны", exact: true }).click();
   await page.getByRole("alert").filter({ hasText: "Контрольная ошибка провайдера" }).waitFor();
   assert.equal(await cards.count(), 5);
   assert.equal(await readFile(path.join(directory, "generation.json"), "utf8"), before);

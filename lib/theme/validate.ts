@@ -277,6 +277,17 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
   const warnings: string[] = [];
 
   errors.push(...checkKeys(theme as unknown as Record<string, unknown>));
+  if (theme.layout.preset === "card-stack") {
+    if (theme.artwork !== "none") errors.push("Material scenes use their native artwork; select artwork none");
+    const glass = theme.layout.composition === "glass-garden";
+    if (theme.materialSet !== (glass ? "glass" : "paper")) errors.push("Select the material registered for this physical scene");
+    const texture = glass ? "smooth" : theme.layout.composition === "silk-suite" ? "raw-silk" : "cotton-paper";
+    if (theme.surface.texture !== texture) errors.push("Select the texture registered for this physical scene");
+  }
+  if (["keepsake", "vow", "editorial-story"].includes(theme.layout.composition)) {
+    if (theme.artwork !== "none" || theme.generatedVisual || theme.ornament.pack !== "none") errors.push("Wedding stories use native photo compositions; select artwork none, ornament none and no generatedVisual");
+    if (theme.layout.sectionOrder[0] !== "hero" || (theme.layout.sectionOrder.includes("greeting") && theme.layout.sectionOrder[1] !== "greeting")) errors.push("Wedding stories open with hero followed by greeting when included");
+  }
 
   // Preset existence: a key is only real once its registry module provides it.
   const typeSet = getTypeSet(theme.typeSet);
@@ -290,7 +301,7 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
   if (layout && !layout.heroes.includes(theme.layout.hero)) errors.push(`hero "${theme.layout.hero}" has no registered renderer`);
   if (theme.layout.hero === "full-photo" && options?.hasHighQualityAsset !== true) errors.push("full-photo hero requires a high-quality photo in the asset plan");
   if (!getMotion(theme.motion.preset)) errors.push(`motion "${theme.motion.preset}" has no registered preset`);
-  if (theme.motion.ambient !== "none") errors.push(`ambient "${theme.motion.ambient}" is not implemented`);
+  if (theme.motion.ambient !== "none" && (theme.layout.preset !== "card-stack" || !["dust", "petals"].includes(theme.motion.ambient))) errors.push(`ambient "${theme.motion.ambient}" is not implemented for this layout`);
   if (!getOrnament(theme.ornament.pack)) errors.push("ornament has no registered preset");
   if (new Set(theme.layout.sectionOrder).size !== theme.layout.sectionOrder.length) errors.push("sectionOrder must not repeat a section");
   if (theme.layout.sectionOrder[0] !== "hero" || theme.layout.sectionOrder.at(-1) !== "footer") errors.push("sectionOrder must start with hero and end with footer");

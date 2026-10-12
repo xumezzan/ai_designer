@@ -35,12 +35,13 @@ try {
   const created = await page.request.post(`${base}/api/projects`, { data: { ...demo, slug, hosts: [{ name: "Тест" }, { name: "Фото" }], media: [], refs: [], brief: "Photo regression fixture; not a real event" } });
   assert.equal(created.status(), 201);
   await page.goto(`${base}/studio/${slug}`);
-  await page.getByRole("button", { name: "02 Фотографии и референсы", exact: true }).click();
+  await page.getByText("Фото и референсы", { exact: true }).click();
   const chooser = page.waitForEvent("filechooser");
-  await page.getByRole("button", { name: "+ Загрузить", exact: true }).first().click();
+  await page.locator(".studio-media-heading").getByRole("button", { name: "Добавить", exact: true }).first().click();
   await (await chooser).setFiles(files);
-  await page.getByRole("status").filter({ hasText: "Загружено изображений: 3." }).waitFor();
-  await page.getByRole("button", { name: "03 Настройки фото", exact: true }).click();
+  await page.getByRole("status").filter({ hasText: "Добавлено фото: 3." }).waitFor();
+  await page.locator(".studio-upload-disclosure").evaluate((element) => { element.open = true; });
+  await page.getByText("Настроить кадры и обработку", { exact: true }).click();
   const cards = page.locator(".studio-photo-settings");
   assert.equal(await cards.count(), 3);
   await page.getByRole("combobox", { name: /^Общая обработка серии/ }).selectOption("bw");
@@ -91,7 +92,8 @@ try {
     }
   }
   await page.reload();
-  await page.getByRole("button", { name: "03 Настройки фото", exact: true }).click();
+  await page.locator(".studio-upload-disclosure").evaluate((element) => { element.open = true; });
+  await page.getByText("Настроить кадры и обработку", { exact: true }).click();
   assert.equal(await page.getByRole("combobox", { name: /^Общая обработка серии/ }).inputValue(), "bw");
   report.reload = true;
   // Legacy hand-authored fixtures are explicitly copied for this renderer test only.

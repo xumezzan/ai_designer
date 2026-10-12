@@ -15,13 +15,14 @@ export async function snapshot(page, assets) {
     };
     const rgba = (value) => { const canvas = document.createElement("canvas"); canvas.width = canvas.height = 1; const ctx = canvas.getContext("2d"); ctx.fillStyle = value; ctx.fillRect(0, 0, 1, 1); return [...ctx.getImageData(0, 0, 1, 1).data]; };
     const rect = (box) => ({ x: box.left + scrollX, y: box.top + scrollY, w: box.width, h: box.height });
+    const visible = (element) => element.checkVisibility({ checkOpacity: true, checkVisibilityCSS: true });
     const fragments = [], clipping = [], fonts = [], measures = [], widows = [];
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     let node, id = 0;
     while ((node = walker.nextNode())) {
       if (!node.textContent.trim() || node.parentElement.closest('[aria-hidden="true"], script, style')) continue;
       const element = node.parentElement, style = getComputedStyle(element);
-      if (style.visibility === "hidden" || Number(style.opacity) === 0) continue;
+      if (!visible(element)) continue;
       const range = document.createRange(); range.selectNodeContents(node);
       const canvas = document.createElement("canvas"), ctx = canvas.getContext("2d");
       ctx.font = `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
@@ -49,6 +50,7 @@ export async function snapshot(page, assets) {
       id++;
     }
     for (const element of root.querySelectorAll("[data-level]")) {
+      if (!visible(element)) continue;
       const css = getComputedStyle(element), family = css.fontFamily.split(",")[0].replaceAll('"', "").trim();
       const canvas = document.createElement("canvas"), ctx = canvas.getContext("2d");
       const font = `${css.fontStyle} ${css.fontWeight} ${css.fontSize}`;
@@ -59,6 +61,7 @@ export async function snapshot(page, assets) {
       fonts.push({ selector: selector(element), family, loaded, difference: Math.abs(actual - expected) });
     }
     for (const element of root.querySelectorAll("p, address")) {
+      if (!visible(element)) continue;
       if (element.textContent.trim().length < 100) continue;
       const css = getComputedStyle(element), canvas = document.createElement("canvas"), ctx = canvas.getContext("2d");
       ctx.font = `${css.fontWeight} ${css.fontSize} ${css.fontFamily}`;
@@ -66,6 +69,7 @@ export async function snapshot(page, assets) {
       measures.push({ selector: selector(element), characters: element.getBoundingClientRect().width / average });
     }
     for (const element of root.querySelectorAll("h1, h2, h3")) {
+      if (!visible(element)) continue;
       const lines = new Map(), words = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
       let text;
       while ((text = words.nextNode())) for (const match of text.textContent.matchAll(/\S+/g)) {
@@ -76,7 +80,7 @@ export async function snapshot(page, assets) {
       const values = [...lines.entries()].sort((a, b) => a[0] - b[0]).map((entry) => entry[1]);
       if (values.length > 1 && values.at(-1) === 1 && values.slice(0, -1).some((count) => count > 1)) widows.push({ selector: selector(element) });
     }
-    const taps = [...root.querySelectorAll("a, button, input, select, textarea, summary, [role=button]")].map((element) => ({ selector: selector(element), ...rect(element.getBoundingClientRect()) })).filter((box) => box.w && box.h);
+    const taps = [...root.querySelectorAll("a, button, input, select, textarea, summary, [role=button]")].filter(visible).map((element) => ({ selector: selector(element), ...rect(element.getBoundingClientRect()) })).filter((box) => box.w && box.h);
     const photos = [...root.querySelectorAll(".directed-photo")].map((figure) => {
       const image = figure.querySelector("img"), asset = assets.find((asset) => asset.id === figure.dataset.photoId);
       const box = figure.getBoundingClientRect(), fit = getComputedStyle(image).objectFit;
@@ -87,8 +91,12 @@ export async function snapshot(page, assets) {
       const valid = safe && safe.x * image.naturalWidth * scale - x >= -1 && safe.y * image.naturalHeight * scale - y >= -1 && (safe.x + safe.w) * image.naturalWidth * scale - x <= box.width + 1 && (safe.y + safe.h) * image.naturalHeight * scale - y <= box.height + 1;
       return { selector: selector(figure), id: figure.dataset.photoId, density: scale ? 1 / scale : 0, protected: Boolean(valid), ...rect(box) };
     });
-    const busy = photos.flatMap((photo) => fragments.filter((text) => Math.min(text.x + text.w, photo.x + photo.w) - Math.max(text.x, photo.x) > 2 && Math.min(text.y + text.h, photo.y + photo.h) - Math.max(text.y, photo.y) > 2).map((text) => ({ selector: text.selector })));
+    const visuals = [...root.querySelectorAll(".generated-visual img")].map((image) => {
+      const box = image.getBoundingClientRect();
+      return { selector: selector(image), density: image.naturalWidth / box.width, ...rect(box) };
+    });
+    const busy = [...photos, ...visuals].flatMap((photo) => fragments.filter((text) => Math.min(text.x + text.w, photo.x + photo.w) - Math.max(text.x, photo.x) > 2 && Math.min(text.y + text.h, photo.y + photo.h) - Math.max(text.y, photo.y) > 2).map((text) => ({ selector: text.selector })));
     const animations = document.getAnimations().filter((animation) => animation.playState === "running").length;
-    return { viewport: innerWidth, height: document.documentElement.scrollHeight, scrollWidth: document.documentElement.scrollWidth, fragments, clipping, fonts, measures, widows, taps, photos, busy, animations };
+    return { viewport: innerWidth, height: document.documentElement.scrollHeight, scrollWidth: document.documentElement.scrollWidth, fragments, clipping, fonts, measures, widows, taps, photos, visuals, busy, animations };
   }, assets);
 }

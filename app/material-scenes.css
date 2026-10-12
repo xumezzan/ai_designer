@@ -1,0 +1,148 @@
+/* Three authored physical scenes. All event text remains live, on a readable plate. */
+.card-stack { position: relative; isolation: isolate; --panel-edge: color-mix(in srgb, var(--ink) 17%, var(--surface)); --panel-shadow: color-mix(in srgb, var(--ink) 34%, transparent); }
+.material-backdrop { position: absolute; inset: 0; z-index: -1; pointer-events: none; background: var(--bg); }
+.card-stack .invitation-experience { position: relative; isolation: isolate; }
+.material-content { position: relative; width: min(calc(100% - 3rem), 64rem); margin-inline: auto; padding-block: clamp(2rem, 6vw, 6rem); }
+.material-slot { position: relative; margin-block: clamp(3rem, 7vw, 6rem); perspective: 1400px; }
+.material-slot:first-child { margin-top: 0; }
+.material-panel { position: relative; min-width: 0; padding: clamp(2rem, 5vw, 4.5rem); background: var(--surface); border: 1px solid var(--panel-edge); transform: perspective(1400px) rotateX(var(--panel-pitch, 0deg)) rotateY(var(--panel-yaw, 0deg)); transform-origin: 50% 75%; transition: transform 650ms cubic-bezier(.16,1,.3,1); box-shadow: 0 3px 1px -1px var(--panel-edge), 0 6px 0 -2px var(--surface), 0 7px 1px -2px var(--panel-edge), 12px 35px 55px -23px var(--panel-shadow), 0 65px 100px -55px var(--panel-shadow); }
+.material-panel-content { position: relative; z-index: 1; }
+.material-panel-edge, .material-panel-light { position: absolute; inset: 0; pointer-events: none; }
+.material-panel-edge { inset: 1rem; border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent); box-shadow: 0 1px 0 color-mix(in srgb, var(--surface) 80%, white); }
+.material-panel-light { background: radial-gradient(ellipse at var(--panel-light-x, 20%) 0, color-mix(in srgb, var(--bg) 25%, transparent), transparent 70%), var(--grain-fine); background-blend-mode: normal, soft-light; opacity: .35; }
+.card-stack .invitation-section { padding: 0; }
+.card-stack :is(.greeting-section, .venue-section) { grid-template-columns: minmax(0, 1fr); gap: 1.7rem; }
+.card-stack h2[data-level="display-sm"] { font-size: clamp(2rem, 4.3vw, 3.5rem); line-height: 1.12; margin-bottom: 1.5rem; }
+.card-stack :is(p, address) { max-width: 52ch; }
+.card-stack .rsvp-section { margin: 0; box-shadow: none; background: none; }
+.card-stack .countdown-section { border: 0; }
+.card-stack .countdown-values { gap: .8rem; }
+.card-stack .countdown-values dd { font-size: clamp(1.7rem, 4vw, 3rem); }
+.card-stack .countdown-values dt { font-size: .75rem; }
+.card-stack .timeline-list li { grid-template-columns: 4.5rem minmax(0, 1fr); gap: 1rem; padding-block: 1.25rem; border-color: var(--panel-edge); }
+.card-stack .timeline-list p { color: var(--ink); opacity: .85; }
+.card-stack .timeline-list li > div { min-width: 0; }
+.card-stack .timeline-list h3 { font-size: clamp(1.15rem, 2vw, 1.45rem); line-height: 1.25; overflow-wrap: anywhere; }
+.card-stack .section-eyebrow { font-size: .6875rem; letter-spacing: .14em; }
+.card-stack .invitation-button { border-radius: 2px; padding: .9rem 1.2rem; max-width: 100%; }
+.card-stack .invitation-footer { padding-block: 1.5rem; border: 0; color: var(--ink); }
+.material-hero { position: relative; }
+.material-hero-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--panel-edge); }
+.material-hero-top [data-level="small"] { font-size: .65rem; letter-spacing: .16em; }
+.material-identity { padding-block: 1.5rem; }
+.card-stack #hero-title { font-size: clamp(3.4rem, 6.7vw, 6.75rem); line-height: 1.02; letter-spacing: var(--inv-tracking-headline); font-weight: var(--fw-display); overflow-wrap: anywhere; }
+.material-host { display: block; }
+.material-join { display: block; font-size: .5em; line-height: 1.2; padding-block: .12em; }
+.material-monogram { display: none; }
+.material-date { display: flex; align-items: center; gap: 1.2rem; margin-top: 1.5rem; }
+.material-date strong { font-family: var(--font-display); font-size: 5.5rem; line-height: 1; font-weight: 400; }
+.material-date > span { display: flex; flex-direction: column; gap: .45rem; font-size: 1.05rem; }
+.material-date small { font-size: .8rem; }
+.material-venue { margin-top: 1rem; font-size: .9375rem; }
+.material-personal { margin-block: 1rem; }
+.card-stack .invitation-calendar { margin-top: 1.25rem; }
+.card-stack .invitation-calendar summary { max-width: 100%; font-size: .75rem; }
+.card-stack .calendar-options a { font-size: .75rem; }
+.material-envelope { position: relative; height: 12rem; width: min(100%, 23rem); margin: 2.2rem auto 1rem; perspective: 1000px; }
+.envelope-insert { position: absolute; inset: 0 1.8rem 1.5rem; background: color-mix(in srgb, var(--surface) 88%, white); transform: rotate(-5deg); border: 1px solid var(--panel-edge); box-shadow: 1px 3px 1px var(--panel-edge), 8px 12px 19px -7px var(--panel-shadow); }
+.envelope-insert::after { content: ""; position: absolute; inset: 1rem; border: 1px solid var(--panel-edge); }
+.envelope-pocket { position: absolute; inset: 2.2rem 0 0; background: var(--surface); border: 1px solid var(--panel-edge); box-shadow: inset 0 2px 1px color-mix(in srgb, var(--surface) 70%, white), 0 3px 1px var(--panel-edge), 4px 17px 25px -10px var(--panel-shadow); }
+.envelope-pocket::after { content: ""; position: absolute; inset: 0; clip-path: polygon(0 0,50% 65%,100% 0,100% 100%,0 100%); background: linear-gradient(150deg, color-mix(in srgb, var(--surface) 85%, white) 49.6%, var(--panel-edge) 50%, var(--surface) 50.4%); }
+.material-seal { position: absolute; width: 3.5rem; height: 3.5rem; left: calc(50% - 1.75rem); top: 6.9rem; z-index: 1; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--surface); font: .85rem var(--font-display); border: 3px double color-mix(in srgb, var(--accent) 70%, var(--surface)); box-shadow: inset 1px 2px 1px color-mix(in srgb, var(--accent) 60%, white), inset -2px -3px 4px color-mix(in srgb, var(--accent) 80%, black), 0 4px 3px -1px var(--panel-shadow); }
+.card-stack .ornament-watermark { width: 20%; top: 8%; right: 2%; opacity: .3; }
+.card-stack .ornament-hero-frame { width: 18%; top: 10%; right: 3%; opacity: .3; }
+.card-stack .generated-visual { position: relative; width: min(50%, 17rem); margin-inline: auto; }
+.card-stack[data-scene-visual="band"] .generated-visual { width: min(100%, 32rem); }
+.card-stack[data-scene-visual="side-left"] .generated-visual { width: 33%; float: left; margin: 1rem 1.5rem 1rem 0; }
+.card-stack[data-scene-visual="side-right"] .generated-visual { width: 33%; float: right; margin: 1rem 0 1rem 1.5rem; }
+.card-stack[data-scene-visual="medallion"] .generated-visual { width: 8rem; aspect-ratio: 1; display: grid; place-items: center; }
+.card-stack[data-scene-visual="inset"] .generated-visual { width: 60%; padding: 1rem; border: 1px solid var(--panel-edge); margin-block: 1.5rem; }
+
+/* Silk carries a raised paper suite: inset cloth, weighted edges, envelope and asymmetry. */
+.card-stack[data-composition="silk-suite"] .material-backdrop { background-image: linear-gradient(color-mix(in srgb, var(--accent-alt) 35%, transparent), color-mix(in srgb, var(--accent-alt) 50%, transparent)), url('/artwork/material-scenes/silk-v1.webp'); background-size: auto, 100% auto; background-repeat: no-repeat, repeat-y; background-blend-mode: multiply; }
+.card-stack[data-composition="silk-suite"] .material-content { max-width: 54rem; }
+.card-stack[data-composition="silk-suite"] .material-hero-panel { margin-inline: 1.25rem 3.5rem; }
+.card-stack[data-composition="silk-suite"] .material-hero-panel::before { content: ""; position: absolute; inset: 2rem -1.4rem -1.4rem 1.4rem; z-index: -1; background: var(--bg); transform: rotate(2deg); border: 1px solid var(--panel-edge); box-shadow: 10px 30px 35px -14px var(--panel-shadow); }
+.card-stack[data-composition="silk-suite"] .material-slot:nth-child(2n) { margin-inline: 3.5rem 0; }
+.card-stack[data-composition="silk-suite"] .material-slot:nth-child(2n+3) { margin-inline: 0 3.5rem; }
+.card-stack[data-composition="silk-suite"] .material-slot-footer { margin-inline: 0; }
+.card-stack[data-composition="silk-suite"] .invitation-footer { background: var(--surface); padding: 2rem; border: 1px solid var(--panel-edge); }
+
+/* Pressed flower: a die-cut cotton cover followed by an editorial two-column suite. */
+.card-stack[data-composition="pressed-flower"] .material-backdrop { background: radial-gradient(ellipse at 8% 2%, color-mix(in srgb, var(--accent) 16%, var(--bg)), transparent 45%), var(--bg); }
+.card-stack[data-composition="pressed-flower"] .material-content { max-width: 68rem; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2.5rem; align-items: start; }
+.card-stack[data-composition="pressed-flower"] .material-slot { margin-block: 1.5rem; }
+.card-stack[data-composition="pressed-flower"] :is(.material-slot-hero, .material-slot-greeting, .material-slot-footer) { grid-column: 1 / -1; }
+.card-stack[data-composition="pressed-flower"] .material-slot-greeting { margin-top: 4rem; }
+.card-stack[data-composition="pressed-flower"] .material-panel { background: var(--surface); box-shadow: inset 0 0 35px color-mix(in srgb, var(--accent) 4%, transparent), 0 3px 0 var(--panel-edge), 0 5px 0 var(--surface), 0 6px 0 var(--panel-edge), 8px 25px 35px -15px var(--panel-shadow); }
+.card-stack[data-composition="pressed-flower"] .material-hero-panel { border-radius: 47% 47% 0 0 / 12% 12% 0 0; padding-top: 4rem; text-align: center; max-width: 47rem; margin-inline: auto; }
+.card-stack[data-composition="pressed-flower"] .material-hero-panel .material-panel-edge { border-radius: inherit; inset: 1.2rem; border-style: double; border-width: 3px; }
+.card-stack[data-composition="pressed-flower"] .material-hero-top { justify-content: center; border: 0; }
+.card-stack[data-composition="pressed-flower"] .material-hero-top > span { display: none; }
+.card-stack[data-composition="pressed-flower"] .material-envelope { display: none; }
+.card-stack[data-composition="pressed-flower"] .material-monogram { display: grid; place-items: center; width: 6rem; height: 6rem; margin: 0 auto 2rem; border: 3px double var(--panel-edge); border-radius: 50%; font: 2rem var(--font-display); text-shadow: 0 1px color-mix(in srgb, var(--surface) 70%, white), 0 -1px var(--panel-edge); box-shadow: inset 0 2px 4px color-mix(in srgb, var(--ink) 12%, transparent), 0 2px color-mix(in srgb, var(--surface) 80%, white); }
+.card-stack[data-composition="pressed-flower"] .material-date { justify-content: center; }
+.card-stack[data-composition="pressed-flower"] .material-venue { margin-inline: auto; }
+.card-stack[data-composition="pressed-flower"] .material-panel-light { background: var(--grain), var(--grain-fine); opacity: .17; mix-blend-mode: multiply; }
+.card-stack[data-composition="pressed-flower"] .ornament-watermark { top: 8%; right: 3%; width: 19%; opacity: .55; }
+.card-stack[data-composition="pressed-flower"] .greeting-section { grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); gap: 2rem; }
+
+/* Optical glass: botanical depth outside, blurred refraction and a stable ink field inside. */
+.card-stack[data-composition="glass-garden"] { --panel-edge: color-mix(in srgb, var(--ink) 34%, transparent); --panel-shadow: rgba(5, 22, 12, .45); }
+.card-stack[data-composition="glass-garden"] .material-backdrop { background-image: linear-gradient(rgba(5,24,14,.18), rgba(5,24,14,.45)), url('/artwork/material-scenes/garden-v1.webp'); background-size: auto, cover; background-position: center; }
+.card-stack[data-composition="glass-garden"] .material-content { max-width: 56rem; }
+.card-stack[data-composition="glass-garden"] .material-panel { border-radius: 3rem 3rem .5rem .5rem; background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(12px) saturate(.9); -webkit-backdrop-filter: blur(12px) saturate(.9); border-color: color-mix(in srgb, var(--ink) 25%, transparent); box-shadow: inset 2px 2px 1px color-mix(in srgb, var(--ink) 22%, transparent), inset -2px -2px 1px rgba(4,24,14,.45), 0 2px 0 color-mix(in srgb, var(--ink) 15%, transparent), 0 25px 70px -20px var(--panel-shadow); }
+.card-stack[data-composition="glass-garden"] .material-panel-edge { border-radius: inherit; inset: .65rem; border-color: color-mix(in srgb, var(--ink) 12%, transparent); }
+.card-stack[data-composition="glass-garden"] .material-panel-light { border-radius: inherit; background: linear-gradient(125deg, color-mix(in srgb, var(--ink) 9%, transparent), transparent 28% 72%, color-mix(in srgb, var(--ink) 5%, transparent)); opacity: 1; }
+.card-stack[data-composition="glass-garden"] .material-hero { text-align: center; }
+.card-stack[data-composition="glass-garden"] .material-envelope { display: none; }
+.card-stack[data-composition="glass-garden"] .material-monogram { display: block; font: italic 3rem var(--font-display); opacity: .75; padding-block: 1.5rem; }
+.card-stack[data-composition="glass-garden"] .material-date { justify-content: center; padding-top: 1.5rem; border-top: 1px solid var(--panel-edge); }
+.card-stack[data-composition="glass-garden"] .material-venue { margin-inline: auto; }
+.card-stack[data-composition="glass-garden"] :is(.section-eyebrow, .venue-coordinates, .dress-palette-heading, .rsvp-copy > p, .timeline-list p) { color: var(--ink); opacity: 1; }
+.card-stack[data-composition="glass-garden"] .invitation-footer { background: var(--surface); border-radius: .5rem; padding: 2rem; }
+
+/* Real photo frames keep DirectedImage's source-resolution, whole-photo and safe-area limits. */
+.material-photos { padding: 2rem .75rem; }
+.deck-track { display: grid; grid-template-columns: minmax(0, 1fr); align-items: center; padding: 1.25rem; }
+.deck-card { min-width: 0; padding: 1rem; scroll-snap-align: center; }
+.deck-card .directed-photo { outline: 1px solid var(--panel-edge); outline-offset: 8px; box-shadow: 0 0 0 8px var(--surface), 0 12px 0 8px var(--surface), 0 13px 0 8px var(--panel-edge), 10px 25px 35px -10px var(--panel-shadow); }
+.deck-track[data-enhanced] { grid-auto-flow: row; grid-template-columns: minmax(0, 1fr); height: min(80svh, 46rem); overflow: hidden; perspective: 1000px; touch-action: pan-y; }
+.deck-track[data-enhanced] .deck-card { grid-area: 1 / 1; opacity: var(--deck-opacity); transform: translateX(calc(var(--deck-step) * 20%)) translateZ(var(--deck-depth)) rotateY(calc(var(--deck-step) * -18deg)); transition: transform 850ms cubic-bezier(.16,1,.3,1), opacity 650ms ease; }
+.deck-track[data-enhanced] .deck-card[data-current] { transform: none; }
+.deck-controls { display: flex; align-items: center; justify-content: center; gap: 1.25rem; margin-top: .75rem; color: var(--ink); background: var(--surface); padding: .75rem; }
+.deck-controls button { width: 44px; height: 44px; border: 1px solid var(--panel-edge); background: var(--bg); }
+.material-atmosphere { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+.material-atmosphere i { position: absolute; left: calc(7% + var(--particle-i) * 14%); top: -2rem; width: 6px; height: 6px; border-radius: 65% 0; background: var(--accent); opacity: .25; animation: material-fall calc(19s + var(--particle-i) * 2s) linear infinite; animation-delay: calc(var(--particle-i) * -4s); }
+.material-atmosphere[data-ambient="dust"] i { width: 2px; height: 2px; border-radius: 50%; background: var(--ink); opacity: .2; }
+.material-atmosphere[data-paused="true"] i { animation-play-state: paused; }
+@keyframes material-fall { from { transform: translate3d(-20px, -3rem, 0) rotate(0); } to { transform: translate3d(35px, 110svh, 0) rotate(160deg); } }
+.card-stack .invitation-cover { background: var(--surface); }
+.card-stack .cover-envelope { box-shadow: inset 0 2px 0 color-mix(in srgb, var(--surface) 75%, white), 0 4px 0 var(--panel-edge), 15px 30px 45px -15px var(--panel-shadow); }
+.card-stack .cover-leaf { transform-origin: top; }
+
+@media (max-width: 760px) {
+  .material-content { width: calc(100% - 2rem); padding-block: 2rem; }
+  .material-slot { margin-block: 2.5rem; }
+  .material-panel { padding: 2rem 1.35rem; }
+  .material-panel-edge { inset: .65rem; }
+  .card-stack #hero-title { font-size: clamp(2.75rem, 12vw, 4.2rem); }
+  .material-date strong { font-size: 4rem; }
+  .material-date > span { font-size: .9375rem; }
+  .material-date small { font-size: .75rem; }
+  .material-envelope { height: 10rem; margin-block: 1.75rem 1rem; }
+  .material-seal { top: 5.5rem; }
+  .card-stack[data-composition="silk-suite"] .material-hero-panel { margin-inline: 0 .7rem; }
+  .card-stack[data-composition="silk-suite"] .material-hero-panel::before { inset: 1rem -.6rem -.7rem .6rem; }
+  .card-stack[data-composition="silk-suite"] .material-slot:nth-child(n) { margin-inline: 0; }
+  .card-stack[data-composition="pressed-flower"] .material-content { display: block; }
+  .card-stack[data-composition="pressed-flower"] .material-slot { margin-block: 2.5rem; }
+  .card-stack[data-composition="pressed-flower"] .material-hero-panel { padding-top: 3rem; }
+  .card-stack[data-composition="pressed-flower"] .greeting-section { grid-template-columns: minmax(0, 1fr); }
+  .card-stack[data-composition="glass-garden"] .material-panel { border-radius: 2rem 2rem .5rem .5rem; }
+  .card-stack .timeline-list li { grid-template-columns: 3.75rem minmax(0, 1fr); gap: .8rem; }
+  .deck-track { padding: .6rem; }
+  .deck-card { padding: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) { .card-stack .material-panel, .card-stack .deck-card { transform: none; transition: none; } .material-atmosphere { display: none; } }
+@media print { .material-atmosphere, .material-backdrop, .deck-controls { display: none; } .material-panel { box-shadow: none; break-inside: avoid; } }

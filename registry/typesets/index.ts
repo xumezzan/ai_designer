@@ -70,7 +70,7 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
     measure: 58,
     levels: {
       display: {
-        size: "clamp(3.25rem, 1.5rem + 7vw, 6rem)",
+        size: "clamp(3.75rem, 1.5rem + 9vw, 8.75rem)",
         tracking: "-0.03em",
         leading: 1.08,
         weight: 300,
@@ -127,7 +127,7 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
     measure: 62,
     levels: {
       display: {
-        size: "clamp(3rem, 1.35rem + 7.2vw, 5.25rem)",
+        size: "clamp(3.5rem, 1.35rem + 9.5vw, 9rem)",
         tracking: "-0.035em",
         leading: 1.06,
         weight: 600,
@@ -175,4 +175,25 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
 
 export function getTypeSet(id: TypeSetId): TypeSet | undefined {
   return typeSets[id];
+}
+
+// These are different letterforms, not weight variations of the same serif.
+const base = typeSets.editorial!;
+for (const [id, name, display, weight, size, leading] of [
+  ["modernist", "Modernist", "unbounded", 500, "clamp(2.1rem, 5.7vw, 5.5rem)", 1.14],
+  ["poetic", "Poetic", "prata", 400, "clamp(2.8rem, 7.5vw, 7rem)", 1.16],
+  ["gallery", "Gallery", "tenor-sans", 400, "clamp(2.8rem, 7.2vw, 6.75rem)", 1.12],
+  ["handwritten", "Handwritten", "marck-script", 400, "clamp(3.6rem, 8.5vw, 8.5rem)", 1.2],
+] as const) {
+  typeSets[id] = {
+    ...base, id, name, display, bodyGlyphFallback: "cormorant-garamond",
+    description: `${name}: ${display} with quiet Golos body text; a distinct authored typographic voice.`,
+    levels: {
+      ...base.levels,
+      display: { ...base.levels.display, weight, size, leading, tracking: "-0.025em" },
+      displaySm: { ...base.levels.displaySm, weight, size: "clamp(1.75rem, 3.2vw, 2.8rem)", leading: 1.22 },
+      // Metadata belongs to the neutral body face, not a simulated serif smcp.
+      caps: { ...base.levels.caps, role: "body", weight: 500, features: "'kern' 1" },
+    },
+  };
 }

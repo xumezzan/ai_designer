@@ -11,19 +11,21 @@ import { heroGrade, unusedAsset, type ImageInfo } from "@/lib/assets/crop";
 import { photoInfo, readDirectedPhotos } from "@/lib/assets/read";
 import { availablePhotoLayout, hasHeroPhoto } from "@/lib/assets/layout";
 import { Generation } from "@/lib/schema/generation";
-import { composeSeries, sharedStyleSignature, type GeneratedSeries } from "@/lib/generation/series";
+import { artDirection, composeSeries, sharedStyleSignature, type GeneratedSeries } from "@/lib/generation/series";
 import { Approval, VersionId, VersionRecord, type HistoryItem } from "@/lib/schema/versions";
 import { applyRefinement, type RefinedTheme } from "@/lib/versions/refine";
 import { QaReport, QA_ENGINE, type QaState } from "@/lib/schema/qa";
 import { digest, rendererRevision } from "@/lib/qa/fingerprint";
 import { approvalProblem } from "@/lib/qa/policy";
+import { VisualRecord } from "@/lib/schema/visual";
+import { readGeneratedVisual } from "@/lib/artwork/generated";
 
 export class StudioError extends Error {
   constructor(message: string, public status = 400) { super(message); }
 }
 export type Concept = { id: string; version: string; theme: Theme; history?: HistoryItem[] };
 export type Planning = { assetPlan: PhotoPlan; planRevision: string; mediaInfo: Record<string, ImageInfo> };
-export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; generation: Generation | null; generationRevision: string; approval: Approval | null; approvalRevision: string; approvalQa?: QaState | null } & Planning;
+export type Project = { content: EventContent; revision: string; concepts: Concept[]; visionConfigured: boolean; imagesConfigured?: boolean; generation: Generation | null; generationRevision: string; approval: Approval | null; approvalRevision: string; approvalQa?: QaState | null } & Planning;
 const hash = (value: string) => createHash("sha256").update(value).digest("hex");
 const encode = (value: unknown) => JSON.stringify(value, null, 2) + "\n";
 async function optionalText(file: string) {
@@ -40,6 +42,7 @@ export function validateContent(raw: unknown) {
       "date.timezone": "Укажите часовой пояс в формате Asia/Tashkent.",
       "venue.mapUrl": "Укажите полную ссылку на карту, начиная с https://.",
       "rsvp.deadline": "Проверьте дату, до которой гости должны ответить.",
+      "variantCount": "Выберите количество вариантов от 1 до 5.",
     };
     throw new StudioError([...new Set(result.error.issues.map((issue) => issues[issue.path.join(".")] ?? "Проверьте обязательные поля анкеты и выбранные значения."))].join(" "));
   }
@@ -94,14 +97,14 @@ export class ProjectStore {
       if (!result.ok) throw new Error(`Invalid concept: ${result.errors.join("; ")}`);
       return { id: entry.name, version, theme: result.theme, history: await this.history(slug, entry.name, qaContext) };
     }));
-    if (generation && concepts.length !== 5) throw new Error("Generation references missing concepts");
+    if (generation && concepts.length !== generation.concepts.length) throw new Error("Generation references missing concepts");
     const order = ["letter", "poster", "folio", "arch", "botanical"];
     concepts.sort((a, b) => order.indexOf(a.theme.layout.composition) - order.indexOf(b.theme.layout.composition));
     const approvalText = await optionalText(path.join(this.directory(slug), "approved.json"));
     const approval = approvalText ? Approval.parse(JSON.parse(approvalText)) : null;
     if (approval) await this.version(slug, approval.conceptId, approval.version);
     const approvalQa = approval ? (concepts.find((concept) => concept.id === approval.conceptId)?.history ?? await this.history(slug, approval.conceptId, qaContext)).find((entry) => entry.version === approval.version)?.qa ?? null : null;
-    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), approval, approvalQa, approvalRevision: hash(approvalText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY) };
+    return { ...snapshot, ...planning, concepts, generation, generationRevision: hash(generationText), approval, approvalQa, approvalRevision: hash(approvalText), visionConfigured: Boolean(process.env.ANTHROPIC_API_KEY), imagesConfigured: Boolean(process.env.OPENAI_API_KEY?.trim()) };
   }
   async version(slug: string, conceptId: string, version: string): Promise<Theme> {
     if (!safeId(conceptId) || !VersionId.safeParse(version).success) throw new StudioError("Некорректный вариант или номер версии.");
@@ -226,7 +229,10 @@ export class ProjectStore {
     return (await Promise.all(dirs.filter((dir) => dir.isDirectory() && safeId(dir.name)).map(async (dir) => {
       const project = await this.read(dir.name);
       const info = await stat(path.join(this.root, dir.name, "content.json"));
-      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, updated: info.mtimeMs };
+      const first = project.generation || dir.name === "demo" ? project.concepts[0] : undefined;
+      const cover = project.approval ?? first;
+      const preview = cover ? { href: `/preview/${dir.name}/${"conceptId" in cover ? cover.conceptId : cover.id}/${cover.version}?embed=1`, selected: Boolean(project.approval) } : null;
+      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, preview, updated: info.mtimeMs };
     }))).sort((a, b) => b.updated - a.updated);
   }
   async create(raw: unknown, templates?: Concept[]) {
@@ -318,18 +324,34 @@ export class ProjectStore {
       const project = await this.read(slug);
       if (project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект или варианты изменились во время генерации. Обновите страницу и повторите.", 409);
       if (!content.brief?.trim()) throw new StudioError("Опишите желаемый стиль перед генерацией.");
-      if (result.themes.length !== 5 || result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0]))) throw new StudioError("Серия должна содержать пять композиций в одном стиле.");
+      if (result.themes.length !== (content.variantCount ?? 5) || (result.mode !== "exploration" && result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0])))) throw new StudioError("Серия должна содержать выбранное количество композиций в одном стиле.");
       const expected = { ...result.themes[0], ...result.style, ornament: { ...result.style.ornament, placement: result.themes[0].ornament.placement } };
-      if (sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
+      if (result.mode !== "exploration" && sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
       const photos = await readDirectedPhotos(content, project.assetPlan, this.directory(slug));
-      const validated = composeSeries({ style: result.style, variants: result.themes.map((theme) => ({ name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      const validated = composeSeries({ mode: result.mode, style: result.style, variants: result.themes.map((theme) => ({ ...(result.mode === "exploration" ? { direction: artDirection(theme) } : {}), name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      if (result.themes.some((theme, index) => sharedStyleSignature(theme) !== sharedStyleSignature(validated.themes[index]))) throw new StudioError("Вариант содержит изменения вне разрешённого художественного направления.");
+      const visual = result.visual;
+      const visualRef = validated.style.generatedVisual;
+      if (visual) {
+        const record = VisualRecord.parse(visual.record);
+        const info = await sharp(visual.data).metadata();
+        if (!visualRef || visualRef.id !== record.id || visualRef.sha256 !== record.sha256 || createHash("sha256").update(visual.data).digest("hex") !== record.sha256 || info.width !== record.width || info.height !== record.height || info.format !== "webp" || visualRef.width !== record.width || visualRef.height !== record.height || Boolean(visualRef.isolated) !== Boolean(record.isolated)) throw new StudioError("Новый визуал не соответствует серии.");
+      } else if (visualRef && !await readGeneratedVisual(slug, visualRef.id, visualRef, this.root)) throw new StudioError("Визуал серии не найден.");
       const batchId = randomUUID();
       const concepts = validated.themes.map((theme, index) => ({ id: `variant-${batchId.slice(0, 8)}-${index + 1}`, version: "1", theme }));
-      const generation = Generation.parse({ batchId, createdAt: new Date().toISOString(), brief: content.brief, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
+      const generation = Generation.parse({ mode: validated.mode, batchId, createdAt: new Date().toISOString(), brief: content.brief, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
       const pending = path.join(this.directory(slug), `.generation-${batchId}.json`);
       const created: string[] = [];
       let committed = false;
       try {
+        if (visual) {
+          const directory = path.join(this.directory(slug), "art", visual.record.id);
+          await mkdir(path.dirname(directory), { recursive: true });
+          await mkdir(directory);
+          created.push(directory);
+          await writeFile(path.join(directory, "image.webp"), visual.data, { flag: "wx" });
+          await writeFile(path.join(directory, "meta.json"), encode(visual.record), { flag: "wx" });
+        }
         for (const concept of concepts) {
           const directory = path.join(this.directory(slug), "concepts", concept.id);
           await mkdir(directory);

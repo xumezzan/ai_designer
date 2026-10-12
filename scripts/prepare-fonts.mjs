@@ -93,7 +93,8 @@ for (const family of config.families) {
   const sourceFont = fontFromBuffer(readFileSync(`${sources}/${family.id.replaceAll("-", "")}.ttf`));
   const entry = { family: family.name, sourcePath: family.sourcePath, sourceSha: family.sourceSha,
     fallback: fallback.familyName, fallbackSha256: sha256(fallbackBuffers[family.fallback]),
-    uzbekApostrophe: [0x02bb, 0x02bc].every((codepoint) => sourceFont.hasGlyphForCodePoint(codepoint)), faces: [] };
+    uzbekApostrophe: [0x02bb, 0x02bc].every((codepoint) => sourceFont.hasGlyphForCodePoint(codepoint)),
+    latinExt: [..."ĀāĂăĄąĒēĪīŌōŪū"].every((character) => sourceFont.hasGlyphForCodePoint(character.codePointAt(0))), faces: [] };
   for (const weight of family.weights) for (const subset of config.subsets) {
     const filename = `${family.id}-${subset}-${weight}-normal.woff2`;
     const buffer = readFileSync(`${output}/${filename}`);

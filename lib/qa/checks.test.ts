@@ -35,6 +35,8 @@ test("protected crops, resolution and reduced motion are explicit defects, while
   expect(resolution({ ...data, photos: [{ selector: "#photo", density: .8 }] }).status).toBe("fail");
   expect(resolution({ ...data, photos: [{ selector: "#photo", density: 1.5 }] }).status).toBe("warning");
   expect(reducedMotion({ ...data, animations: 1 }).status).toBe("fail");
+  expect(resolution({ ...data, visuals: [{ selector: ".generated-visual img", density: .8 }] }).status).toBe("fail");
+  expect(resolution({ ...data, visuals: [{ selector: ".generated-visual img", density: 2.1 }] }).status).toBe("pass");
 });
 test("a glyph mask catches pale foil highlights even when another part of the same text has a dark AA core", async () => {
   const image = async (a: string, b: string) => sharp(Buffer.from(`<svg width="390" height="100"><rect width="390" height="100" fill="#ffffff"/><rect x="25" y="23" width="30" height="15" fill="${a}"/><rect x="60" y="23" width="30" height="15" fill="${b}"/></svg>`)).png().toBuffer();

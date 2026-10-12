@@ -25,6 +25,7 @@ export function refinementTool(): Anthropic.Messages.Tool {
   const patch = { type: "object", additionalProperties: false, properties: {
     palette: optionalObject(style.palette), typeSet: style.typeSet, materialSet: style.materialSet, artwork: style.artwork,
     foil: optionalObject(style.foil), ornament: optionalObject({ ...style.ornament, properties: { ...(style.ornament.properties as JsonSchema), placement: variant.ornamentPlacement } }),
+    atmosphere: optionalObject(style.atmosphere), surface: optionalObject(style.surface), finishing: optionalObject(style.finishing), typographyScale: optionalObject(style.typographyScale),
     layout: optionalObject(variant.layout), photos, motion: optionalObject(style.motion),
   } };
   return { name: "emit_theme_patch", description: "Return only explicitly requested changes as a small partial theme patch. Empty patch means unsupported/no applicable change. Preserve all other fields.", input_schema: { type: "object", required: ["patch", "summary"], additionalProperties: false, properties: { patch, summary: { type: "string", minLength: 1, maxLength: 500 } } } };

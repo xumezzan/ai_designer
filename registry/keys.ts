@@ -24,13 +24,14 @@ export type SectionId = (typeof SECTION_IDS)[number];
 export const LAYOUT_IDS = ["scroll-narrative", "card-stack"] as const;
 export type LayoutId = (typeof LAYOUT_IDS)[number];
 
-export const COMPOSITION_IDS = ["letter", "poster", "folio", "arch", "botanical"] as const;
+export const MATERIAL_COMPOSITIONS = ["silk-suite", "pressed-flower", "glass-garden"] as const;
+export const COMPOSITION_IDS = ["letter", "poster", "folio", "arch", "botanical", "duet", "ribbon", "imprint", "keepsake", "vow", "editorial-story", ...MATERIAL_COMPOSITIONS] as const;
 export type CompositionId = (typeof COMPOSITION_IDS)[number];
 
 export const ARTWORK_IDS = ["none", "suzani-atelier"] as const;
 export type ArtworkId = (typeof ARTWORK_IDS)[number];
 
-export const TYPE_SET_IDS = ["ceremony", "editorial"] as const;
+export const TYPE_SET_IDS = ["ceremony", "editorial", "modernist", "poetic", "gallery", "handwritten"] as const;
 export type TypeSetId = (typeof TYPE_SET_IDS)[number];
 
 export const MATERIAL_SET_IDS = ["paper", "glass"] as const;
@@ -41,6 +42,7 @@ export const ORNAMENT_PACK_IDS = [
   "uzbek-suzani",
   "geometric-islamic",
   "art-deco",
+  "botanical-engraving",
 ] as const;
 export type OrnamentPackId = (typeof ORNAMENT_PACK_IDS)[number];
 

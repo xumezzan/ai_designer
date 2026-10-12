@@ -1,0 +1,362 @@
+[
+  {
+    "id": "chateau-blue",
+    "name": "Шато - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/chateau-blue"
+  },
+  {
+    "id": "jasmine-white",
+    "name": "Май Лан - Белый",
+    "detailUrl": "https://chungdoi.com/ru/templates/jasmine-white"
+  },
+  {
+    "id": "minimalism-dark-red",
+    "name": "Minimalism - Тёмно-красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/minimalism-dark-red"
+  },
+  {
+    "id": "applique-lace-white",
+    "name": "Кружевная вышивка - белый",
+    "detailUrl": "https://chungdoi.com/ru/templates/applique-lace-white"
+  },
+  {
+    "id": "spring-garden-red",
+    "name": "Весенний Сад - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/spring-garden-red"
+  },
+  {
+    "id": "minimalism-dark-brown",
+    "name": "Minimalism - Тёмно-коричневый",
+    "detailUrl": "https://chungdoi.com/ru/templates/minimalism-dark-brown"
+  },
+  {
+    "id": "wildflower-pink",
+    "name": "Wildflower - Розовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/wildflower-pink"
+  },
+  {
+    "id": "florence-brown",
+    "name": "Флоренция - Коричневый",
+    "detailUrl": "https://chungdoi.com/ru/templates/florence-brown"
+  },
+  {
+    "id": "minimalism-brown",
+    "name": "Minimalism - Коричневый",
+    "detailUrl": "https://chungdoi.com/ru/templates/minimalism-brown"
+  },
+  {
+    "id": "minimalism-dark-blue",
+    "name": "Minimalism - Тёмно-синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/minimalism-dark-blue"
+  },
+  {
+    "id": "spring-garden-blue",
+    "name": "Весенний Сад - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/spring-garden-blue"
+  },
+  {
+    "id": "glass-garden-green",
+    "name": "Стеклянный Сад - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/glass-garden-green"
+  },
+  {
+    "id": "hoa-kho-v2-blue",
+    "name": "Сухоцветы V2 - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/hoa-kho-v2-blue"
+  },
+  {
+    "id": "baroque-gold",
+    "name": "Барокко - Золотой",
+    "detailUrl": "https://chungdoi.com/ru/templates/baroque-gold"
+  },
+  {
+    "id": "crystal-floral-blue",
+    "name": "Хрустальные Цветы - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/crystal-floral-blue"
+  },
+  {
+    "id": "riviera-blue",
+    "name": "Ривьера - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/riviera-blue"
+  },
+  {
+    "id": "baroque-v2-dark-red",
+    "name": "Барокко II - Тёмно-красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/baroque-v2-dark-red"
+  },
+  {
+    "id": "chateau-green",
+    "name": "Шато - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/chateau-green"
+  },
+  {
+    "id": "minimalism-green",
+    "name": "Minimalism - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/minimalism-green"
+  },
+  {
+    "id": "silk-ribbon-dark-red",
+    "name": "Шёлковая Лента - Тёмно-красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/silk-ribbon-dark-red"
+  },
+  {
+    "id": "san-miguel-yellow",
+    "name": "Сан-Мигель - Жёлтый",
+    "detailUrl": "https://chungdoi.com/ru/templates/san-miguel-yellow"
+  },
+  {
+    "id": "spring-garden-green",
+    "name": "Весенний Сад - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/spring-garden-green"
+  },
+  {
+    "id": "royal-green",
+    "name": "Королевский - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/royal-green"
+  },
+  {
+    "id": "porcelain-blue",
+    "name": "Фарфор - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/porcelain-blue"
+  },
+  {
+    "id": "minimalism-purple",
+    "name": "Minimalism - Фиолетовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/minimalism-purple"
+  },
+  {
+    "id": "royal-v2-green",
+    "name": "Королевский II - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/royal-v2-green"
+  },
+  {
+    "id": "glass-garden-pink",
+    "name": "Стеклянный Сад - Розовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/glass-garden-pink"
+  },
+  {
+    "id": "mahal-gold",
+    "name": "Mahal - Золотой",
+    "detailUrl": "https://chungdoi.com/ru/templates/mahal-gold"
+  },
+  {
+    "id": "boho-floral-green",
+    "name": "Бохо Флора - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/boho-floral-green"
+  },
+  {
+    "id": "minimalism-red",
+    "name": "Minimalism - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/minimalism-red"
+  },
+  {
+    "id": "royal-red",
+    "name": "Королевский - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/royal-red"
+  },
+  {
+    "id": "lien-hoa-pink",
+    "name": "Лотос - Розовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/lien-hoa-pink"
+  },
+  {
+    "id": "crystal-floral-green",
+    "name": "Хрустальные Цветы - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/crystal-floral-green"
+  },
+  {
+    "id": "boho-floral-brown",
+    "name": "Бохо Флора - Коричневый",
+    "detailUrl": "https://chungdoi.com/ru/templates/boho-floral-brown"
+  },
+  {
+    "id": "porcelain-v2-green",
+    "name": "Фарфор II - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/porcelain-v2-green"
+  },
+  {
+    "id": "crystal-floral-red",
+    "name": "Хрустальные Цветы - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/crystal-floral-red"
+  },
+  {
+    "id": "double-happiness-red",
+    "name": "Двойное Счастье - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-happiness-red"
+  },
+  {
+    "id": "porcelain-v2-red",
+    "name": "Фарфор II - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/porcelain-v2-red"
+  },
+  {
+    "id": "glass-garden-blue",
+    "name": "Стеклянный Сад - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/glass-garden-blue"
+  },
+  {
+    "id": "dragon-phoenix-red",
+    "name": "Дракон и Феникс - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/dragon-phoenix-red"
+  },
+  {
+    "id": "silk-ribbon-pink",
+    "name": "Шёлковая Лента - Розовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/silk-ribbon-pink"
+  },
+  {
+    "id": "song-hy-v2-red",
+    "name": "Двойное Счастье V2 - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/song-hy-v2-red"
+  },
+  {
+    "id": "double-crane-red",
+    "name": "Двойной журавль - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-crane-red"
+  },
+  {
+    "id": "dragon-phoenix-v4-red",
+    "name": "Дракон и Феникс V4 - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/dragon-phoenix-v4-red"
+  },
+  {
+    "id": "baroque-v2-dark-green",
+    "name": "Барокко II - Тёмно-зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/baroque-v2-dark-green"
+  },
+  {
+    "id": "silk-ribbon-green",
+    "name": "Шёлковая Лента - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/silk-ribbon-green"
+  },
+  {
+    "id": "royal-v2-purple",
+    "name": "Королевский II - Фиолетовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/royal-v2-purple"
+  },
+  {
+    "id": "silk-flora-brown",
+    "name": "Хоа Луа - Коричневый",
+    "detailUrl": "https://chungdoi.com/ru/templates/silk-flora-brown"
+  },
+  {
+    "id": "porcelain-v2-pink",
+    "name": "Фарфор II - Розовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/porcelain-v2-pink"
+  },
+  {
+    "id": "double-happiness-green",
+    "name": "Двойное Счастье - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-happiness-green"
+  },
+  {
+    "id": "baroque-v2-dark-blue",
+    "name": "Барокко II - Тёмно-синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/baroque-v2-dark-blue"
+  },
+  {
+    "id": "dragon-phoenix-black",
+    "name": "Дракон и Феникс - Чёрный",
+    "detailUrl": "https://chungdoi.com/ru/templates/dragon-phoenix-black"
+  },
+  {
+    "id": "porcelain-brown",
+    "name": "Фарфор - Коричневый",
+    "detailUrl": "https://chungdoi.com/ru/templates/porcelain-brown"
+  },
+  {
+    "id": "royal-blue",
+    "name": "Королевский - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/royal-blue"
+  },
+  {
+    "id": "hoa-kho-orange",
+    "name": "Сухоцветы - Оранжевый",
+    "detailUrl": "https://chungdoi.com/ru/templates/hoa-kho-orange"
+  },
+  {
+    "id": "boho-floral-pink",
+    "name": "Бохо Флора - Розовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/boho-floral-pink"
+  },
+  {
+    "id": "dragon-phoenix-v2-red",
+    "name": "Дракон и Феникс V2 - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/dragon-phoenix-v2-red"
+  },
+  {
+    "id": "elegant-leaf-green",
+    "name": "Тхань Дьеп - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/elegant-leaf-green"
+  },
+  {
+    "id": "dragon-phoenix-v3-red",
+    "name": "Дракон и Феникс V3 - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/dragon-phoenix-v3-red"
+  },
+  {
+    "id": "chibi-red",
+    "name": "Чиби - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/chibi-red"
+  },
+  {
+    "id": "cherry-blossom-pink",
+    "name": "Сакура - Розовый",
+    "detailUrl": "https://chungdoi.com/ru/templates/cherry-blossom-pink"
+  },
+  {
+    "id": "dragon-phoenix-green",
+    "name": "Дракон и Феникс - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/dragon-phoenix-green"
+  },
+  {
+    "id": "lotus-v2-green",
+    "name": "Лотос II - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/lotus-v2-green"
+  },
+  {
+    "id": "sunflower-yellow",
+    "name": "Подсолнух",
+    "detailUrl": "https://chungdoi.com/ru/templates/sunflower-yellow"
+  },
+  {
+    "id": "double-dragon-red",
+    "name": "Два Дракона - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-dragon-red"
+  },
+  {
+    "id": "porcelain-red",
+    "name": "Фарфор - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/porcelain-red"
+  },
+  {
+    "id": "love-art-red",
+    "name": "Хоа Тинь - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/love-art-red"
+  },
+  {
+    "id": "double-phoenix-green",
+    "name": "Два Феникса - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-phoenix-green"
+  },
+  {
+    "id": "double-phoenix-red",
+    "name": "Два Феникса - Красный",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-phoenix-red"
+  },
+  {
+    "id": "dragon-phoenix-blue",
+    "name": "Дракон и Феникс - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/dragon-phoenix-blue"
+  },
+  {
+    "id": "double-dragon-green",
+    "name": "Два Дракона - Зелёный",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-dragon-green"
+  },
+  {
+    "id": "double-dragon-blue",
+    "name": "Два Дракона - Синий",
+    "detailUrl": "https://chungdoi.com/ru/templates/double-dragon-blue"
+  }
+]

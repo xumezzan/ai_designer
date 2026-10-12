@@ -1,0 +1,213 @@
+{
+  "summaries": [
+    {
+      "id": "duet",
+      "failures": [],
+      "warnings": [
+        {
+          "id": "widow",
+          "n": 2
+        },
+        {
+          "id": "resolution",
+          "n": 2
+        }
+      ],
+      "measurements": {
+        "lcpMs": 676,
+        "cls": 0.0004698032407407408,
+        "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+      }
+    },
+    {
+      "id": "ribbon",
+      "failures": [],
+      "warnings": [
+        {
+          "id": "widow",
+          "n": 4
+        },
+        {
+          "id": "resolution",
+          "n": 2
+        }
+      ],
+      "measurements": {
+        "lcpMs": 680,
+        "cls": 0.00023363643558088002,
+        "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+      }
+    },
+    {
+      "id": "imprint",
+      "failures": [],
+      "warnings": [
+        {
+          "id": "widow",
+          "n": 2
+        },
+        {
+          "id": "resolution",
+          "n": 2
+        }
+      ],
+      "measurements": {
+        "lcpMs": 636,
+        "cls": 0.00012030606995884774,
+        "profile": "Fast3G-150ms-1.6Mbps-4xCPU"
+      }
+    }
+  ],
+  "geometry": [
+    {
+      "width": 320,
+      "id": "duet",
+      "failures": [],
+      "reserved": {
+        "artBottom": 291.6485228538513,
+        "namesTop": 296
+      }
+    },
+    {
+      "width": 320,
+      "id": "ribbon",
+      "failures": []
+    },
+    {
+      "width": 320,
+      "id": "imprint",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "id": "duet",
+      "failures": [],
+      "reserved": {
+        "artBottom": 291.6485228538513,
+        "namesTop": 296
+      }
+    },
+    {
+      "width": 390,
+      "id": "ribbon",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "id": "imprint",
+      "failures": []
+    },
+    {
+      "width": 1024,
+      "id": "duet",
+      "failures": []
+    },
+    {
+      "width": 1024,
+      "id": "ribbon",
+      "failures": []
+    },
+    {
+      "width": 1024,
+      "id": "imprint",
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "id": "duet",
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "id": "ribbon",
+      "failures": []
+    },
+    {
+      "width": 1440,
+      "id": "imprint",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "id": "duet",
+      "mode": "long-names",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "id": "ribbon",
+      "mode": "long-names",
+      "failures": []
+    },
+    {
+      "width": 390,
+      "id": "imprint",
+      "mode": "long-names",
+      "failures": []
+    }
+  ],
+  "noJs": true,
+  "paidCalls": false,
+  "production": [
+    {
+      "composition": "duet",
+      "width": 320,
+      "status": "pass"
+    },
+    {
+      "composition": "duet",
+      "width": 390,
+      "status": "pass"
+    },
+    {
+      "composition": "duet",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "composition": "duet",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "composition": "ribbon",
+      "width": 320,
+      "status": "pass"
+    },
+    {
+      "composition": "ribbon",
+      "width": 390,
+      "status": "pass"
+    },
+    {
+      "composition": "ribbon",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "composition": "ribbon",
+      "width": 1440,
+      "status": "pass"
+    },
+    {
+      "composition": "imprint",
+      "width": 320,
+      "status": "pass"
+    },
+    {
+      "composition": "imprint",
+      "width": 390,
+      "status": "pass"
+    },
+    {
+      "composition": "imprint",
+      "width": 1024,
+      "status": "pass"
+    },
+    {
+      "composition": "imprint",
+      "width": 1440,
+      "status": "pass"
+    }
+  ]
+}

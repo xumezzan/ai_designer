@@ -164,3 +164,20 @@ define the invitation renderer or add features to our single-user specification.
 
 This completes the reference/craft work; it does **not** claim M1's eight
 sections, five invitations or screenshot critique loops are implemented.
+
+## Later reference studies
+
+- [Complete ChungDoi mobile preview study](./chungdoi-mobile/README.md) —
+  2026-10-12: all 72 current catalog entries opened through their actual preview
+  links, covers opened, complete invitations scrolled and captured at 390×844
+  with touch. Additional 320/430px width measurements, genuine gallery touch
+  interaction, per-template evidence and mobile-first project instructions.
+
+- [ChungDoi material scenes](./material-scenes/README.md) — 2026-10-12:
+  live lace/silk/glass examples translated into original physical compositions,
+  independent generation identities and browser-verified interactions.
+
+- [Bliss & Bone live design study](./bliss-and-bone/README.md) — 2026-10-12:
+  five live templates, desktop/mobile measurements, verified interaction
+  mechanisms and original implementation recipes for future Invitation Studio
+  work. Research only; the proposed renderer changes are not implemented.

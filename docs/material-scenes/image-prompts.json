@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-12",
+  "assets": [
+    {
+      "file": "public/artwork/material-scenes/silk-v1.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original material texture for an interactive wedding website, not a website mockup. Create an exquisite top-down macro photograph of real pearl-grey silk satin arranged in broad, soft, weighty folds. Portrait 2:3 composition. The fabric fills every edge of the frame with no other objects. Deep charcoal-grey fold valleys, luminous silver-grey ridges, fine visible woven fibre, realistic continuous cloth and natural gravity. Three or four generous diagonal drapes, asymmetric, softly lit from the upper left. Grayscale only so this material can be tinted by website code. No hard geometric waves, no plastic, no metallic foil, no cards, no flowers, no ribbons, no text, no people, no borders, no logos. The result must be a usable fabric photograph with clear material depth, not an illustration or collage."
+    },
+    {
+      "file": "public/artwork/material-scenes/garden-v1.webp",
+      "prompt": "Use case: photorealistic-natural. Asset type: original botanical backdrop for a frosted-glass wedding website, not a website mockup. A close-up, painterly editorial photograph of a shaded garden: deep forest-green broad leaves, fern fronds, a few pale ivory flowers, small dewdrops and soft light filtering through foliage. Portrait 2:3. The entire image is filled by natural botanical detail; layered leaves in foreground and background create convincing depth. A gently darker quiet central area, lighter softly out-of-focus flowers near the outside, rich moss and emerald greens with restrained ivory. Soft natural side lighting, elegant organic composition. Real plants and physical texture, subtle film grain. No people, no cards, no lettering, no frames, no architectural objects, no hearts, no watermarks. Original imagery, no imitation of a specific website."
+    }
+  ]
+}

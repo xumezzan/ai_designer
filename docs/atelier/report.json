@@ -1,0 +1,3001 @@
+{
+  "fixture": "temporary demo data; no client project edited",
+  "providers": "no paid calls",
+  "samples": [
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 185,
+        "y": 248,
+        "w": 76,
+        "h": 76,
+        "opacity": 0.75,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 231,
+        "y": 248,
+        "w": 95,
+        "h": 95,
+        "opacity": 0.75,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 595,
+        "y": 172,
+        "w": 283,
+        "h": 283,
+        "opacity": 0.68,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 706,
+        "y": 203,
+        "w": 336,
+        "h": 336,
+        "opacity": 0.68,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 210,
+        "y": 96,
+        "w": 56,
+        "h": 56,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 270,
+        "y": 96,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 840,
+        "y": 87,
+        "w": 85,
+        "h": 85,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 997,
+        "y": 95,
+        "w": 101,
+        "h": 101,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 218,
+        "y": 240,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 287,
+        "y": 240,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 766,
+        "y": 275,
+        "w": 149,
+        "h": 149,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 908,
+        "y": 321,
+        "w": 177,
+        "h": 177,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 126,
+        "y": 151,
+        "w": 168,
+        "h": 168,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 158,
+        "y": 151,
+        "w": 210,
+        "h": 210,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 425,
+        "y": 159,
+        "w": 566,
+        "h": 566,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 536,
+        "y": 175,
+        "w": 640,
+        "h": 640,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 208,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 278,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 872,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 1048,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 320,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 185,
+        "y": 269,
+        "w": 76,
+        "h": 76,
+        "opacity": 0.75,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 390,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 231,
+        "y": 248,
+        "w": 95,
+        "h": 95,
+        "opacity": 0.75,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 1024,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 595,
+        "y": 227,
+        "w": 283,
+        "h": 283,
+        "opacity": 0.68,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 1440,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 706,
+        "y": 270,
+        "w": 336,
+        "h": 336,
+        "opacity": 0.68,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 320,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 210,
+        "y": 126,
+        "w": 56,
+        "h": 56,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 390,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 270,
+        "y": 109,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 1024,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 840,
+        "y": 100,
+        "w": 85,
+        "h": 85,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 1440,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 997,
+        "y": 164,
+        "w": 101,
+        "h": 101,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 320,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 218,
+        "y": 257,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 390,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 287,
+        "y": 240,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 1024,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 766,
+        "y": 370,
+        "w": 149,
+        "h": 149,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 1440,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 908,
+        "y": 437,
+        "w": 177,
+        "h": 177,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 320,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 126,
+        "y": 159,
+        "w": 168,
+        "h": 168,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 390,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 158,
+        "y": 157,
+        "w": 210,
+        "h": 210,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 1024,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 425,
+        "y": 282,
+        "w": 566,
+        "h": 566,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 1440,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 536,
+        "y": 336,
+        "w": 640,
+        "h": 640,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 320,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 208,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 390,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 278,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 1024,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 872,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 1440,
+      "mode": "long-cyrillic",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 1048,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "composition": "botanical",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-watermark",
+        "x": 231,
+        "y": 248,
+        "w": 95,
+        "h": 95,
+        "opacity": 0.75,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 270,
+        "y": 96,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "composition": "arch",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-hero-frame",
+        "x": 287,
+        "y": 240,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.5,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "composition": "poster",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-watermark",
+        "x": 158,
+        "y": 151,
+        "w": 210,
+        "h": 210,
+        "opacity": 0.12,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "composition": "folio",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "art-deco",
+        "placement": "ornament-corners",
+        "x": 278,
+        "y": 96,
+        "w": 72,
+        "h": 72,
+        "opacity": 1,
+        "visible": true,
+        "strokes": 1,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "composition": "folio",
+      "width": 390,
+      "mode": "uzbek-apostrophes",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ],
+      "photoPlacement": {
+        "quality": "usable",
+        "inHero": false,
+        "section": "greeting"
+      },
+      "motif": {
+        "pack": "botanical-engraving",
+        "placement": "ornament-corners",
+        "x": 270,
+        "y": 96,
+        "w": 63,
+        "h": 63,
+        "opacity": 0.45,
+        "visible": true,
+        "strokes": 30,
+        "intersectsHero": true,
+        "pointerEvents": "none"
+      }
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "checks": {
+    "usablePhotoOutsideHero": true,
+    "visibleBotanicalMotif": true,
+    "distinctScreenshots": true,
+    "distinctHeroGeometry": true,
+    "longCyrillicNames": true,
+    "noJsReadable": true,
+    "envelopeTextReveal": true,
+    "dynamicReducedMotion": true,
+    "uzbekApostrophes": true
+  },
+  "heroGeometry": [
+    {
+      "fixture": "herbarium",
+      "width": 320,
+      "title": {
+        "x": 20,
+        "y": 163,
+        "w": 240,
+        "h": 178
+      },
+      "date": {
+        "x": 68,
+        "y": 444,
+        "w": 192,
+        "h": 58
+      },
+      "place": {
+        "x": 148,
+        "y": 589,
+        "w": 112,
+        "h": 67
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-watermark",
+          "x": 185,
+          "y": 248,
+          "w": 76,
+          "h": 76,
+          "opacity": 0.75,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 280,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "width": 390,
+      "title": {
+        "x": 20,
+        "y": 161,
+        "w": 310,
+        "h": 187
+      },
+      "date": {
+        "x": 82,
+        "y": 447,
+        "w": 248,
+        "h": 58
+      },
+      "place": {
+        "x": 183,
+        "y": 589,
+        "w": 147,
+        "h": 67
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-watermark",
+          "x": 231,
+          "y": 248,
+          "w": 95,
+          "h": 95,
+          "opacity": 0.75,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 350,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "width": 1024,
+      "title": {
+        "x": 46,
+        "y": 142,
+        "w": 680,
+        "h": 378
+      },
+      "date": {
+        "x": 560,
+        "y": 584,
+        "w": 338,
+        "h": 65
+      },
+      "place": {
+        "x": 560,
+        "y": 680,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-watermark",
+          "x": 595,
+          "y": 172,
+          "w": 283,
+          "h": 283,
+          "opacity": 0.68,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 944,
+        "h": 781
+      }
+    },
+    {
+      "fixture": "herbarium",
+      "width": 1440,
+      "title": {
+        "x": 64,
+        "y": 160,
+        "w": 824,
+        "h": 458
+      },
+      "date": {
+        "x": 661,
+        "y": 681,
+        "w": 395,
+        "h": 91
+      },
+      "place": {
+        "x": 661,
+        "y": 804,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-watermark",
+          "x": 706,
+          "y": 203,
+          "w": 336,
+          "h": 336,
+          "opacity": 0.68,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 1120,
+        "h": 923
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 320,
+      "title": {
+        "x": 92,
+        "y": 143,
+        "w": 168,
+        "h": 145
+      },
+      "date": {
+        "x": 20,
+        "y": 372,
+        "w": 240,
+        "h": 58
+      },
+      "place": {
+        "x": 20,
+        "y": 497,
+        "w": 226,
+        "h": 48
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 210,
+          "y": 96,
+          "w": 56,
+          "h": 56,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 6,
+          "y": 611,
+          "w": 56,
+          "h": 56,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 280,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 390,
+      "title": {
+        "x": 92,
+        "y": 143,
+        "w": 238,
+        "h": 145
+      },
+      "date": {
+        "x": 20,
+        "y": 372,
+        "w": 310,
+        "h": 58
+      },
+      "place": {
+        "x": 20,
+        "y": 497,
+        "w": 226,
+        "h": 48
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 270,
+          "y": 96,
+          "w": 63,
+          "h": 63,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 7,
+          "y": 604,
+          "w": 63,
+          "h": 63,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 350,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 1024,
+      "title": {
+        "x": 432,
+        "y": 171,
+        "w": 466,
+        "h": 242
+      },
+      "date": {
+        "x": 46,
+        "y": 506,
+        "w": 338,
+        "h": 65
+      },
+      "place": {
+        "x": 416,
+        "y": 511,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 840,
+          "y": 87,
+          "w": 85,
+          "h": 85,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 19,
+          "y": 565,
+          "w": 85,
+          "h": 85,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 944,
+        "h": 722
+      }
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 1440,
+      "title": {
+        "x": 507,
+        "y": 160,
+        "w": 549,
+        "h": 340
+      },
+      "date": {
+        "x": 64,
+        "y": 564,
+        "w": 395,
+        "h": 91
+      },
+      "place": {
+        "x": 491,
+        "y": 582,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 997,
+          "y": 95,
+          "w": 101,
+          "h": 101,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-corners",
+          "x": 22,
+          "y": 614,
+          "w": 101,
+          "h": 101,
+          "opacity": 0.45,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 1120,
+        "h": 794
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "width": 320,
+      "title": {
+        "x": 67,
+        "y": 219,
+        "w": 145,
+        "h": 141
+      },
+      "date": {
+        "x": 20,
+        "y": 392,
+        "w": 240,
+        "h": 58
+      },
+      "place": {
+        "x": 58,
+        "y": 474,
+        "w": 164,
+        "h": 48
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-hero-frame",
+          "x": 218,
+          "y": 240,
+          "w": 63,
+          "h": 63,
+          "opacity": 0.5,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 280,
+        "h": 716
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "width": 390,
+      "title": {
+        "x": 99,
+        "y": 216,
+        "w": 152,
+        "h": 148
+      },
+      "date": {
+        "x": 20,
+        "y": 396,
+        "w": 310,
+        "h": 58
+      },
+      "place": {
+        "x": 93,
+        "y": 477,
+        "w": 164,
+        "h": 48
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-hero-frame",
+          "x": 287,
+          "y": 240,
+          "w": 63,
+          "h": 63,
+          "opacity": 0.5,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 350,
+        "h": 716
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "width": 1024,
+      "title": {
+        "x": 318,
+        "y": 145,
+        "w": 308,
+        "h": 300
+      },
+      "date": {
+        "x": 46,
+        "y": 480,
+        "w": 852,
+        "h": 65
+      },
+      "place": {
+        "x": 376,
+        "y": 573,
+        "w": 192,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-hero-frame",
+          "x": 766,
+          "y": 275,
+          "w": 149,
+          "h": 149,
+          "opacity": 0.5,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 944,
+        "h": 746
+      }
+    },
+    {
+      "fixture": "botanical-arch",
+      "width": 1440,
+      "title": {
+        "x": 373,
+        "y": 163,
+        "w": 373,
+        "h": 363
+      },
+      "date": {
+        "x": 64,
+        "y": 562,
+        "w": 992,
+        "h": 91
+      },
+      "place": {
+        "x": 464,
+        "y": 680,
+        "w": 192,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "botanical-engraving",
+          "placement": "ornament-hero-frame",
+          "x": 908,
+          "y": 321,
+          "w": 177,
+          "h": 177,
+          "opacity": 0.5,
+          "visible": true,
+          "strokes": 30,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 1120,
+        "h": 871
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "width": 320,
+      "title": {
+        "x": 20,
+        "y": 228,
+        "w": 136,
+        "h": 194
+      },
+      "date": {
+        "x": 172,
+        "y": 245,
+        "w": 88,
+        "h": 159
+      },
+      "place": {
+        "x": 20,
+        "y": 589,
+        "w": 136,
+        "h": 67
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-watermark",
+          "x": 126,
+          "y": 151,
+          "w": 168,
+          "h": 168,
+          "opacity": 0.12,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 280,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "width": 390,
+      "title": {
+        "x": 20,
+        "y": 264,
+        "w": 206,
+        "h": 141
+      },
+      "date": {
+        "x": 242,
+        "y": 255,
+        "w": 88,
+        "h": 159
+      },
+      "place": {
+        "x": 20,
+        "y": 608,
+        "w": 206,
+        "h": 48
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-watermark",
+          "x": 158,
+          "y": 151,
+          "w": 210,
+          "h": 210,
+          "opacity": 0.12,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 350,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "width": 1024,
+      "title": {
+        "x": 46,
+        "y": 163,
+        "w": 586,
+        "h": 373
+      },
+      "date": {
+        "x": 664,
+        "y": 235,
+        "w": 234,
+        "h": 230
+      },
+      "place": {
+        "x": 46,
+        "y": 622,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-watermark",
+          "x": 425,
+          "y": 159,
+          "w": 566,
+          "h": 566,
+          "opacity": 0.12,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 944,
+        "h": 722
+      }
+    },
+    {
+      "fixture": "velvet-poster",
+      "width": 1440,
+      "title": {
+        "x": 64,
+        "y": 160,
+        "w": 686,
+        "h": 452
+      },
+      "date": {
+        "x": 782,
+        "y": 252,
+        "w": 274,
+        "h": 266
+      },
+      "place": {
+        "x": 64,
+        "y": 675,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-watermark",
+          "x": 536,
+          "y": 175,
+          "w": 640,
+          "h": 640,
+          "opacity": 0.12,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 1120,
+        "h": 794
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "width": 320,
+      "title": {
+        "x": 92,
+        "y": 143,
+        "w": 168,
+        "h": 145
+      },
+      "date": {
+        "x": 20,
+        "y": 372,
+        "w": 240,
+        "h": 58
+      },
+      "place": {
+        "x": 20,
+        "y": 497,
+        "w": 226,
+        "h": 48
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 208,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 0,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 280,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "width": 390,
+      "title": {
+        "x": 92,
+        "y": 143,
+        "w": 238,
+        "h": 145
+      },
+      "date": {
+        "x": 20,
+        "y": 372,
+        "w": 310,
+        "h": 58
+      },
+      "place": {
+        "x": 20,
+        "y": 497,
+        "w": 226,
+        "h": 48
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 278,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 0,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 350,
+        "h": 688
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "width": 1024,
+      "title": {
+        "x": 432,
+        "y": 171,
+        "w": 466,
+        "h": 242
+      },
+      "date": {
+        "x": 46,
+        "y": 506,
+        "w": 338,
+        "h": 65
+      },
+      "place": {
+        "x": 416,
+        "y": 511,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 872,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 0,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 944,
+        "h": 722
+      }
+    },
+    {
+      "fixture": "night-folio",
+      "width": 1440,
+      "title": {
+        "x": 507,
+        "y": 160,
+        "w": 549,
+        "h": 340
+      },
+      "date": {
+        "x": 64,
+        "y": 564,
+        "w": 395,
+        "h": 91
+      },
+      "place": {
+        "x": 491,
+        "y": 582,
+        "w": 258,
+        "h": 54
+      },
+      "marks": [
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 1048,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        },
+        {
+          "pack": "art-deco",
+          "placement": "ornament-corners",
+          "x": 0,
+          "y": 96,
+          "w": 72,
+          "h": 72,
+          "opacity": 1,
+          "visible": true,
+          "strokes": 1,
+          "intersectsHero": true,
+          "pointerEvents": "none"
+        }
+      ],
+      "hero": {
+        "w": 1120,
+        "h": 794
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "file": "herbarium-390.jpg",
+      "fixture": "herbarium",
+      "width": 390,
+      "sha256": "e398fbac021f6296c6c3fc27557c31befc9c55d0f5f047d282d977726e86c4e1"
+    },
+    {
+      "file": "herbarium-1440.jpg",
+      "fixture": "herbarium",
+      "width": 1440,
+      "sha256": "ed60fa653e8eefd9204aca64afcf90589d0e42a81cf481bf52f031e71c329e23"
+    },
+    {
+      "file": "silk-folio-390.jpg",
+      "fixture": "silk-folio",
+      "width": 390,
+      "sha256": "3693a9c45f7e1c1f4e4e0f15aa60df2445498533d8ac48efe14ce912b0cd4bcb"
+    },
+    {
+      "file": "silk-folio-1440.jpg",
+      "fixture": "silk-folio",
+      "width": 1440,
+      "sha256": "2ff18af622b994f5093834333a39fc635104d3d02c606a1a62817df870a9c1d4"
+    },
+    {
+      "file": "botanical-arch-390.jpg",
+      "fixture": "botanical-arch",
+      "width": 390,
+      "sha256": "000f7857c35bff1e7972f07f38a6f8f25a5a77c6a445565f64cae03e3356c750"
+    },
+    {
+      "file": "botanical-arch-1440.jpg",
+      "fixture": "botanical-arch",
+      "width": 1440,
+      "sha256": "ebe8d33f767082e80426bfe63f527b5baac4785c467dc49517772af23ba44bbd"
+    },
+    {
+      "file": "velvet-poster-390.jpg",
+      "fixture": "velvet-poster",
+      "width": 390,
+      "sha256": "e3f743fb9e8f7b0c1415cf317e4165f7806d5af3361582e91634231b6323a093"
+    },
+    {
+      "file": "velvet-poster-1440.jpg",
+      "fixture": "velvet-poster",
+      "width": 1440,
+      "sha256": "40b94b73d6cfe35682b8989743e8ae4cb771feedb031184c561ba68d9fff4025"
+    },
+    {
+      "file": "night-folio-390.jpg",
+      "fixture": "night-folio",
+      "width": 390,
+      "sha256": "f241d9b43782a7fd66c163e08a018947c3a8852833d5490fcfee89e5d53f10b4"
+    },
+    {
+      "file": "night-folio-1440.jpg",
+      "fixture": "night-folio",
+      "width": 1440,
+      "sha256": "f662d8db4f96c1274d5192008cb7b0254ec7faf4f8a6511902e71452f73fe58d"
+    }
+  ],
+  "approvedFontFallbacks": [
+    {
+      "fixture": "silk-folio",
+      "width": 390,
+      "mode": "uzbek-apostrophes",
+      "selector": "#hero > div:nth-of-type(1) > p:nth-of-type(1)",
+      "primary": "Golos Text",
+      "fallback": "Cormorant Garamond",
+      "originalDifference": 1.07366943359375,
+      "remainingDifference": 0,
+      "actual": 51.4447021484375,
+      "registeredPair": 51.4447021484375
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 390,
+      "mode": "uzbek-apostrophes",
+      "selector": "#venue > div:nth-of-type(2) > a:nth-of-type(1)",
+      "primary": "Golos Text",
+      "fallback": "Cormorant Garamond",
+      "originalDifference": 1.5861053466796875,
+      "remainingDifference": 0,
+      "actual": 127.91989135742188,
+      "registeredPair": 127.91989135742188
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 390,
+      "mode": "uzbek-apostrophes",
+      "selector": "#dressCode > div:nth-of-type(1) > div:nth-of-type(2) > p:nth-of-type(1)",
+      "primary": "Golos Text",
+      "fallback": "Cormorant Garamond",
+      "originalDifference": 2.92816162109375,
+      "remainingDifference": 0,
+      "actual": 288.86370849609375,
+      "registeredPair": 288.86370849609375
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 390,
+      "mode": "uzbek-apostrophes",
+      "selector": "#rsvp > div:nth-of-type(2) > a:nth-of-type(1)",
+      "primary": "Golos Text",
+      "fallback": "Cormorant Garamond",
+      "originalDifference": 3.172210693359375,
+      "remainingDifference": 0,
+      "actual": 113.51588439941406,
+      "registeredPair": 113.51588439941406
+    },
+    {
+      "fixture": "silk-folio",
+      "width": 390,
+      "mode": "uzbek-apostrophes",
+      "selector": "#footer > p:nth-of-type(2)",
+      "primary": "Golos Text",
+      "fallback": "Cormorant Garamond",
+      "originalDifference": 1.7081146240234375,
+      "remainingDifference": 0,
+      "actual": 120.69389343261719,
+      "registeredPair": 120.69389343261719
+    }
+  ]
+}

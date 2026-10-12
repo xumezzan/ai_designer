@@ -1,0 +1,24 @@
+{
+  "source": "https://chungdoi.com/ru/templates",
+  "measuredAt": "2026-10-12T11:15:34.298Z",
+  "catalogEntries": 72,
+  "openedPreviews": 72,
+  "clickedCovers": 72,
+  "completeMobilePageCaptures": 72,
+  "primaryViewport": [
+    390,
+    844
+  ],
+  "extraWidthMeasurements": 144,
+  "extraWidths": [
+    320,
+    430
+  ],
+  "navigationFailures": [],
+  "documentWidthOverflow": [],
+  "browserPageErrors": 0,
+  "presentation": "Contact sheets crop actual full-page screenshots; these are not additional browser viewport measurements.",
+  "physicalDeviceAudit": false,
+  "performanceAudit": false,
+  "referenceAssetsCopiedIntoProduct": false
+}

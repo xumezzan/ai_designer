@@ -737,3 +737,27 @@ immutable concept files, then atomically publish a generation.json pointer.
 Check content, photo-plan and generation revisions at commit time; a concurrent
 change discards the stale result. Failures keep the last successful batch.
 Old files and original demo copies are retained but not shown as current output.
+
+## 2026-10-10 — User revision: fidelity to brief and OpenAI Images
+
+The user authorized automatic OpenAI Images integration. Anthropic interprets
+the brief and uploaded references as a visible design intent (summary, required
+cues, avoided cues, reference notes, artwork prompt). When the user enables
+new artwork, OpenAI generates one original, text-free decorative illustration
+shared by the five related compositions. Uploaded style references are passed
+as image inputs; event photographs and event facts are never image prompts.
+Theme-only generation remains available. Missing credentials/provider failures
+must be explicit; no stock image is substituted for generated artwork.
+
+Theme adds optional `generatedVisual: { id: UUID, sha256, width, height }`;
+only the server creates this reference, never the model or a client patch.
+The immutable project asset and provenance are committed alongside its batch.
+`layout.visualPlacement` is `band | side-left | side-right | medallion | inset`
+(default band). `layout.nameFlow` is `natural | stacked` (default natural).
+These are bounded structural choices with hand-tuned responsive CSS. No text
+is rendered over generated artwork. Existing names, dates and links stay HTML.
+Composition presets may repeat: five distinct rendered spatial decisions are
+required, rather than mechanically using each of the five presets once.
+Invisible choices without artwork/photos do not count toward diversity.
+History, explicit approval and QA remain in force. Existing selected versions
+are preserved. Image bytes are verified against the theme digest when read.

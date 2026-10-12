@@ -1,0 +1,298 @@
+{
+  "mode": "development",
+  "fixture": "NASA Apollo 11 group portrait; exposure and low-resolution variants are controlled test simulations",
+  "saved": true,
+  "reload": true,
+  "photos": [
+    {
+      "viewport": 320,
+      "photos": [
+        {
+          "id": "8efbd7e5-61a0-469d-9a61-bdfceff13061",
+          "width": 192,
+          "height": 192,
+          "naturalWidth": 1600,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 5.223865474755296,
+            "top": 19.200000000000003,
+            "right": 171.41002299265506,
+            "bottom": 111.36
+          },
+          "valid": true
+        },
+        {
+          "id": "8679cd89-0bf3-422b-a569-874509096f87",
+          "width": 192,
+          "height": 192,
+          "naturalWidth": 1200,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 10.485683987274655,
+            "top": 19.200000000000003,
+            "right": 176.62778366914108,
+            "bottom": 111.35999999999999
+          },
+          "valid": true
+        },
+        {
+          "id": "a0a290e8-afa9-4cff-a150-ca010c7e7ac0",
+          "width": 112,
+          "height": 87.84375,
+          "naturalWidth": 320,
+          "crop": "whole",
+          "ratio": "original",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 16.799999999999997,
+            "top": 8.781875000000003,
+            "right": 92.96000000000001,
+            "bottom": 50.94987499999999
+          },
+          "valid": true
+        }
+      ]
+    },
+    {
+      "viewport": 390,
+      "photos": [
+        {
+          "id": "8efbd7e5-61a0-469d-9a61-bdfceff13061",
+          "width": 234,
+          "height": 234,
+          "naturalWidth": 1600,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 6.366586047358027,
+            "top": 23.400000000000002,
+            "right": 208.90596552229835,
+            "bottom": 135.72
+          },
+          "valid": true
+        },
+        {
+          "id": "8679cd89-0bf3-422b-a569-874509096f87",
+          "width": 234,
+          "height": 234,
+          "naturalWidth": 1200,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 12.779427359490974,
+            "top": 23.400000000000002,
+            "right": 215.26511134676565,
+            "bottom": 135.72
+          },
+          "valid": true
+        },
+        {
+          "id": "a0a290e8-afa9-4cff-a150-ca010c7e7ac0",
+          "width": 136.5,
+          "height": 107.0625,
+          "naturalWidth": 320,
+          "crop": "whole",
+          "ratio": "original",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 20.475,
+            "top": 10.704374999999999,
+            "right": 113.29500000000002,
+            "bottom": 62.096624999999996
+          },
+          "valid": true
+        }
+      ]
+    },
+    {
+      "viewport": 768,
+      "photos": [
+        {
+          "id": "8efbd7e5-61a0-469d-9a61-bdfceff13061",
+          "width": 460.796875,
+          "height": 460.796875,
+          "naturalWidth": 1600,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 12.537192115560558,
+            "top": 46.079687500000006,
+            "right": 411.3812653056958,
+            "bottom": 267.2621875
+          },
+          "valid": true
+        },
+        {
+          "id": "8679cd89-0bf3-422b-a569-874509096f87",
+          "width": 460.796875,
+          "height": 460.796875,
+          "naturalWidth": 1200,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 25.165470904029732,
+            "top": 46.079687500000006,
+            "right": 423.9038060047721,
+            "bottom": 267.2621875
+          },
+          "valid": true
+        },
+        {
+          "id": "a0a290e8-afa9-4cff-a150-ca010c7e7ac0",
+          "width": 268.796875,
+          "height": 210.828125,
+          "naturalWidth": 320,
+          "crop": "whole",
+          "ratio": "original",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 40.31953125,
+            "top": 21.079042968750002,
+            "right": 223.10140625000003,
+            "bottom": 122.28106640624999
+          },
+          "valid": true
+        }
+      ]
+    },
+    {
+      "viewport": 1440,
+      "photos": [
+        {
+          "id": "8efbd7e5-61a0-469d-9a61-bdfceff13061",
+          "width": 600,
+          "height": 600,
+          "naturalWidth": 1600,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 16.32457960861032,
+            "top": 60,
+            "right": 535.656321852047,
+            "bottom": 347.99999999999994
+          },
+          "valid": true
+        },
+        {
+          "id": "8679cd89-0bf3-422b-a569-874509096f87",
+          "width": 600,
+          "height": 600,
+          "naturalWidth": 1200,
+          "crop": "crop",
+          "ratio": "1:1",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 32.767762460233286,
+            "top": 60.00000000000001,
+            "right": 551.9618239660658,
+            "bottom": 347.99999999999994
+          },
+          "valid": true
+        },
+        {
+          "id": "a0a290e8-afa9-4cff-a150-ca010c7e7ac0",
+          "width": 320,
+          "height": 251,
+          "naturalWidth": 320,
+          "crop": "whole",
+          "ratio": "original",
+          "treatment": "bw",
+          "filter": "grayscale(1) contrast(0.95)",
+          "safe": {
+            "left": 48,
+            "top": 25.1,
+            "right": 265.6,
+            "bottom": 145.57999999999998
+          },
+          "valid": true
+        }
+      ]
+    }
+  ],
+  "previews": [
+    {
+      "fixture": "letter",
+      "photos": 3
+    },
+    {
+      "fixture": "poster",
+      "photos": 3
+    },
+    {
+      "fixture": "folio",
+      "photos": 3
+    },
+    {
+      "fixture": "arch",
+      "photos": 3
+    },
+    {
+      "fixture": "botanical",
+      "photos": 3
+    }
+  ],
+  "viewports": [
+    {
+      "view": "editor",
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "view": "editor",
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "view": "editor",
+      "viewport": 768,
+      "scrollWidth": 768
+    },
+    {
+      "view": "editor",
+      "viewport": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "view": "invitation",
+      "viewport": 320,
+      "scrollWidth": 320
+    },
+    {
+      "view": "invitation",
+      "viewport": 390,
+      "scrollWidth": 390
+    },
+    {
+      "view": "invitation",
+      "viewport": 768,
+      "scrollWidth": 768
+    },
+    {
+      "view": "invitation",
+      "viewport": 1440,
+      "scrollWidth": 1440
+    }
+  ],
+  "missingKey": false,
+  "errors": []
+}

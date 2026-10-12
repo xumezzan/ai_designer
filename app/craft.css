@@ -2,12 +2,12 @@
  * Craft layer (SPEC §7.1).
  *
  * Theme-independent, always on, in every variant without exception, and never
- * a field in theme.json — if the generator asks to move any of it into the
- * theme, the answer is no. Imported once by the root layout, so it holds for
+ * renderer-authored. Bounded physicality/tracking tokens can select treatments,
+ * but fonts, spacing and motion geometry stay here. Imported once so it holds for
  * the studio shell and for every published invitation.
  */
 
-/* Typography consumes the registered craft levels; it has no theme controls. */
+/* Typography consumes registered levels, with bounded tracking overrides. */
 [data-level] {
   font-family: var(--font-body);
   font-synthesis: none;

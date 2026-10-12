@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { Hex } from "./common";
 import { rsvpTarget } from "../invitation/links";
+import { VariantCount } from "./variantCount";
 
 /**
  * Deterministic event facts (`projects/<slug>/content.json`). The AI never
@@ -80,6 +81,7 @@ export const Content = z.object({
     .default([]),
 
   brief: z.string().optional(),
+  variantCount: VariantCount.optional(),
   refs: z.array(z.string()).default([]),
 }).superRefine((content, context) => {
   if (content.rsvp?.enabled) {

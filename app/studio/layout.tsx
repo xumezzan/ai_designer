@@ -1,9 +1,12 @@
-import Link from "next/link";
+import { cookies } from "next/headers";
+import { StudioShell } from "@/components/studio/StudioShell";
 import "./studio.css";
 import "./photos.css";
 import "@/app/photos.css";
+import "./workspace.css";
 
 export const metadata = { title: "Студия приглашений", robots: { index: false, follow: false } };
-export default function StudioLayout({ children }: { children: React.ReactNode }) {
-  return <div className="studio"><header className="studio-header"><Link href="/studio" className="studio-brand">Invitation<span>Studio</span></Link><nav aria-label="Студия"><Link href="/studio">Проекты</Link><Link href="/demo">Коллекция дизайнов ↗</Link></nav><span className="studio-private">Личная мастерская</span></header>{children}</div>;
+export default async function StudioLayout({ children }: { children: React.ReactNode }) {
+  const savedTheme = (await cookies()).get("studio-theme")?.value;
+  return <StudioShell initialTheme={savedTheme === "dark" ? "dark" : "light"}>{children}</StudioShell>;
 }

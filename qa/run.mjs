@@ -43,6 +43,9 @@ export async function perform({ url, assets, output, testStyles }) {
       try {
         await restrict(context, url);
         const page = await context.newPage(); page.setDefaultTimeout(15000);
+        // Keep countdown glyphs identical in the actual and mask captures.
+        // Date is fixed; animation/timer scheduling stays live for other checks.
+        await page.clock.setFixedTime(Date.now());
         const response = await page.goto(url, { waitUntil: "networkidle" });
         if (!response?.ok()) throw new Error("Preview unavailable");
         await page.evaluate(async () => {
