@@ -1,0 +1,1325 @@
+{
+  "date": "2026-10-12",
+  "timezone": "Asia/Tashkent",
+  "method": "Computed browser styles at explicit CSS viewport sizes; animation durations from served source code, not wall-clock recordings.",
+  "desktop": [
+    {
+      "title": "Elodie Wedding Website",
+      "url": "https://myblissandbone.com/elodie",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home singlePage cover coverpage",
+        "text": "",
+        "font": "EBGaramond-Italic",
+        "size": "14px",
+        "leading": "0px",
+        "tracking": "1px",
+        "color": "rgb(89, 81, 65)",
+        "width": 1440,
+        "height": 116.234375,
+        "padding": "30px 40px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "THE WEDDING",
+          "font": "CormorantGaramond-Light",
+          "size": "75px",
+          "leading": "97.5px",
+          "tracking": "7px",
+          "color": "rgb(255, 251, 247)",
+          "width": 700,
+          "height": 97.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "SATURDAY THE 7TH OF JANUARY 2021\n3 O'CLO",
+          "font": "EBGaramond-Regular",
+          "size": "13px",
+          "leading": "16.9px",
+          "tracking": "5px",
+          "color": "rgb(255, 251, 247)",
+          "width": 390.9609375,
+          "height": 67.59375,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "OTHER EVENTS",
+          "font": "CormorantGaramond-Light",
+          "size": "75px",
+          "leading": "97.5px",
+          "tracking": "7px",
+          "color": "rgb(89, 81, 65)",
+          "width": 700,
+          "height": 97.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "WELCOME DINNER",
+          "font": "CormorantGaramond-Light",
+          "size": "50px",
+          "leading": "65px",
+          "tracking": "7px",
+          "color": "rgb(167, 168, 163)",
+          "width": 700,
+          "height": 65,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "FRIDAY JANUARY 6TH 2021\nTAVERN'S GRILLE\n",
+          "font": "EBGaramond-Regular",
+          "size": "13px",
+          "leading": "16.9px",
+          "tracking": "5px",
+          "color": "rgb(89, 81, 65)",
+          "width": 700,
+          "height": 50.6953125,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "BEACH DAY",
+          "font": "CormorantGaramond-Light",
+          "size": "50px",
+          "leading": "65px",
+          "tracking": "7px",
+          "color": "rgb(167, 168, 163)",
+          "width": 700,
+          "height": 65,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    },
+    {
+      "title": "Plunge 01",
+      "url": "https://myblissandbone.com/plunge-01",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home singlePage cover coverpage",
+        "text": "GISELLE - THOMAS",
+        "font": "Poppins-Light",
+        "size": "12px",
+        "leading": "0px",
+        "tracking": "normal",
+        "color": "rgb(108, 108, 108)",
+        "width": 1440,
+        "height": 87.6015625,
+        "padding": "30px 40px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "ITINERARY",
+          "font": "Poppins-Light",
+          "size": "45px",
+          "leading": "58.5px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 700,
+          "height": 58.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "FRIDAY 09 27 19",
+          "font": "Poppins-Light",
+          "size": "31px",
+          "leading": "40.3px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 400,
+          "height": 40.296875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "CHECK IN",
+          "font": "Poppins-Light",
+          "size": "16px",
+          "leading": "20.8px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 400,
+          "height": 20.796875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "E KOMO MAI: A WELCOME DINNER",
+          "font": "Poppins-Light",
+          "size": "16px",
+          "leading": "20.8px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 400,
+          "height": 20.796875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "SATURDAY 09 28 19",
+          "font": "Poppins-Light",
+          "size": "31px",
+          "leading": "40.3px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 400,
+          "height": 40.296875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "EXPLORE BY LAND, SEA AND AIR!",
+          "font": "Poppins-Light",
+          "size": "16px",
+          "leading": "20.8px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 400,
+          "height": 20.796875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    },
+    {
+      "title": "Alessia Wedding Website",
+      "url": "https://myblissandbone.com/alessia",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home singlePage cover coverpage",
+        "text": "Alessia and Troy",
+        "font": "PermanentMarker-Regular",
+        "size": "16px",
+        "leading": "0px",
+        "tracking": "1px",
+        "color": "rgb(156, 10, 13)",
+        "width": 1440,
+        "height": 96,
+        "padding": "30px 40px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H1",
+          "cls": "logo",
+          "text": "That's Amore!",
+          "font": "OlivieSans-Regular",
+          "size": "151px",
+          "leading": "151px",
+          "tracking": "normal",
+          "color": "rgb(255, 250, 241)",
+          "width": 1360,
+          "height": 151,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "-",
+          "font": "OlivieSans-Regular",
+          "size": "66px",
+          "leading": "66px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 700,
+          "height": 66,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "Alessia and Troy are getting married! We",
+          "font": "OlivieSans-Regular",
+          "size": "66px",
+          "leading": "66px",
+          "tracking": "normal",
+          "color": "rgb(156, 10, 13)",
+          "width": 700,
+          "height": 396,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "SEPTEMBER 9, 2023",
+          "font": "OlivieSans-Regular",
+          "size": "28px",
+          "leading": "47.6px",
+          "tracking": "3px",
+          "color": "rgb(156, 10, 13)",
+          "width": 700,
+          "height": 47.6015625,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "-",
+          "font": "OlivieSans-Regular",
+          "size": "66px",
+          "leading": "66px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 700,
+          "height": 66,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "The night before",
+          "font": "OlivieSans-Regular",
+          "size": "64px",
+          "leading": "64px",
+          "tracking": "normal",
+          "color": "rgb(156, 10, 13)",
+          "width": 640,
+          "height": 64,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "COCKTAILS",
+          "font": "OlivieSans-Regular",
+          "size": "28px",
+          "leading": "47.6px",
+          "tracking": "3px",
+          "color": "rgb(156, 10, 13)",
+          "width": 224.9453125,
+          "height": 47.6015625,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    },
+    {
+      "title": "Greens",
+      "url": "https://myblissandbone.com/greens",
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home",
+        "text": "AVERY — THOMAS",
+        "font": "Montserrat-Light",
+        "size": "12px",
+        "leading": "0px",
+        "tracking": "normal",
+        "color": "rgb(64, 64, 64)",
+        "width": 1440,
+        "height": 84,
+        "padding": "30px 40px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "WELCOME",
+          "font": "Montserrat-Light",
+          "size": "75px",
+          "leading": "97.5px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 700,
+          "height": 97.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "TO OUR WEDDING",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 190.84375,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "CEREMONY",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(64, 64, 64)",
+          "width": 335,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "RECEPTION",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(64, 64, 64)",
+          "width": 335,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "AFTER PARTY",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(64, 64, 64)",
+          "width": 335,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "EVENTS",
+          "font": "Montserrat-Light",
+          "size": "75px",
+          "leading": "97.5px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 700,
+          "height": 97.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "COCKTAILS",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 187.4140625,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    }
+  ],
+  "mobile": [
+    {
+      "title": "Elodie Wedding Website",
+      "url": "https://myblissandbone.com/elodie",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home singlePage cover coverpage",
+        "text": "",
+        "font": "EBGaramond-Italic",
+        "size": "14px",
+        "leading": "0px",
+        "tracking": "1px",
+        "color": "rgb(89, 81, 65)",
+        "width": 390,
+        "height": 96.1796875,
+        "padding": "30px 20px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "THE WEDDING",
+          "font": "CormorantGaramond-Light",
+          "size": "52.5px",
+          "leading": "68.25px",
+          "tracking": "7px",
+          "color": "rgb(255, 251, 247)",
+          "width": 350,
+          "height": 136.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "SATURDAY THE 7TH OF JANUARY 2021\n3 O'CLO",
+          "font": "EBGaramond-Regular",
+          "size": "13px",
+          "leading": "16.9px",
+          "tracking": "5px",
+          "color": "rgb(255, 251, 247)",
+          "width": 350,
+          "height": 84.4921875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "OTHER EVENTS",
+          "font": "CormorantGaramond-Light",
+          "size": "52.5px",
+          "leading": "68.25px",
+          "tracking": "7px",
+          "color": "rgb(89, 81, 65)",
+          "width": 350,
+          "height": 136.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "WELCOME DINNER",
+          "font": "CormorantGaramond-Light",
+          "size": "35px",
+          "leading": "45.5px",
+          "tracking": "7px",
+          "color": "rgb(167, 168, 163)",
+          "width": 310,
+          "height": 91,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "FRIDAY JANUARY 6TH 2021\nTAVERN'S GRILLE\n",
+          "font": "EBGaramond-Regular",
+          "size": "13px",
+          "leading": "16.9px",
+          "tracking": "5px",
+          "color": "rgb(89, 81, 65)",
+          "width": 310,
+          "height": 50.6953125,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "BEACH DAY",
+          "font": "CormorantGaramond-Light",
+          "size": "35px",
+          "leading": "45.5px",
+          "tracking": "7px",
+          "color": "rgb(167, 168, 163)",
+          "width": 310,
+          "height": 45.5,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    },
+    {
+      "title": "Plunge 01",
+      "url": "https://myblissandbone.com/plunge-01",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home singlePage cover coverpage",
+        "text": "GISELLE - THOMAS",
+        "font": "Poppins-Light",
+        "size": "12px",
+        "leading": "0px",
+        "tracking": "normal",
+        "color": "rgb(108, 108, 108)",
+        "width": 390,
+        "height": 87.6015625,
+        "padding": "30px 20px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "ITINERARY",
+          "font": "Poppins-Light",
+          "size": "31.5px",
+          "leading": "40.95px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 350,
+          "height": 40.953125,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "FRIDAY 09 27 19",
+          "font": "Poppins-Light",
+          "size": "31px",
+          "leading": "40.3px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 315,
+          "height": 40.296875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "CHECK IN",
+          "font": "Poppins-Light",
+          "size": "16px",
+          "leading": "20.8px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 315,
+          "height": 20.796875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "E KOMO MAI: A WELCOME DINNER",
+          "font": "Poppins-Light",
+          "size": "16px",
+          "leading": "20.8px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 315,
+          "height": 20.796875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "SATURDAY 09 28 19",
+          "font": "Poppins-Light",
+          "size": "31px",
+          "leading": "40.3px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 315,
+          "height": 40.296875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "EXPLORE BY LAND, SEA AND AIR!",
+          "font": "Poppins-Light",
+          "size": "16px",
+          "leading": "20.8px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 315,
+          "height": 20.796875,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    },
+    {
+      "title": "Alessia Wedding Website",
+      "url": "https://myblissandbone.com/alessia",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home singlePage cover coverpage",
+        "text": "Alessia and Troy",
+        "font": "PermanentMarker-Regular",
+        "size": "16px",
+        "leading": "0px",
+        "tracking": "1px",
+        "color": "rgb(156, 10, 13)",
+        "width": 390,
+        "height": 78.28125,
+        "padding": "30px 20px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H1",
+          "cls": "logo",
+          "text": "That's Amore!",
+          "font": "OlivieSans-Regular",
+          "size": "64.0109px",
+          "leading": "64.0109px",
+          "tracking": "normal",
+          "color": "rgb(255, 250, 241)",
+          "width": 350,
+          "height": 128.015625,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "-",
+          "font": "OlivieSans-Regular",
+          "size": "46.2px",
+          "leading": "46.2px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 350,
+          "height": 46.203125,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "Alessia and Troy are getting married! We",
+          "font": "OlivieSans-Regular",
+          "size": "46.2px",
+          "leading": "46.2px",
+          "tracking": "normal",
+          "color": "rgb(156, 10, 13)",
+          "width": 350,
+          "height": 415.828125,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "SEPTEMBER 9, 2023",
+          "font": "OlivieSans-Regular",
+          "size": "28px",
+          "leading": "47.6px",
+          "tracking": "3px",
+          "color": "rgb(156, 10, 13)",
+          "width": 350,
+          "height": 47.6015625,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "-",
+          "font": "OlivieSans-Regular",
+          "size": "46.2px",
+          "leading": "46.2px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 350,
+          "height": 46.203125,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "The night before",
+          "font": "OlivieSans-Regular",
+          "size": "44.8px",
+          "leading": "44.8px",
+          "tracking": "normal",
+          "color": "rgb(156, 10, 13)",
+          "width": 350,
+          "height": 89.59375,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "COCKTAILS",
+          "font": "OlivieSans-Regular",
+          "size": "28px",
+          "leading": "47.6px",
+          "tracking": "3px",
+          "color": "rgb(156, 10, 13)",
+          "width": 224.9453125,
+          "height": 47.6015625,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    },
+    {
+      "title": "Greens",
+      "url": "https://myblissandbone.com/greens",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "home",
+        "text": "AVERY — THOMAS",
+        "font": "Montserrat-Light",
+        "size": "12px",
+        "leading": "0px",
+        "tracking": "normal",
+        "color": "rgb(64, 64, 64)",
+        "width": 390,
+        "height": 84,
+        "padding": "30px 20px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "WELCOME",
+          "font": "Montserrat-Light",
+          "size": "52.5px",
+          "leading": "68.25px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 350,
+          "height": 68.25,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "TO OUR WEDDING",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 190.84375,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "CEREMONY",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(64, 64, 64)",
+          "width": 310,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "RECEPTION",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(64, 64, 64)",
+          "width": 310,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "AFTER PARTY",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(64, 64, 64)",
+          "width": 310,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H2",
+          "cls": "",
+          "text": "EVENTS",
+          "font": "Montserrat-Light",
+          "size": "52.5px",
+          "leading": "68.25px",
+          "tracking": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 350,
+          "height": 68.25,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        },
+        {
+          "tag": "H3",
+          "cls": "",
+          "text": "COCKTAILS",
+          "font": "Montserrat-Light",
+          "size": "20px",
+          "leading": "26px",
+          "tracking": "normal",
+          "color": "rgb(0, 0, 0)",
+          "width": 187.4140625,
+          "height": 26,
+          "padding": "0px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "absolute",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    },
+    {
+      "title": "Bella",
+      "url": "https://myblissandbone.com/bella",
+      "viewport": {
+        "w": 390,
+        "h": 844
+      },
+      "scroll": 0,
+      "header": {
+        "tag": "HEADER",
+        "cls": "header home coverpage",
+        "text": "BELLA AND EDWARD",
+        "font": "civane-normal-thin",
+        "size": "12px",
+        "leading": "0px",
+        "tracking": "normal",
+        "color": "rgb(145, 148, 149)",
+        "width": 390,
+        "height": 93.6015625,
+        "padding": "30px 20px",
+        "transition": "all",
+        "animation": "none"
+      },
+      "display": [
+        {
+          "tag": "H1",
+          "cls": "logo",
+          "text": "",
+          "font": "Poppins-ExtraLight",
+          "size": "28px",
+          "leading": "28px",
+          "tracking": "normal",
+          "color": "rgb(177, 177, 177)",
+          "width": 390,
+          "height": 750.390625,
+          "padding": "20px",
+          "transition": "all",
+          "animation": "none"
+        }
+      ],
+      "backgrounds": [
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        },
+        {
+          "cls": "bgBox",
+          "attachment": "scroll",
+          "position": "static",
+          "size": "cover",
+          "positioning": "50% 50%"
+        }
+      ],
+      "flags": {
+        "gsap": true,
+        "scrollTrigger": false,
+        "video": false
+      }
+    }
+  ]
+}

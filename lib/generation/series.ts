@@ -34,11 +34,12 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
       if (!variant.layout.sectionOrder.includes(placement.section)) throw new Error("Every photo section must appear in sectionOrder");
     }
     if (placements.filter((photo) => photo.section === "hero").length > 1) throw new Error("Only one photo may be placed in hero");
+    const identity = mode === "exploration" ? variant.direction : undefined;
     const theme = {
-      palette: variant.direction?.palette ?? common.palette, typeSet: variant.direction?.typeSet ?? style.typeSet, materialSet: style.materialSet, artwork: style.artwork, generatedVisual: style.generatedVisual, foil: style.foil, motion: style.motion,
-      atmosphere: style.atmosphere, surface: style.surface, finishing: style.finishing, typographyScale: style.typographyScale,
+      palette: identity?.palette ?? common.palette, typeSet: identity?.typeSet ?? style.typeSet, materialSet: identity?.materialSet ?? style.materialSet, artwork: style.artwork, generatedVisual: style.generatedVisual, foil: identity?.foil ?? style.foil, motion: identity?.motion ?? style.motion,
+      atmosphere: identity?.atmosphere ?? style.atmosphere, surface: identity?.surface ?? style.surface, finishing: identity?.finishing ?? style.finishing, typographyScale: identity?.typographyScale ?? style.typographyScale,
       meta: { name: variant.name, mood: style.mood, rationale: variant.rationale },
-      ornament: { ...style.ornament, placement: variant.ornamentPlacement }, layout: variant.layout, photos: placements,
+      ornament: { ...(identity?.ornament ?? style.ornament), placement: variant.ornamentPlacement }, layout: variant.layout, photos: placements,
     };
     const options = { locale, hasHighQualityAsset: placements.some((photo) => photo.section === "hero") };
     const variationRepair = mode === "exploration" ? repairTheme(theme, options) : undefined;
@@ -48,8 +49,17 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
     if (!validated.ok) throw new Error(validated.errors.join("; "));
     return validated.theme;
   });
-  if (mode === "exploration" && themes.length > 1 && new Set(themes.map((theme) => JSON.stringify([theme.palette, theme.typeSet]))).size !== themes.length) throw new Error("Exploration directions must differ in visible palette or typeface");
+  if (mode === "exploration" && themes.length > 1) {
+    const identity = (theme: Theme) => JSON.stringify([theme.palette, theme.typeSet, theme.materialSet, theme.surface, theme.finishing.type, theme.ornament.pack]);
+    if (new Set(themes.map(identity)).size !== themes.length) throw new Error("Exploration directions must differ in visible identity, including materials and typography");
+    const scene = (theme: Theme) => JSON.stringify([theme.layout.preset, theme.layout.composition, theme.surface.texture, theme.finishing.type, theme.ornament.pack]);
+    if (new Set(themes.map(scene)).size !== themes.length) throw new Error("Exploration needs different compositions or material scenes; recoloring the same design is not enough");
+  }
   return { ...(series.mode ? { mode } : {}), themes, style: { ...style, palette: common.palette }, adjustments: repaired.adjustments };
+}
+/** Canonical bounded overrides; server-issued artwork and photo safety never vary here. */
+export function artDirection(theme: Theme) {
+  return { palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } };
 }
 export type GeneratedSeries = ReturnType<typeof composeSeries> & Pick<Generation, "model" | "elapsedMs" | "references"> & { visual?: GeneratedVisual };
 

@@ -37,7 +37,7 @@ test("art placement can be refined while the original server-issued image identi
 test("metadata, arbitrary CSS, prototype keys, wholesale regeneration and unbuilt presets are rejected", () => {
   for (const patch of [{ meta: { name: "replacement" } }, { layout: { padding: 20 } }, JSON.parse('{"palette":{"__proto__":{"polluted":true}}}')]) expect(() => applyRefinement(source, patch, context)).toThrow();
   expect(() => applyRefinement(source, { palette: source.palette, typeSet: source.typeSet, materialSet: source.materialSet, artwork: source.artwork, foil: source.foil }, context)).toThrow("partial");
-  expect(() => applyRefinement(source, { materialSet: "glass" }, context)).toThrow("registered preset");
+  expect(() => applyRefinement(source, { motion: { preset: "overture" } }, context)).toThrow("registered preset");
 });
 test("no-op edits, omitted event sections and invented/reference photo ids are rejected", () => {
   expect(() => applyRefinement(source, { foil: { enabled: source.foil.enabled } }, context)).toThrow("does not change");

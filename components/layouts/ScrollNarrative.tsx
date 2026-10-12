@@ -30,8 +30,10 @@ import { DressCode } from "@/components/sections/DressCode";
 import { Rsvp } from "@/components/sections/Rsvp";
 import { Footer } from "@/components/sections/Footer";
 import { WeddingStory, isStoryComposition } from "./WeddingStory";
+import { CardStack } from "./CardStack";
 
 export function ScrollNarrative({ content, theme, initialNow, photos = [], generatedVisual, guest, embedded = false }: { content: Content; theme: Theme; initialNow: number; photos?: DirectedAsset[]; generatedVisual?: VisualSource; guest?: string; embedded?: boolean }) {
+  if (theme.layout.preset === "card-stack") return <CardStack content={content} theme={theme} initialNow={initialNow} photos={photos} generatedVisual={generatedVisual} guest={guest} embedded={embedded} />;
   if (isStoryComposition(theme.layout.composition) && theme.artwork === "none" && !generatedVisual) {
     return <WeddingStory content={content} theme={theme} initialNow={initialNow} photos={photos} guest={guest} embedded={embedded} />;
   }

@@ -7,6 +7,7 @@ import "@/app/artwork.css";
 import "@/app/photos.css";
 import "@/app/atelier.css";
 import "@/app/physicality.css";
+import "@/app/material-scenes.css";
 import { guestName } from "@/lib/invitation/guest";
 import "@/app/demo/demo.css";
 
@@ -18,7 +19,7 @@ export default async function Preview({ params, searchParams }: { params: Promis
   const invitation = await readInvitation(slug, conceptId, version);
   if (!invitation) notFound();
   const { content, theme } = invitation;
-  if (theme.layout.preset !== "scroll-narrative") throw new Error("Layout is not available");
+  if (!["scroll-narrative", "card-stack"].includes(theme.layout.preset)) throw new Error("Layout is not available");
   const query = await searchParams;
   const embedded = query.embed === "1";
   const guest = guestName(query.to) || guestName(query.guest);

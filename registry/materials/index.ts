@@ -47,6 +47,11 @@ const deckleMask = svgUrl(
 );
 
 export const materialSets: Partial<Record<MaterialSetId, MaterialSet>> = {
+  glass: {
+    id: "glass", name: "Optical glass", description: "Layered frosted glass with a refracted botanical background and a stable readable text surface.",
+    vars: { "--grain": grainCoarse, "--grain-fine": grainFine, "--grain-opacity": "0.025", "--grain-fine-opacity": "0.015", "--vignette": "none", "--shadow-soft": "0 22px 58px -18px color-mix(in srgb, var(--bg) 70%, black)", "--foil-sheen": "none", "--deckle-mask": "none" },
+    svgFilter: "",
+  },
   paper: {
     id: "paper",
     name: "Cotton paper",

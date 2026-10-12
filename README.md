@@ -2,8 +2,15 @@
 
 Internal, single-user tool for generating web invitations for events (weddings,
 anniversaries, corporate evenings) for the Uzbekistan and CIS market. The
-questionnaire and brief become one to five related compositions in one requested style; one is
+questionnaire and brief become one to five independent art directions, or related
+compositions when a shared visual family is requested; one is
 approved, refined in plain language, and published at a link.
+
+**Guests primarily view invitations on mobile phones.** Design the complete
+vertical invitation at 390×844 with touch first, robust at 320–430px; desktop is
+an enhancement. Mobile materials, composition and guest actions are recorded in
+[the complete ChungDoi preview study](./docs/chungdoi-mobile/README.md) and the
+project's [design instructions](./AGENTS.md).
 
 **The architectural rule that must never be broken:** the AI does not write the
 invitation's HTML or CSS — it produces `theme.json` and separate decorative art
@@ -109,6 +116,17 @@ recorded in [docs/critique.md](./docs/critique.md). Verification and its limits:
 [docs/m1-qa.md](./docs/m1-qa.md).
 
 ## Invitation preview
+
+**Dimensional materials:** the studio's **Объёмные материалы** direction now
+creates independent physical scenes using `card-stack`: a weighted paper suite
+on original silk, an arched cotton herbarium, and frosted glass in a botanical
+setting. Open `/materials` to compare three explicitly authored examples.
+Photo decks keep protected crops and add buttons, swiping and CSS perspective;
+no-JS/reduced-motion readers get the complete static photo sequence. Per-variant
+material, finishing, typography, ornament, lighting and motion survive generation
+and canonical storage validation. Recolouring the same composition/material
+cannot pass exploration diversity. Existing cohesive series retain their
+shared-style contract. Details and evidence: [material scenes](./docs/material-scenes/README.md).
 
 **Invitation design refresh:** all preview compositions now use larger display
 type, a more compact hero, editorial section grids, interactive fabric swatches,

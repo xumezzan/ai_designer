@@ -213,7 +213,7 @@ describe("validateTheme", () => {
   });
 
   it("rejects presets that have no registered object yet", () => {
-    const result = validateTheme(clone({ materialSet: "glass" }));
+    const result = validateTheme(clone({ motion: { ...baseTheme.motion, preset: "overture" } }));
     expect(result.ok).toBe(false);
     if (!result.ok) {
       expect(result.errors.some((e) => e.includes("no registered preset"))).toBe(true);

@@ -1,0 +1,42 @@
+{
+  "source": "https://chungdoi.com/ru/templates/chateau-blue/demo",
+  "viewport": [
+    390,
+    844
+  ],
+  "submittedForms": false,
+  "beforeSwipe": "Go to photo 1",
+  "afterSwipe": "Go to photo 2",
+  "afterDotTap": "Go to photo 3",
+  "dotTargets": [
+    {
+      "width": 8,
+      "height": 8
+    },
+    {
+      "width": 8,
+      "height": 8
+    },
+    {
+      "width": 24,
+      "height": 8
+    },
+    {
+      "width": 8,
+      "height": 8
+    }
+  ],
+  "rsvpFields": [],
+  "openDialogs": 0,
+  "rsvpInspection": {
+    "method": "Separate visible browser CTA click and visible-field inspection",
+    "presentation": "Overlay without native dialog or role=dialog",
+    "fields": [
+      "name text input",
+      "attendance radio: yes",
+      "attendance radio: no"
+    ],
+    "submitted": false
+  },
+  "rsvpSelectorNote": "The headless native-dialog query found zero because this demo overlay does not use those dialog selectors."
+}

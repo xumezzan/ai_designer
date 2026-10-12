@@ -1,0 +1,1383 @@
+{
+  "providerCalls": false,
+  "fixtures": "Original botanical material used as a bounded photo test fixture, not a customer portrait",
+  "samples": [
+    {
+      "scene": "silk-suite",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 320,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 390,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 1024,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 1440,
+      "mode": "standard",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 320,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 390,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 1024,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 1440,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 320,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 390,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 1024,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 1440,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 320,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 390,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 1024,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 1440,
+      "mode": "long-names",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "silk-suite",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "width": 390,
+      "mode": "no-js",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass"
+        },
+        {
+          "id": "clipping",
+          "status": "pass"
+        },
+        {
+          "id": "collision",
+          "status": "pass"
+        },
+        {
+          "id": "fonts",
+          "status": "pass"
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "noJsReadable": true,
+    "photoDeckPerspective": true,
+    "noDuplicatePhotos": true,
+    "albumButtons": true,
+    "envelopeOpening": true,
+    "dynamicReducedMotion": true,
+    "hiddenDocumentPausesAmbient": true
+  },
+  "failures": [],
+  "errors": [],
+  "pixelQa": [
+    {
+      "scene": "silk-suite",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "samples": 222,
+          "findings": []
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "samples": 222,
+          "findings": []
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "samples": 222,
+          "findings": []
+        },
+        {
+          "id": "contrast",
+          "status": "warning",
+          "samples": 222,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dressCode > div:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(1) > button:nth-of-type(1) > span:nth-of-type(2)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dressCode > div:nth-of-type(1) > div:nth-of-type(2) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dressCode > div:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(3) > button:nth-of-type(1) > span:nth-of-type(2)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dressCode > div:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(4) > button:nth-of-type(1) > span:nth-of-type(2)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dressCode > div:nth-of-type(1) > div:nth-of-type(2) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            }
+          ]
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "samples": 3,
+          "findings": []
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "samples": 4,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "#dress-title",
+              "viewport": 1024,
+              "message": "В последней строке заголовка осталось одно слово."
+            },
+            {
+              "severity": "warning",
+              "selector": "#countdown-title",
+              "viewport": 1024,
+              "message": "В последней строке заголовка осталось одно слово."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dress-title",
+              "viewport": 1440,
+              "message": "В последней строке заголовка осталось одно слово."
+            },
+            {
+              "severity": "warning",
+              "selector": "#countdown-title",
+              "viewport": 1440,
+              "message": "В последней строке заголовка осталось одно слово."
+            }
+          ]
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "samples": 171,
+          "findings": []
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "samples": 27,
+          "findings": []
+        },
+        {
+          "id": "resolution",
+          "status": "warning",
+          "samples": 9,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > figure:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Для экрана с плотностью 2× изображение недостаточно чёткое.",
+              "observed": 1.43,
+              "expected": 2
+            },
+            {
+              "severity": "warning",
+              "selector": "div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > figure:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Для экрана с плотностью 2× изображение недостаточно чёткое.",
+              "observed": 1.43,
+              "expected": 2
+            }
+          ]
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "samples": 3,
+          "findings": []
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "samples": 9,
+          "findings": []
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "samples": 9,
+          "findings": []
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "samples": 1,
+          "findings": []
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "samples": 1,
+          "findings": []
+        }
+      ]
+    },
+    {
+      "scene": "pressed-flower",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "samples": 348,
+          "findings": []
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "samples": 348,
+          "findings": []
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "samples": 348,
+          "findings": []
+        },
+        {
+          "id": "contrast",
+          "status": "warning",
+          "samples": 348,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 390,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(1) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(2) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(3) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            },
+            {
+              "severity": "warning",
+              "selector": "#timeline > ol:nth-of-type(1) > li:nth-of-type(4) > div:nth-of-type(1) > p:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Не удалось выделить непрозрачные штрихи текста. Оцените читаемость вручную."
+            }
+          ]
+        },
+        {
+          "id": "measure",
+          "status": "warning",
+          "samples": 3,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "#greeting > div:nth-of-type(1) > p:nth-of-type(2)",
+              "viewport": 390,
+              "message": "Ширина длинного текста выходит за диапазон 45–80 знаков.",
+              "observed": 39,
+              "expected": 45
+            }
+          ]
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "samples": 2,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "#dress-title",
+              "viewport": 1024,
+              "message": "В последней строке заголовка осталось одно слово."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dress-title",
+              "viewport": 1440,
+              "message": "В последней строке заголовка осталось одно слово."
+            }
+          ]
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "samples": 168,
+          "findings": []
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "samples": 27,
+          "findings": []
+        },
+        {
+          "id": "resolution",
+          "status": "warning",
+          "samples": 9,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > figure:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Для экрана с плотностью 2× изображение недостаточно чёткое.",
+              "observed": 1.43,
+              "expected": 2
+            },
+            {
+              "severity": "warning",
+              "selector": "div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > figure:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Для экрана с плотностью 2× изображение недостаточно чёткое.",
+              "observed": 1.43,
+              "expected": 2
+            }
+          ]
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "samples": 3,
+          "findings": []
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "samples": 9,
+          "findings": []
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "samples": 9,
+          "findings": []
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "samples": 1,
+          "findings": []
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "samples": 1,
+          "findings": []
+        }
+      ]
+    },
+    {
+      "scene": "glass-garden",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "samples": 230,
+          "findings": []
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "samples": 230,
+          "findings": []
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "samples": 230,
+          "findings": []
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "samples": 230,
+          "findings": []
+        },
+        {
+          "id": "measure",
+          "status": "warning",
+          "samples": 3,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "#greeting > div:nth-of-type(1) > p:nth-of-type(2)",
+              "viewport": 390,
+              "message": "Ширина длинного текста выходит за диапазон 45–80 знаков.",
+              "observed": 39,
+              "expected": 45
+            }
+          ]
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "samples": 4,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "#dress-title",
+              "viewport": 1024,
+              "message": "В последней строке заголовка осталось одно слово."
+            },
+            {
+              "severity": "warning",
+              "selector": "#countdown-title",
+              "viewport": 1024,
+              "message": "В последней строке заголовка осталось одно слово."
+            },
+            {
+              "severity": "warning",
+              "selector": "#dress-title",
+              "viewport": 1440,
+              "message": "В последней строке заголовка осталось одно слово."
+            },
+            {
+              "severity": "warning",
+              "selector": "#countdown-title",
+              "viewport": 1440,
+              "message": "В последней строке заголовка осталось одно слово."
+            }
+          ]
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "samples": 171,
+          "findings": []
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "samples": 27,
+          "findings": []
+        },
+        {
+          "id": "resolution",
+          "status": "warning",
+          "samples": 9,
+          "findings": [
+            {
+              "severity": "warning",
+              "selector": "div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > figure:nth-of-type(1)",
+              "viewport": 1024,
+              "message": "Для экрана с плотностью 2× изображение недостаточно чёткое.",
+              "observed": 1.43,
+              "expected": 2
+            },
+            {
+              "severity": "warning",
+              "selector": "div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(2) > div:nth-of-type(1) > div:nth-of-type(1) > div:nth-of-type(3) > figure:nth-of-type(1)",
+              "viewport": 1440,
+              "message": "Для экрана с плотностью 2× изображение недостаточно чёткое.",
+              "observed": 1.43,
+              "expected": 2
+            }
+          ]
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "samples": 3,
+          "findings": []
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "samples": 9,
+          "findings": []
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "samples": 9,
+          "findings": []
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "samples": 1,
+          "findings": []
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "samples": 1,
+          "findings": []
+        }
+      ]
+    }
+  ]
+}

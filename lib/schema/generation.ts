@@ -10,8 +10,13 @@ export const SharedStyle = Theme.pick({ palette: true, typeSet: true, materialSe
   rationale: z.string().min(1).max(400),
   ornament: Theme.shape.ornament.omit({ placement: true }),
 }).strict();
+export const ArtDirection = Theme.pick({ palette: true, typeSet: true, materialSet: true, foil: true, motion: true, atmosphere: true, surface: true, finishing: true, typographyScale: true }).partial().extend({
+  palette: Theme.shape.palette,
+  typeSet: Theme.shape.typeSet,
+  ornament: Theme.shape.ornament.omit({ placement: true }).optional(),
+}).strict();
 export const Composition = z.object({
-  direction: Theme.pick({ palette: true, typeSet: true }).strict().nullable().optional(),
+  direction: ArtDirection.nullable().optional(),
   name: z.string().min(1).max(100),
   rationale: z.string().min(1).max(400),
   layout: Theme.shape.layout,

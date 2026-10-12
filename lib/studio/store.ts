@@ -11,7 +11,7 @@ import { heroGrade, unusedAsset, type ImageInfo } from "@/lib/assets/crop";
 import { photoInfo, readDirectedPhotos } from "@/lib/assets/read";
 import { availablePhotoLayout, hasHeroPhoto } from "@/lib/assets/layout";
 import { Generation } from "@/lib/schema/generation";
-import { composeSeries, sharedStyleSignature, type GeneratedSeries } from "@/lib/generation/series";
+import { artDirection, composeSeries, sharedStyleSignature, type GeneratedSeries } from "@/lib/generation/series";
 import { Approval, VersionId, VersionRecord, type HistoryItem } from "@/lib/schema/versions";
 import { applyRefinement, type RefinedTheme } from "@/lib/versions/refine";
 import { QaReport, QA_ENGINE, type QaState } from "@/lib/schema/qa";
@@ -328,7 +328,7 @@ export class ProjectStore {
       const expected = { ...result.themes[0], ...result.style, ornament: { ...result.style.ornament, placement: result.themes[0].ornament.placement } };
       if (result.mode !== "exploration" && sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
       const photos = await readDirectedPhotos(content, project.assetPlan, this.directory(slug));
-      const validated = composeSeries({ mode: result.mode, style: result.style, variants: result.themes.map((theme) => ({ ...(result.mode === "exploration" ? { direction: { palette: theme.palette, typeSet: theme.typeSet } } : {}), name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      const validated = composeSeries({ mode: result.mode, style: result.style, variants: result.themes.map((theme) => ({ ...(result.mode === "exploration" ? { direction: artDirection(theme) } : {}), name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
       if (result.themes.some((theme, index) => sharedStyleSignature(theme) !== sharedStyleSignature(validated.themes[index]))) throw new StudioError("Вариант содержит изменения вне разрешённого художественного направления.");
       const visual = result.visual;
       const visualRef = validated.style.generatedVisual;
