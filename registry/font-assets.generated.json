@@ -10,6 +10,7 @@
       "fallback": "Times New Roman",
       "fallbackSha256": "f3b4ffff71c2a0c7227d37497683b2498fb2d0a4e8beae26f022e3ccfcaabfa3",
       "uzbekApostrophe": true,
+      "latinExt": true,
       "faces": [
         {
           "path": "/font-assets/cormorant-garamond-cyrillic-300-normal.woff2",
@@ -288,6 +289,7 @@
       "fallback": "Times New Roman",
       "fallbackSha256": "f3b4ffff71c2a0c7227d37497683b2498fb2d0a4e8beae26f022e3ccfcaabfa3",
       "uzbekApostrophe": true,
+      "latinExt": true,
       "faces": [
         {
           "path": "/font-assets/eb-garamond-cyrillic-400-normal.woff2",
@@ -538,6 +540,7 @@
       "fallback": "Arial",
       "fallbackSha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
       "uzbekApostrophe": false,
+      "latinExt": true,
       "faces": [
         {
           "path": "/font-assets/golos-text-cyrillic-400-normal.woff2",
@@ -808,6 +811,286 @@
             "sizeAdjust": "102.6853%",
             "ascentOverride": "95.4372%",
             "descentOverride": "21.4247%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 14
+          }
+        }
+      ]
+    },
+    "unbounded": {
+      "family": "Unbounded",
+      "sourcePath": "ofl/unbounded/Unbounded[wght].ttf",
+      "sourceSha": "e3c064ddfa3acdd3af2e0f06cd2f2288cc4fcae3",
+      "fallback": "Arial",
+      "fallbackSha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+      "uzbekApostrophe": true,
+      "latinExt": true,
+      "faces": [
+        {
+          "path": "/font-assets/unbounded-cyrillic-500-normal.woff2",
+          "subset": "cyrillic",
+          "weight": 500,
+          "unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+          "sha256": "c7168c51bc3683fd226c1813adf2c8d690cc2b5ea5c5b74d04e15fe4747e6fb3",
+          "bytes": 12072,
+          "unitsPerEm": 1000,
+          "ascent": 995,
+          "descent": -245,
+          "lineGap": 0,
+          "features": [
+            "aalt",
+            "case",
+            "ccmp",
+            "kern",
+            "mark",
+            "mkmk"
+          ],
+          "metrics": {
+            "sizeAdjust": "141.0231%",
+            "ascentOverride": "70.5558%",
+            "descentOverride": "17.3730%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 61
+          }
+        },
+        {
+          "path": "/font-assets/unbounded-latin-500-normal.woff2",
+          "subset": "latin",
+          "weight": 500,
+          "unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+          "sha256": "6eaa9f0f443a28d3597586a65f24d5a69297838a79a73b63d7b976aa119130da",
+          "bytes": 26004,
+          "unitsPerEm": 1000,
+          "ascent": 995,
+          "descent": -245,
+          "lineGap": 0,
+          "features": [
+            "aalt",
+            "case",
+            "ccmp",
+            "dnom",
+            "frac",
+            "liga",
+            "numr",
+            "ordn",
+            "pnum",
+            "sinf",
+            "ss01",
+            "ss02",
+            "ss03",
+            "ss04",
+            "subs",
+            "sups",
+            "tnum",
+            "kern",
+            "mark",
+            "mkmk"
+          ],
+          "metrics": {
+            "sizeAdjust": "137.5175%",
+            "ascentOverride": "72.3544%",
+            "descentOverride": "17.8159%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 106
+          }
+        },
+        {
+          "path": "/font-assets/unbounded-latin-ext-500-normal.woff2",
+          "subset": "latin-ext",
+          "weight": 500,
+          "unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+          "sha256": "c7e6d6cde4139afd3d364ac9a7df40c0365973ac9eaf4fbe37f8ec92d7ca4659",
+          "bytes": 46180,
+          "unitsPerEm": 1000,
+          "ascent": 995,
+          "descent": -245,
+          "lineGap": 0,
+          "features": [
+            "aalt",
+            "case",
+            "ccmp",
+            "sinf",
+            "subs",
+            "rlig",
+            "kern",
+            "mark",
+            "mkmk"
+          ],
+          "metrics": {
+            "sizeAdjust": "132.4724%",
+            "ascentOverride": "75.1100%",
+            "descentOverride": "18.4944%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 14
+          }
+        }
+      ]
+    },
+    "prata": {
+      "family": "Prata",
+      "sourcePath": "ofl/prata/Prata-Regular.ttf",
+      "sourceSha": "6c0e862cdb2c2409546fb2c42a709319db43f538",
+      "fallback": "Times New Roman",
+      "fallbackSha256": "f3b4ffff71c2a0c7227d37497683b2498fb2d0a4e8beae26f022e3ccfcaabfa3",
+      "uzbekApostrophe": false,
+      "latinExt": false,
+      "faces": [
+        {
+          "path": "/font-assets/prata-cyrillic-400-normal.woff2",
+          "subset": "cyrillic",
+          "weight": 400,
+          "unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+          "sha256": "4ec899437d4c4cac847836aaed95dca12fed7d0281340042016856233bba6724",
+          "bytes": 13008,
+          "unitsPerEm": 1000,
+          "ascent": 993,
+          "descent": -362,
+          "lineGap": 0,
+          "features": [
+            "aalt",
+            "case",
+            "ccmp",
+            "dlig",
+            "kern",
+            "mark",
+            "mkmk"
+          ],
+          "metrics": {
+            "sizeAdjust": "120.8885%",
+            "ascentOverride": "82.1418%",
+            "descentOverride": "29.9450%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 61
+          }
+        },
+        {
+          "path": "/font-assets/prata-latin-400-normal.woff2",
+          "subset": "latin",
+          "weight": 400,
+          "unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+          "sha256": "c02bb22aec53a7314cbcb56807be49b5d3f6674dcbfca06046e790ec3f644ab0",
+          "bytes": 18640,
+          "unitsPerEm": 1000,
+          "ascent": 993,
+          "descent": -362,
+          "lineGap": 0,
+          "features": [
+            "aalt",
+            "case",
+            "ccmp",
+            "frac",
+            "ordn",
+            "sups",
+            "kern",
+            "mark",
+            "mkmk"
+          ],
+          "metrics": {
+            "sizeAdjust": "117.0251%",
+            "ascentOverride": "84.8536%",
+            "descentOverride": "30.9335%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 101
+          }
+        },
+        {
+          "path": "/font-assets/prata-latin-ext-400-normal.woff2",
+          "subset": "latin-ext",
+          "weight": 400,
+          "unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+          "sha256": "18ccf42cec4f830fdeae529dc24197a2fdbc8ff80e40afba919e085d778863f8",
+          "bytes": 6136,
+          "unitsPerEm": 1000,
+          "ascent": 993,
+          "descent": -362,
+          "lineGap": 0,
+          "features": [
+            "aalt",
+            "case",
+            "ccmp",
+            "kern",
+            "mark",
+            "mkmk"
+          ],
+          "metrics": {
+            "sizeAdjust": "110.2901%",
+            "ascentOverride": "90.0353%",
+            "descentOverride": "32.8225%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 2
+          }
+        }
+      ]
+    },
+    "tenor-sans": {
+      "family": "Tenor Sans",
+      "sourcePath": "ofl/tenorsans/TenorSans-Regular.ttf",
+      "sourceSha": "5b63bb960e56995c11f4048bc03037f24c539346",
+      "fallback": "Arial",
+      "fallbackSha256": "525979822591a3447cfc49d943d6f7683508e25543407871c0ed8fed05fd2bd9",
+      "uzbekApostrophe": false,
+      "latinExt": true,
+      "faces": [
+        {
+          "path": "/font-assets/tenor-sans-cyrillic-400-normal.woff2",
+          "subset": "cyrillic",
+          "weight": 400,
+          "unicodeRange": "U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116",
+          "sha256": "34861c559fa2ac7d278b379d02d955cf144d152d4c67f066ae3df27e292ddf16",
+          "bytes": 11348,
+          "unitsPerEm": 1000,
+          "ascent": 920,
+          "descent": -250,
+          "lineGap": 0,
+          "features": [
+            "kern"
+          ],
+          "metrics": {
+            "sizeAdjust": "105.1965%",
+            "ascentOverride": "87.4554%",
+            "descentOverride": "23.7651%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 61
+          }
+        },
+        {
+          "path": "/font-assets/tenor-sans-latin-400-normal.woff2",
+          "subset": "latin",
+          "weight": 400,
+          "unicodeRange": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+          "sha256": "6673e7da5f947f7373d32a702f9827332adf21ae873f77ee45411523722263e2",
+          "bytes": 18640,
+          "unitsPerEm": 1000,
+          "ascent": 920,
+          "descent": -250,
+          "lineGap": 0,
+          "features": [
+            "kern"
+          ],
+          "metrics": {
+            "sizeAdjust": "109.5607%",
+            "ascentOverride": "83.9717%",
+            "descentOverride": "22.8184%",
+            "lineGapOverride": "0.0000%",
+            "sampleGlyphs": 101
+          }
+        },
+        {
+          "path": "/font-assets/tenor-sans-latin-ext-400-normal.woff2",
+          "subset": "latin-ext",
+          "weight": 400,
+          "unicodeRange": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF",
+          "sha256": "685f8ba30042d1837ca73ce27e609ebf52d8c13f3c4b97b61710a48badb12536",
+          "bytes": 13684,
+          "unitsPerEm": 1000,
+          "ascent": 920,
+          "descent": -250,
+          "lineGap": 0,
+          "features": [],
+          "metrics": {
+            "sizeAdjust": "105.3899%",
+            "ascentOverride": "87.2949%",
+            "descentOverride": "23.7214%",
             "lineGapOverride": "0.0000%",
             "sampleGlyphs": 14
           }

@@ -53,7 +53,7 @@ async function responseData(response: Response) {
 export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.imagesConfigured), visionConfigured = Boolean(initial?.visionConfigured) }: { initial?: Project; imagesConfigured?: boolean; visionConfigured?: boolean }) {
   const router = useRouter();
   const [content, setContent] = useState<Content>(initial?.content ?? blank);
-  const [draftDirection, setDraftDirection] = useState<string>(directionFor(initial?.content.brief)?.id ?? "paper");
+  const [draftDirection, setDraftDirection] = useState<string>(directionFor(initial?.content.brief)?.id ?? directions[0].id);
   const [concepts, setConcepts] = useState(initial?.generation || initial?.content.slug === "demo" ? initial?.concepts ?? [] : []);
   const [generation, setGeneration] = useState(initial?.generation ?? null);
   const [generationRevision, setGenerationRevision] = useState(initial?.generationRevision ?? "");

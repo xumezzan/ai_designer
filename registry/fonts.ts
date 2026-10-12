@@ -142,7 +142,7 @@ function fromGenerated(): FontEntry[] {
       classification: CLASSIFICATION[id] ?? "serif",
       support: {
         cyrillic: f.support.cyrillic,
-        latinExt: f.support.latinExt,
+        latinExt: id in assets.families ? assets.families[id as keyof typeof assets.families].latinExt : f.support.latinExt,
         // Actual source glyphs take precedence over advertised CSS ranges.
         uzbekApostrophe: id in assets.families ?
           assets.families[id as keyof typeof assets.families].uzbekApostrophe : f.support.uzbekApostrophe,

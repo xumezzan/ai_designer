@@ -11,16 +11,18 @@ export const SharedStyle = Theme.pick({ palette: true, typeSet: true, materialSe
   ornament: Theme.shape.ornament.omit({ placement: true }),
 }).strict();
 export const Composition = z.object({
+  direction: Theme.pick({ palette: true, typeSet: true }).strict().nullable().optional(),
   name: z.string().min(1).max(100),
   rationale: z.string().min(1).max(400),
   layout: Theme.shape.layout,
   ornamentPlacement: Theme.shape.ornament.shape.placement,
   photos: Theme.shape.photos.unwrap(),
 }).strict();
-export const DesignSeries = z.object({ style: SharedStyle, variants: z.array(Composition).min(1).max(5) }).strict();
+export const DesignSeries = z.object({ mode: z.enum(["cohesive", "exploration"]).optional(), style: SharedStyle, variants: z.array(Composition).min(1).max(5) }).strict();
 export type DesignSeries = z.infer<typeof DesignSeries>;
 
 export const Generation = z.object({
+  mode: z.enum(["cohesive", "exploration"]).optional(),
   batchId: z.string().uuid(),
   createdAt: z.string().datetime(),
   brief: z.string().min(1).max(150000),

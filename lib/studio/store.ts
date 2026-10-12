@@ -324,11 +324,12 @@ export class ProjectStore {
       const project = await this.read(slug);
       if (project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект или варианты изменились во время генерации. Обновите страницу и повторите.", 409);
       if (!content.brief?.trim()) throw new StudioError("Опишите желаемый стиль перед генерацией.");
-      if (result.themes.length !== (content.variantCount ?? 5) || result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0]))) throw new StudioError("Серия должна содержать выбранное количество композиций в одном стиле.");
+      if (result.themes.length !== (content.variantCount ?? 5) || (result.mode !== "exploration" && result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0])))) throw new StudioError("Серия должна содержать выбранное количество композиций в одном стиле.");
       const expected = { ...result.themes[0], ...result.style, ornament: { ...result.style.ornament, placement: result.themes[0].ornament.placement } };
-      if (sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
+      if (result.mode !== "exploration" && sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
       const photos = await readDirectedPhotos(content, project.assetPlan, this.directory(slug));
-      const validated = composeSeries({ style: result.style, variants: result.themes.map((theme) => ({ name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      const validated = composeSeries({ mode: result.mode, style: result.style, variants: result.themes.map((theme) => ({ ...(result.mode === "exploration" ? { direction: { palette: theme.palette, typeSet: theme.typeSet } } : {}), name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      if (result.themes.some((theme, index) => sharedStyleSignature(theme) !== sharedStyleSignature(validated.themes[index]))) throw new StudioError("Вариант содержит изменения вне разрешённого художественного направления.");
       const visual = result.visual;
       const visualRef = validated.style.generatedVisual;
       if (visual) {
@@ -338,7 +339,7 @@ export class ProjectStore {
       } else if (visualRef && !await readGeneratedVisual(slug, visualRef.id, visualRef, this.root)) throw new StudioError("Визуал серии не найден.");
       const batchId = randomUUID();
       const concepts = validated.themes.map((theme, index) => ({ id: `variant-${batchId.slice(0, 8)}-${index + 1}`, version: "1", theme }));
-      const generation = Generation.parse({ batchId, createdAt: new Date().toISOString(), brief: content.brief, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
+      const generation = Generation.parse({ mode: validated.mode, batchId, createdAt: new Date().toISOString(), brief: content.brief, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
       const pending = path.join(this.directory(slug), `.generation-${batchId}.json`);
       const created: string[] = [];
       let committed = false;

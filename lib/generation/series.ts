@@ -7,8 +7,12 @@ import type { GeneratedVisual } from "@/lib/schema/visual";
 
 export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsset[], visualPlanned = false) {
   const series = DesignSeries.parse(raw);
+  const mode = series.mode ?? "cohesive";
+  if (mode === "cohesive" && series.variants.some((variant) => variant.direction)) throw new Error("Independent directions require exploration mode");
+  if (mode === "exploration" && series.variants.some((variant) => !variant.direction)) throw new Error("Every exploration variant needs a complete palette and typeSet direction");
   if (new Set(series.variants.map((variant) => JSON.stringify({
     composition: variant.layout.composition,
+    direction: mode === "exploration" ? variant.direction : undefined,
     // Stacked is already built into these presets and adds no visible variety.
     nameFlow: ["letter", "botanical"].includes(variant.layout.composition) ? variant.layout.nameFlow : "natural",
     visual: series.style.generatedVisual || visualPlanned ? variant.layout.visualPlacement : undefined,
@@ -31,16 +35,21 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
     }
     if (placements.filter((photo) => photo.section === "hero").length > 1) throw new Error("Only one photo may be placed in hero");
     const theme = {
-      palette: common.palette, typeSet: style.typeSet, materialSet: style.materialSet, artwork: style.artwork, generatedVisual: style.generatedVisual, foil: style.foil, motion: style.motion,
+      palette: variant.direction?.palette ?? common.palette, typeSet: variant.direction?.typeSet ?? style.typeSet, materialSet: style.materialSet, artwork: style.artwork, generatedVisual: style.generatedVisual, foil: style.foil, motion: style.motion,
       atmosphere: style.atmosphere, surface: style.surface, finishing: style.finishing, typographyScale: style.typographyScale,
       meta: { name: variant.name, mood: style.mood, rationale: variant.rationale },
       ornament: { ...style.ornament, placement: variant.ornamentPlacement }, layout: variant.layout, photos: placements,
     };
-    const validated = validateTheme(theme, { locale, hasHighQualityAsset: placements.some((photo) => photo.section === "hero") });
+    const options = { locale, hasHighQualityAsset: placements.some((photo) => photo.section === "hero") };
+    const variationRepair = mode === "exploration" ? repairTheme(theme, options) : undefined;
+    if (variationRepair) repaired.adjustments.push(...variationRepair.adjustments.map((adjustment) => `${variant.name}: ${adjustment}`));
+    const candidate = variationRepair?.value ?? theme;
+    const validated = validateTheme(candidate, options);
     if (!validated.ok) throw new Error(validated.errors.join("; "));
     return validated.theme;
   });
-  return { themes, style: { ...style, palette: common.palette }, adjustments: repaired.adjustments };
+  if (mode === "exploration" && themes.length > 1 && new Set(themes.map((theme) => JSON.stringify([theme.palette, theme.typeSet]))).size !== themes.length) throw new Error("Exploration directions must differ in visible palette or typeface");
+  return { ...(series.mode ? { mode } : {}), themes, style: { ...style, palette: common.palette }, adjustments: repaired.adjustments };
 }
 export type GeneratedSeries = ReturnType<typeof composeSeries> & Pick<Generation, "model" | "elapsedMs" | "references"> & { visual?: GeneratedVisual };
 

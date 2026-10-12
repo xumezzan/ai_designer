@@ -176,3 +176,23 @@ export const typeSets: Partial<Record<TypeSetId, TypeSet>> = {
 export function getTypeSet(id: TypeSetId): TypeSet | undefined {
   return typeSets[id];
 }
+
+// These are different letterforms, not weight variations of the same serif.
+const base = typeSets.editorial!;
+for (const [id, name, display, weight, size, leading] of [
+  ["modernist", "Modernist", "unbounded", 500, "clamp(2.1rem, 5.7vw, 5.5rem)", 1.14],
+  ["poetic", "Poetic", "prata", 400, "clamp(2.8rem, 7.5vw, 7rem)", 1.16],
+  ["gallery", "Gallery", "tenor-sans", 400, "clamp(2.8rem, 7.2vw, 6.75rem)", 1.12],
+] as const) {
+  typeSets[id] = {
+    ...base, id, name, display, bodyGlyphFallback: "cormorant-garamond",
+    description: `${name}: ${display} with quiet Golos body text; a distinct authored typographic voice.`,
+    levels: {
+      ...base.levels,
+      display: { ...base.levels.display, weight, size, leading, tracking: "-0.025em" },
+      displaySm: { ...base.levels.displaySm, weight, size: "clamp(1.75rem, 3.2vw, 2.8rem)", leading: 1.22 },
+      // Metadata belongs to the neutral body face, not a simulated serif smcp.
+      caps: { ...base.levels.caps, role: "body", weight: 500, features: "'kern' 1" },
+    },
+  };
+}

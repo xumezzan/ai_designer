@@ -247,3 +247,16 @@ test("wrong-count batches and invalid count preferences leave the previous proje
   }
   expect((await store.read("new-event")).content.variantCount).toBe(2);
 });
+
+test("persists independent exploration palettes and typefaces without weakening the cohesive contract", async () => {
+  const project = await store.create({ ...content(), variantCount: 3 });
+  const raw = { ...structuredClone(fixtureSeries), mode: "exploration", variants: fixtureSeries.variants.slice(0, 3).map((variant, index) => ({ ...structuredClone(variant), direction: { palette: { ...fixtureSeries.style.palette, accentAlt: ["#7390AC", "#9BA383", "#AC869E"][index] }, typeSet: ["modernist", "poetic", "gallery"][index] }, layout: { ...variant.layout, composition: ["duet", "ribbon", "imprint"][index] } })) };
+  const result = { ...composeSeries(raw, "ru", []), model: "fixture-only", elapsedMs: 0, references: 0 };
+  const saved = await store.saveGeneration(project.content.slug, result, project.revision, project.planRevision, project.generationRevision);
+  expect(saved.generation?.mode).toBe("exploration");
+  expect(new Set(saved.concepts.map(({ theme }) => theme.typeSet)).size).toBe(3);
+  const reread = await store.read(project.content.slug);
+  expect(reread.concepts.map(({ theme }) => theme.typeSet)).toEqual(saved.concepts.map(({ theme }) => theme.typeSet));
+  const cohesive = { ...result, mode: "cohesive" as const };
+  await expect(store.saveGeneration(saved.content.slug, cohesive, saved.revision, saved.planRevision, saved.generationRevision)).rejects.toThrow(/одном стиле/);
+});

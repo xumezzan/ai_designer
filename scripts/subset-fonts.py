@@ -25,9 +25,14 @@ def codepoints(css_range):
 for job in json.loads(Path(sys.argv[1]).read_text()):
     for weight in job["weights"]:
         original = TTFont(job["source"], recalcTimestamp=False)
-        axes = {axis.axisTag: axis.defaultValue for axis in original["fvar"].axes}
-        axes["wght"] = weight
-        static = instantiateVariableFont(original, axes, inplace=True)
+        if "fvar" in original:
+            axes = {axis.axisTag: axis.defaultValue for axis in original["fvar"].axes}
+            axes["wght"] = weight
+            static = instantiateVariableFont(original, axes, inplace=True)
+        else:
+            if weight != original["OS/2"].usWeightClass:
+                raise ValueError(f'Static font {job["id"]} does not provide weight {weight}')
+            static = original
         for language, unicode_range in job["ranges"].items():
             font = copy.deepcopy(static)
             options = subset.Options()

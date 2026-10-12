@@ -94,7 +94,7 @@ test.each([1, 2, 3, 4, 5])("requests exactly %s variants through the tool schema
   expect(result.themes).toHaveLength(variantCount);
   const tools = request.tools as { input_schema: { properties: { variants: { minItems: number; maxItems: number } } } }[];
   expect(tools[0].input_schema.properties.variants).toMatchObject({ minItems: variantCount, maxItems: variantCount });
-  expect(request.system).toContain(`exactly ${variantCount} related compositions`);
+  expect(request.system).toContain(`exactly ${variantCount} designed invitations`);
   expect(JSON.stringify(request.messages)).toContain(`exactly ${variantCount} compositions`);
 });
 

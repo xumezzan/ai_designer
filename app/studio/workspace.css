@@ -61,6 +61,9 @@
 .studio-essential .studio-fields > .studio-field { grid-column: 1 / -1; }
 .studio-text-button { font-size: 12px !important; }
 .studio-directions { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 18px; }
+.studio-directions > button:first-child { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; text-align: left; padding: 8px 12px; }
+.studio-directions > button:first-child .studio-direction-swatch { width: 38px; height: 38px; margin: 0; flex: 0 0 auto; }
+.studio-directions > button:first-child small { display: block; color: var(--studio-muted); font-size: 11px; }
 .studio-directions > button { position: relative; border: 1px solid var(--studio-control-line); border-radius: 9px; padding: 5px 5px 9px; text-align: center; min-width: 0; background: var(--studio-input); }
 .studio-directions > button[aria-pressed="true"] { border-color: var(--studio-accent); box-shadow: 0 0 0 1px var(--studio-accent); }
 .studio-directions > button:hover { border-color: var(--studio-accent); }

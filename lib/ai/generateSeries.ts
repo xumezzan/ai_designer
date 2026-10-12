@@ -17,7 +17,8 @@ const object = (properties: Record<string, unknown>) => ({ type: "object", prope
 const array = (items: unknown, minItems = 0, maxItems = 40) => ({ type: "array", items, minItems, maxItems });
 export function seriesTool(photos: DirectedAsset[], variantCount = 5): Anthropic.Messages.Tool {
   const hex = { type: "string", pattern: "^#[0-9A-Fa-f]{6}$" };
-  return { name: "emit_design_series", description: `Create one coherent invitation design series from this brief and references. Select one shared visual style, then produce exactly ${variantCount} distinct spatial arrangements in that exact style. Place all enabled photo ids exactly once in each variant; do not invent assets or event facts. These are renderer configuration values, not code or new image assets.`, input_schema: object({
+  return { name: "emit_design_series", description: `Create exactly ${variantCount} invitations. Use cohesive mode for a single visual family, or exploration mode with independent bounded palettes and typefaces when the brief requests unique alternatives. Place all enabled photo ids exactly once in each variant; do not invent assets or event facts. These are renderer configuration values, not code or new image assets.`, input_schema: object({
+    mode: enumeration(["cohesive", "exploration"]),
     style: object({ name: { ...string, minLength: 1, maxLength: 100 }, mood: array({ ...string, minLength: 1, maxLength: 60 }, 1, 4), rationale: { ...string, minLength: 1, maxLength: 400 },
       intent: object({ summary: { ...string, minLength: 1, maxLength: 500 }, cues: array({ ...string, minLength: 1, maxLength: 160 }, 1, 6), avoid: array({ ...string, minLength: 1, maxLength: 160 }, 0, 6), referenceNotes: { ...string, maxLength: 800 }, artworkPrompt: { ...string, minLength: 1, maxLength: 2400 } }),
       palette: object({ bg: hex, surface: hex, ink: hex, muted: hex, accent: hex, accentAlt: hex }), typeSet: enumeration(TYPE_SET_IDS), materialSet: enumeration(["paper"]), artwork: enumeration(["none", "suzani-atelier"]),
@@ -28,7 +29,7 @@ export function seriesTool(photos: DirectedAsset[], variantCount = 5): Anthropic
       typographyScale: object({ displayScale: enumeration(DISPLAY_SCALES), headlineTracking: { ...string, pattern: "^-?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+)(?:em|px)$" }, metaTracking: { ...string, pattern: "^-?(?:[0-9]+(?:\\.[0-9]+)?|\\.[0-9]+)(?:em|px)$" } }),
       motion: object({ preset: enumeration(["still", "unfold", "drift"]), ambient: enumeration(["none"]) }),
     }),
-    variants: array(object({ name: { ...string, minLength: 1, maxLength: 100 }, rationale: { ...string, minLength: 1, maxLength: 400 },
+    variants: array(object({ direction: { anyOf: [{ type: "null" }, object({ palette: object({ bg: hex, surface: hex, ink: hex, muted: hex, accent: hex, accentAlt: hex }), typeSet: enumeration(TYPE_SET_IDS) })] }, name: { ...string, minLength: 1, maxLength: 100 }, rationale: { ...string, minLength: 1, maxLength: 400 },
       layout: object({ preset: enumeration(["scroll-narrative"]), composition: enumeration(COMPOSITION_IDS), hero: enumeration(["typographic", "ornament-frame", "full-photo"]), photoArrangement: enumeration(["row", "stack", "offset"]), visualPlacement: enumeration(["band", "side-left", "side-right", "medallion", "inset"]), nameFlow: enumeration(["natural", "stacked"]), sectionOrder: array(enumeration(SECTION_IDS), 2, 8) }),
       ornamentPlacement: array(enumeration(["divider", "corners", "hero-frame", "watermark"]), 0, 2),
       photos: array(object({ id: photos.length ? enumeration(photos.map((photo) => photo.asset.id)) : { ...string, maxLength: 0 }, section: enumeration(SECTION_IDS), index: { type: "integer", minimum: 0, maximum: 40 }, position: enumeration(["before", "after"]) }), photos.length, photos.length),
@@ -52,7 +53,7 @@ export async function generateSeries(content: Content, photos: DirectedAsset[], 
   let correction = "";
   try {
     for (let attempt = 0; attempt < 2; attempt++) {
-      const response = await sdk.messages.create({ model, max_tokens: 8192, system: generateSeriesPrompt(variantCount), tools: [seriesTool(photos, variantCount)], tool_choice: { type: "tool", name: "emit_design_series" }, messages: [{ role: "user", content: [...blocks, { type: "text", text: `Create one style and exactly ${variantCount} compositions.${correction}` }] }] });
+      const response = await sdk.messages.create({ model, max_tokens: 8192, system: generateSeriesPrompt(variantCount), tools: [seriesTool(photos, variantCount)], tool_choice: { type: "tool", name: "emit_design_series" }, messages: [{ role: "user", content: [...blocks, { type: "text", text: `Create exactly ${variantCount} compositions in the mode appropriate to the brief.${correction}` }] }] });
       try {
         const tool = response.content.filter((block) => block.type === "tool_use" && block.name === "emit_design_series");
         if (response.stop_reason === "max_tokens" || tool.length !== 1 || tool[0].type !== "tool_use") throw new Error("Emit one complete emit_design_series tool call");
@@ -75,7 +76,7 @@ export async function generateSeries(content: Content, photos: DirectedAsset[], 
       } catch (error) {
         if (error instanceof StudioError) throw error;
         if (attempt === 1) throw new StudioError("AI дважды вернул некорректные варианты. Предыдущие дизайны сохранены. Повторите генерацию.", 502);
-        correction = ` Previous output was invalid: ${(error as Error).message.slice(0, 2000)}. Fix these issues and keep one shared style.`;
+        correction = ` Previous output was invalid: ${(error as Error).message.slice(0, 2000)}. Fix these issues and preserve the requested cohesive or exploration mode.`;
       }
     }
   } catch (error) {
