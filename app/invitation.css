@@ -1,3 +1,4 @@
+@import "./story.css";
 .invitation { background: var(--bg); color: var(--ink); overflow: clip; }
 .invitation-surface { position: relative; isolation: isolate; background: var(--vignette), var(--bg); }
 .grain-overlay { position: absolute; inset: 0; pointer-events: none; z-index: -1; }

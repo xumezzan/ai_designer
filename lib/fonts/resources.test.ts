@@ -41,7 +41,10 @@ describe("prepared fonts", () => {
         // Some static display fonts have only a partial extended Latin alphabet.
         // They remain useful for Russian/English; locale selection rejects Uzbek
         // unless the complete measured extended set and apostrophes are present.
-        if (face.subset === "latin-ext" && !family.latinExt) {
+        if (face.subset === "latin" && !family.uzbekApostrophe) {
+          expect(supportsLocale(id, "uz-latn")).toBe(false);
+          for (const character of sample.replace("ʼ", "")) expect(font.hasGlyphForCodePoint(character.codePointAt(0)), character).toBe(true);
+        } else if (face.subset === "latin-ext" && !family.latinExt) {
           expect(supportsLocale(id, "uz-latn")).toBe(false);
           expect(font.characterSet.length).toBeGreaterThan(1);
         } else for (const character of sample) expect(font.hasGlyphForCodePoint(character.codePointAt(0)), character).toBe(true);

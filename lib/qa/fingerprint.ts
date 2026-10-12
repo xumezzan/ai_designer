@@ -10,7 +10,7 @@ export async function rendererRevision() {
   const sources = await Promise.all(files.map(async (file) => {
     try { return await readFile(path.join(process.cwd(), file), "utf8"); } catch { return file; }
   }));
-  const authoredArt = await Promise.all(["components/craft/SignatureArt.tsx", "components/craft/HeroStock.tsx", "components/primitives/Ornament.tsx", "registry/ornaments/index.ts", "registry/ornaments/botanical.ts"].map(async (file) => {
+  const authoredArt = await Promise.all(["app/story.css", "components/layouts/WeddingStory.tsx", "components/sections/StoryDate.tsx", "lib/invitation/month.ts", "components/craft/SignatureArt.tsx", "components/craft/HeroStock.tsx", "components/primitives/Ornament.tsx", "registry/ornaments/index.ts", "registry/ornaments/botanical.ts"].map(async (file) => {
     try { return await readFile(path.join(process.cwd(), file), "utf8"); } catch { return file; }
   }));
   return digest([QA_ENGINE, build, ...sources, ...authoredArt].join("\n"));

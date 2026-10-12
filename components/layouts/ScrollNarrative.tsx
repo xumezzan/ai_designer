@@ -29,8 +29,12 @@ import { Venue } from "@/components/sections/Venue";
 import { DressCode } from "@/components/sections/DressCode";
 import { Rsvp } from "@/components/sections/Rsvp";
 import { Footer } from "@/components/sections/Footer";
+import { WeddingStory, isStoryComposition } from "./WeddingStory";
 
 export function ScrollNarrative({ content, theme, initialNow, photos = [], generatedVisual, guest, embedded = false }: { content: Content; theme: Theme; initialNow: number; photos?: DirectedAsset[]; generatedVisual?: VisualSource; guest?: string; embedded?: boolean }) {
+  if (isStoryComposition(theme.layout.composition) && theme.artwork === "none" && !generatedVisual) {
+    return <WeddingStory content={content} theme={theme} initialNow={initialNow} photos={photos} guest={guest} embedded={embedded} />;
+  }
   const t = (text: string) => typograph(text, content.locale);
   const entrance = getMotion(theme.motion.preset)?.entrance;
   const signature = isSignatureComposition(theme.layout.composition) && theme.artwork === "none" && !generatedVisual;

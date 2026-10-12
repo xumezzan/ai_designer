@@ -1,10 +1,9 @@
 # Prepared invitation fonts
 
-The 21 WOFF2 files are committed assets. Normal `npm ci`, tests and builds do
-not download fonts or need Python. Only the three families used by Ceremony and
-Editorial are prepared; unused registry candidates are not bundled.
+The 33 WOFF2 files are committed assets. Normal `npm ci`, tests and builds do
+not download fonts or need Python. Seven families used by the registered type sets are prepared; unused registry candidates are not bundled.
 
-Sources are full variable TTFs from the pinned Google Fonts commit in
+Sources are full variable or static TTFs from the pinned Google Fonts commit in
 `registry/font-assets.config.json`. Source Git blob hashes are verified before
 subsetting. Each family's SIL OFL license is alongside the assets. The
 FontTools pipeline pins axes and retains all layout features before generating
@@ -42,3 +41,7 @@ glyph. U+02BC stays in Golos. U+02BB is excluded from both Golos CSS faces and
 its measured fallback, so the regular body keeps its adjusted Arial fallback
 during loading and only the missing glyph uses Cormorant. Source glyph coverage is tested separately from
 advertised Unicode ranges; no apostrophe is silently rewritten.
+
+Marck Script supplies the Handwritten wedding type set. The pinned source lacks
+the Uzbek modifier apostrophes, so this display set is available for Russian
+and English; the generator must choose another registered set for Uzbek names.

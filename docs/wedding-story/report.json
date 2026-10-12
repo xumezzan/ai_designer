@@ -1,0 +1,413 @@
+{
+  "referencePages": [
+    "https://wedwed.ru/invitations/",
+    "https://wedwed.ru/sitemaker/demo/1457/",
+    "https://wedwed.ru/sitemaker/demo/18531/",
+    "https://wedwed.ru/sitemaker/demo/23083/"
+  ],
+  "unitTests": 301,
+  "productionBuild": true,
+  "typescript": true,
+  "eslint": true,
+  "paidGenerationCalls": 0,
+  "paidVisionCalls": 0,
+  "fullBrowserReports": [
+    {
+      "id": "keepsake",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "findings": 2
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "resolution",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "busy-photo",
+          "status": "warning",
+          "findings": 2
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "findings": 0
+        }
+      ]
+    },
+    {
+      "id": "vow",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "widow",
+          "status": "warning",
+          "findings": 4
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "resolution",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "findings": 0
+        }
+      ]
+    },
+    {
+      "id": "editorial-story",
+      "checks": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "widow",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "resolution",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "face-crop",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "busy-photo",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "findings": 0
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "findings": 0
+        }
+      ]
+    }
+  ],
+  "regression": [
+    {
+      "id": "keepsake",
+      "width": 320,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "keepsake",
+      "width": 390,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "keepsake",
+      "width": 1024,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "keepsake",
+      "width": 1440,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "width": 320,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "width": 390,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "width": 1024,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "width": 1440,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "width": 320,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "width": 390,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "width": 1024,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "width": 1440,
+      "mode": "normal",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "keepsake",
+      "width": 390,
+      "mode": "no-js",
+      "js": false,
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "width": 390,
+      "mode": "no-js",
+      "js": false,
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "width": 390,
+      "mode": "no-js",
+      "js": false,
+      "passed": true
+    },
+    {
+      "id": "keepsake",
+      "width": 320,
+      "mode": "long-names",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "width": 320,
+      "mode": "long-names",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "width": 320,
+      "mode": "long-names",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "keepsake",
+      "width": 390,
+      "mode": "full",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "width": 390,
+      "mode": "full",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "width": 390,
+      "mode": "full",
+      "js": true,
+      "passed": true
+    },
+    {
+      "id": "keepsake",
+      "mode": "cover-open-and-focus",
+      "passed": true
+    },
+    {
+      "id": "vow",
+      "mode": "cover-open-and-focus",
+      "passed": true
+    },
+    {
+      "id": "editorial-story",
+      "mode": "cover-open-and-focus",
+      "passed": true
+    }
+  ],
+  "warningReview": "The rotated keepsake caption triggers the conservative axis-aligned photo-overlap warning at 1024/1440px; visual inspection confirms it sits on the paper below the photograph. Short date/headings retain recorded widow warnings. No fail/error check remains.",
+  "savedPreviewChecks": {
+    "previews": 6,
+    "status": 200,
+    "sourcePhotoCountPerPage": 1,
+    "overflow": false,
+    "studioSelectedDirection": true
+  }
+}

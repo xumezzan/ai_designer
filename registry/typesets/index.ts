@@ -183,6 +183,7 @@ for (const [id, name, display, weight, size, leading] of [
   ["modernist", "Modernist", "unbounded", 500, "clamp(2.1rem, 5.7vw, 5.5rem)", 1.14],
   ["poetic", "Poetic", "prata", 400, "clamp(2.8rem, 7.5vw, 7rem)", 1.16],
   ["gallery", "Gallery", "tenor-sans", 400, "clamp(2.8rem, 7.2vw, 6.75rem)", 1.12],
+  ["handwritten", "Handwritten", "marck-script", 400, "clamp(3.6rem, 8.5vw, 8.5rem)", 1.2],
 ] as const) {
   typeSets[id] = {
     ...base, id, name, display, bodyGlyphFallback: "cormorant-garamond",

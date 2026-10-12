@@ -1,0 +1,151 @@
+/* Original wedding websites: photo prologue, a real calendar and guest details. */
+.invitation.wedding-story[data-crafted="story"] { --story-rule: color-mix(in srgb, var(--ink) 22%, transparent); }
+.invitation.wedding-story[data-crafted="story"] .story-content { width: 100%; max-width: none; }
+.invitation.wedding-story[data-crafted="story"] .deckle-edge { display: none; }
+.invitation.wedding-story[data-crafted="story"] .narrative-slot { min-width: 0; }
+.invitation.wedding-story[data-crafted="story"] .story-prologue { position: relative; padding: 3.5rem max(1.5rem, calc((100vw - 72rem) / 2)) 4rem; overflow: hidden; }
+.invitation.wedding-story[data-crafted="story"][data-composition] .story-hero { display: flex; flex-direction: column; min-height: 0; gap: 2.5rem; padding: 0; }
+.invitation.wedding-story[data-crafted="story"] .story-hero-top, .invitation.wedding-story[data-crafted="story"] .story-hero-bottom { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+.invitation.wedding-story[data-crafted="story"] .story-hero-top { padding-bottom: 1.2rem; border-bottom: 1px solid var(--story-rule); }
+.invitation.wedding-story[data-crafted="story"] .story-kicker { letter-spacing: .13em; }
+.invitation.wedding-story[data-crafted="story"] .story-title { min-width: 0; position: relative; }
+.invitation.wedding-story[data-crafted="story"] .story-title h1 { font-size: calc(var(--fs-display) * var(--inv-display-scale)); letter-spacing: var(--inv-tracking-headline); padding-block: .08em; }
+.invitation.wedding-story[data-crafted="story"] .story-host-line, .invitation.wedding-story[data-crafted="story"] .story-host { display: block; }
+.invitation.wedding-story[data-crafted="story"] .story-join { display: block; font-size: .45em; line-height: 1.3; margin-block: .15em; }
+.invitation.wedding-story[data-crafted="story"] .hero-next { display: inline-flex; position: static; width: auto; height: auto; min-width: 44px; min-height: 44px; margin: 0; padding: 0; border: 0; white-space: normal; gap: .8rem; }
+.invitation.wedding-story[data-crafted="story"] .hero-next > span:last-child { width: 44px; height: 44px; border-color: var(--story-rule); }
+.invitation.wedding-story[data-crafted="story"] .story-prologue-mark { position: absolute; bottom: 1rem; left: 50%; translate: -50% 0; font-family: var(--font-display); font-size: 1.25rem; color: var(--muted); }
+.invitation.wedding-story[data-crafted="story"] .slot-greeting { position: relative; }
+.invitation.wedding-story[data-crafted="story"] .greeting-section { display: block; padding: 2rem 0 0; text-align: center; }
+.invitation.wedding-story[data-crafted="story"] .greeting-section h2 { font-size: 1.125rem; font-family: var(--font-body); font-weight: 400; line-height: 1.5; letter-spacing: 0; margin: 0 0 .75rem; }
+.invitation.wedding-story[data-crafted="story"] .greeting-copy p { margin-inline: auto; font-size: 1.125rem; line-height: 1.65; }
+.invitation.wedding-story[data-crafted="story"] .story-photo-set { padding: 0; justify-content: center; gap: 2rem; }
+.invitation.wedding-story[data-crafted="story"] .story-photo-mount { width: min(100%, 32rem); min-width: 0; position: relative; padding: 1rem 1rem .8rem; background: var(--surface); box-shadow: 0 1.2rem 3rem color-mix(in srgb, var(--ink) 16%, transparent), 0 2px 3px color-mix(in srgb, var(--ink) 15%, transparent); border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent); }
+.invitation.wedding-story[data-crafted="story"] .story-photo-mount .directed-photo { margin: 0 auto; max-width: 100%; }
+.invitation.wedding-story[data-crafted="story"] .story-photo-caption { display: flex; gap: 1rem; align-items: center; justify-content: space-between; padding-top: .9rem; letter-spacing: .03em; color: var(--ink); }
+.invitation.wedding-story[data-crafted="story"] .story-photo-caption > span { font-size: 1.5rem; line-height: 1; }
+.invitation.wedding-story[data-crafted="story"] .story-date-section { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 5rem; max-width: 62rem; padding: 5.5rem 2rem; margin-inline: auto; }
+.invitation.wedding-story[data-crafted="story"] .story-date-intro h2 { margin: 1.25rem 0 1rem; font-size: clamp(2.2rem, 4.3vw, 4rem); }
+.invitation.wedding-story[data-crafted="story"] .story-mark { font-family: Georgia, serif; font-size: 3.2rem; line-height: 1; display: block; margin-bottom: 1rem; color: var(--accent); }
+.invitation.wedding-story[data-crafted="story"] .story-date-intro .invitation-calendar { margin-top: 1.8rem; }
+.invitation.wedding-story[data-crafted="story"] .story-month { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.invitation.wedding-story[data-crafted="story"] .story-month caption { margin-bottom: 1.8rem; text-align: left; }
+.invitation.wedding-story[data-crafted="story"] .story-month th { font-weight: 400; color: var(--muted); height: 2.5rem; text-align: center; }
+.invitation.wedding-story[data-crafted="story"] .story-month td { text-align: center; height: 3rem; padding: .25rem; }
+.invitation.wedding-story[data-crafted="story"] .story-month td time { position: relative; display: inline-grid; place-items: center; min-width: 2.25rem; height: 2.25rem; font-weight: 600; }
+.invitation.wedding-story[data-crafted="story"] .story-month svg { position: absolute; width: 3.25rem; height: 3rem; left: 50%; top: 50%; translate: -50% -50%; fill: none; stroke: var(--accent); stroke-width: 1.5; pointer-events: none; }
+.invitation.wedding-story[data-crafted="story"] .story-content > .narrative-slot { padding: 5rem max(1.5rem, calc((100vw - 62rem) / 2)); }
+.invitation.wedding-story[data-crafted="story"] .story-content > .narrative-slot .invitation-section { padding: 0; margin: 0; }
+.invitation.wedding-story[data-crafted="story"] .story-content > .narrative-slot .invitation-section h2 { font-size: clamp(2.2rem, 4.5vw, 4.4rem); }
+.invitation.wedding-story[data-crafted="story"] .slot-countdown { background: var(--ink); color: var(--bg); }
+.invitation.wedding-story[data-crafted="story"] .countdown-section { border: 0; display: flex; align-items: center; justify-content: space-between; gap: 3rem; }
+.invitation.wedding-story[data-crafted="story"] .countdown-section h2 { max-width: 12ch; margin: 0; }
+.invitation.wedding-story[data-crafted="story"] .countdown-values { flex: 1; gap: 1.5rem; }
+.invitation.wedding-story[data-crafted="story"] .countdown-values dd { font-size: clamp(2rem, 4.2vw, 4rem); }
+.invitation.wedding-story[data-crafted="story"] .countdown-values dt { color: inherit; }
+.invitation.wedding-story[data-crafted="story"] .slot-venue { background: var(--surface); }
+.invitation.wedding-story[data-crafted="story"] .venue-section { align-items: center; gap: 3rem; border: 1px solid var(--story-rule); padding: 3rem !important; position: relative; }
+.invitation.wedding-story[data-crafted="story"] .venue-section::before, .invitation.wedding-story[data-crafted="story"] .venue-section::after { content: ""; position: absolute; top: 50%; width: 1.8rem; height: 1.8rem; border: 1px solid var(--story-rule); border-radius: 50%; background: var(--surface); translate: 0 -50%; }
+.invitation.wedding-story[data-crafted="story"] .venue-section::before { left: -.9rem; border-left-color: transparent; }
+.invitation.wedding-story[data-crafted="story"] .venue-section::after { right: -.9rem; border-right-color: transparent; }
+.invitation.wedding-story[data-crafted="story"] .venue-copy { padding-left: 2.5rem; border-left: 1px dashed var(--story-rule); }
+.invitation.wedding-story[data-crafted="story"] .venue-section .section-eyebrow { color: var(--ink); }
+.invitation.wedding-story[data-crafted="story"] .slot-timeline, .invitation.wedding-story[data-crafted="story"] .slot-dressCode { border-bottom: 1px solid var(--story-rule); }
+.invitation.wedding-story[data-crafted="story"] .timeline-list { margin-inline: auto; }
+.invitation.wedding-story[data-crafted="story"] .timeline-list time { font-size: 1.6rem; }
+.invitation.wedding-story[data-crafted="story"] .dress-section { max-width: none; text-align: center; }
+.invitation.wedding-story[data-crafted="story"] .dress-section p, .invitation.wedding-story[data-crafted="story"] .dress-section .dress-palette { margin-inline: auto; }
+.invitation.wedding-story[data-crafted="story"] .dress-swatches { justify-content: center; }
+.invitation.wedding-story[data-crafted="story"] .slot-rsvp { background: var(--surface); }
+.invitation.wedding-story[data-crafted="story"] .rsvp-section { box-shadow: none; }
+.invitation.wedding-story[data-crafted="story"] .slot-footer { text-align: center; }
+.invitation.wedding-story[data-crafted="story"] .invitation-footer { padding: 0; border: 0; }
+.invitation.wedding-story[data-crafted="story"] .invitation-footer p:first-child { font-size: clamp(3rem, 7vw, 6rem); }
+.invitation.wedding-story[data-crafted="story"] .invitation-footer p + p { margin-top: 1.5rem; }
+.invitation.wedding-story[data-crafted="story"] .footer-top { margin-top: 2rem; border-color: var(--story-rule); }
+
+/* Photo album: mounted photograph, two columns and a personal caption. */
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-prologue { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; min-height: 46rem; background: radial-gradient(ellipse at 95% 12%, color-mix(in srgb, var(--accent-alt) 18%, transparent), transparent 58%), var(--bg); }
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-title h1 { font-size: clamp(3.2rem, 6.4vw, 6.7rem); }
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-host-line + .story-host-line { padding-left: 10%; }
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-join { color: var(--accent); }
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-photo-mount { rotate: 3deg; margin: 1.5rem 1rem; }
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-photo-mount::before { content: ""; position: absolute; z-index: 2; width: 6rem; height: 2rem; left: 50%; top: -.85rem; translate: -50% 0; rotate: -7deg; background: color-mix(in srgb, var(--accent-alt) 40%, var(--bg)); opacity: .85; box-shadow: 0 1px 2px color-mix(in srgb, var(--ink) 10%, transparent); }
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-month { border: 1px solid var(--story-rule); padding: 1.5rem; border-collapse: separate; border-spacing: .25rem; }
+.invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-month caption { text-align: center; }
+
+/* Romantic vow: actual Cyrillic handwriting and a centred photograph. */
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-prologue { text-align: center; padding-bottom: 5rem; background: var(--surface); }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-hero { gap: 2rem; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-title { max-width: 62rem; margin: 0 auto; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-host-line, .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-host { display: inline; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-host-line + .story-host-line::before { content: " "; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-join { display: inline-block; margin: 0 .45em; font-size: .45em; vertical-align: middle; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-hero-bottom { justify-content: center; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .hero-next { display: none; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .slot-greeting { margin: 3rem auto 0; max-width: 42rem; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-photo-mount { width: min(100%, 28rem); padding: 1.25rem; outline: 1px solid var(--story-rule); outline-offset: .6rem; background: var(--bg); box-shadow: 0 1rem 2.8rem color-mix(in srgb, var(--ink) 12%, transparent); }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-photo-caption { justify-content: center; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .greeting-section { padding-top: 2.5rem; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-prologue::before, .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-prologue::after { content: ""; position: absolute; width: 17rem; height: 31rem; top: 26%; border: 1px solid var(--story-rule); border-radius: 50%; rotate: 30deg; pointer-events: none; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-prologue::before { left: -12rem; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-prologue::after { right: -12rem; rotate: -30deg; }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .venue-section { border: 0; border-block: 1px solid var(--story-rule); }
+.invitation.wedding-story[data-crafted="story"][data-composition="vow"] .venue-section::before, .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .venue-section::after { display: none; }
+
+/* Editorial story: ruled masthead, broad names, photograph and date. */
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-prologue { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3.5rem; align-items: center; min-height: 45rem; border-bottom: 1px solid var(--story-rule); }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-title h1 { font-size: clamp(3.3rem, 6.6vw, 7rem); }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-join { margin: .3em 0; font-size: .3em; color: var(--muted); }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-photo-mount { padding: 0; border: 0; box-shadow: none; background: transparent; }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-photo-caption { padding-bottom: .9rem; border-bottom: 1px solid var(--story-rule); }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .greeting-section { text-align: left; }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .greeting-copy p { margin-inline: 0; }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-prologue-mark { left: auto; right: 2rem; translate: none; }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-date-intro h2 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4.5rem); }
+.invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-date-section { gap: 3rem; }
+
+@media (max-width: 760px) {
+  .invitation.wedding-story[data-crafted="story"] .story-prologue { padding: 1.75rem 1.5rem 3.5rem; }
+  .invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-prologue, .invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-prologue { display: block; min-height: 0; }
+  .invitation.wedding-story[data-crafted="story"][data-composition] .story-hero { gap: 1.8rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-hero-top { gap: .75rem; padding-bottom: 1rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-hero-top .story-kicker { max-width: 24ch; font-size: .6875rem; letter-spacing: .1em; }
+  .invitation.wedding-story[data-crafted="story"] .story-title h1 { font-size: calc(clamp(2.6rem, 11.3vw, 4.5rem) * var(--inv-display-scale)); }
+  .invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-title h1, .invitation.wedding-story[data-crafted="story"][data-composition="editorial-story"] .story-title h1 { font-size: clamp(2.6rem, 11.3vw, 4.5rem); }
+  .invitation.wedding-story[data-crafted="story"] .story-hero-bottom { gap: 1rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-hero-bottom time { font-size: .875rem; }
+  .invitation.wedding-story[data-crafted="story"] .hero-next > span:first-child { display: none; }
+  .invitation.wedding-story[data-crafted="story"] .slot-greeting { margin-top: 2rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-photo-set { gap: 2.5rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-photo-mount { padding: .65rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-photo-caption { font-size: .6875rem; padding-top: .65rem; }
+  .invitation.wedding-story[data-crafted="story"][data-composition="keepsake"] .story-photo-mount { margin: .75rem .75rem 0; rotate: 2deg; }
+  .invitation.wedding-story[data-crafted="story"] .greeting-section { padding-top: 1.75rem; }
+  .invitation.wedding-story[data-crafted="story"] .greeting-section h2 { font-size: .9375rem; }
+  .invitation.wedding-story[data-crafted="story"] .greeting-copy p { font-size: 1rem; }
+  .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-title h1 { font-size: calc(clamp(3.3rem, 14vw, 4.7rem) * var(--inv-display-scale)); }
+  .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-host-line, .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-host { display: block; }
+  .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-join { display: block; margin: .1em; }
+  .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .slot-greeting { margin-top: 2rem; }
+  .invitation.wedding-story[data-crafted="story"][data-composition="vow"] .story-photo-mount { padding: .75rem; outline-offset: .3rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-date-section { grid-template-columns: 1fr; gap: 3rem; padding: 3.5rem 1.5rem; text-align: center; }
+  .invitation.wedding-story[data-crafted="story"] .story-date-intro h2 { margin-block: 1rem; font-size: 2.5rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-date-intro .invitation-calendar { text-align: left; }
+  .invitation.wedding-story[data-crafted="story"] .story-month { max-width: 27rem; margin-inline: auto; }
+  .invitation.wedding-story[data-crafted="story"] .story-month caption { text-align: center; }
+  .invitation.wedding-story[data-crafted="story"] .story-content > .narrative-slot { padding: 3.5rem 1.5rem; }
+  .invitation.wedding-story[data-crafted="story"] .story-content > .narrative-slot .invitation-section h2 { font-size: 2.5rem; }
+  .invitation.wedding-story[data-crafted="story"] .countdown-section { display: block; text-align: center; }
+  .invitation.wedding-story[data-crafted="story"] .countdown-section h2 { max-width: none; margin-bottom: 2rem; }
+  .invitation.wedding-story[data-crafted="story"] .countdown-values { gap: .5rem; margin-inline: auto; }
+  .invitation.wedding-story[data-crafted="story"] .countdown-values dd { font-size: clamp(1.6rem, 7.6vw, 2.5rem); }
+  .invitation.wedding-story[data-crafted="story"] .countdown-values dt { font-size: .625rem; }
+  .invitation.wedding-story[data-crafted="story"] .venue-section { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem !important; }
+  .invitation.wedding-story[data-crafted="story"] .venue-copy { padding: 1.5rem 0 0; border-left: 0; border-top: 1px dashed var(--story-rule); }
+  .invitation.wedding-story[data-crafted="story"] .timeline-list li { grid-template-columns: 4.5rem 1fr; gap: 1rem; }
+}
+@media (prefers-reduced-motion: reduce) { .invitation.wedding-story[data-crafted="story"] .story-photo-mount { transition: none; } }
+
+.invitation.wedding-story[data-crafted="story"] .greeting-section h2 { max-width: none; text-wrap: balance; }
+.invitation.wedding-story[data-crafted="story"] .invitation-footer { display: block; }

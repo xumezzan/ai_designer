@@ -277,6 +277,10 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
   const warnings: string[] = [];
 
   errors.push(...checkKeys(theme as unknown as Record<string, unknown>));
+  if (["keepsake", "vow", "editorial-story"].includes(theme.layout.composition)) {
+    if (theme.artwork !== "none" || theme.generatedVisual || theme.ornament.pack !== "none") errors.push("Wedding stories use native photo compositions; select artwork none, ornament none and no generatedVisual");
+    if (theme.layout.sectionOrder[0] !== "hero" || (theme.layout.sectionOrder.includes("greeting") && theme.layout.sectionOrder[1] !== "greeting")) errors.push("Wedding stories open with hero followed by greeting when included");
+  }
 
   // Preset existence: a key is only real once its registry module provides it.
   const typeSet = getTypeSet(theme.typeSet);

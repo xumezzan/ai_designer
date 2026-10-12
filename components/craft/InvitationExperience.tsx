@@ -59,7 +59,7 @@ export function InvitationExperience({ children, names, monogram, date, guest, l
   function open() {
     if (closing) return;
     setClosing(true);
-    timer.current = setTimeout(() => { cover.current?.close(); root.current?.querySelector<HTMLElement>(".hero-next")?.focus({ preventScroll: true }); }, 850);
+    timer.current = setTimeout(() => { cover.current?.close(); Array.from(root.current?.querySelectorAll<HTMLElement>(".hero-next, .invitation-calendar summary") ?? []).find((target) => target.checkVisibility())?.focus({ preventScroll: true }); }, 850);
   }
 
   return <div ref={root} className="invitation-experience">
