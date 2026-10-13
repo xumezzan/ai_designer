@@ -61,7 +61,7 @@ describe("invitation destinations", () => {
 });
 
 describe("five hand-authored invitations", () => {
-  it("renders the eight sections in each JSON's order, one foil element at most", async () => {
+  it("renders populated demo sections in narrative order, one foil element at most", async () => {
     const concepts = await demoConcepts();
     expect(concepts).toHaveLength(5);
     expect(new Set(concepts.map((concept) => concept.theme.layout.composition)).size).toBe(5);
@@ -71,7 +71,7 @@ describe("five hand-authored invitations", () => {
       expect(invitation.adjustments).toEqual([]);
       expect(validateTheme(theme, { locale: content.locale }).ok).toBe(true);
       const html = renderToStaticMarkup(<ScrollNarrative content={content} theme={theme} initialNow={now} />);
-      expect([...html.matchAll(/data-section="([^"]+)"/g)].map((match) => match[1])).toEqual(theme.layout.sectionOrder);
+      expect([...html.matchAll(/data-section="([^"]+)"/g)].map((match) => match[1])).toEqual(["hero", "greeting", "countdown", "venue", "timeline", "dressCode", "rsvp", "footer"]);
       expect((html.match(/data-foil="true"/g) ?? []).length).toBe(theme.foil.enabled ? 1 : 0);
       expect(html).toContain("Рустам"); expect(html).toContain("Амина");
       expect(html).not.toContain("data-reveal-ready");

@@ -1,0 +1,52 @@
+.immersive-invitation { background: var(--bg); color: var(--ink); }
+.immersive-cover { position: relative; isolation: isolate; display: grid; place-items: center; min-height: 100svh; overflow: hidden; }
+.immersive-cover-art { position: absolute; inset: 0; z-index: -1; background: var(--bg); }
+.immersive-cover-art img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.immersive-cover-copy { width: min(60%, 620px); min-height: 70svh; display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 28px; text-align: center; padding: 32px 0 20px; }
+.immersive-kicker { font-family: var(--font-body); font-size: 16px !important; letter-spacing: .08em; line-height: 1.45 !important; text-transform: uppercase; max-width: 24ch; }
+.immersive-title-block { width: 100%; margin-top: auto; }
+.immersive-name-label { display: block; font-family: var(--font-body); font-size: 9px !important; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+.invitation.immersive-invitation #hero-title { font-family: var(--font-display); font-size: clamp(48px, 7vw, 108px) !important; font-weight: 400; line-height: 1.12 !important; letter-spacing: clamp(-.02em, var(--inv-tracking-headline, -.02em), .06em); overflow-wrap: anywhere; color: var(--ink); }
+.immersive-host { display: block; }
+.immersive-join { display: block; font: italic 28px/1.6 var(--font-display); color: var(--accent); }
+.immersive-date { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; font: 400 18px/1.5 var(--font-display); font-variant-numeric: lining-nums; }
+.immersive-date i { width: 1px; height: 15px; background: var(--muted); opacity: .7; transform: rotate(20deg); }
+.immersive-cover-venue { font: 12px/1.8 var(--font-body); }
+.immersive-cover-venue span { display: block; font-size: 11px; letter-spacing: .1em; }
+.immersive-open { display: flex; flex-direction: column; align-items: center; gap: 4px; min-height: 44px; min-width: 44px; margin-top: auto; font: 9px/1.6 var(--font-body); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+.immersive-open span:last-child { font-size: 20px; }
+.immersive-story { width: min(100%, 1100px); margin: auto; }
+.immersive-spread { position: relative; padding: 68px 28px; }
+.immersive-spread + .immersive-spread { border-top: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
+.immersive-spread .invitation-section, .immersive-spread .invitation-footer { padding: 0; margin: 0; background: transparent; border: 0; box-shadow: none; }
+.immersive-spread [data-level="display-sm"] { font: 400 clamp(32px, 4vw, 60px)/1.2 var(--font-display); letter-spacing: -.02em; }
+.immersive-spread [data-level="lead"], .immersive-spread [data-level="body"] { font-size: 16px; line-height: 1.7; }
+.immersive-spread [data-level="small"] { font-size: 10px; line-height: 1.65; letter-spacing: .1em; }
+.immersive-spread-venue .venue-section { display: block; text-align: center; }
+.immersive-spread-venue .venue-heading h2 { margin-block: 18px 28px; }
+.immersive-spread-venue .venue-copy .section-eyebrow { display: none; }
+.immersive-spread-venue .venue-copy:empty { display: none; }
+.immersive-spread-venue .venue-copy address:empty { display: none; }
+.immersive-spread-venue .invitation-calendar { display: flex; justify-content: center; }
+.immersive-spread-dressCode { padding-top: 54px; background: var(--surface); }
+.immersive-art-interlude { height: 160px; margin: 0 -28px 54px; overflow: hidden; }
+.immersive-art-interlude img { width: 100%; height: 100%; object-fit: cover; object-position: center 8%; }
+.immersive-spread-dressCode .dress-section { text-align: center; margin: auto; max-width: 42ch; }
+.immersive-spread-dressCode .dress-heading { display: block; }
+.immersive-spread-dressCode .dress-heading .section-mark { display: none; }
+.immersive-spread-dressCode .dress-section p { margin: 24px auto 0; }
+.immersive-spread-dressCode .dress-swatches { justify-content: center; }
+.immersive-spread-footer { padding-block: 80px 36px; text-align: center; }
+.immersive-spread-footer .invitation-footer { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.immersive-spread-footer .invitation-footer > p:first-child { max-width: 18ch; font-size: clamp(32px, 5vw, 58px); line-height: 1.3; }
+.immersive-spread-footer .footer-top { margin-top: 10px; }
+@media (min-width: 801px) { .immersive-cover { min-height: 960px; } .immersive-cover-art img { object-fit: cover; object-position: center 45%; } .immersive-cover-copy { min-height: 700px; width: min(45%, 600px); } .immersive-spread { padding: 100px 80px; } .immersive-art-interlude { margin-inline: -80px; height: 240px; } }
+@media (max-width: 430px) { .immersive-cover-copy { gap: 22px; padding-block: 24px 10px; min-height: 68svh; width: 60%; } .invitation.immersive-invitation #hero-title { font-size: clamp(42px, 13vw, 58px) !important; } .immersive-date { gap: 9px; font-size: 16px; } .immersive-name-label { margin-bottom: 18px; } }
+
+.immersive-divider { display: flex; align-items: center; justify-content: center; gap: 18px; color: var(--accent); margin: 0 auto 36px; width: min(100%, 280px); }
+.immersive-divider svg { width: 48px; height: 28px; flex-shrink: 0; }
+.immersive-divider > span { height: 1px; flex: 1; background: currentColor; opacity: .5; }
+.immersive-spread-dressCode .dress-palette { margin-top: 34px; }
+.immersive-spread-dressCode .dress-fabric { height: 100px; }
+.immersive-spread-dressCode .dress-preview { display: none; }
+.immersive-spread-dressCode .dress-palette-heading { margin-bottom: 18px; }

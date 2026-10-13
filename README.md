@@ -1,9 +1,7 @@
 # Invitation Studio
 
 Internal, single-user tool for generating web invitations for events (weddings,
-anniversaries, corporate evenings) for the Uzbekistan and CIS market. The
-questionnaire and brief become one to five independent art directions, or related
-compositions when a shared visual family is requested; one is
+anniversaries, corporate evenings) for the Uzbekistan and CIS market. The design description, mood and optional references become one finished design with original artwork and a complete mobile composition; it is
 approved, refined in plain language, and published at a link.
 
 **Guests primarily view invitations on mobile phones.** Design the complete
@@ -44,9 +42,9 @@ Studio UI strings are Russian; code, identifiers, commits and docs are English.
 
 Current milestone: **M6 visual QA implemented and live-verified**. Open
 `/studio` to create/edit projects, upload photos and references, direct each
-photo's placement and protected crop, and generate one to five related designs. New
+photo's placement and protected crop, and create one complete design. New
 projects start empty; the demo collection is never copied as generated output.
-Enter one brief, select **«Количество вариантов»** (1–5), then generate the selected number. The choice is saved with the project; older projects default to five. The AI selects one
+Start with **«Опишите приглашение»** and optional references; event facts can be added later. Generated invitations open in a live canvas: click names or copy to edit, use the side panel for date and other blocks, and changes save automatically. Undo/redo applies to content. Live generation creates one complete website. The owner’s Gatsby and Jafar–Sitora repositories now inform native cinematic and portrait-story compositions; those use live typography, SVG decoration and code effects without a bitmap request. Original portrait artwork remains available for an explicitly illustrated frame or scene. See [source study and implementation](./docs/source-references/README.md). Explicit names/date/venue/closing in the brief can fill empty content fields; a date without a time remains a civil date. Added content now grows within a stable narrative order: opening, description, location, programme, dress code, wishes, response and farewell; selected photo placements are honoured. Details: [narrative growth](./docs/narrative-growth/README.md), [single design](./docs/single-design/README.md), [live editor](./docs/live-editor/README.md). Live generation creates exactly one design, including projects that still carry an older multi-variant preference. The count is fixed at one for all new generation requests; historical batches remain readable. The AI selects one
 shared palette, type set, material and ornament pack, then varies composition,
 section order and photo/decor placement. References inform the common style.
 Photo settings must be saved first; unused photos stay excluded. Manual photo

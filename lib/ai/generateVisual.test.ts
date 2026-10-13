@@ -63,3 +63,21 @@ test.each([{ data: [{ url: "https://untrusted.example/image" }] }, { data: [{ b6
   vi.stubEnv("OPENAI_API_KEY", "test-only");
   await expect(generateVisual(style, [], async () => Response.json(body))).rejects.toMatchObject({ status: 502 });
 });
+
+test("an ornate reference creates one high quality portrait environment and retains its background rather than isolating it", async () => {
+  vi.stubEnv("OPENAI_API_KEY", "test-only");
+  const portrait = await sharp({ create: { width: 1024, height: 1536, channels: 3, background: "#101010" } }).webp().toBuffer();
+  const scene = { ...style, intent: { ...style.intent, visualKind: "scene" as const, referenceNotes: "Stepped geometric frame" } };
+  const transport = vi.fn<typeof fetch>(async (_url, options) => {
+    const body = JSON.parse(String(options?.body));
+    expect(body).toMatchObject({ n: 1, quality: "high", size: "1024x1536" });
+    expect(body.prompt).toContain("complete designed graphic environment");
+    expect(body.prompt).toContain("an elaborate frame ARE allowed");
+    expect(body.prompt).not.toContain("No invitation layout, mockups");
+    return Response.json({ data: [{ b64_json: portrait.toString("base64") }] });
+  });
+  const result = await generateVisual(scene, [], transport);
+  expect(result.record).toMatchObject({ kind: "scene", isolated: false, width: 1024, height: 1536 });
+  expect((await sharp(result.data).metadata()).hasAlpha).toBe(false);
+  expect(transport).toHaveBeenCalledTimes(1);
+});

@@ -6,8 +6,10 @@ export const VisualRef = z.object({
   width: z.number().int().min(256).max(4096), height: z.number().int().min(256).max(4096),
   // Only the server can mark a newly isolated decoration. Legacy plates stay normal.
   isolated: z.boolean().optional(),
+  kind: z.enum(["accent", "scene"]).optional(),
 }).strict();
 export const DesignIntent = z.object({
+  visualKind: z.enum(["accent", "scene"]).optional(),
   summary: z.string().min(1).max(500),
   cues: z.array(z.string().min(1).max(160)).min(1).max(6),
   avoid: z.array(z.string().min(1).max(160)).max(6),

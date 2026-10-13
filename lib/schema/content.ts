@@ -30,9 +30,13 @@ export const Content = z.object({
 
   headline: z.string().optional(),
   greeting: z.string().optional(),
+  wishes: z.string().max(10000).optional(),
+  closing: z.string().optional(),
 
   date: z.object({
-    start: z.string().datetime({ offset: true }),
+    // Empty means a design draft; no date is invented before the host supplies it.
+    start: z.union([z.literal(""), z.string().datetime({ offset: true })]),
+    day: z.string().date().optional(),
     timezone: z.string().default("Asia/Tashkent").refine((zone) => {
       try { new Intl.DateTimeFormat("en", { timeZone: zone }); return true; }
       catch { return false; }

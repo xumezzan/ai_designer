@@ -18,7 +18,7 @@ const valueLabels: Record<string, string> = {
   smooth: "гладкая", "cotton-paper": "хлопковая бумага", "raw-silk": "сырой шёлк", "deep-velvet": "бархат", "matte-stone": "матовый камень", hairline: "тонкая линия", "double-hairline": "двойная линия", "blind-deboss": "слепое тиснение", "frame-inset": "внутренняя рамка", "gold-foil": "золотая фольга", "silver-chrome": "серебро", "blind-emboss": "слепое тиснение", "bronze-patina": "патинированная бронза", monumental: "монументальный", understated: "сдержанный",
   light: "лёгкая", medium: "средняя", divider: "разделитель", corners: "углы", "hero-frame": "рамка", watermark: "фоновый узор", accent: "акцент", accentAlt: "второй акцент", muted: "приглушённый",
   letter: "письмо", poster: "постер", folio: "фолио", arch: "арка", botanical: "диагональ", "scroll-narrative": "приглашение со скроллом", "full-photo": "с фотографией", typographic: "типографический", "ornament-frame": "с рамкой",
-  row: "в ряд", stack: "друг под другом", offset: "со смещением", still: "без анимации", unfold: "появление", drift: "плавное появление", hero: "первый экран", greeting: "обращение", countdown: "обратный отсчёт", timeline: "программа", venue: "место", dressCode: "дресс-код", rsvp: "ответ гостей", footer: "завершение",
+  row: "в ряд", stack: "друг под другом", offset: "со смещением", still: "без анимации", unfold: "появление", drift: "плавное появление", hero: "первый экран", greeting: "обращение", countdown: "обратный отсчёт", timeline: "программа", venue: "место", dressCode: "дресс-код", wishes: "пожелания", rsvp: "ответ гостей", footer: "завершение",
 };
 function changeValue(value: string) {
   try {

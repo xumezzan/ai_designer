@@ -1,0 +1,30 @@
+{
+  "generation": "local fixture; no paid generation calls",
+  "checks": {
+    "referenceBeforeFacts": true,
+    "generateWithoutFacts": true,
+    "addSectionsAfterGeneration": true,
+    "liveInspector": true,
+    "clearDate": true,
+    "autosave": true,
+    "inlineText": true,
+    "concurrentTypingDuringSave": true,
+    "undoRedo": true,
+    "reload": true,
+    "singleDesign": true,
+    "qaGatePreserved": true,
+    "addPhotoAfterGeneration": true,
+    "removePhoto": true,
+    "semanticSectionOrder": true,
+    "wishesAddRemove": true,
+    "guestWithoutJavaScript": true
+  },
+  "widths": [
+    320,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "errors": []
+}

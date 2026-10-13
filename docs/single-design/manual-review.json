@@ -1,0 +1,30 @@
+{
+  "count": 1,
+  "originalArtworkRequests": 1,
+  "url": "http://127.0.0.1:3147/preview/event-01dc5092/variant-70897c3a-1/1",
+  "content": {
+    "hosts": [
+      {
+        "name": "Latifa"
+      }
+    ],
+    "eventType": "birthday",
+    "date": {
+      "start": "",
+      "day": "2026-07-12",
+      "timezone": "Asia/Tashkent",
+      "showCountdown": true
+    },
+    "venue": {
+      "name": "Мирас",
+      "address": ""
+    },
+    "closing": "a little party never killed somebody! See you!"
+  },
+  "widths": [
+    320,
+    390,
+    430
+  ],
+  "errors": []
+}

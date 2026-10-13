@@ -63,8 +63,8 @@
 .card-stack[data-composition="silk-suite"] .material-content { max-width: 54rem; }
 .card-stack[data-composition="silk-suite"] .material-hero-panel { margin-inline: 1.25rem 3.5rem; }
 .card-stack[data-composition="silk-suite"] .material-hero-panel::before { content: ""; position: absolute; inset: 2rem -1.4rem -1.4rem 1.4rem; z-index: -1; background: var(--bg); transform: rotate(2deg); border: 1px solid var(--panel-edge); box-shadow: 10px 30px 35px -14px var(--panel-shadow); }
-.card-stack[data-composition="silk-suite"] .material-slot:nth-child(2n) { margin-inline: 3.5rem 0; }
-.card-stack[data-composition="silk-suite"] .material-slot:nth-child(2n+3) { margin-inline: 0 3.5rem; }
+.card-stack[data-composition="silk-suite"] :is(.material-slot-greeting, .material-slot-timeline, .material-slot-wishes) { margin-inline: 3.5rem 0; }
+.card-stack[data-composition="silk-suite"] :is(.material-slot-venue, .material-slot-dressCode, .material-slot-rsvp) { margin-inline: 0 3.5rem; }
 .card-stack[data-composition="silk-suite"] .material-slot-footer { margin-inline: 0; }
 .card-stack[data-composition="silk-suite"] .invitation-footer { background: var(--surface); padding: 2rem; border: 1px solid var(--panel-edge); }
 

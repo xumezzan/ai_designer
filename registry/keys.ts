@@ -13,9 +13,10 @@ export const SECTION_IDS = [
   "hero",
   "greeting",
   "countdown",
-  "timeline",
   "venue",
+  "timeline",
   "dressCode",
+  "wishes",
   "rsvp",
   "footer",
 ] as const;
@@ -25,7 +26,7 @@ export const LAYOUT_IDS = ["scroll-narrative", "card-stack"] as const;
 export type LayoutId = (typeof LAYOUT_IDS)[number];
 
 export const MATERIAL_COMPOSITIONS = ["silk-suite", "pressed-flower", "glass-garden"] as const;
-export const COMPOSITION_IDS = ["letter", "poster", "folio", "arch", "botanical", "duet", "ribbon", "imprint", "keepsake", "vow", "editorial-story", ...MATERIAL_COMPOSITIONS] as const;
+export const COMPOSITION_IDS = ["letter", "poster", "folio", "arch", "botanical", "duet", "ribbon", "imprint", "keepsake", "vow", "editorial-story", "immersive", "cinematic", "portrait-story", ...MATERIAL_COMPOSITIONS] as const;
 export type CompositionId = (typeof COMPOSITION_IDS)[number];
 
 export const ARTWORK_IDS = ["none", "suzani-atelier"] as const;

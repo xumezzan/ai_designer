@@ -1,0 +1,107 @@
+{
+  "fixture": "temporary synthetic protected photo; no customer media reused, no provider calls",
+  "widths": [
+    {
+      "width": 320,
+      "protectedPhoto": true,
+      "calendar": true,
+      "swatches": [
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "protectedPhoto": true,
+      "calendar": true,
+      "swatches": [
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        }
+      ]
+    },
+    {
+      "width": 430,
+      "protectedPhoto": true,
+      "calendar": true,
+      "swatches": [
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "protectedPhoto": true,
+      "calendar": true,
+      "swatches": [
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        },
+        {
+          "width": 64,
+          "height": 64,
+          "radius": "50%",
+          "clip": "none"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "livePhotoGuard": true
+}

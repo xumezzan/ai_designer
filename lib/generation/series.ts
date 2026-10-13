@@ -1,12 +1,15 @@
+import type { BriefFacts } from "@/lib/studio/briefFacts";
 import { DesignSeries, type Generation } from "@/lib/schema/generation";
 import type { Theme } from "@/lib/schema/theme";
 import type { DirectedAsset } from "@/lib/assets/crop";
+import { canonicalSectionOrder } from "@/lib/invitation/sections";
 import { heroGrade } from "@/lib/assets/crop";
 import { repairTheme, validateTheme, type Locale } from "@/lib/theme/validate";
 import type { GeneratedVisual } from "@/lib/schema/visual";
 
 export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsset[], visualPlanned = false) {
   const series = DesignSeries.parse(raw);
+  series.variants.forEach((variant) => { if (new Set(variant.layout.sectionOrder).size === variant.layout.sectionOrder.length) variant.layout.sectionOrder = canonicalSectionOrder(variant.layout.sectionOrder); });
   const mode = series.mode ?? "cohesive";
   if (mode === "cohesive" && series.variants.some((variant) => variant.direction)) throw new Error("Independent directions require exploration mode");
   if (mode === "exploration" && series.variants.some((variant) => !variant.direction)) throw new Error("Every exploration variant needs a complete palette and typeSet direction");
@@ -61,7 +64,7 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
 export function artDirection(theme: Theme) {
   return { palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } };
 }
-export type GeneratedSeries = ReturnType<typeof composeSeries> & Pick<Generation, "model" | "elapsedMs" | "references"> & { visual?: GeneratedVisual };
+export type GeneratedSeries = ReturnType<typeof composeSeries> & Pick<Generation, "model" | "elapsedMs" | "references"> & { visual?: GeneratedVisual; facts?: BriefFacts };
 
 export function sharedStyleSignature(theme: Theme) {
   return JSON.stringify({ palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, artwork: theme.artwork, generatedVisual: theme.generatedVisual, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } });

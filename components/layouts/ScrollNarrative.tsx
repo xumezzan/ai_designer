@@ -1,3 +1,6 @@
+import { ImmersiveInvitation } from "./ImmersiveInvitation";
+import { ReferenceInvitation } from "./ReferenceInvitation";
+import { invitationSectionOrder, populatedSections } from "@/lib/invitation/sections";
 import type { CSSProperties, ReactNode } from "react";
 import type { Content } from "@/lib/schema/content";
 import type { Theme } from "@/lib/schema/theme";
@@ -27,12 +30,15 @@ import { Countdown } from "@/components/sections/Countdown";
 import { Timeline } from "@/components/sections/Timeline";
 import { Venue } from "@/components/sections/Venue";
 import { DressCode } from "@/components/sections/DressCode";
+import { Wishes } from "@/components/sections/Wishes";
 import { Rsvp } from "@/components/sections/Rsvp";
 import { Footer } from "@/components/sections/Footer";
 import { WeddingStory, isStoryComposition } from "./WeddingStory";
 import { CardStack } from "./CardStack";
 
 export function ScrollNarrative({ content, theme, initialNow, photos = [], generatedVisual, guest, embedded = false }: { content: Content; theme: Theme; initialNow: number; photos?: DirectedAsset[]; generatedVisual?: VisualSource; guest?: string; embedded?: boolean }) {
+  if (["cinematic", "portrait-story"].includes(theme.layout.composition)) return <ReferenceInvitation content={content} theme={theme} initialNow={initialNow} photos={photos} guest={guest} embedded={embedded} />;
+  if (theme.layout.composition === "immersive") return <ImmersiveInvitation content={content} theme={theme} initialNow={initialNow} photos={photos} generatedVisual={generatedVisual} guest={guest} embedded={embedded} />;
   if (theme.layout.preset === "card-stack") return <CardStack content={content} theme={theme} initialNow={initialNow} photos={photos} generatedVisual={generatedVisual} guest={guest} embedded={embedded} />;
   if (isStoryComposition(theme.layout.composition) && theme.artwork === "none" && !generatedVisual) {
     return <WeddingStory content={content} theme={theme} initialNow={initialNow} photos={photos} guest={guest} embedded={embedded} />;
@@ -41,19 +47,19 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [], gener
   const entrance = getMotion(theme.motion.preset)?.entrance;
   const signature = isSignatureComposition(theme.layout.composition) && theme.artwork === "none" && !generatedVisual;
   const monogram = content.hosts.map((host) => Array.from(host.name.trim())[0]).join("·");
-  const names = content.headline ? t(content.headline) : content.hosts.map((host, index) =>
-    <span key={index}>{index > 0 && <span className="hero-join"> &amp; </span>}<span className="hero-host">{t(host.name)}</span></span>);
+  const names = content.headline ? <span data-studio-field="headline">{t(content.headline)}</span> : content.hosts.map((host, index) =>
+    <span key={index}>{index > 0 && <span className="hero-join"> &amp; </span>}<span className="hero-host" data-studio-field={`hosts.${index}.name`}>{t(host.name)}</span></span>);
   const title = <FoilText enabled={theme.foil.enabled} finishing={theme.finishing.type}>{names}</FoilText>;
   const titleWrapper = (node: ReactNode) => entrance ? <div className="hero-entrance"><TextReveal>{node}</TextReveal></div> : node;
   const available: Record<SectionId, boolean> = {
-    hero: true, greeting: Boolean(content.greeting), countdown: content.date.showCountdown,
-    timeline: content.timeline.length > 0, venue: true, dressCode: Boolean(content.dressCode),
+    hero: true, greeting: Boolean(content.greeting), countdown: populatedSections(content).includes("countdown"),
+    timeline: content.timeline.length > 0, venue: populatedSections(content).includes("venue"), dressCode: Boolean(content.dressCode), wishes: Boolean(content.wishes?.trim()),
     rsvp: Boolean(content.rsvp?.enabled), footer: true,
   };
   const directed = compositionPhotos(photos, theme);
   const at = (id: SectionId, position?: "before" | "after") => directed.filter((entry) => entry.photo.asset.placement?.section === id && (!position || entry.position === position));
   const photoSet = (id: SectionId, position: "before" | "after") => at(id, position).length > 0 ? <div className="directed-set" data-photo-section={id} data-arrangement={theme.layout.photoArrangement} data-position={position}>{at(id, position).map(({ photo }) => <DirectedImage key={photo.asset.id} photo={photo} locale={content.locale} />)}</div> : null;
-  const order = theme.layout.sectionOrder.filter((id) => available[id] || at(id).length > 0);
+  const order = invitationSectionOrder(content, theme.layout.sectionOrder, directed.flatMap(({ photo }) => photo.asset.placement ? [photo.asset.placement.section] : [])).filter((id) => available[id] || at(id).length > 0);
   const next = order[1];
   const nextTarget = next ? { id: next, label: labels[content.locale][next === "hero" ? "invitation" : next] } : undefined;
   const sections: Record<SectionId, ReactNode> = {
@@ -69,7 +75,7 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [], gener
     countdown: <Countdown date={content.date} locale={content.locale} initialNow={initialNow} />,
     timeline: <Timeline content={content} />,
     venue: <Venue content={content} />,
-    dressCode: <DressCode content={content} />,
+    dressCode: <DressCode content={content} />, wishes: <Wishes content={content} />,
     rsvp: <Rsvp content={content} guest={guest} />,
     footer: <Footer content={content} />,
   };

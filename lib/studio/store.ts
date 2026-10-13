@@ -47,9 +47,6 @@ export function validateContent(raw: unknown) {
     throw new StudioError([...new Set(result.error.issues.map((issue) => issues[issue.path.join(".")] ?? "Проверьте обязательные поля анкеты и выбранные значения."))].join(" "));
   }
   const content = result.data;
-  if (!content.hosts.every((host) => host.name.trim()) || !content.venue.name.trim() || !content.venue.address.trim()) {
-    throw new StudioError("Заполните имена, название места и адрес.");
-  }
   if (content.hosts.length > 12 || content.timeline.length > 40 || content.media.length + content.refs.length > 40 || encode(content).length > 150000) {
     throw new StudioError("Слишком много данных в анкете. Сократите текст или количество элементов.");
   }
@@ -232,7 +229,7 @@ export class ProjectStore {
       const first = project.generation || dir.name === "demo" ? project.concepts[0] : undefined;
       const cover = project.approval ?? first;
       const preview = cover ? { href: `/preview/${dir.name}/${"conceptId" in cover ? cover.conceptId : cover.id}/${cover.version}?embed=1`, selected: Boolean(project.approval) } : null;
-      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, preview, updated: info.mtimeMs };
+      return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, day: project.content.date.day, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, preview, updated: info.mtimeMs };
     }))).sort((a, b) => b.updated - a.updated);
   }
   async create(raw: unknown, templates?: Concept[]) {
@@ -335,7 +332,7 @@ export class ProjectStore {
       if (visual) {
         const record = VisualRecord.parse(visual.record);
         const info = await sharp(visual.data).metadata();
-        if (!visualRef || visualRef.id !== record.id || visualRef.sha256 !== record.sha256 || createHash("sha256").update(visual.data).digest("hex") !== record.sha256 || info.width !== record.width || info.height !== record.height || info.format !== "webp" || visualRef.width !== record.width || visualRef.height !== record.height || Boolean(visualRef.isolated) !== Boolean(record.isolated)) throw new StudioError("Новый визуал не соответствует серии.");
+        if (!visualRef || visualRef.id !== record.id || visualRef.sha256 !== record.sha256 || createHash("sha256").update(visual.data).digest("hex") !== record.sha256 || info.width !== record.width || info.height !== record.height || info.format !== "webp" || visualRef.width !== record.width || visualRef.height !== record.height || Boolean(visualRef.isolated) !== Boolean(record.isolated) || (visualRef.kind ?? "accent") !== (record.kind ?? "accent")) throw new StudioError("Новый визуал не соответствует серии.");
       } else if (visualRef && !await readGeneratedVisual(slug, visualRef.id, visualRef, this.root)) throw new StudioError("Визуал серии не найден.");
       const batchId = randomUUID();
       const concepts = validated.themes.map((theme, index) => ({ id: `variant-${batchId.slice(0, 8)}-${index + 1}`, version: "1", theme }));

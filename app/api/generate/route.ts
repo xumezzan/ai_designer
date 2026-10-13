@@ -1,3 +1,4 @@
+import { applyBriefFacts } from "@/lib/studio/briefFacts";
 import sharp from "sharp";
 import { projectStore, StudioError } from "@/lib/studio/store";
 import { mutationRequest, jsonBody, failure } from "@/lib/studio/http";
@@ -13,12 +14,19 @@ export async function POST(request: Request) {
     const { slug, revision, planRevision, generationRevision, createVisual = false } = await jsonBody(request);
     if (typeof createVisual !== "boolean") throw new StudioError("Выберите, создавать ли новый визуал.");
     if (slug === "demo") throw new StudioError("Создайте свой проект для генерации вариантов.", 403);
-    const project = await projectStore.read(slug);
+    let project = await projectStore.read(slug);
     if (project.revision !== revision || project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект изменился. Обновите страницу перед генерацией.", 409);
     if (!project.content.brief?.trim()) throw new StudioError("Опишите желаемый стиль в поле «Пожелания к дизайну».");
     if (!project.visionConfigured) throw new StudioError("Добавьте ANTHROPIC_API_KEY в .env.local и перезапустите сервер.", 503);
     if (createVisual && !project.imagesConfigured) throw new StudioError("Добавьте OPENAI_API_KEY в .env.local и перезапустите сервер.", 503);
     if (createVisual && project.content.refs.length > 16) throw new StudioError("Для нового визуала оставьте не больше 16 референсов.");
+    // All live requests create one design, including clients with an old 3/5 preference.
+    if (project.content.variantCount !== 1) {
+      await projectStore.update(slug, { ...project.content, variantCount: 1 }, project.revision);
+      project = await projectStore.read(slug);
+    }
+    const expectedPlanRevision = project.planRevision;
+    const expectedGenerationRevision = project.generationRevision;
     const photos = await readDirectedPhotos(project.content, project.assetPlan);
     const references = await Promise.all(project.content.refs.map(async (src) => {
       const filename = src.split("/").at(-1)!;
@@ -27,7 +35,12 @@ export async function POST(request: Request) {
       return { base64: data.toString("base64") };
     }));
     const result = await generateSeries(project.content, photos, references, undefined, { createVisual });
-    const saved = await projectStore.saveGeneration(slug, result, revision, planRevision, generationRevision);
+    const interpreted = applyBriefFacts(project.content, result.facts);
+    if (JSON.stringify(interpreted) !== JSON.stringify(project.content)) {
+      await projectStore.update(slug, interpreted, project.revision);
+      project = await projectStore.read(slug);
+    }
+    const saved = await projectStore.saveGeneration(slug, result, project.revision, expectedPlanRevision, expectedGenerationRevision);
     return Response.json(await checkGenerated(saved));
   } catch (error) { return failure(error); }
 }

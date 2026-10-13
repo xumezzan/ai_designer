@@ -3,6 +3,7 @@ import { calendarLinks } from "@/lib/invitation/calendar";
 import { experienceLabels } from "@/lib/invitation/locale";
 
 export function Calendar({ content }: { content: Content }) {
+  if (!content.date.start) return null;
   const links = calendarLinks(content);
   return <details className="invitation-calendar">
     <summary data-level="small">{experienceLabels[content.locale].calendar}<span aria-hidden="true">＋</span></summary>

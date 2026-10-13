@@ -7,6 +7,6 @@ export function Greeting({ content, guest }: SectionProps & { guest?: string }) 
   const t = (text: string) => typograph(text, content.locale);
   return <section id="greeting" className="invitation-section greeting-section" data-section="greeting" aria-labelledby="greeting-title">
     <h2 id="greeting-title" data-level="display-sm">{t(guest || labels[content.locale].greeting)}</h2>
-    <div className="greeting-copy">{content.greeting?.split(/\n\s*\n/).map((paragraph, index) => <p key={index} data-level={index === 0 ? "lead" : "body"}>{t(paragraph)}</p>)}</div>
+    <div className="greeting-copy" data-studio-field="greeting">{content.greeting?.split(/\n\s*\n/).map((paragraph, index) => <p key={index} data-level={index === 0 ? "lead" : "body"}>{t(paragraph)}</p>)}</div>
   </section>;
 }
