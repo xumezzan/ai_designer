@@ -151,3 +151,7 @@
   [data-visual="side-right"] .generated-visual { order: 2; max-width: 32rem; width: 100%; align-self: flex-end; margin-top: 0; margin-bottom: var(--space-section); }
   [data-visual^="side-"] .invitation-hero { width: 100%; padding-top: var(--space-block); }
 }
+
+.wishes-section { max-width: 48rem; margin-inline: auto; }
+.wishes-copy { max-width: var(--measure); white-space: pre-line; overflow-wrap: anywhere; }
+.invitation-footer [data-studio-field="closing"] { white-space: pre-line; overflow-wrap: anywhere; }

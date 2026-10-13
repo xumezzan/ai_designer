@@ -28,6 +28,23 @@ phone. This is the user's explicit requirement, reiterated on 2026-10-12.
   Reference graphics, customer photographs, names and template code are never
   implementation assets. Create original materials and compositions.
 
+- The owner's `gatsby-invitation` and `jafar-sitora_premium` repositories are
+  explicit website quality references. Study notes and mobile evidence are in
+  [docs/source-references](docs/source-references/README.md). Build a complete
+  web story with live typography, authored decoration, protected photographs,
+  section rhythm and meaningful interactions. `cinematic` and `portrait-story`
+  provide native implementations of these principles.
+- New creation requests produce **one resolved design**. Use original bitmap
+  artwork only when that composition needs it; native website stories use their
+  code and supplied media. Keep their copy and event facts editable in the studio.
+
 When adding or revising a renderer, visually review the opening and the complete
 mobile page before using desktop screenshots to assess it. Report observed
 reference behaviour separately from our supported implementation and proposals.
+
+- Invitation sections have a stable semantic order: opening photo/identity,
+  guest description, date/countdown, location, programme, dress code, wishes,
+  guest response, farewell. Later additions occupy this place automatically.
+  Keep the chosen design's type/material/light and give each role its own
+  composition. Backgrounds belong to roles, never alternating child indexes.
+  Empty optional blocks stay absent; pinned photo placements honour the owner.

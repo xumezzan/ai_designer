@@ -1,0 +1,158 @@
+@font-face { font-family: "Italiana"; src: url("/reference-fonts/italiana-400.ttf") format("truetype"); font-style: normal; font-weight: 400; font-display: swap; }
+/* Latin Italiana falls back to the registered Cyrillic/Uzbek face per glyph. */
+.invitation.reference-invitation { --reference-display: var(--font-display); --reference-rule: color-mix(in srgb, var(--accent) 35%, transparent); font-family: var(--font-body); }
+.invitation.cinematic-invitation { --reference-display: "Italiana", var(--font-display); color-scheme: dark; }
+.invitation.reference-invitation .reference-hero { position: relative; min-height: 100svh; padding: 4.5rem 1.5rem 3rem; display: grid; place-items: center; isolation: isolate; }
+.invitation.reference-invitation .reference-hero-copy { width: min(100%, 45rem); text-align: center; position: relative; z-index: 1; }
+.invitation.reference-invitation #hero-title { font-family: var(--reference-display); font-size: calc(min(11vw, 4rem) * var(--inv-display-scale)); font-weight: 400; line-height: 1.18; letter-spacing: var(--inv-tracking-headline); margin: 0; padding: .1em .15em; overflow-wrap: anywhere; }
+.reference-host-line { display: block; }
+.reference-join { display: block; font-size: .45em; line-height: 1.4; margin-block: .1em; }
+.invitation.reference-invitation .reference-eyebrow, .invitation.reference-invitation .reference-headline { font-size: .6875rem; font-weight: 400; line-height: 1.8; letter-spacing: .17em; text-transform: uppercase; color: var(--accent-alt); }
+.invitation.reference-invitation .reference-headline { margin: 1rem auto 0; max-width: 38ch; overflow-wrap: anywhere; }
+.invitation.reference-invitation .reference-scroll { margin: 2.5rem auto 0; display: flex; flex-direction: column; gap: .6rem; width: fit-content; min-width: 44px; min-height: 44px; height: auto; border: 0; font-size: .625rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+.invitation.reference-invitation .reference-scroll > span:last-child { font-size: 1.25rem; }
+.invitation.reference-invitation .reference-scroll > span:last-child { border: 0; border-radius: 0; background: none; width: 44px; height: 44px; }
+.invitation.reference-invitation a:focus-visible, .invitation.reference-invitation button:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.scene-atmosphere { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.invitation.cinematic-invitation .reference-hero { background: radial-gradient(ellipse at 50% 22%, color-mix(in srgb, var(--accent) 5%, var(--bg)), var(--bg) 65%); }
+.cinematic-date { display: flex; flex-direction: column; align-items: center; margin: 1.2rem 0 0; font-family: var(--reference-display); color: var(--accent); }
+.cinematic-day { font-size: calc(min(46vw, 16rem) * var(--inv-display-scale)); line-height: .92; font-weight: 400; letter-spacing: .02em; }
+.cinematic-month { display: flex; align-items: center; justify-content: center; gap: 1rem; font-family: var(--font-body); font-size: min(4vw, 1.1rem); line-height: 2; text-transform: uppercase; letter-spacing: .38em; padding-left: .38em; }
+.cinematic-month::before, .cinematic-month::after { content: ""; display: block; width: min(10vw, 3rem); height: 1px; background: linear-gradient(90deg, transparent, var(--accent)); }
+.cinematic-month::after { rotate: 180deg; }
+.cinematic-year { font-size: min(20vw, 6rem); letter-spacing: .06em; line-height: 1.1; }
+.cinematic-venue { margin-top: 2rem; }
+.cinematic-venue p { font-family: var(--reference-display); font-size: min(11vw, 3.5rem); line-height: 1.2; font-weight: 400; letter-spacing: .12em; color: var(--accent); margin-top: .75rem; overflow-wrap: anywhere; padding: 0 .3em; }
+.cinematic-time { margin-top: 1.5rem; display: flex; flex-direction: column; gap: .5rem; }
+.cinematic-time > span:last-child { font-family: var(--reference-display); font-size: 2.5rem; }
+.invitation.reference-invitation .reference-spread { padding: 5rem 1.5rem; position: relative; }
+.invitation.reference-invitation .reference-spread > .invitation-section, .invitation.reference-invitation .reference-spread > .section-reveal > .invitation-section { padding: 0; margin: 0 auto; max-width: 54rem; }
+.invitation.reference-invitation .invitation-section h2 { font-family: var(--reference-display); font-weight: 400; font-size: min(9vw, 3.5rem); line-height: 1.2; letter-spacing: .03em; margin-bottom: 1.5rem; }
+.invitation.reference-invitation .invitation-section p, .invitation.reference-invitation .invitation-section address { font-size: 1rem; line-height: 1.85; }
+.reference-section-mark { display: flex; justify-content: center; margin-bottom: 1.5rem; color: var(--accent); }
+.deco-fan { display: block; width: 8rem; height: auto; color: var(--accent); }
+.reference-sprig { display: block; width: 5rem; height: auto; color: var(--accent); margin-inline: auto; }
+.invitation.reference-invitation .greeting-section { display: block; text-align: center; max-width: 36rem !important; }
+.invitation.reference-invitation .greeting-copy p { margin-inline: auto; }
+.invitation.reference-invitation .greeting-section h2 { max-width: none; text-wrap: balance; margin-inline: auto; }
+.invitation.reference-invitation .countdown-section { display: block; text-align: center; border: 0; }
+.invitation.reference-invitation .countdown-values { margin: 2rem auto 0; gap: .75rem; }
+.invitation.reference-invitation .countdown-values > div { border: 0; background: transparent; }
+.invitation.reference-invitation .countdown-values dd { font-family: var(--reference-display); font-size: min(10vw, 3.5rem); font-weight: 400; }
+.invitation.reference-invitation .countdown-values dt { font-size: .625rem; letter-spacing: .1em; }
+.invitation.reference-invitation .venue-section { display: block; text-align: center; }
+.invitation.reference-invitation .venue-copy { margin-top: 2rem; }
+.invitation.reference-invitation .venue-copy p, .invitation.reference-invitation .venue-copy address { margin-inline: auto; }
+.invitation.reference-invitation .invitation-link { min-height: 48px; padding: .8rem 1.5rem; border: 1px solid var(--reference-rule); border-radius: 0; display: inline-flex; align-items: center; margin-top: 1.5rem; }
+.invitation.reference-invitation .timeline-list { max-width: 36rem; margin-inline: auto; }
+.invitation.reference-invitation .timeline-list time { font-family: var(--reference-display); font-size: 1.75rem; font-weight: 400; }
+.invitation.reference-invitation .timeline-list li { border-color: var(--reference-rule); padding-block: 1.5rem; }
+.invitation.reference-invitation .dress-section { text-align: center; }
+.invitation.reference-invitation .dress-section > p { margin-inline: auto; }
+.invitation.reference-invitation .dress-palette { max-width: 28rem; margin: 2.5rem auto 0; }
+.invitation.reference-invitation .dress-palette-heading { color: var(--muted); font-size: .625rem; }
+.invitation.reference-invitation .dress-swatches { justify-content: center; gap: 1.5rem; }
+.invitation.reference-invitation .dress-fabric { width: 72px; min-height: 100px; }
+.invitation.reference-invitation .dress-swatch { width: 64px; height: 64px; border-radius: 50%; }
+.invitation.reference-invitation .dress-preview { display: none; }
+.invitation.reference-invitation .dress-section { display: block; border: 0; max-width: 42rem; }
+.invitation.reference-invitation .dress-section h2 { font-family: var(--reference-display); font-size: min(9vw, 3.5rem); font-weight: 400; max-width: none; }
+.invitation.reference-invitation .dress-swatches { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; grid-template-columns: none; }
+.invitation.reference-invitation .dress-fabric { border: 0; padding: 4px; width: 72px; background: transparent; }
+.invitation.reference-invitation .dress-fabric .dress-swatch { width: 64px; height: 64px; border-radius: 50%; clip-path: none; border: 1px solid var(--reference-rule); background: linear-gradient(125deg, color-mix(in srgb, var(--swatch) 80%, white), var(--swatch) 38%, color-mix(in srgb, var(--swatch) 85%, black)); }
+.invitation.reference-invitation .dress-fabric[aria-pressed="true"] .dress-swatch { outline: 1px solid var(--accent); outline-offset: 4px; }
+.invitation.reference-invitation .deco-cover [data-level="small"] { font-weight: 400; }
+.invitation.reference-invitation .reference-photo-set { display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 60rem; margin: 3rem auto 0; }
+.invitation.reference-invitation .reference-photo-mount { min-width: 0; }
+.invitation.reference-invitation .directed-photo { margin-inline: auto; }
+.invitation.reference-invitation .reference-spread-dressCode .reference-photo-set { max-width: 42rem; gap: 2.5rem; }
+.invitation.reference-invitation .reference-finale { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 5rem 1.5rem; text-align: center; isolation: isolate; }
+.reference-finale-copy { position: relative; z-index: 1; }
+.reference-finale-copy > .deco-fan { width: 5rem; margin: 0 auto 2rem; }
+.invitation.reference-invitation .reference-closing { font-family: var(--reference-display); font-size: min(12vw, 5rem); font-weight: 400; line-height: 1.13; max-width: 15ch; margin: 0 auto 2.5rem; overflow-wrap: anywhere; text-wrap: balance; }
+.invitation.cinematic-invitation .reference-closing { color: var(--accent); }
+.reference-finale-copy time, .reference-signature { font-size: .6875rem; letter-spacing: .2em; line-height: 1.7; text-transform: uppercase; color: var(--accent-alt); }
+.reference-signature { margin-top: 1rem; }
+.invitation.reference-invitation .footer-top { margin-top: 2.5rem; border-color: var(--reference-rule); }
+.invitation.reference-invitation .reference-spread-rsvp { background: var(--surface); }
+.invitation.reference-invitation .rsvp-section { text-align: center; max-width: 30rem !important; }
+.invitation.reference-invitation .rsvp-form { text-align: left; }
+.invitation.reference-invitation .invitation-calendar { max-width: 30rem; margin: 2rem auto 0; }
+/* Curtains move once on open. Text is visible immediately, also with reduced motion. */
+.invitation.cinematic-invitation .deco-cover { background: var(--bg); color: var(--ink); }
+.deco-curtain { position: absolute; inset-block: 0; width: 50.1%; background: radial-gradient(ellipse at 50% 15%, color-mix(in srgb, var(--accent) 9%, var(--bg)), transparent 65%), repeating-linear-gradient(94deg, var(--bg) 0%, color-mix(in srgb, var(--ink) 4%, var(--bg)) 18%, var(--bg) 31%, color-mix(in srgb, black 35%, var(--bg)) 45%, var(--bg) 50%); background-size: 100% 100%, 160% 100%; transition: transform 850ms cubic-bezier(.65,0,.2,1); }
+.deco-curtain::after { content: ""; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7 .12' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.22' d='M0 0h160v160H0z'/%3E%3C/svg%3E"); opacity: .12; }
+.deco-curtain-left { left: 0; }
+.deco-curtain-right { right: 0; transform: scaleX(-1); }
+.deco-frame { position: absolute; inset: min(4vw, 2rem); border: 1px solid var(--reference-rule); color: var(--accent); pointer-events: none; }
+.deco-frame::after { content: ""; position: absolute; inset: 6px; border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent); }
+.deco-corner { position: absolute; width: min(19vw, 6rem); height: auto; }
+.deco-corner-tl { top: -1px; left: -1px; }
+.deco-corner-tr { top: -1px; right: -1px; transform: scaleX(-1); }
+.deco-corner-bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
+.deco-corner-br { bottom: -1px; right: -1px; transform: scale(-1); }
+.deco-cover .cover-content { border: 0; padding: 3rem 1.5rem; margin: 1rem; height: calc(100% - 2rem); touch-action: pan-y; }
+.deco-cover .cover-content > .deco-fan { width: min(36vw, 11rem); margin-bottom: 1.5rem; }
+.deco-cover .cover-eyebrow { font-family: var(--font-body); order: 3; font-size: .6875rem; line-height: 1.8; letter-spacing: .16em; margin-top: 1.5rem; color: var(--accent-alt); }
+.deco-cover .cover-names { font-family: var(--reference-display); font-size: min(12.5vw, 5.4rem); line-height: 1.2; letter-spacing: .18em; text-transform: uppercase; font-weight: 400; color: var(--accent); max-width: 100%; overflow-wrap: anywhere; }
+.deco-cover .cover-date { font-family: var(--font-body); margin-top: 1rem; font-size: .6875rem; line-height: 1.8; letter-spacing: .17em; text-transform: uppercase; max-width: 34ch; color: var(--accent-alt); }
+.deco-cover .cover-open { position: relative; order: 4; justify-content: center; width: min(100%, 28rem); min-height: 56px; margin-top: 3rem; padding: 1rem; border: 1px solid var(--accent); background: color-mix(in srgb, var(--accent) 7%, transparent); color: var(--accent); font-size: .6875rem; letter-spacing: .16em; line-height: 1.5; text-transform: uppercase; transition: background 200ms; }
+.deco-cover .cover-open::before { content: ""; position: absolute; inset: 4px; border: 1px solid var(--reference-rule); pointer-events: none; }
+.deco-cover .cover-open span { display: none; }
+.deco-cover .cover-swipe { order: 5; margin-top: 1rem; font-size: .625rem; letter-spacing: .06em; color: var(--muted); }
+.deco-cover[data-closing] .deco-curtain-left { transform: translateX(-100%); }
+.deco-cover[data-closing] .deco-curtain-right { transform: translateX(100%) scaleX(-1); }
+.deco-cover[data-closing] .deco-frame { opacity: 0; transition: opacity 350ms; }
+/* Photo story: protected crops decide whether text can overlay a photograph. */
+.invitation.portrait-invitation .reference-hero { padding: 0; display: flex; flex-direction: column; justify-content: flex-end; background: var(--surface); }
+.invitation.portrait-invitation .reference-hero-photo { width: 100%; position: relative; }
+.invitation.portrait-invitation .reference-hero-photo .directed-photo { width: min(100%, var(--photo-limit)); max-width: 100%; margin: 0 auto; }
+.invitation.portrait-invitation .reference-hero-copy { padding: 2rem 1.5rem; }
+.invitation.portrait-invitation #hero-title { font-size: min(12vw, 4rem); font-weight: var(--fw-display); letter-spacing: -.025em; margin-block: 1rem; }
+.invitation.portrait-invitation .portrait-date { display: block; font-family: var(--font-display); font-size: 1.4rem; margin: 1.5rem auto; }
+.invitation.portrait-invitation .reference-hero[data-text-zone="bottom"] .reference-hero-copy, .invitation.portrait-invitation .reference-hero[data-text-zone="top"] .reference-hero-copy { position: absolute; left: 50%; translate: -50% 0; color: #fff; background: linear-gradient(transparent, #14202cbb); }
+.invitation.portrait-invitation .reference-hero[data-text-zone="bottom"] .reference-hero-copy { bottom: var(--safe-photo-bottom, 0px); padding-top: 3rem; }
+.invitation.portrait-invitation .reference-hero[data-text-zone="top"] .reference-hero-copy { top: var(--safe-photo-top, 0px); background: linear-gradient(#14202cbb, transparent); padding-bottom: 3rem; }
+.invitation.portrait-invitation .reference-hero[data-text-zone="top"] .reference-scroll, .invitation.portrait-invitation .reference-hero[data-text-zone="bottom"] .reference-scroll { margin-top: 1rem; color: #fff; }
+.invitation.portrait-invitation .reference-hero[data-text-zone="top"] .reference-eyebrow, .invitation.portrait-invitation .reference-hero[data-text-zone="bottom"] .reference-eyebrow { color: #fff; }
+.invitation.portrait-invitation .reference-story { background: linear-gradient(145deg, var(--bg), var(--surface)); }
+.invitation.portrait-invitation :is(.reference-spread-venue, .reference-spread-dressCode, .reference-spread-rsvp) { background: color-mix(in srgb, var(--surface) 65%, transparent); }
+.invitation.portrait-invitation .reference-spread-greeting .reference-photo-mount { padding: .5rem; border: 1px solid var(--reference-rule); width: fit-content; margin-inline: auto; box-shadow: 0 1.5rem 3rem color-mix(in srgb, var(--ink) 10%, transparent); }
+.invitation.portrait-invitation .story-date-section { display: grid; gap: 3rem; max-width: 54rem; margin-inline: auto; padding: 5rem 1.5rem; text-align: center; }
+.invitation.portrait-invitation .story-mark { display: block; font-size: 2rem; color: var(--accent); margin-bottom: 1rem; }
+.invitation.portrait-invitation .story-date-intro h2 { font-family: var(--font-display); font-size: 2rem; margin: 1.5rem 0 1rem; }
+.invitation.portrait-invitation .story-month { width: 100%; table-layout: fixed; border-collapse: collapse; }
+.invitation.portrait-invitation .story-month caption { margin-bottom: 1.5rem; }
+.invitation.portrait-invitation .story-month th, .invitation.portrait-invitation .story-month td { text-align: center; padding: .65rem .2rem; font-weight: 400; }
+.invitation.portrait-invitation .story-month td time { position: relative; display: inline-block; min-width: 2rem; }
+.invitation.portrait-invitation .story-month svg { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 3rem; height: 2.75rem; stroke: var(--accent); stroke-width: 1.5; fill: none; }
+.invitation.portrait-invitation .reference-finale { background: var(--surface); }
+.invitation.portrait-invitation .reference-closing { margin-top: 2rem; }
+@media (min-width: 720px) {
+  .invitation.reference-invitation .reference-photo-set[data-arrangement="row"], .invitation.reference-invitation .reference-spread-dressCode .reference-photo-set { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .invitation.portrait-invitation .story-date-section { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; text-align: left; gap: 4rem; }
+  .invitation.portrait-invitation .reference-hero-photo { max-width: 45rem; }
+}
+@media (max-height: 650px) { .deco-cover .cover-content { padding: 1.5rem; } .deco-cover .cover-content > .deco-fan { width: 5.5rem; margin-bottom: 1rem; } .deco-cover .cover-open { margin-top: 1.5rem; } }
+@media (prefers-reduced-motion: reduce) {
+  .invitation.reference-invitation *, .invitation.reference-invitation *::before, .invitation.reference-invitation *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .invitation.reference-invitation .section-reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
+
+.invitation.reference-invitation .rsvp-section { display: block; border: 0; }
+.invitation.reference-invitation .deco-cover .cover-names { font-family: var(--reference-display); font-weight: 400; }
+
+/* Added sections inherit a semantic place and a stable surface, never nth-child. */
+.invitation.reference-invitation .wishes-section { display: block; text-align: center; max-width: 38rem !important; }
+.invitation.reference-invitation .wishes-copy { max-width: 48ch; margin-inline: auto; white-space: pre-line; overflow-wrap: anywhere; }
+.invitation.reference-invitation .greeting-copy { white-space: pre-line; }
+.invitation.reference-invitation .reference-spread-venue { background: var(--surface); }
+.invitation.reference-invitation .reference-spread-venue .venue-section { max-width: 40rem; }
+.invitation.reference-invitation .reference-spread-venue .venue-copy { padding-top: 2rem; border-top: 1px solid var(--reference-rule); }
+.invitation.reference-invitation .reference-spread-venue .venue-copy .section-eyebrow { display: none; }
+.invitation.reference-invitation .reference-spread-venue .reference-photo-set { max-width: 50rem; }
+.invitation.reference-invitation .reference-photo-set[data-position="before"] { margin: 0 auto 3rem; }
+.invitation.reference-invitation .reference-closing { white-space: pre-line; }
+.invitation.cinematic-invitation .reference-hero-photo { width: min(100%, 45rem); margin-inline: auto; }
+
+.invitation.reference-invitation .venue-heading h2, .invitation.reference-invitation .venue-copy { overflow-wrap: anywhere; }

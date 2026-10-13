@@ -9,6 +9,9 @@
 import { Theme, type Theme as ThemeType } from "../schema/theme";
 import { Hex } from "../schema/common";
 import { getTypeSet, typeSetSupportsLocale } from "../../registry/typesets";
+import { canonicalSectionOrder } from "@/lib/invitation/sections";
+import { SECTION_IDS, type SectionId } from "@/registry/keys";
+import { isNativeComposition } from "@/lib/invitation/reference";
 import { getMaterialSet } from "../../registry/materials";
 import { getLayout } from "../../registry/layouts";
 import { getMotion } from "../../registry/motion";
@@ -200,6 +203,14 @@ export function repairTheme(raw: unknown, context?: RepairContext): RepairResult
 
   const layout = theme["layout"];
   if (isRecord(layout)) {
+    const order = layout["sectionOrder"];
+    if (Array.isArray(order) && new Set(order).size === order.length && order.every((id) => SECTION_IDS.includes(id as SectionId))) {
+      const canonical = canonicalSectionOrder(order as SectionId[]);
+      if (JSON.stringify(order) !== JSON.stringify(canonical)) {
+        layout["sectionOrder"] = canonical;
+        adjustments.push("sectionOrder: arranged by invitation narrative (cover, description, date, location, programme, dress, wishes, response, finale)");
+      }
+    }
     if (
       layout["hero"] === "full-photo" &&
       context?.hasHighQualityAsset === false
@@ -284,8 +295,10 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
     const texture = glass ? "smooth" : theme.layout.composition === "silk-suite" ? "raw-silk" : "cotton-paper";
     if (theme.surface.texture !== texture) errors.push("Select the texture registered for this physical scene");
   }
-  if (["keepsake", "vow", "editorial-story"].includes(theme.layout.composition)) {
-    if (theme.artwork !== "none" || theme.generatedVisual || theme.ornament.pack !== "none") errors.push("Wedding stories use native photo compositions; select artwork none, ornament none and no generatedVisual");
+  if (theme.generatedVisual?.kind === "scene" && theme.layout.composition !== "immersive") errors.push("A scene visual requires immersive composition");
+  if (theme.layout.composition === "immersive" && theme.generatedVisual && theme.generatedVisual.kind !== "scene") errors.push("Immersive composition requires a scene visual, not an isolated ornament");
+  if (isNativeComposition(theme.layout.composition)) {
+    if (theme.artwork !== "none" || theme.generatedVisual || theme.ornament.pack !== "none") errors.push("Native web stories use live typography, geometry and supplied photos; select artwork none, ornament none and no generatedVisual");
     if (theme.layout.sectionOrder[0] !== "hero" || (theme.layout.sectionOrder.includes("greeting") && theme.layout.sectionOrder[1] !== "greeting")) errors.push("Wedding stories open with hero followed by greeting when included");
   }
 

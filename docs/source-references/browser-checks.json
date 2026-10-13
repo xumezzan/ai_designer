@@ -1,0 +1,32 @@
+{
+  "providerCalls": 0,
+  "widths": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 2490,
+      "day": 147.2,
+      "font": "Italiana, Prata, \"Prata Fallback\", \"Times New Roman\", serif"
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 2505,
+      "day": 179.4,
+      "font": "Italiana, Prata, \"Prata Fallback\", \"Times New Roman\", serif"
+    },
+    {
+      "width": 430,
+      "scrollWidth": 430,
+      "height": 2514,
+      "day": 197.8,
+      "font": "Italiana, Prata, \"Prata Fallback\", \"Times New Roman\", serif"
+    }
+  ],
+  "errors": [],
+  "checks": {
+    "reducedMotion": true,
+    "noJavascript": true,
+    "editorSkipsOpening": true
+  }
+}

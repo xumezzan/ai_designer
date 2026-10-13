@@ -1,11 +1,13 @@
 /** Local wall time is resolved against IANA rules, including DST gaps/overlaps. */
 export function wallTime(iso: string, timezone: string) {
+  if (!iso) return "";
   const parts = new Intl.DateTimeFormat("sv-SE", { timeZone: timezone, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date(iso));
   const get = (type: string) => parts.find((part) => part.type === type)?.value;
   return `${get("year")}-${get("month")}-${get("day")}T${get("hour")}:${get("minute")}`;
 }
 
 export function resolveWallTime(local: string, timezone: string) {
+  if (!local) return "";
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(local)) throw new Error("Укажите дату и время события.");
   const nominal = Date.parse(`${local}:00Z`);
   if (!Number.isFinite(nominal)) throw new Error("Проверьте дату события.");

@@ -1,0 +1,137 @@
+{
+  "slug": "event-01dc5092",
+  "count": 1,
+  "content": {
+    "hosts": [
+      {
+        "name": "\n"
+      },
+      {
+        "name": ""
+      }
+    ],
+    "eventType": "wedding",
+    "date": {
+      "start": "",
+      "day": "2026-07-12",
+      "timezone": "Asia/Tashkent",
+      "showCountdown": true
+    },
+    "venue": {
+      "name": "Мирас",
+      "address": ""
+    },
+    "closing": "a little party never killed somebody! See you!",
+    "dressCode": {
+      "title": "Great Gatsby",
+      "note": "Цвета: золото, серебро, чёрный",
+      "swatches": []
+    }
+  },
+  "concepts": [
+    {
+      "id": "variant-70897c3a-1",
+      "version": "1",
+      "name": "Ар-деко Ночь — Иммерсивный кадр",
+      "layout": {
+        "preset": "scroll-narrative",
+        "composition": "immersive",
+        "hero": "typographic",
+        "photoArrangement": "row",
+        "visualPlacement": "band",
+        "nameFlow": "stacked",
+        "sectionOrder": [
+          "hero",
+          "dressCode",
+          "venue",
+          "footer"
+        ]
+      },
+      "visual": {
+        "id": "9f51f89f-49d9-437b-a963-5f79eafe7531",
+        "sha256": "e0a90afaeaa6e99c54dbe870e18b60656815207e831a307ce3be8745f20cce7a",
+        "width": 1024,
+        "height": 1536,
+        "isolated": false,
+        "kind": "scene"
+      },
+      "qa": [
+        {
+          "id": "overflow",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "collision",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "clipping",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "contrast",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "measure",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "widow",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "fonts",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "tap",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "resolution",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "reduced-motion",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "lcp",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "cls",
+          "status": "pass",
+          "findings": []
+        },
+        {
+          "id": "face-crop",
+          "status": "error",
+          "findings": []
+        },
+        {
+          "id": "busy-photo",
+          "status": "error",
+          "findings": []
+        },
+        {
+          "id": "alignment",
+          "status": "error",
+          "findings": []
+        }
+      ]
+    }
+  ]
+}

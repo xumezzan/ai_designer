@@ -51,6 +51,8 @@ export const AssetPlan = z.object({
         // Cap on how much screen the image may occupy.
         maxViewportShare: z.number().min(0.15).max(1),
         placement: z.object({ section: SectionId, index: z.number().int().nonnegative().max(40) }).nullable(),
+        // Explicit editor placement takes precedence over a generated snapshot.
+        placementPinned: z.boolean().optional(),
         note: z.string().max(1000).optional(),
       }),
     )

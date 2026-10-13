@@ -7,8 +7,8 @@ import { Calendar } from "./Calendar";
 export function StoryDate({ content }: { content: Content }) {
   const month = invitationMonth(content);
   const date = eventDate(content);
-  return <section className="story-date-section" id="story-date" aria-labelledby="story-date-title">
-    <div className="story-date-intro"><span className="story-mark" aria-hidden="true">♡</span><p className="story-kicker" data-level="small">{experienceLabels[content.locale].calendar}</p><h2 id="story-date-title" data-level="display-sm">{date.full}</h2><p data-level="body">{date.weekday} · {date.time}</p><Calendar content={content} /></div>
+  return <section className="story-date-section" data-studio-section="date" id="story-date" aria-labelledby="story-date-title">
+    <div className="story-date-intro"><span className="story-mark" aria-hidden="true">♡</span><p className="story-kicker" data-level="small">{experienceLabels[content.locale].calendar}</p><h2 id="story-date-title" data-level="display-sm">{date.full}</h2><p data-level="body">{date.weekday}{date.time && ` · ${date.time}`}</p><Calendar content={content} /></div>
     <table className="story-month" aria-label={month.title}>
       <caption data-level="body">{month.title}</caption>
       <thead><tr>{month.weekdays.map((day, i) => <th scope="col" key={i} data-level="small">{day}</th>)}</tr></thead>

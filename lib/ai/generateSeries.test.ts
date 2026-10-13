@@ -6,7 +6,7 @@ import { fixtureSeries } from "@/lib/generation/fixture";
 import { generateSeries } from "./generateSeries";
 import sharp from "sharp";
 const content = Content.parse(JSON.parse(await readFile("projects/demo/content.json", "utf8")));
-const input = { ...content, brief: "Великий Гэтсби, ар-деко, тёмный фон и золото" };
+const input = { ...content, variantCount: 5, brief: "Великий Гэтсби, ар-деко, тёмный фон и золото" };
 const message = (output: unknown) => ({ id: "msg_test", type: "message", role: "assistant", model: "claude-sonnet-4-6", content: [{ type: "tool_use", id: "tool_test", name: "emit_design_series", input: output }], stop_reason: "tool_use", stop_sequence: null, usage: { input_tokens: 1, output_tokens: 1 } });
 test("real SDK transport sends the brief and JPEG references with one forced series tool", async () => {
   let request: Record<string, unknown> = {};
@@ -114,4 +114,15 @@ test("a response with the wrong count is corrected instead of silently trimming 
   const result = await generateSeries({ ...input, variantCount: 2 }, [], [], sdk);
   expect(result.themes).toHaveLength(2);
   expect(calls).toBe(2);
+});
+
+test("new requests default to one resolved reference design and can extract sourced facts in that same call", async () => {
+  let request: Record<string, unknown> = {};
+  const raw = { ...fixtureSeries, variants: fixtureSeries.variants.slice(0, 1), facts: { eventType: { value: "birthday", source: "birthday" }, hosts: { value: ["Latifa"], source: "Latifa" }, headline: null, day: null, venue: null, greeting: null, closing: null, dressCode: null } };
+  const sdk = new Anthropic({ apiKey: "test-only", maxRetries: 0, fetch: async (_url, options) => { request = JSON.parse(String(options?.body)); return Response.json(message(raw)); } });
+  const result = await generateSeries({ ...content, variantCount: undefined, brief: "Latifa birthday" }, [], [], sdk);
+  expect(result.themes).toHaveLength(1); expect(result.facts?.hosts?.value).toEqual(["Latifa"]);
+  expect(request.system).toContain("Produce ONE resolved composition");
+  expect(request.system).toContain("No alternatives");
+  expect(request.max_tokens).toBe(8192);
 });

@@ -91,7 +91,7 @@ test("rejects traversal, reserved demo/new, malformed facts and unsafe map links
   await expect(store.create({ ...content(), slug: "../escape" }, templates)).rejects.toThrow("Адрес");
   await expect(store.create({ ...content(), slug: "demo" }, templates)).rejects.toMatchObject({ status: 403 });
   await expect(store.create({ ...content(), slug: "new" }, templates)).rejects.toThrow("Адрес");
-  await expect(store.create({ ...content(), hosts: [{ name: " " }] }, templates)).rejects.toThrow("Заполните");
+  await expect(store.create({ ...content(), date: { ...content().date, start: "invalid" } }, templates)).rejects.toThrow("дату");
   await expect(store.create({ ...content(), venue: { ...content().venue, mapUrl: "javascript:alert(1)" } }, templates)).rejects.toThrow("Ссылка");
   await expect(store.read("missing")).rejects.toMatchObject({ status: 404 });
 });
@@ -259,4 +259,21 @@ test("persists independent exploration palettes and typefaces without weakening 
   expect(reread.concepts.map(({ theme }) => theme.typeSet)).toEqual(saved.concepts.map(({ theme }) => theme.typeSet));
   const cohesive = { ...result, mode: "cohesive" as const };
   await expect(store.saveGeneration(saved.content.slug, cohesive, saved.revision, saved.planRevision, saved.generationRevision)).rejects.toThrow(/одном стиле/);
+});
+
+
+test("starts from a brief and refs without inventing event facts, then adds facts later", async () => {
+  const draft = { ...content(), hosts: [{ name: "" }, { name: "" }], date: { start: "", timezone: "Asia/Tashkent", showCountdown: true }, venue: { name: "", address: "" }, timeline: [], rsvp: undefined, dressCode: undefined, brief: "Шалфейный шёлк и крупные имена" };
+  const project = await store.create(draft);
+  expect(project.content.date.start).toBe("");
+  expect((await store.list())[0].date).toBe("");
+  const image = await sharp({ create: { width: 12, height: 12, channels: 3, background: "#334455" } }).png().toBuffer();
+  const uploaded = await store.upload(draft.slug, project.revision, "reference", new File([image], "reference.png", { type: "image/png" }));
+  expect(uploaded.content.refs).toHaveLength(1);
+  expect(uploaded.content.media).toHaveLength(0);
+  const updated = await store.update(draft.slug, { ...uploaded.content, hosts: [{ name: "Дилшод" }, { name: "Малика" }], date: content().date, venue: content().venue }, uploaded.revision);
+  expect(updated.content.hosts[0].name).toBe("Дилшод");
+  expect(updated.content.refs).toEqual(uploaded.content.refs);
+  expect(wallTime("", "Asia/Tashkent")).toBe("");
+  expect(resolveWallTime("", "Asia/Tashkent")).toBe("");
 });

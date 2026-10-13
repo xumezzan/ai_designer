@@ -1,8 +1,11 @@
+import { LiveInvitation } from "@/components/studio/LiveInvitation";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { readInvitation, demoConcepts } from "@/lib/projects/read";
 import { ScrollNarrative } from "@/components/layouts/ScrollNarrative";
 import "@/app/invitation.css";
+import "@/app/immersive.css";
+import "@/app/reference-invitation.css";
 import "@/app/artwork.css";
 import "@/app/photos.css";
 import "@/app/atelier.css";
@@ -14,7 +17,7 @@ import "@/app/demo/demo.css";
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Приглашение · предпросмотр", robots: { index: false, follow: false } };
 
-export default async function Preview({ params, searchParams }: { params: Promise<{ slug: string; conceptId: string; version: string }>; searchParams: Promise<{ embed?: string; to?: string | string[]; guest?: string | string[] }> }) {
+export default async function Preview({ params, searchParams }: { params: Promise<{ slug: string; conceptId: string; version: string }>; searchParams: Promise<{ embed?: string; studio?: string; to?: string | string[]; guest?: string | string[] }> }) {
   const { slug, conceptId, version } = await params;
   const invitation = await readInvitation(slug, conceptId, version);
   if (!invitation) notFound();
@@ -29,6 +32,6 @@ export default async function Preview({ params, searchParams }: { params: Promis
       <nav aria-label="Демо-темы">{demos.map((demo) => <Link key={demo.id} href={`/preview/demo/${demo.id}/${demo.version}`} aria-current={demo.id === conceptId ? "page" : undefined}>{demo.theme.meta.name}</Link>)}</nav>
       <span>Демо · данные вымышлены</span>
     </header>}
-    <ScrollNarrative content={content} theme={theme} photos={invitation.photos} generatedVisual={invitation.generatedVisual} initialNow={Date.now()} guest={guest} embedded={embedded} />
+    {query.studio === "1" && embedded ? <LiveInvitation content={content} theme={theme} photos={invitation.photos} generatedVisual={invitation.generatedVisual} initialNow={Date.now()} embedded /> : <ScrollNarrative content={content} theme={theme} photos={invitation.photos} generatedVisual={invitation.generatedVisual} initialNow={Date.now()} guest={guest} embedded={embedded} />}
   </>;
 }

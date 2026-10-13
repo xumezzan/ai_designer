@@ -257,3 +257,89 @@
   .studio-create-inner > p:last-child:not(:nth-child(2)) { margin-right: 0; }
 }
 @media (max-width: 480px) { .studio-create-bar { padding-inline: 16px; } }
+
+/* Idea first, then the invitation canvas. */
+.studio [hidden] { display: none !important; }
+.studio-idea-input { resize: vertical; min-height: 160px !important; font-size: 14px !important; line-height: 1.7 !important; }
+.studio-mood > .studio-field { margin-bottom: 12px; }
+.studio-vibe-picker > summary, .studio-generation-options > summary { display: flex; align-items: center; justify-content: space-between; cursor: pointer; min-height: 44px; color: var(--studio-muted); font-size: 12px; }
+.studio-vibe-picker > summary::after, .studio-generation-options > summary::after { content: "+"; margin-left: 10px; }
+.studio-vibe-picker[open] > summary::after, .studio-generation-options[open] > summary::after { content: "−"; }
+.studio-vibe-picker > summary > span { font-size: 10px; margin-left: auto; }
+.studio-vibe-picker .studio-directions { padding-top: 12px; }
+.studio-reference-start .studio-help { margin: 5px 0 8px; }
+.studio-reference-drop { width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 130px; padding: 18px; border: 1px dashed var(--studio-control-line); border-radius: 10px; background: var(--studio-bg); cursor: pointer; color: var(--studio-ink); gap: 7px; }
+.studio-reference-drop:hover { border-color: var(--studio-accent); background: var(--studio-hover); }
+.studio-reference-drop > span { width: 30px; height: 30px; border-radius: 8px; background: var(--studio-paper); color: var(--studio-accent); display: grid; place-items: center; font-size: 20px; }
+.studio-reference-drop > strong { font-size: 12px; font-weight: 500; }
+.studio-reference-drop > small { font-size: 10px; color: var(--studio-muted); }
+.studio-reference-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.studio-reference-grid figure { position: relative; aspect-ratio: 1; }
+.studio-reference-grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.studio-reference-grid button { position: absolute; top: 2px; right: 2px; width: 32px; height: 32px; border: 0; border-radius: 6px; color: var(--studio-ink); background: var(--studio-paper); cursor: pointer; }
+.studio-generation-options { margin-top: 12px; }
+.studio-canvas-editor { padding-bottom: 45px; }
+.studio-canvas-editor[data-tool="design"] { padding-bottom: 140px; }
+.studio-canvas-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px; border: 1px solid var(--studio-line); border-radius: 12px; background: var(--studio-paper); margin-bottom: 20px; }
+.studio-tool-tabs { display: flex; align-items: center; gap: 4px; }
+.studio-tool-tabs button, .studio-history-actions > button { min-height: 44px; border: 0; border-radius: 8px; background: transparent; padding: 10px 16px; font-size: 12px; color: var(--studio-muted); cursor: pointer; }
+.studio-tool-tabs button[aria-pressed="true"] { color: var(--studio-accent); background: var(--studio-hover); }
+.studio-history-actions { display: flex; align-items: center; gap: 4px; }
+.studio-history-actions > button { padding: 4px; width: 44px; font-size: 24px; color: var(--studio-ink); }
+.studio-history-actions > button:disabled { opacity: .35; cursor: default; }
+.studio-canvas-editor .studio-workspace { grid-template-columns: 320px minmax(0, 1fr); gap: 24px; }
+.studio-canvas-editor .studio-results { position: static; }
+.studio-canvas-editor .studio-setup { max-height: calc(100vh - 110px); overflow-y: auto; padding-right: 4px; position: sticky; top: 20px; scrollbar-width: thin; }
+.studio-canvas-editor .studio-facts { margin: 0 0 12px; }
+.studio-canvas-editor .studio-facts > summary > small { display: none; }
+.studio-canvas-editor .studio-facts .studio-section-title { display: none; }
+.studio-canvas-editor .studio-extras-label { padding-top: 10px; }
+.studio-canvas-stage { background: var(--studio-inset); background-image: radial-gradient(var(--studio-control-line) .6px, transparent .6px); background-size: 12px 12px; border: 1px solid var(--studio-line); border-radius: 14px; min-height: 500px; padding: 28px 20px 16px; display: flex; flex-direction: column; align-items: center; }
+.studio-canvas-device { position: relative; background: white; box-shadow: 0 12px 42px #15203017, 0 1px 4px #15203020; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.studio-canvas-device iframe { display: block; border: 0; }
+.studio-canvas-hint { color: var(--studio-muted); font-size: 11px; line-height: 1.6; text-align: center; max-width: 54ch; margin-top: 18px; }
+.studio-variant-choice { width: 100%; display: flex; align-items: center; gap: 10px; padding: 14px 10px; border: 1px solid var(--studio-line); border-radius: 8px; color: var(--studio-ink); background: var(--studio-bg); cursor: pointer; text-align: left; margin-top: 10px; min-height: 52px; }
+.studio-variant-choice strong { font-size: 12px; font-weight: 500; }
+.studio-variant-choice span { font-size: 11px; color: var(--studio-muted); }
+.studio-variant-choice span:last-child { margin-left: auto; }
+.studio-variant-choice[aria-pressed="true"] { border-color: var(--studio-accent); background: var(--studio-hover); }
+.studio-active-controls { margin-top: 16px; }
+.studio-active-controls h3 { font-size: 15px; }
+.studio-open-editor { width: 100%; margin-block: 8px; }
+@media (max-width: 1000px) {
+  .studio-canvas-editor .studio-workspace { grid-template-columns: 290px minmax(0, 1fr); gap: 16px; }
+  .studio-tool-tabs button { padding-inline: 12px; }
+}
+@media (max-width: 800px) {
+  .studio-canvas-editor .studio-workspace { display: flex; flex-direction: column-reverse; gap: 20px; }
+  .studio-canvas-editor .studio-setup { position: static; max-height: none; padding-right: 0; }
+  .studio-canvas-toolbar { flex-wrap: wrap; gap: 6px; padding: 6px; }
+  .studio-tool-tabs { width: 100%; justify-content: space-between; }
+  .studio-tool-tabs button { padding-inline: 10px; font-size: 11px; }
+  .studio-history-actions { width: 100%; justify-content: flex-end; }
+  .studio-history-actions .studio-secondary { margin-left: auto; }
+  .studio-canvas-stage { padding: 18px 10px 14px; min-height: 0; }
+  .studio-canvas-editor .studio-preview-heading h2 { font-size: 16px; }
+  .studio-canvas-editor .studio-save > span { display: block; max-width: 85px; }
+  .studio-canvas-editor .studio-save .studio-secondary { display: none; }
+  .studio-canvas-editor .studio-subtitle { max-width: 44ch; }
+}
+
+.studio-idea-editor .studio-workspace { display: block; max-width: 680px; margin-inline: auto; }
+.studio-idea-editor .studio-page-heading { justify-content: center; text-align: center; margin-block: 34px 34px; }
+.studio-idea-editor .studio-page-heading h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 500; letter-spacing: -.045em; }
+.studio-idea-editor .studio-subtitle { font-size: 14px; max-width: 52ch; margin-inline: auto; }
+.studio-idea-editor .studio-panel { border-radius: 18px; padding: 28px; box-shadow: none; }
+.studio-idea-editor .studio-mood .studio-step { display: none; }
+.studio-idea-editor .studio-section-title { margin-bottom: 24px; }
+.studio-idea-editor .studio-section-title h2 { font-size: 19px; }
+.studio-idea-editor .studio-idea-input { min-height: 170px !important; font-size: 16px !important; border-color: var(--studio-line); background: var(--studio-input); }
+.studio-idea-editor .studio-reference-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.studio-idea-editor .studio-reference-grid figure { aspect-ratio: .72; background: var(--studio-bg); border-radius: 9px; }
+.studio-idea-editor .studio-reference-grid img { object-fit: contain; }
+.studio-idea-editor .studio-reference-drop { min-height: 104px; background: transparent; }
+.studio-idea-editor .studio-vibe-picker { border-top: 1px solid var(--studio-line); padding-top: 8px; }
+.studio-idea-editor .studio-facts .studio-section-title { display: none; }
+.studio-idea-editor .studio-create-inner { max-width: 680px; }
+.studio-idea-editor .studio-create-inner > .studio-primary { min-width: 240px; }
+@media (max-width: 800px) { .studio-idea-editor .studio-page-heading { margin-block: 24px 28px; } .studio-idea-editor .studio-panel { padding: 22px; } .studio-idea-editor .studio-subtitle { font-size: 12px; max-width: 42ch; } }
