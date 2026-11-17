@@ -1,0 +1,1901 @@
+/* Authored Chinese Heritage composition. All rules belong to this renderer. */
+.hp-invitation {
+  --hp-paper: #f8f4ec;
+  --hp-surface: #fffaf1;
+  --hp-red: #991e25;
+  --hp-gold: #b18445;
+  --hp-ink: #352d2a;
+  --hp-muted: #65564d;
+  --hp-gold-text: color-mix(in srgb, var(--hp-gold) 60%, var(--hp-ink));
+  --hp-red-deep: color-mix(in srgb, var(--hp-red) 78%, #291015);
+  --hp-rule: color-mix(in srgb, var(--hp-gold) 34%, transparent);
+  --hp-display:
+    "Cormorant Garamond", "Cormorant Garamond Fallback", Georgia, serif;
+  --hp-script: "Marck Script", "Marck Script Fallback", cursive;
+  --hp-body: "Golos Text", "Golos Text Fallback", Arial, sans-serif;
+  --hp-name-font: var(--hp-display);
+  --bg: var(--hp-paper);
+  --surface: var(--hp-surface);
+  --ink: var(--hp-ink);
+  --muted: var(--hp-muted);
+  --accent: var(--hp-red);
+  --accentAlt: var(--hp-gold);
+  --font-body: var(--hp-body);
+  --font-display: var(--hp-display);
+  --studio-rule: var(--hp-rule);
+  --studio-quiet: color-mix(in srgb, var(--hp-gold) 9%, var(--hp-paper));
+  background: var(--hp-paper);
+  color: var(--hp-ink);
+  font-family: var(--hp-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow: clip;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  color-scheme: light;
+}
+.hp-invitation[data-font-pair="romantic"],
+.hp-invitation[data-font-pair="ceremony"] {
+  --hp-name-font: var(--hp-script);
+}
+.hp-invitation[data-font-pair="classic"] {
+  --hp-name-font: "EB Garamond", Georgia, serif;
+  --hp-display: "EB Garamond", Georgia, serif;
+}
+.hp-invitation[data-font-pair="modern"],
+.hp-invitation[data-font-pair="gallery"] {
+  --hp-name-font: "Tenor Sans", Arial, sans-serif;
+  --hp-display: "Tenor Sans", Arial, sans-serif;
+}
+.hp-invitation *,
+.hp-invitation *::before,
+.hp-invitation *::after {
+  box-sizing: border-box;
+}
+.hp-invitation :is(h1, h2, h3, p, figure, ol, ul, dl, dd) {
+  margin: 0;
+}
+.hp-invitation :is(h1, h2, h3, p, a, span, time, address) {
+  overflow-wrap: anywhere;
+}
+.hp-invitation :is(h1, h2, h3) {
+  text-wrap: balance;
+}
+.hp-invitation a {
+  color: inherit;
+  text-decoration: none;
+}
+.hp-invitation button {
+  font: inherit;
+  cursor: pointer;
+}
+.hp-invitation :is(a, button, input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--hp-red);
+  outline-offset: 5px;
+}
+.hp-invitation [id] {
+  scroll-margin-top: 86px;
+}
+.hp-container {
+  width: min(1130px, calc(100% - 40px));
+  margin-inline: auto;
+}
+.hp-section {
+  padding-block: 72px;
+  position: relative;
+}
+.hp-eyebrow {
+  color: var(--hp-gold-text);
+  font: 500 10px/1.7 var(--hp-body);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.hp-heading {
+  font: 300 clamp(42px, 11.5vw, 58px) / 1.07 var(--hp-display);
+  letter-spacing: -0.025em;
+  margin: 18px 0 22px !important;
+}
+.hp-prose {
+  font: 300 24px/1.55 var(--hp-display);
+}
+.hp-prose p {
+  white-space: pre-line;
+}
+.hp-prose p + p {
+  margin-top: 20px;
+}
+.hp-section-top {
+  text-align: center;
+}
+.hp-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 24px auto;
+  color: var(--hp-red);
+}
+.hp-divider::before,
+.hp-divider::after {
+  content: "";
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hp-gold));
+  opacity: 0.6;
+}
+.hp-divider::after {
+  transform: scaleX(-1);
+}
+.hp-divider svg {
+  width: 27px;
+  height: 27px;
+  flex: none;
+}
+.hp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 52px;
+  padding: 14px 24px;
+  border: 1px solid var(--hp-gold);
+  border-radius: 0;
+  font: 500 10px/1.65 var(--hp-body);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: center;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.hp-button-primary {
+  color: #fff8eb !important;
+  background: var(--hp-red);
+  box-shadow:
+    inset 0 0 0 4px color-mix(in srgb, var(--hp-gold) 13%, transparent),
+    0 8px 24px color-mix(in srgb, var(--hp-red) 15%, transparent);
+}
+.hp-button-primary:hover {
+  background: var(--hp-red-deep);
+}
+.hp-button-outline {
+  color: var(--hp-red-deep) !important;
+  background: color-mix(in srgb, var(--hp-surface) 65%, transparent);
+}
+.hp-button-outline:hover {
+  background: var(--hp-surface);
+}
+.hp-button > span {
+  font-size: 19px;
+  flex: none;
+}
+.hp-text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--hp-rule);
+  font: 500 11px/1.5 var(--hp-body);
+}
+.hp-icon {
+  display: block;
+  width: 29px;
+  height: 29px;
+  color: var(--hp-gold-text);
+}
+.hp-skip {
+  position: fixed;
+  z-index: 120;
+  top: -100px;
+  left: 16px;
+  padding: 12px 18px;
+  color: var(--hp-red);
+  background: var(--hp-surface);
+}
+.hp-skip:focus {
+  top: 12px;
+}
+.hp-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: color-mix(in srgb, var(--hp-paper) 94%, transparent);
+  border-bottom: 1px solid var(--hp-rule);
+  backdrop-filter: blur(12px);
+}
+.hp-header-inner {
+  min-height: 72px;
+  width: min(1290px, calc(100% - 40px));
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+.hp-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--hp-red-deep) !important;
+  font: 600 21px/1.3 var(--hp-display);
+  min-width: 0;
+}
+.hp-brand-symbol {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--hp-gold);
+  border-radius: 50%;
+  font:
+    22px/1 Georgia,
+    "Songti SC",
+    serif;
+}
+.hp-nav {
+  display: none;
+}
+.hp-nav-reply {
+  display: grid;
+  place-items: center;
+  flex: none;
+  border: 1px solid var(--hp-gold);
+  min-height: 44px;
+  padding: 10px 15px;
+  font: 500 10px/1.5 var(--hp-body);
+  color: var(--hp-red-deep) !important;
+}
+.hp-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-height: 808px;
+  padding: 92px 22px 145px;
+  background: radial-gradient(
+    ellipse at 50% 39%,
+    var(--hp-surface) 0%,
+    var(--hp-paper) 64%,
+    color-mix(in srgb, var(--hp-paper) 86%, var(--hp-gold)) 100%
+  );
+  overflow: hidden;
+  text-align: center;
+}
+.hp-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.13;
+  background-image: radial-gradient(var(--hp-gold) 0.5px, transparent 0.5px);
+  background-size: 8px 8px;
+  mask-image: linear-gradient(
+    90deg,
+    #000,
+    transparent 30%,
+    transparent 70%,
+    #000
+  );
+}
+.hp-hero-inner {
+  width: min(100%, 920px);
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+.hp-plum {
+  background: url("/artwork/chinese-heritage/plum-branch.webp") left top /
+    contain no-repeat;
+}
+.hp-landscape {
+  background: url("/artwork/chinese-heritage/watercolor-garden.webp") center
+    bottom / auto 100% no-repeat;
+}
+.hp-hero-plum {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  left: -32px;
+  top: -12px;
+  width: 280px;
+  height: 150px;
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+}
+.hp-hanging-blossom {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  right: -27px;
+  top: 185px;
+  width: 90px;
+  height: 285px;
+  background: url("/artwork/chinese-heritage/hanging-blossom.webp") right
+    center / contain no-repeat;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+.hp-lantern {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  left: -35px;
+  top: 185px;
+  width: 85px;
+  height: 240px;
+  background: url("/artwork/chinese-heritage/red-lantern.webp") center top /
+    contain no-repeat;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+.hp-halo {
+  position: absolute;
+  right: -48px;
+  top: 80px;
+  width: 170px;
+  height: 170px;
+  z-index: -2;
+  border: 1px solid var(--hp-rule);
+  border-radius: 50%;
+  opacity: 0.65;
+}
+.hp-halo::before {
+  content: "";
+  position: absolute;
+  inset: 15px;
+  border: 1px solid var(--hp-rule);
+  border-radius: 50%;
+}
+.hp-hero-landscape {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  opacity: 0.85;
+  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000);
+}
+.hp-hero-symbol {
+  display: inline-grid;
+  place-items: center;
+  width: 51px;
+  height: 51px;
+  border: 1px solid var(--hp-gold);
+  border-radius: 50%;
+  margin-bottom: 24px;
+  color: var(--hp-red);
+  background: color-mix(in srgb, var(--hp-surface) 70%, transparent);
+  font:
+    28px/1 Georgia,
+    "Songti SC",
+    serif;
+}
+.hp-hero .hp-eyebrow {
+  color: var(--hp-ink);
+  font-size: 10px;
+}
+.hp-hero-subtitle {
+  margin-top: 4px !important;
+  color: var(--hp-red);
+  font: 300 16px/1.6 var(--hp-display);
+  letter-spacing: 0.08em;
+}
+.hp-names {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font: 400 clamp(54px, 16.8vw, 86px) / 1.08 var(--hp-name-font);
+  color: var(--hp-red);
+  margin: 25px 0 8px !important;
+}
+.hp-name-part {
+  display: contents;
+}
+.hp-names[data-long-names] {
+  font-size: clamp(36px, 11.5vw, 86px);
+}
+.hp-name-part > span:last-child {
+  max-width: 100%;
+}
+.hp-name-join {
+  display: block;
+  font: italic 300 0.43em/1.4 var(--hp-display);
+  color: var(--hp-gold-text);
+  margin: 0;
+}
+.hp-hero .hp-divider {
+  margin-block: 20px;
+}
+.hp-hero-motto {
+  font: 300 24px/1.4 var(--hp-display);
+  max-width: 28ch;
+  margin: auto !important;
+}
+.hp-hero-facts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 25px;
+  color: var(--hp-red-deep);
+}
+.hp-hero-facts time {
+  font: 300 23px/1.4 var(--hp-display);
+}
+.hp-hero-facts > span[aria-hidden] {
+  display: none;
+}
+.hp-hero-facts > span:last-child {
+  font: 500 10px/1.7 var(--hp-body);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.hp-hero-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+.hp-hero-actions .hp-button {
+  width: min(100%, 290px);
+}
+.hp-scroll {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  color: var(--hp-red-deep) !important;
+  font: 500 9px/1.6 var(--hp-body);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hp-scroll span {
+  font-size: 21px;
+}
+.hp-greeting {
+  background: var(--hp-surface);
+  text-align: center;
+}
+.hp-greeting-inner {
+  max-width: 700px;
+}
+.hp-greeting .hp-prose {
+  font-size: 27px;
+}
+.hp-story {
+  background: var(--hp-surface);
+}
+.hp-story-grid {
+  display: grid;
+  gap: 42px;
+  align-items: center;
+}
+.hp-story-art {
+  position: relative;
+  height: 350px;
+  width: min(100%, 370px);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hp-story-art::before {
+  content: "";
+  position: absolute;
+  inset: 19px 12px 10px 40px;
+  border: 1px solid var(--hp-rule);
+}
+.hp-story-arch {
+  position: relative;
+  height: 91%;
+  width: 80%;
+  border-radius: 250px 250px 2px 2px;
+  border: 1px solid var(--hp-rule);
+  background:
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--hp-gold) 9%, transparent),
+      transparent
+    ),
+    var(--hp-paper);
+  box-shadow: 18px 20px 0 -7px
+    color-mix(in srgb, var(--hp-gold) 12%, var(--hp-paper));
+  overflow: hidden;
+}
+.hp-story-arch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("/artwork/chinese-heritage/red-lantern.webp") 14% 12% / 150px
+    auto no-repeat;
+  mix-blend-mode: multiply;
+}
+.hp-story-arch::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 100px;
+  background:
+    linear-gradient(
+      transparent,
+      color-mix(in srgb, var(--hp-paper) 70%, transparent)
+    ),
+    url("/artwork/chinese-heritage/watercolor-garden.webp") 25% bottom / auto
+      110px no-repeat;
+  opacity: 0.85;
+}
+.hp-story-seal {
+  position: absolute;
+  bottom: 18px;
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border: 1px solid var(--hp-gold);
+  border-radius: 50%;
+  background: var(--hp-red);
+  color: #edce9c;
+  font:
+    36px/1 Georgia,
+    "Songti SC",
+    serif;
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--hp-red) 15%, transparent);
+}
+.hp-story-copy {
+  max-width: 530px;
+  margin: auto;
+}
+.hp-story-copy .hp-heading {
+  text-align: center;
+}
+.hp-story-copy .hp-prose {
+  color: var(--hp-muted);
+}
+.hp-signature {
+  font: 400 33px/1.45 var(--hp-script);
+  color: var(--hp-red);
+  margin-top: 25px !important;
+  text-align: center;
+}
+.hp-gallery {
+  margin-top: 58px;
+}
+.hp-gallery-heading {
+  text-align: center;
+}
+.hp-gallery-grid {
+  display: grid;
+  gap: 30px;
+  margin-top: 32px;
+}
+.hp-gallery figure {
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--hp-rule);
+  background: var(--hp-paper);
+  box-shadow: 0 9px 22px color-mix(in srgb, var(--hp-ink) 5%, transparent);
+}
+.hp-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hp-gallery figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 8px 8px;
+  color: var(--hp-muted);
+  font: 300 18px/1.4 var(--hp-display);
+}
+.hp-gallery figcaption > span {
+  color: var(--hp-gold-text);
+  font: 400 10px/1.6 var(--hp-body);
+}
+.hp-date {
+  background: var(--hp-paper);
+  overflow: hidden;
+}
+.hp-date-layout {
+  display: grid;
+  gap: 32px;
+  margin-top: 40px;
+}
+.hp-month {
+  width: min(100%, 355px);
+  margin: auto;
+  padding: 23px;
+  border: 1px solid var(--hp-rule);
+  background: color-mix(in srgb, var(--hp-surface) 65%, transparent);
+}
+.hp-month-title {
+  color: var(--hp-red);
+  text-align: center;
+  font: 300 29px/1.3 var(--hp-display);
+  text-transform: capitalize;
+  margin-bottom: 22px !important;
+}
+.hp-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+  text-align: center;
+}
+.hp-month-grid > span {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  font: 300 18px/1 var(--hp-display);
+}
+.hp-month-grid > .hp-weekday {
+  color: var(--hp-muted);
+  font: 400 9px/1 var(--hp-body);
+  text-transform: uppercase;
+}
+.hp-month-grid > .hp-day-selected {
+  border-radius: 50%;
+  color: var(--hp-surface);
+  background: var(--hp-red);
+  outline: 1px solid var(--hp-gold);
+  outline-offset: 3px;
+}
+.hp-date-facts {
+  border-block: 1px solid var(--hp-rule);
+  display: flex;
+  justify-content: center;
+}
+.hp-date-detail {
+  flex: 1;
+  text-align: center;
+  padding: 30px 12px;
+}
+.hp-date-detail + .hp-date-detail {
+  border-left: 1px solid var(--hp-rule);
+}
+.hp-date-detail .hp-icon {
+  margin: 0 auto 12px;
+}
+.hp-date-detail time,
+.hp-event-time {
+  display: block;
+  font: 300 28px/1.2 var(--hp-display);
+  color: var(--hp-red-deep);
+  margin-top: 8px !important;
+}
+.hp-timezone {
+  font: 400 10px/1.6 var(--hp-body);
+  color: var(--hp-muted);
+  margin-top: 8px !important;
+}
+.hp-calendar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 32px;
+}
+.hp-countdown-band {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 72px 20px;
+  color: #fff7e9;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--hp-red) 88%, #c47a65),
+    var(--hp-red-deep)
+  );
+  text-align: center;
+}
+.hp-countdown-band::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  z-index: -1;
+  border: 1px solid color-mix(in srgb, var(--hp-gold) 65%, transparent);
+}
+.hp-countdown-band::after {
+  content: "囍";
+  position: absolute;
+  right: -30px;
+  bottom: -70px;
+  z-index: -1;
+  font:
+    330px/1 Georgia,
+    "Songti SC",
+    serif;
+  opacity: 0.035;
+}
+.hp-countdown-band .hp-eyebrow {
+  color: #edce9c;
+}
+.hp-countdown-band .invitation-section {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+.hp-countdown-band h2 {
+  font: 300 clamp(40px, 10.5vw, 64px) / 1.1 var(--hp-display);
+  margin: 16px auto 20px;
+  color: #fff7e9;
+}
+.hp-countdown-band .countdown-status {
+  font: 300 23px/1.5 var(--hp-display);
+  color: #f2dcc4;
+}
+.hp-countdown-band .countdown-status:empty {
+  display: none;
+}
+.hp-countdown-band .countdown-values {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(100%, 548px);
+  gap: 7px;
+  margin: 32px auto 0;
+}
+.hp-countdown-band .countdown-values > div {
+  min-width: 0;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 14px;
+  min-height: 105px;
+  padding: 18px 2px 12px;
+  border: 1px solid rgba(232, 191, 136, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+}
+.hp-countdown-band .countdown-values dt {
+  font: 400 9px/1.5 var(--hp-body);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #edce9c;
+}
+.hp-countdown-band .countdown-values dd {
+  font: 300 clamp(36px, 10.5vw, 58px) / 1 var(--hp-display);
+  color: #fff7e9;
+  font-variant-numeric: tabular-nums;
+}
+.hp-countdown-band .hp-divider {
+  color: #edce9c;
+  margin-bottom: 0;
+}
+.hp-countdown-band .hp-divider::before,
+.hp-countdown-band .hp-divider::after {
+  background: linear-gradient(90deg, transparent, #edce9c);
+}
+.hp-venue {
+  background: var(--hp-surface);
+}
+.hp-venue-grid {
+  display: grid;
+  gap: 38px;
+  align-items: center;
+}
+.hp-venue-art {
+  position: relative;
+  height: 310px;
+  border: 1px solid var(--hp-rule);
+  padding: 10px;
+}
+.hp-venue-art-inner {
+  position: relative;
+  height: 100%;
+  background: url("/artwork/chinese-heritage/watercolor-garden.webp") 35%
+    bottom / auto 100% no-repeat;
+}
+.hp-venue-art-inner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--hp-rule);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--hp-paper) 15%, transparent),
+    transparent
+  );
+}
+.hp-venue-mark {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  color: #edce9c;
+  background: var(--hp-red);
+  font:
+    27px/1 Georgia,
+    "Songti SC",
+    serif;
+  border: 1px solid var(--hp-gold);
+}
+.hp-venue-copy {
+  text-align: center;
+}
+.hp-venue-copy > .hp-icon {
+  margin: 22px auto;
+}
+.hp-venue h3 {
+  font: 300 33px/1.3 var(--hp-display);
+  color: var(--hp-red-deep);
+}
+.hp-venue address {
+  font: normal 300 23px/1.5 var(--hp-display);
+  color: var(--hp-muted);
+  margin-top: 10px;
+}
+.hp-venue-note {
+  font-size: 20px;
+  margin-top: 20px;
+}
+.hp-venue-copy > .hp-button {
+  margin-top: 27px;
+}
+.hp-programme {
+  background: var(--hp-paper);
+}
+.hp-programme-grid {
+  display: grid;
+  gap: 36px;
+}
+.hp-programme-heading {
+  text-align: center;
+}
+.hp-programme-floral {
+  display: none;
+}
+.hp-timeline {
+  list-style: none;
+  padding: 0 0 0 20px;
+  border-left: 1px solid var(--hp-rule);
+  margin-left: 6px !important;
+}
+.hp-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 65px minmax(0, 1fr);
+  gap: 14px;
+  padding-bottom: 32px;
+}
+.hp-timeline li:last-child {
+  padding-bottom: 0;
+}
+.hp-timeline li::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -25px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid var(--hp-red);
+  background: var(--hp-paper);
+}
+.hp-timeline li:first-child::before {
+  background: var(--hp-red);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--hp-red) 8%, transparent);
+}
+.hp-timeline time {
+  font: 600 23px/1.2 var(--hp-display);
+  color: var(--hp-red);
+}
+.hp-timeline h3 {
+  font: 300 27px/1.15 var(--hp-display);
+}
+.hp-timeline p {
+  font: 300 18px/1.5 var(--hp-display);
+  color: var(--hp-muted);
+  margin-top: 6px;
+  white-space: pre-line;
+}
+.hp-dress {
+  background: var(--hp-surface);
+}
+.hp-dress-inner {
+  max-width: 720px;
+  text-align: center;
+}
+.hp-swatches {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin-top: 32px !important;
+}
+.hp-swatches li {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+}
+.hp-swatches li > span {
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  outline: 1px solid var(--hp-rule);
+  outline-offset: 4px;
+}
+.hp-swatches small {
+  font: 400 9px/1.5 var(--hp-body);
+  color: var(--hp-muted);
+}
+.hp-wishes {
+  background: var(--hp-paper);
+}
+.hp-rsvp {
+  background: var(--hp-paper);
+}
+.hp-rsvp-grid {
+  display: grid;
+  gap: 38px;
+  align-items: start;
+}
+.hp-rsvp-aside {
+  text-align: center;
+}
+.hp-rsvp-symbol {
+  display: inline-block;
+  color: var(--hp-red);
+  font:
+    48px/1.2 Georgia,
+    "Songti SC",
+    serif;
+  margin-bottom: 20px;
+}
+.hp-rsvp-aside > p:not(.hp-eyebrow, .hp-signature) {
+  max-width: 24ch;
+  margin: auto;
+  font: 300 24px/1.45 var(--hp-display);
+  color: var(--hp-muted);
+}
+.hp-rsvp-card {
+  position: relative;
+  min-width: 0;
+  padding: 27px 20px;
+  border: 1px solid var(--hp-rule);
+  background: var(--hp-surface);
+  box-shadow: 0 12px 40px color-mix(in srgb, var(--hp-ink) 5%, transparent);
+}
+.hp-rsvp-card::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid color-mix(in srgb, var(--hp-gold) 14%, transparent);
+  pointer-events: none;
+}
+.hp-invitation .hp-rsvp-card :is(.platform-rsvp, .rsvp-section) {
+  position: relative;
+  display: block;
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  background: none;
+  border: 0;
+  box-shadow: none;
+}
+.hp-invitation .hp-rsvp-card h2 {
+  max-width: none;
+  font: 300 38px/1.15 var(--hp-display);
+  margin: 12px 0 16px;
+}
+.hp-invitation .hp-rsvp-card .platform-section-eyebrow {
+  color: var(--hp-gold-text);
+}
+.hp-invitation .hp-rsvp-card .platform-rsvp-introduction {
+  font: 300 21px/1.5 var(--hp-display);
+  color: var(--hp-muted);
+}
+.hp-invitation .hp-rsvp-card .platform-rsvp-form {
+  max-width: none;
+  margin-top: 26px;
+}
+.hp-invitation
+  .hp-rsvp-card
+  .platform-rsvp-attendance
+  label[data-selected="true"] {
+  color: var(--hp-red);
+  border-color: var(--hp-red);
+}
+.hp-invitation .hp-rsvp-card .platform-rsvp-submit {
+  color: #fff8eb;
+  border-color: var(--hp-gold);
+  background: var(--hp-red);
+  box-shadow: inset 0 0 0 4px
+    color-mix(in srgb, var(--hp-gold) 13%, transparent);
+}
+.hp-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  text-align: center;
+  background: var(--hp-surface);
+  padding-bottom: 120px;
+}
+.hp-footer::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 130px;
+  background: url("/artwork/chinese-heritage/watercolor-garden.webp") center
+    bottom / auto 100% no-repeat;
+  opacity: 0.5;
+  mask-image: linear-gradient(transparent, #000);
+}
+.hp-footer-symbol {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--hp-red);
+  font:
+    46px/1.2 Georgia,
+    "Songti SC",
+    serif;
+}
+.hp-footer .hp-prose {
+  max-width: 670px;
+  margin: auto;
+}
+.hp-footer-date {
+  font: 300 20px/1.5 var(--hp-display);
+  color: var(--hp-muted);
+  margin-top: 22px !important;
+}
+.hp-endnote {
+  background: var(--hp-surface);
+  border-top: 1px solid var(--hp-rule);
+  padding: 12px 20px;
+  text-align: center;
+}
+.hp-endnote a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 10px;
+  color: var(--hp-muted);
+  font: 400 10px/1.6 var(--hp-body);
+}
+.hp-replay-row {
+  display: none;
+  background: var(--hp-surface);
+  padding: 0 20px 28px;
+  text-align: center;
+}
+.hp-replay {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--hp-rule);
+  color: var(--hp-red-deep);
+  background: transparent;
+  font: 400 10px/1.6 var(--hp-body) !important;
+}
+/* Envelope: native modal stays closed in server HTML, including no-JS clients. */
+.hp-entrance {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 24px 25px;
+  border: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  color: var(--hp-ink);
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    var(--hp-surface),
+    var(--hp-paper) 70%,
+    color-mix(in srgb, var(--hp-paper) 85%, var(--hp-gold))
+  );
+  text-align: center;
+  isolation: isolate;
+}
+.hp-entrance:not([open]) {
+  display: none;
+}
+.hp-entrance[open] {
+  display: grid;
+  place-items: center;
+}
+.hp-entrance::backdrop {
+  background: var(--hp-paper);
+}
+.hp-entrance::before,
+.hp-entrance::after {
+  content: "";
+  position: fixed;
+  inset: 12px;
+  border: 1px solid var(--hp-rule);
+  pointer-events: none;
+}
+.hp-entrance::after {
+  inset: 18px;
+  opacity: 0.4;
+}
+.hp-entrance-art {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+.hp-entrance-art.hp-plum {
+  top: -10px;
+  left: -35px;
+  width: min(80vw, 530px);
+  height: 180px;
+  mix-blend-mode: multiply;
+  opacity: 0.75;
+}
+.hp-entrance-art.hp-landscape {
+  bottom: -15px;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  opacity: 0.55;
+}
+.hp-entrance-inner {
+  position: relative;
+  width: min(100%, 740px);
+  margin: auto;
+  padding: 24px 0;
+}
+.hp-entrance-inner > .hp-eyebrow {
+  color: var(--hp-red-deep);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+.hp-double-happiness {
+  display: inline-block;
+  font:
+    19px/1.2 Georgia,
+    "Songti SC",
+    serif;
+  color: var(--hp-gold-text);
+  margin: 12px 0 7px;
+}
+.hp-entrance-names {
+  font: 400 clamp(35px, 9.4vw, 55px) / 1.35 var(--hp-name-font);
+  color: var(--hp-red);
+}
+.hp-entrance-subtitle {
+  font: 300 17px/1.5 var(--hp-display);
+  max-width: 32ch;
+  margin: 4px auto 25px !important;
+}
+.hp-envelope-button {
+  display: block;
+  position: relative;
+  width: min(100%, 360px);
+  aspect-ratio: 1.583;
+  margin: 12px auto 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+.hp-envelope-button::before {
+  content: "";
+  position: absolute;
+  inset: 5% -10% -10%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--hp-red) 12%, transparent),
+    transparent 70%
+  );
+  filter: blur(12px);
+}
+.hp-envelope {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hp-envelope-back {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border: 2px solid var(--hp-gold);
+  border-radius: 4px;
+  background: linear-gradient(
+    135deg,
+    var(--hp-red-deep),
+    var(--hp-red) 49%,
+    var(--hp-red-deep)
+  );
+  box-shadow:
+    inset 0 0 0 7px rgba(255, 219, 155, 0.07),
+    0 20px 24px rgba(80, 30, 23, 0.2);
+}
+.hp-envelope-letter {
+  position: absolute;
+  z-index: 2;
+  left: 10%;
+  top: 10%;
+  width: 80%;
+  height: 78%;
+  padding: 14px 10px;
+  border: 1px solid var(--hp-gold);
+  background: linear-gradient(135deg, var(--hp-surface), var(--hp-paper));
+  box-shadow: 0 1px 14px rgba(63, 31, 25, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transform: translateY(16px);
+}
+.hp-envelope-letter::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid var(--hp-rule);
+}
+.hp-letter-symbol {
+  font:
+    27px/1 Georgia,
+    "Songti SC",
+    serif;
+  color: var(--hp-red-deep);
+}
+.hp-letter-small {
+  font: 500 7px/1.5 var(--hp-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hp-gold-text);
+}
+.hp-letter-names {
+  font: 400 clamp(23px, 6vw, 34px) / 1.2 var(--hp-name-font);
+  color: var(--hp-red-deep);
+}
+.hp-envelope-front {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 4px;
+  clip-path: polygon(0 0, 50% 66%, 100% 0, 100% 100%, 0 100%);
+  background: linear-gradient(
+    145deg,
+    var(--hp-red) 0%,
+    color-mix(in srgb, var(--hp-red) 72%, #edaca0) 52%,
+    var(--hp-red-deep) 100%
+  );
+}
+.hp-letter-names[data-long-names] {
+  font-size: clamp(14px, 4vw, 22px);
+}
+.hp-envelope-front::before {
+  content: "";
+  position: absolute;
+  inset: 8px 9px 10px;
+  border: 1px solid rgba(244, 197, 123, 0.5);
+  clip-path: polygon(0 0, 50% 62%, 100% 0, 100% 100%, 0 100%);
+}
+.hp-envelope-flap {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 61%;
+  transform: perspective(1050px) rotateX(0deg);
+  transform-origin: 50% 0;
+  transform-style: preserve-3d;
+}
+.hp-envelope-flap > span {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-top: 2px solid rgba(245, 200, 132, 0.7);
+  background: linear-gradient(
+    165deg,
+    color-mix(in srgb, var(--hp-red) 88%, #dc8d7b),
+    var(--hp-red-deep)
+  );
+}
+.hp-envelope-flap > span::before {
+  content: "";
+  position: absolute;
+  inset: 9px 12px 14px;
+  background: linear-gradient(
+    135deg,
+    transparent 48%,
+    rgba(245, 198, 122, 0.35) 49%,
+    transparent 50%
+  );
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.hp-envelope-seal {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 55%;
+  width: 65px;
+  height: 65px;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  color: #eed0a0;
+  font:
+    30px/1 Georgia,
+    "Songti SC",
+    serif;
+  background: radial-gradient(
+    circle at 32% 25%,
+    color-mix(in srgb, var(--hp-red) 68%, #efaba0),
+    var(--hp-red) 62%,
+    var(--hp-red-deep)
+  );
+  box-shadow:
+    0 2px 9px rgba(48, 18, 15, 0.25),
+    inset 0 0 0 3px rgba(249, 208, 138, 0.5),
+    inset 0 0 0 8px rgba(92, 18, 26, 0.7);
+}
+.hp-entrance-open {
+  min-width: min(100%, 270px);
+  margin-top: 30px;
+}
+.hp-entrance-hint {
+  font: 400 11px/1.65 var(--hp-body);
+  color: var(--hp-muted);
+  max-width: 32ch;
+  margin: 14px auto 0 !important;
+}
+.hp-entrance-date {
+  font: 400 10px/1.65 var(--hp-body);
+  color: var(--hp-gold-text);
+  letter-spacing: 0.06em;
+  margin-top: 17px !important;
+}
+.hp-entrance[data-opening] .hp-envelope-seal {
+  animation: hp-seal-away 0.3s ease forwards;
+}
+.hp-entrance[data-opening] .hp-envelope-flap {
+  animation: hp-flap-open 0.65s 0.1s ease forwards;
+}
+.hp-entrance[data-opening] .hp-envelope-letter {
+  animation: hp-letter-reveal 0.9s 0.7s cubic-bezier(0.22, 0.75, 0.23, 1)
+    forwards;
+}
+.hp-entrance[data-opening] .hp-entrance-inner > :not(.hp-envelope-button) {
+  animation: hp-copy-away 0.2s ease forwards;
+}
+.hp-entrance[data-opening] {
+  animation: hp-entrance-away 0.45s 1.85s ease forwards;
+  pointer-events: none;
+}
+@keyframes hp-seal-away {
+  to {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+}
+@keyframes hp-flap-open {
+  49% {
+    transform: perspective(1050px) rotateX(90deg);
+    z-index: 4;
+  }
+  50% {
+    transform: perspective(1050px) rotateX(90deg);
+    z-index: 1;
+  }
+  100% {
+    transform: perspective(1050px) rotateX(180deg);
+    z-index: 1;
+  }
+}
+@keyframes hp-letter-reveal {
+  to {
+    transform: translateY(-115%);
+  }
+}
+@keyframes hp-copy-away {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes hp-entrance-away {
+  to {
+    opacity: 0;
+  }
+}
+@media (min-width: 700px) {
+  .hp-container {
+    width: min(1130px, calc(100% - 72px));
+  }
+  .hp-section {
+    padding-block: 104px;
+  }
+  .hp-heading {
+    font-size: clamp(49px, 6vw, 76px);
+  }
+  .hp-header-inner {
+    min-height: 82px;
+    width: min(1290px, calc(100% - 72px));
+  }
+  .hp-brand-symbol {
+    width: 41px;
+    height: 41px;
+    font-size: 25px;
+  }
+  .hp-brand {
+    font-size: 25px;
+  }
+  .hp-hero {
+    min-height: 838px;
+    padding: 105px 40px 180px;
+  }
+  .hp-hero-plum {
+    top: -5px;
+    left: 0;
+    width: min(50vw, 585px);
+    height: 250px;
+  }
+  .hp-hanging-blossom {
+    right: 0;
+    top: 100px;
+    width: 150px;
+    height: 480px;
+    opacity: 0.9;
+  }
+  .hp-lantern {
+    left: 2%;
+    top: 125px;
+    width: 125px;
+    height: 300px;
+    opacity: 0.96;
+  }
+  .hp-halo {
+    top: 95px;
+    right: 8%;
+    width: 245px;
+    height: 245px;
+  }
+  .hp-hero-landscape {
+    height: 235px;
+    background-size: cover;
+  }
+  .hp-names {
+    display: block;
+    font-size: clamp(72px, 9vw, 128px);
+    line-height: 1.13;
+    margin: 20px 0 4px !important;
+  }
+  .hp-name-part {
+    display: inline;
+  }
+  .hp-name-join {
+    display: inline-block;
+    font-size: 0.48em;
+    margin-inline: 0.2em;
+  }
+  .hp-hero-motto {
+    font-size: 28px;
+  }
+  .hp-hero-facts {
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 31px;
+  }
+  .hp-hero-facts > span[aria-hidden] {
+    display: inline;
+  }
+  .hp-hero-facts time {
+    font-size: 26px;
+  }
+  .hp-hero-actions {
+    flex-direction: row;
+    margin-top: 30px;
+  }
+  .hp-hero-actions .hp-button {
+    width: auto;
+    min-width: 180px;
+  }
+  .hp-hero-subtitle {
+    font-size: 19px;
+  }
+  .hp-button {
+    font-size: 11px;
+  }
+  .hp-greeting .hp-prose {
+    font-size: 31px;
+  }
+  .hp-story-grid {
+    grid-template-columns: 0.93fr 1fr;
+    gap: clamp(48px, 7vw, 110px);
+  }
+  .hp-story-art {
+    width: 100%;
+    height: 540px;
+  }
+  .hp-story-arch::before {
+    background-size: 210px auto;
+  }
+  .hp-story-arch::after {
+    height: 140px;
+    background-size: auto 140px;
+  }
+  .hp-story-seal {
+    width: 87px;
+    height: 87px;
+    font-size: 45px;
+    bottom: 28px;
+  }
+  .hp-story-copy .hp-heading {
+    text-align: left;
+  }
+  .hp-story-copy .hp-prose {
+    font-size: 27px;
+  }
+  .hp-signature {
+    font-size: 37px;
+  }
+  .hp-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px;
+    align-items: start;
+  }
+  .hp-gallery figure:nth-child(2n) {
+    margin-top: 60px;
+  }
+  .hp-date-layout {
+    grid-template-columns: 0.9fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-top: 55px;
+  }
+  .hp-date-detail {
+    padding: 38px 20px;
+  }
+  .hp-date-detail time,
+  .hp-event-time {
+    font-size: 33px;
+  }
+  .hp-countdown-band {
+    padding-block: 98px;
+  }
+  .hp-countdown-band .countdown-values {
+    gap: 15px;
+    margin-top: 40px;
+  }
+  .hp-countdown-band .countdown-values > div {
+    min-height: 120px;
+    padding: 18px 10px;
+  }
+  .hp-countdown-band .countdown-values dd {
+    font-size: 68px;
+  }
+  .hp-venue-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 75px;
+  }
+  .hp-venue-art {
+    height: 440px;
+  }
+  .hp-venue-copy {
+    text-align: left;
+  }
+  .hp-venue-copy > .hp-icon {
+    margin-inline: 0;
+  }
+  .hp-venue h3 {
+    font-size: 39px;
+  }
+  .hp-venue address {
+    font-size: 27px;
+  }
+  .hp-programme-grid {
+    grid-template-columns: 0.85fr 1fr;
+    gap: 85px;
+    align-items: center;
+  }
+  .hp-programme-heading {
+    text-align: left;
+  }
+  .hp-programme-heading .hp-divider {
+    justify-content: flex-start;
+  }
+  .hp-programme-floral {
+    display: block;
+    height: 170px;
+    width: 220px;
+    margin-top: 25px;
+    background: url("/artwork/chinese-heritage/floral-spray.webp") center /
+      contain no-repeat;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+  }
+  .hp-timeline {
+    padding-left: 35px;
+  }
+  .hp-timeline li {
+    grid-template-columns: 80px minmax(0, 1fr);
+    padding-bottom: 39px;
+  }
+  .hp-timeline li::before {
+    left: -40px;
+  }
+  .hp-timeline time {
+    font-size: 27px;
+  }
+  .hp-timeline h3 {
+    font-size: 30px;
+  }
+  .hp-swatches {
+    gap: 28px;
+  }
+  .hp-swatches li > span {
+    width: 61px;
+    height: 61px;
+  }
+  .hp-rsvp-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 65px;
+  }
+  .hp-rsvp-aside {
+    text-align: left;
+    padding-top: 25px;
+  }
+  .hp-rsvp-aside > p:not(.hp-eyebrow, .hp-signature) {
+    margin-inline: 0;
+    font-size: 27px;
+  }
+  .hp-rsvp-aside .hp-divider {
+    justify-content: flex-start;
+  }
+  .hp-rsvp-aside .hp-signature {
+    text-align: left;
+  }
+  .hp-rsvp-card {
+    padding: 40px 36px;
+  }
+  .hp-footer {
+    padding-bottom: 170px;
+  }
+  .hp-footer::before {
+    height: 190px;
+    background-size: cover;
+  }
+  .hp-entrance {
+    padding: 30px 30px;
+  }
+  .hp-entrance::before {
+    inset: 22px;
+  }
+  .hp-entrance::after {
+    inset: 31px;
+  }
+  .hp-entrance-inner {
+    padding: 32px 0;
+  }
+  .hp-entrance-names {
+    font-size: clamp(58px, 8vw, 102px);
+  }
+  .hp-entrance-subtitle {
+    font-size: 23px;
+    margin-bottom: 35px !important;
+  }
+  .hp-double-happiness {
+    font-size: 22px;
+  }
+  .hp-envelope-button {
+    width: min(440px, 78vw);
+  }
+  .hp-envelope-seal {
+    width: 82px;
+    height: 82px;
+    font-size: 37px;
+  }
+  .hp-letter-symbol {
+    font-size: 39px;
+  }
+  .hp-letter-small {
+    font-size: 9px;
+  }
+  .hp-letter-names {
+    font-size: 38px;
+  }
+  .hp-entrance-art.hp-plum {
+    width: min(47vw, 560px);
+    height: 255px;
+    left: -16px;
+    top: -20px;
+  }
+  .hp-entrance-art.hp-landscape {
+    height: 215px;
+    bottom: -40px;
+    background-size: cover;
+  }
+}
+@media (min-width: 1000px) {
+  .hp-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 27px;
+    margin-left: auto;
+    margin-right: 25px;
+  }
+  .hp-nav a {
+    min-height: 44px;
+    display: grid;
+    place-items: center;
+    font: 500 9px/1.5 var(--hp-body);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--hp-ink);
+  }
+}
+@media (max-height: 700px) {
+  .hp-entrance[open] {
+    display: block;
+  }
+  .hp-entrance-inner {
+    padding-block: 18px;
+  }
+  .hp-entrance-names {
+    font-size: clamp(35px, 7vw, 65px);
+  }
+  .hp-envelope-button {
+    max-width: 305px;
+  }
+  .hp-entrance-subtitle {
+    margin-bottom: 18px !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-invitation *,
+  .hp-invitation *::before,
+  .hp-invitation *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+.hp-invitation[data-motion="still"] *,
+.hp-invitation[data-motion="still"] *::before,
+.hp-invitation[data-motion="still"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+.hp-experience[data-enhanced="true"] > .hp-replay-row {
+  display: block;
+}
+.hp-hero-headline {
+  color: var(--hp-red-deep);
+  font: 300 26px/1.4 var(--hp-display);
+  margin-top: 20px !important;
+}
+.hp-invitation .heritage-directed-photos {
+  display: grid;
+  gap: 24px;
+  justify-items: center;
+  width: min(100%, 960px);
+  margin: 32px auto;
+  padding-inline: 20px;
+}
+.hp-invitation .heritage-directed-photos .directed-photo {
+  max-width: min(100%, 520px);
+}
+.hp-invitation .hp-rsvp-card .invitation-calendar {
+  margin-top: 24px;
+  border: 1px solid var(--hp-rule);
+}
+.hp-invitation .hp-rsvp-card .invitation-calendar summary,
+.hp-invitation .hp-rsvp-card .calendar-options a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  gap: 12px;
+  padding: 12px 14px;
+  font: 400 11px/1.6 var(--hp-body);
+}
+.hp-invitation .hp-rsvp-card .calendar-options a {
+  border-top: 1px solid var(--hp-rule);
+}
+.hp-invitation .hp-rsvp-card :is(.rsvp-copy, .rsvp-form) {
+  min-width: 0;
+}
+.hp-invitation .hp-rsvp-card .rsvp-form {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+  max-width: none;
+  margin-top: 24px;
+}
+.hp-invitation .hp-rsvp-card .rsvp-form-step {
+  display: grid;
+  gap: 10px;
+}
+.hp-invitation .hp-rsvp-card .rsvp-form-step[hidden] {
+  display: none;
+}
+.hp-invitation .hp-rsvp-card .rsvp-form label {
+  font: 400 12px/1.6 var(--hp-body);
+}
+.hp-invitation .hp-rsvp-card .rsvp-form input:not([type="checkbox"]) {
+  min-width: 0;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid var(--hp-rule);
+  color: var(--hp-ink);
+  background: var(--hp-paper);
+  padding: 12px;
+  font: 400 16px/1.5 var(--hp-body);
+}
+.hp-invitation .hp-rsvp-card .rsvp-attendance {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+}
+.hp-invitation .hp-rsvp-card .rsvp-attendance input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--hp-red);
+}
+.hp-invitation .hp-rsvp-card .rsvp-form-actions {
+  display: grid;
+  gap: 12px;
+}
+.hp-invitation .hp-rsvp-card .invitation-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid var(--hp-gold);
+  padding: 14px 18px;
+  color: #fff8eb;
+  background: var(--hp-red);
+  font: 500 11px/1.6 var(--hp-body);
+}
+.hp-invitation .hp-rsvp-card :is(.rsvp-flourish, .paper-wax-seal) {
+  display: none;
+}
+.hp-invitation .hp-rsvp-card .rsvp-steps {
+  display: flex;
+  gap: 18px;
+  font: 400 10px/1.5 var(--hp-body);
+  color: var(--hp-muted);
+  margin-bottom: 16px;
+}
+.hp-invitation .hp-rsvp-card .rsvp-back {
+  min-height: 44px;
+  border: 0;
+  padding: 8px 0;
+  text-align: left;
+  color: var(--hp-muted);
+  background: none;
+  font: 400 11px/1.5 var(--hp-body);
+}

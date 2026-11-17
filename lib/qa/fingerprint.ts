@@ -13,5 +13,8 @@ export async function rendererRevision() {
   const authoredArt = await Promise.all(["registry/keys.ts", "app/material-scenes.css", "app/reference-invitation.css", "components/layouts/ReferenceInvitation.tsx", "components/craft/DecoGeometry.tsx", "components/craft/PortraitTextGuard.tsx", "components/craft/SceneAtmosphere.tsx", "registry/reference-font.generated.json", "lib/invitation/reference.ts", "app/immersive.css", "components/layouts/ImmersiveInvitation.tsx", "components/sections/Footer.tsx", "lib/invitation/date.ts", "lib/invitation/sections.ts", "app/story.css", "components/layouts/WeddingStory.tsx", "components/sections/StoryDate.tsx", "lib/invitation/month.ts", "components/craft/SignatureArt.tsx", "components/craft/HeroStock.tsx", "components/primitives/Ornament.tsx", "registry/ornaments/index.ts", "registry/ornaments/botanical.ts"].map(async (file) => {
     try { return await readFile(path.join(process.cwd(), file), "utf8"); } catch { return file; }
   }));
-  return digest([QA_ENGINE, build, ...sources, ...authoredArt].join("\n"));
+  const organic = await Promise.all(["lib/templates/copy.ts", "lib/fonts/resources.ts", "registry/studioTemplates.ts", "lib/schema/studioTemplate.ts", "components/layouts/StudioTemplateInvitation.tsx", "components/layouts/StudioComposition.tsx", "app/studio-templates.css", "app/studio-composition.css", "app/organic-paper.css", "app/organic-fonts.css", "components/craft/PaperBotanical.tsx", "public/textures/organic-paper.svg", "app/editorial-invitation.css", "app/editorial-fonts.css", "components/layouts/EditorialInvitation.tsx", "components/craft/EditorialMedia.tsx", "components/craft/WaxSeal.tsx", "components/craft/ItalicAccents.tsx", "lib/design/spec.ts", "lib/schema/designSpec.ts"].map(async (file) => {
+    try { return await readFile(path.join(process.cwd(), file), "utf8"); } catch { return file; }
+  }));
+  return digest([QA_ENGINE, build, ...sources, ...authoredArt, ...organic].join("\n"));
 }

@@ -75,3 +75,12 @@ test("a generated full-photo preview adapts when its photo disappears without ch
   expect(stored.layout.hero).toBe("full-photo");
   expect(compositionPhotos([], stored)).toEqual([]);
 });
+test("owner photo pins are canonical before identity comparison and persistence", () => {
+  const pinned = { ...photo, asset: { ...photo.asset, placementPinned: true, placement: { section: "venue" as const, index: 4 } } };
+  const raw = withPhotos();
+  raw.variants[0].layout.sectionOrder = ["hero", "greeting", "footer"];
+  const result = composeSeries(raw, "ru", [pinned]);
+  expect(result.themes.every((theme) => theme.photos![0].section === "venue" && theme.photos![0].index === 4)).toBe(true);
+  expect(result.themes[0].layout.sectionOrder).toContain("venue");
+  expect(compositionPhotos([pinned], result.themes[0])[0].photo.asset.placement).toEqual({ section: "venue", index: 4 });
+});

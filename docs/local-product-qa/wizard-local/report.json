@@ -1,0 +1,98 @@
+{
+  "generatedAt": "2026-10-23T04:24:42.705Z",
+  "base": "http://127.0.0.1:4314",
+  "mode": "browser-ui-with-mocked-generation",
+  "providerGenerationPostsForwarded": 0,
+  "interceptedGenerationPosts": 2,
+  "scenarios": [
+    {
+      "key": "birthday-invitation",
+      "invitationId": "8051df64-ca14-484a-a76c-af0ca9e51b02",
+      "requestId": "90fc9308-2372-4e86-94cd-5e23c77ad848",
+      "interceptedPosts": 1,
+      "requestFacts": {
+        "eventType": "birthday",
+        "purpose": "invitation",
+        "names": [
+          "Алина"
+        ],
+        "date": {
+          "day": "2028-06-19",
+          "time": "18:30",
+          "timezone": "Asia/Tashkent",
+          "showCountdown": true
+        },
+        "venue": {
+          "name": "Сад встреч",
+          "address": "Ташкент, вымышленный адрес QA"
+        }
+      },
+      "assertions": {
+        "oneNameAccepted": true,
+        "emptyNameBlocked": true,
+        "greetingEventInputsHidden": null,
+        "generatedEditorOpened": true,
+        "actualIframeRendered": true,
+        "rapidClicksUseSingleRequest": true,
+        "factsPreserved": true,
+        "paletteFontAutosaved": true,
+        "compositionSurvivesAppearanceAndReload": true
+      },
+      "screenshots": [
+        "birthday-invitation-390-wizard-facts.png",
+        "birthday-invitation-390-wizard-design.png",
+        "birthday-invitation-390-editor.png",
+        "birthday-invitation-390-editor-iframe.png"
+      ]
+    },
+    {
+      "key": "personal-greeting",
+      "invitationId": "d6c6da96-2884-4f21-ae0d-4c40b21b239b",
+      "requestId": "47c6939d-2a1b-4454-8785-4b75c5178291",
+      "interceptedPosts": 1,
+      "requestFacts": {
+        "eventType": "birthday",
+        "purpose": "greeting",
+        "names": [
+          "Амира"
+        ],
+        "date": {
+          "day": "",
+          "time": "",
+          "timezone": "Asia/Tashkent",
+          "showCountdown": true
+        },
+        "venue": {
+          "name": "",
+          "address": ""
+        }
+      },
+      "assertions": {
+        "oneNameAccepted": true,
+        "emptyNameBlocked": true,
+        "greetingEventInputsHidden": true,
+        "generatedEditorOpened": true,
+        "actualIframeRendered": true,
+        "rapidClicksUseSingleRequest": true,
+        "factsPreserved": true,
+        "paletteFontAutosaved": true,
+        "compositionSurvivesAppearanceAndReload": true
+      },
+      "screenshots": [
+        "personal-greeting-390-wizard-facts.png",
+        "personal-greeting-390-wizard-design.png",
+        "personal-greeting-390-editor.png",
+        "personal-greeting-390-editor-iframe.png"
+      ]
+    }
+  ],
+  "failures": [],
+  "pageErrors": [],
+  "limitations": [
+    "Generation responses are mocked at the browser route. No provider or real AI design quality is tested, and no paid generation POST reaches the server.",
+    "Registration, wizard draft persistence, editor rendering, appearance autosave and reload use the actual isolated local platform API.",
+    "Mobile Chromium touch emulation at 390 pixels; physical phones, Safari and production hosting are outside this check."
+  ],
+  "uzbekGreetingLabels": true,
+  "success": true
+}

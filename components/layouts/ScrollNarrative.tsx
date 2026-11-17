@@ -35,8 +35,14 @@ import { Rsvp } from "@/components/sections/Rsvp";
 import { Footer } from "@/components/sections/Footer";
 import { WeddingStory, isStoryComposition } from "./WeddingStory";
 import { CardStack } from "./CardStack";
+import { EditorialInvitation } from "./EditorialInvitation";
+import { StudioTemplateInvitation } from "./StudioTemplateInvitation";
+import { HeritageStudioInvitation } from "./HeritageStudioInvitation";
 
 export function ScrollNarrative({ content, theme, initialNow, photos = [], generatedVisual, guest, embedded = false }: { content: Content; theme: Theme; initialNow: number; photos?: DirectedAsset[]; generatedVisual?: VisualSource; guest?: string; embedded?: boolean }) {
+  if (theme.studioTemplate?.id === "heritage" && !theme.studioTemplate.composition) return <HeritageStudioInvitation content={content} theme={theme as Theme & { studioTemplate: NonNullable<Theme["studioTemplate"]> }} initialNow={initialNow} photos={photos} guest={guest} embedded={embedded} />;
+  if (theme.studioTemplate) return <StudioTemplateInvitation content={content} theme={theme as Theme & { studioTemplate: NonNullable<Theme["studioTemplate"]> }} initialNow={initialNow} photos={photos} guest={guest} embedded={embedded} />;
+  if (theme.designSpec) return <EditorialInvitation content={content} theme={theme as Theme & { designSpec: NonNullable<Theme["designSpec"]> }} initialNow={initialNow} photos={photos} generatedVisual={generatedVisual} guest={guest} embedded={embedded} />;
   if (["cinematic", "portrait-story"].includes(theme.layout.composition)) return <ReferenceInvitation content={content} theme={theme} initialNow={initialNow} photos={photos} guest={guest} embedded={embedded} />;
   if (theme.layout.composition === "immersive") return <ImmersiveInvitation content={content} theme={theme} initialNow={initialNow} photos={photos} generatedVisual={generatedVisual} guest={guest} embedded={embedded} />;
   if (theme.layout.preset === "card-stack") return <CardStack content={content} theme={theme} initialNow={initialNow} photos={photos} generatedVisual={generatedVisual} guest={guest} embedded={embedded} />;
@@ -46,6 +52,7 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [], gener
   const t = (text: string) => typograph(text, content.locale);
   const entrance = getMotion(theme.motion.preset)?.entrance;
   const signature = isSignatureComposition(theme.layout.composition) && theme.artwork === "none" && !generatedVisual;
+  const paper = theme.layout.composition === "organic-paper";
   const monogram = content.hosts.map((host) => Array.from(host.name.trim())[0]).join("·");
   const names = content.headline ? <span data-studio-field="headline">{t(content.headline)}</span> : content.hosts.map((host, index) =>
     <span key={index}>{index > 0 && <span className="hero-join"> &amp; </span>}<span className="hero-host" data-studio-field={`hosts.${index}.name`}>{t(host.name)}</span></span>);
@@ -68,7 +75,7 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [], gener
       {signature && isSignatureComposition(theme.layout.composition) && <SignatureArt content={content} composition={theme.layout.composition} />}
       <Artwork id={theme.artwork} placement="hero" /><Ornament theme={theme} placement="hero-frame" /><Ornament theme={theme} placement="watermark" />
       {generatedVisual && <GeneratedVisual source={generatedVisual} palette={theme.palette} isolated={theme.generatedVisual?.isolated} />}
-      <Hero content={content} title={title} titleWrapper={titleWrapper} nextTarget={nextTarget} guest={guest} monogram={monogram} />
+      <Hero content={content} title={title} titleWrapper={titleWrapper} nextTarget={nextTarget} guest={guest} monogram={monogram} paper={paper} />
       <div className="hero-corners"><Ornament theme={theme} placement="corners" /><Ornament theme={theme} placement="corners" /></div>
     </div>,
     greeting: <Greeting content={content} guest={guest} />,
@@ -81,7 +88,7 @@ export function ScrollNarrative({ content, theme, initialNow, photos = [], gener
   };
   return <>
     <FontPreloads typeSet={theme.typeSet} locale={content.locale} />
-    <main className="invitation" data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork} data-crafted={signature ? "signature" : theme.artwork === "none" ? "atelier" : undefined} data-ornament={theme.ornament.pack} data-visual={generatedVisual ? theme.layout.visualPlacement : undefined} data-name-flow={theme.layout.nameFlow}
+    <main className={`invitation${paper ? " organic-paper" : ""}`} data-composition={theme.layout.composition} data-hero={theme.layout.hero} data-artwork={theme.artwork} data-crafted={paper ? "organic" : signature ? "signature" : theme.artwork === "none" ? "atelier" : undefined} data-ornament={theme.ornament.pack} data-visual={generatedVisual ? theme.layout.visualPlacement : undefined} data-name-flow={theme.layout.nameFlow}
       data-motion={theme.motion.preset} style={toCssVars(theme) as CSSProperties} lang={langFor(content.locale)}>
       <InvitationExperience names={content.hosts.map((host) => host.name).join(" & ")} monogram={monogram} date={eventDate(content).full} guest={guest} locale={content.locale} motion={theme.motion.preset} embedded={embedded}>
       <Surface surface={theme.surface}><div className="narrative-content">

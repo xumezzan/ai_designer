@@ -1,0 +1,6 @@
+.pf-ai-refine { margin: 22px 26px; padding: 24px 0; border-top: 1px solid #deddd4; display: grid; gap: 14px; min-width: 0; }
+.pf-ai-refine h3 { font-family: var(--font-display, Georgia), serif; font-size: 26px; font-weight: 400; margin: 0; }
+.pf-ai-refine > p { margin: 0; font-size: 12px; line-height: 1.7; }
+.pf-ai-refine small { color: #747a6c; font-size: 11px; line-height: 1.6; }
+.pf-ai-refine .pf-button { white-space: normal; min-height: 44px; }
+@media (max-width: 650px) { .pf-ai-refine { margin-inline: 18px; } }

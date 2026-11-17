@@ -1,0 +1,63 @@
+.pf-ai-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pf-ai-wizard { max-height: calc(100dvh - 90px); overflow-y: auto; padding: 13px 17px 8px; color: #344337; }
+.pf-modal:has(.pf-ai-wizard) > .pf-modal-close { min-width: 44px; min-height: 44px; }
+.pf-ai-header { max-width: 640px; padding-right: 16px; }
+.pf-ai-header h2 { font-size: 39px; margin: 14px 0; }
+.pf-ai-header p { color: #73786d; line-height: 1.7; max-width: 610px; margin: 0; }
+.pf-ai-steps { display: flex; padding: 0; margin: 27px 0; list-style: none; border-bottom: 1px solid #dee2d7; }
+.pf-ai-steps li { display: flex; gap: 9px; align-items: center; flex: 1; padding: 0 0 15px; color: #7c8276; }
+.pf-ai-steps li span { font-size: 10px; letter-spacing: 1px; }
+.pf-ai-steps li[aria-current="step"] { color: #344337; box-shadow: 0 1px #344337; }
+.pf-ai-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+.pf-ai-form label { display: block; min-width: 0; font-size: 12px; font-weight: 500; }
+.pf-ai-form small { margin-left: 4px; color: #858a7e; font-size: 10px; font-weight: 400; }
+.pf-ai-form input:not([type="file"]), .pf-ai-form select, .pf-ai-form textarea { display: block; width: 100%; min-width: 0; box-sizing: border-box; font: inherit; font-weight: 400; color: #344337; background: #fffef9; border: 1px solid #dce1d3; border-radius: 4px; padding: 12px; min-height: 44px; margin-top: 7px; }
+.pf-ai-form select:focus, .pf-ai-form input:focus, .pf-ai-form textarea:focus { outline: 2px solid #a8b196; outline-offset: 2px; }
+.pf-ai-form textarea { resize: vertical; min-height: 150px; line-height: 1.7; }
+.pf-ai-form textarea::placeholder { color: #979a8c; }
+.pf-ai-form :disabled { opacity: .6; cursor: wait; }
+.pf-ai-full { grid-column: 1 / -1; }
+.pf-ai-hint { font-size: 11px; line-height: 1.7; color: #7d8375; margin: 12px 0 0; }
+.pf-ai-summary { display: flex; align-items: center; gap: 10px; background: #eff1e9; border-radius: 4px; padding: 12px 15px; margin-bottom: 22px; }
+.pf-ai-summary time { margin-left: auto; color: #747c69; font-size: 11px; }
+.pf-ai-brief-meta { display: flex; justify-content: space-between; align-items: start; gap: 12px; color: #7d8375; font-size: 10px; line-height: 1.6; margin-top: 7px; }
+.pf-ai-brief-meta span:last-child { white-space: nowrap; }
+.pf-ai-references { border: 0; padding: 0; margin: 25px 0 0; min-width: 0; }
+.pf-ai-references legend { font-size: 12px; font-weight: 500; padding: 0; }
+.pf-ai-references .pf-ai-hint { margin-top: 6px; max-width: 540px; }
+.pf-ai-reference-list { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.pf-ai-reference { position: relative; width: 105px; height: 105px; }
+.pf-ai-reference img { width: 100%; height: 100%; border-radius: 4px; object-fit: cover; }
+.pf-ai-reference .pf-icon-button { position: absolute; right: 3px; top: 3px; min-width: 44px; min-height: 44px; background: #fffef9ed; }
+.pf-ai-upload { width: 125px; min-height: 105px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; border: 1px dashed #c7cdbb; border-radius: 4px; background: #f6f7ef; color: #6a785d; font: inherit; font-size: 10px; padding: 12px; }
+.pf-ai-upload:hover { background: #edf0e4; }
+.pf-ai-footer { position: sticky; bottom: 0; z-index: 1; display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap; margin-top: 26px; padding: 14px 0 8px; background: #fdfef8; }
+.pf-ai-footer > .pf-button-outline { margin-right: auto; }
+.pf-ai-footer .pf-button { min-height: 44px; }
+.pf-ai-progress { display: flex; align-items: flex-start; gap: 14px; border: 1px solid #dce2d2; background: #f1f4eb; padding: 16px; margin-top: 22px; border-radius: 4px; }
+.pf-ai-progress p { margin: 3px 0 0; font-size: 11px; color: #707d64; line-height: 1.7; }
+.pf-ai-progress strong { font-size: 12px; font-weight: 500; }
+.pf-ai-progress > svg { flex: 0 0 auto; margin-top: 2px; }
+.pf-ai-spinner { width: 18px; height: 18px; flex: 0 0 auto; border: 1px solid #c4cdb7; border-top-color: #5e7450; border-radius: 50%; animation: pf-ai-spin 1.2s linear infinite; margin-top: 3px; }
+.pf-ai-error { padding: 14px 16px; background: #f7eee7; border: 1px solid #e7d6c8; border-radius: 4px; margin-top: 20px; color: #8c523a; font-size: 12px; }
+.pf-ai-error strong { font-weight: 500; }
+.pf-ai-error p { margin: 4px 0 0; font-size: 11px; }
+.pf-ai-draft { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; border-top: 1px solid #e3e6db; margin-top: 24px; padding-top: 14px; }
+.pf-ai-draft > span { color: #818875; font-size: 10px; }
+.pf-ai-draft button { font-size: 11px; min-height: 44px; }
+@keyframes pf-ai-spin { to { transform: rotate(360deg); } }
+@media (max-width: 600px) {
+  .pf-ai-wizard { padding: 12px 0 0; max-height: calc(100dvh - 90px); }
+  .pf-ai-header h2 { font-size: 32px; }
+  .pf-ai-header p { font-size: 12px; }
+  .pf-ai-fields { gap: 15px 12px; }
+  .pf-ai-steps { margin: 22px 0; }
+  .pf-ai-footer { flex-direction: column-reverse; }
+  .pf-ai-footer > .pf-button-outline { margin-right: 0; }
+  .pf-ai-footer .pf-ai-actions, .pf-ai-footer .pf-ai-actions > button { width: 100%; }
+  .pf-page-heading > .pf-ai-actions { width: 100%; }
+  .pf-page-heading > .pf-ai-actions .pf-button { flex: 1 1 auto; justify-content: center; }
+  .pf-ai-summary { gap: 7px; flex-wrap: wrap; }
+  .pf-ai-summary time { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pf-ai-spinner { animation: none; } }

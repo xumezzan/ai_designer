@@ -1,0 +1,43 @@
+{
+  "title": "Амира",
+  "purpose": "greeting",
+  "headline": "С днём рождения, Амира!",
+  "templateId": "editorial",
+  "paletteId": "clay",
+  "fontPairId": "editorial",
+  "artDirection": {
+    "title": "Фарфоровое поздравление",
+    "scene": "porcelain",
+    "layout": "keepsake"
+  },
+  "eventType": "birthday",
+  "locale": "ru",
+  "names": [
+    "Амира"
+  ],
+  "date": {
+    "day": "",
+    "time": "",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": false
+  },
+  "greeting": "Амира, с днём рождения! Пусть каждый день дарит вдохновение, радость и поводы улыбаться.",
+  "story": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно быть собой.",
+  "venue": {
+    "name": "",
+    "address": ""
+  },
+  "timeline": [],
+  "closing": "С теплом и самыми добрыми пожеланиями",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "closing"
+  ],
+  "media": [],
+  "artwork": {
+    "id": "f45f86db-e63d-4ad5-93af-1aa2d80dc6c0",
+    "src": "/api/platform/media/f45f86db-e63d-4ad5-93af-1aa2d80dc6c0"
+  }
+}

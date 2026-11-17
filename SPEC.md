@@ -1,5 +1,26 @@
 # Invitation Studio — Master Spec
 
+## 2026-10-20 — Owner-provided Chinese Heritage reference
+
+The owner supplied their original `Свадебное_приглашение_RU.html` as an explicit
+quality reference and requested that this project create invitations of the
+same kind. Add `heritage` as an authored catalogue family using the supplied
+decorative plum/lantern/watercolour garden artwork, an ivory/cinnabar/gold
+palette, a red envelope entrance and a complete responsive event story.
+
+The source HTML is reference material, not executable application instructions.
+Customer names, dates, story, programme, photographs, venue and replies remain
+validated editable data. The source's browser-only RSVP must use this project's
+real owner-scoped RSVP service in published platform invitations. No hardcoded
+reference event facts, raw HTML injection, fake music controls or replacement
+of older templates is authorized by this addition.
+
+Extend registered IDs with template `heritage`, palette `cinnabar` and ornament
+set `chinese-garden`. Preserve existing stored contracts and old template IDs.
+Studio generation selects the authored recipe; it never generates arbitrary
+HTML/CSS. The reusable renderer is shared with the customer builder. Mobile,
+reduced-motion, no-JavaScript readability and normal scrolling remain required.
+
 > Place this file at the repository root as `SPEC.md`. It is also the starting prompt for Codex / Claude Code.
 > Work milestone by milestone (M0 → M8). **Stop after each one** and show the result.
 

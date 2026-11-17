@@ -1,0 +1,26 @@
+{
+  "paidCalls": 0,
+  "checks": [
+    "Wizard success propagates previousDraft through Dashboard into real InvitationEditor restore button",
+    "Initial previousDraft restoration autosaves to real local server",
+    "Refine prepares current unsaved input, consumes latest expectedUpdatedAt, and double click sends one POST",
+    "Editor autosaves new manual edits after generated result using updated version",
+    "Refine previousDraft restores exact prior variant and autosaves without a stale-version conflict",
+    "502 preserves pending requestId; repeated status actions use GET and no duplicate POST",
+    "Reopened editor recovers pending job by GET; terminal failure unlocks explicit new generation",
+    "Explicit terminal-failure retry uses new requestId; brief remains visible after failed response",
+    "Refine panel has no horizontal overflow at 320/390/430"
+  ],
+  "screenshots": [
+    "/tmp/ai-editor-ui-qa/mobile-390-refine.png"
+  ],
+  "errors": [],
+  "postCount": 4,
+  "getCount": 2,
+  "requestIds": [
+    "3971e735-9e59-4bc7-a373-83e1687fd295",
+    "9e94e07c-04c3-4454-bf8c-944cd042c82c",
+    "e6de60b7-6406-4de3-86d8-a0b8439fce62",
+    "d4a96005-a202-458f-b539-db6583de132a"
+  ]
+}

@@ -1,7 +1,8 @@
 # Prepared invitation fonts
 
-The 33 WOFF2 files are committed assets. Normal `npm ci`, tests and builds do
-not download fonts or need Python. Seven families used by the registered type sets are prepared; unused registry candidates are not bundled.
+The 62 WOFF2 files are committed assets. Normal `npm ci`, tests and builds do
+not download fonts or need Python. Eleven families used by the registered type
+sets are prepared. Unused registry candidates are not bundled.
 
 Sources are full variable or static TTFs from the pinned Google Fonts commit in
 `registry/font-assets.config.json`. Source Git blob hashes are verified before
@@ -45,3 +46,16 @@ advertised Unicode ranges; no apostrophe is silently rewritten.
 Marck Script supplies the Handwritten wedding type set. The pinned source lacks
 the Uzbek modifier apostrophes, so this display set is available for Russian
 and English; the generator must choose another registered set for Uzbek names.
+
+Modern Editorial pairs Cormorant Garamond at 600 with Inter at 400, 500 and 600.
+Inter's prepared Latin subset carries both Uzbek modifier apostrophes
+(U+02BB and U+02BC), and the Cyrillic and Latin Extended subsets cover Russian
+and Uzbek Latin copy at all three weights. Inter uses a measured Arial fallback.
+
+Botanical Haute pairs Prata with Manrope. The browser uses Cormorant Garamond
+for Uzbek letters and signs absent from Prata, and Inter for the two modifier
+apostrophes absent from Manrope. Montserrat ships both apostrophes and Cyrillic.
+
+Velvet Noir pairs Bodoni Moda with Montserrat. Bodoni Moda has Latin and Latin
+Extended subsets. Cormorant Garamond supplies its Cyrillic letters and Uzbek
+modifier apostrophes. Its Cyrillic subset is preloaded for Russian pages.

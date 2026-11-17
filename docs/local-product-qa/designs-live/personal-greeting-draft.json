@@ -1,0 +1,54 @@
+{
+  "title": "Амира",
+  "purpose": "greeting",
+  "headline": "С днём рождения, Амира",
+  "templateId": "editorial",
+  "paletteId": "clay",
+  "fontPairId": "gallery",
+  "composition": {
+    "heroLayout": "minimal-card",
+    "photoShape": "pill",
+    "surfaceStyle": "soft-gradient",
+    "spacingScale": "airy-gallery",
+    "typographyAccent": "classic-centered",
+    "decorConfig": {
+      "placement": "dividers",
+      "density": "subtle",
+      "opacity": 0.18
+    },
+    "sectionVariants": {
+      "countdown": "inline",
+      "program": "editorial-list",
+      "venue": "stacked",
+      "gallery": "editorial",
+      "rsvp": "minimal"
+    }
+  },
+  "ornamentSetId": "editorial-rules",
+  "eventType": "birthday",
+  "locale": "ru",
+  "names": [
+    "Амира"
+  ],
+  "date": {
+    "day": "",
+    "time": "",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": false
+  },
+  "greeting": "Амира, в этот день хочется остановиться и сказать тебе просто и тепло: как хорошо, что ты есть. Пусть этот день будет мягким и твоим — наполненным тем, что по-настоящему нравится тебе: тишиной или смехом, книгой или прогулкой, чем угодно, что делает тебя собой. Ты умеешь замечать важное и делать пространство вокруг себя чуть светлее — это редкое и ценное. Пусть этот год принесёт тебе столько же тепла, сколько ты сама отдаёшь миру.",
+  "story": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно быть собой. Пусть впереди будет много счастливых открытий.",
+  "venue": {
+    "name": "",
+    "address": ""
+  },
+  "timeline": [],
+  "closing": "С тихой радостью и самыми добрыми пожеланиями — в твой день и во все дни после него.",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "closing"
+  ],
+  "media": []
+}

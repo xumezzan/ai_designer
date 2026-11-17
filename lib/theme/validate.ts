@@ -12,6 +12,7 @@ import { getTypeSet, typeSetSupportsLocale } from "../../registry/typesets";
 import { canonicalSectionOrder } from "@/lib/invitation/sections";
 import { SECTION_IDS, type SectionId } from "@/registry/keys";
 import { isNativeComposition } from "@/lib/invitation/reference";
+import { studioTemplateTheme } from "@/registry/studioTemplates";
 import { getMaterialSet } from "../../registry/materials";
 import { getLayout } from "../../registry/layouts";
 import { getMotion } from "../../registry/motion";
@@ -288,6 +289,20 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
   const warnings: string[] = [];
 
   errors.push(...checkKeys(theme as unknown as Record<string, unknown>));
+  if (theme.studioTemplate) {
+    try {
+      const marker = theme.studioTemplate;
+      const recipe = studioTemplateTheme({ templateId: marker.id, paletteId: marker.paletteId, fontPairId: marker.fontPairId, ornamentSetId: marker.ornamentSetId, ...(marker.composition ? { composition: marker.composition } : {}) });
+      if (theme.designSpec || theme.generatedVisual) errors.push("Authored templates use only their registered native assets and composition");
+      for (const key of ["palette", "typeSet", "materialSet", "artwork", "foil", "atmosphere", "surface", "finishing", "typographyScale", "ornament"] as const) {
+        if (JSON.stringify(theme[key]) !== JSON.stringify(recipe[key])) errors.push(`Authored template ${key} must match its registered recipe`);
+      }
+      for (const key of ["preset", "composition", "hero", "photoArrangement", "visualPlacement", "nameFlow"] as const) {
+        if (theme.layout[key] !== recipe.layout[key]) errors.push(`Authored template layout.${key} must match its registered recipe`);
+      }
+      if (theme.motion.ambient !== "none" || (theme.motion.preset !== "still" && theme.motion.preset !== recipe.motion.preset)) errors.push("Use the authored template's motion or still");
+    } catch (error) { errors.push((error as Error).message); }
+  }
   if (theme.layout.preset === "card-stack") {
     if (theme.artwork !== "none") errors.push("Material scenes use their native artwork; select artwork none");
     const glass = theme.layout.composition === "glass-garden";
@@ -295,11 +310,20 @@ export function validateTheme(raw: unknown, options?: ValidateOptions): Validati
     const texture = glass ? "smooth" : theme.layout.composition === "silk-suite" ? "raw-silk" : "cotton-paper";
     if (theme.surface.texture !== texture) errors.push("Select the texture registered for this physical scene");
   }
-  if (theme.generatedVisual?.kind === "scene" && theme.layout.composition !== "immersive") errors.push("A scene visual requires immersive composition");
+  if (theme.generatedVisual?.kind === "scene" && theme.layout.composition !== "immersive" && !theme.designSpec) errors.push("A scene visual requires immersive composition");
   if (theme.layout.composition === "immersive" && theme.generatedVisual && theme.generatedVisual.kind !== "scene") errors.push("Immersive composition requires a scene visual, not an isolated ornament");
   if (isNativeComposition(theme.layout.composition)) {
     if (theme.artwork !== "none" || theme.generatedVisual || theme.ornament.pack !== "none") errors.push("Native web stories use live typography, geometry and supplied photos; select artwork none, ornament none and no generatedVisual");
     if (theme.layout.sectionOrder[0] !== "hero" || (theme.layout.sectionOrder.includes("greeting") && theme.layout.sectionOrder[1] !== "greeting")) errors.push("Wedding stories open with hero followed by greeting when included");
+  }
+  if (theme.layout.composition === "organic-paper" && theme.materialSet !== "paper") errors.push("Organic Paper uses its native paper material; select materialSet paper");
+  if (theme.designSpec) {
+    const spec = theme.designSpec;
+    if (theme.layout.composition !== spec.component_manifest.hero_layout_component || theme.layout.preset !== "scroll-narrative") errors.push("The theme must use the component selected by its design specification");
+    if (theme.materialSet !== "paper" || theme.artwork !== "none" || theme.ornament.pack !== "none") errors.push("Editorial specifications use their authored paper renderer and decoration");
+    if (theme.generatedVisual && !spec.graphics_generation.needed) errors.push("An editorial design without artwork must not retain a generated visual");
+    // Artwork kind records the original generation strategy. A later frame or
+    // background placement can reuse the same immutable image safely.
   }
 
   // Preset existence: a key is only real once its registry module provides it.

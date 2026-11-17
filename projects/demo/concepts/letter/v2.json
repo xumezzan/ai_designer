@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "name": "Organic Paper",
+    "mood": ["editorial", "linen", "sage"],
+    "rationale": "Арочная открытка из плотной льняной бумаги, тонкая растительная гравюра и выразительные имена. Шалфейная программа вечера, тактильная палитра и бланк ответа с сургучным вензелем складываются в цельную мобильную историю."
+  },
+  "palette": {
+    "bg": "#F5F2EB",
+    "surface": "#FAF8F5",
+    "ink": "#2C2A29",
+    "muted": "#756B60",
+    "accent": "#A28A68",
+    "accentAlt": "#87917C"
+  },
+  "typeSet": "ceremony",
+  "materialSet": "paper",
+  "artwork": "none",
+  "foil": { "enabled": false, "color": "#C5A880" },
+  "surface": { "texture": "cotton-paper", "borderStyle": "hairline" },
+  "ornament": { "pack": "none", "density": "light", "placement": [], "color": "accentAlt" },
+  "layout": {
+    "preset": "scroll-narrative",
+    "composition": "organic-paper",
+    "hero": "typographic",
+    "sectionOrder": ["hero", "greeting", "countdown", "venue", "timeline", "dressCode", "rsvp", "footer"]
+  },
+  "motion": { "preset": "drift", "ambient": "none" }
+}

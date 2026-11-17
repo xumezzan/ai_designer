@@ -1,0 +1,197 @@
+{
+  "responsive": [
+    {
+      "id": "editorial",
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "id": "botanical",
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "id": "classic",
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "id": "modern",
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "id": "corporate",
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "id": "nocturne",
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "id": "editorial",
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "id": "botanical",
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "id": "classic",
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "id": "modern",
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "id": "corporate",
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "id": "nocturne",
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "id": "editorial",
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "id": "botanical",
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "id": "classic",
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "id": "modern",
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "id": "corporate",
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "id": "nocturne",
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    }
+  ],
+  "palettes": [
+    {
+      "id": "editorial",
+      "palette": "ivory"
+    },
+    {
+      "id": "editorial",
+      "palette": "rose"
+    },
+    {
+      "id": "editorial",
+      "palette": "champagne"
+    },
+    {
+      "id": "botanical",
+      "palette": "sage"
+    },
+    {
+      "id": "botanical",
+      "palette": "ivory"
+    },
+    {
+      "id": "botanical",
+      "palette": "forest"
+    },
+    {
+      "id": "classic",
+      "palette": "champagne"
+    },
+    {
+      "id": "classic",
+      "palette": "ivory"
+    },
+    {
+      "id": "classic",
+      "palette": "rose"
+    },
+    {
+      "id": "modern",
+      "palette": "terracotta"
+    },
+    {
+      "id": "modern",
+      "palette": "cobalt"
+    },
+    {
+      "id": "modern",
+      "palette": "clay"
+    },
+    {
+      "id": "corporate",
+      "palette": "ivory"
+    },
+    {
+      "id": "corporate",
+      "palette": "slate"
+    },
+    {
+      "id": "corporate",
+      "palette": "ink"
+    },
+    {
+      "id": "nocturne",
+      "palette": "ink"
+    },
+    {
+      "id": "nocturne",
+      "palette": "wine"
+    },
+    {
+      "id": "nocturne",
+      "palette": "forest"
+    }
+  ],
+  "checks": [
+    "Six full mobile compositions at320/390/430, all18 approved palette alternatives, local fonts and zero text/control overflow",
+    "Template-only creation enabled with no description or provider key; selecting a recipe preserves the brief",
+    "Manual API generation, persisted recipe, personalised RSVP, step/back values and native POST to locally intercepted test receiver",
+    "Deterministic palette API produces immutable v2 without changing composition or provider call",
+    "All six complete invitations and native response form remain usable without JavaScript",
+    "Authored reveal and reduced-motion fallback",
+    "Desktop enhancements and catalog preview"
+  ],
+  "errors": [],
+  "externalRequests": []
+}

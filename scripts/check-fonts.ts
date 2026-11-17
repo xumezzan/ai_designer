@@ -51,6 +51,8 @@ const CANDIDATES = [
   "Caveat",
   "Bad Script",
   "Comfortaa",
+  "Inter",
+  "Bodoni Moda",
 ] as const;
 
 const BLOCK_START = 0x0400;
@@ -377,7 +379,7 @@ async function main(): Promise<void> {
   console.log(`Wrote ${outPath}`);
 
   const passing = families.filter((f) => f.support.cyrillic && f.source !== "unmeasured").length;
-  console.log(`${passing} families pass the Cyrillic check and are registry-eligible.`);
+  console.log(`${passing} families pass the Cyrillic check for standalone use.`);
   if (unmeasured > 0) {
     console.log(`${unmeasured} families could not be measured from any source.`);
     if (strict) process.exit(1);

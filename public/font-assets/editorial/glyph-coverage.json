@@ -1,0 +1,138 @@
+{
+  "method": "Decompress WOFF2 Brotli table stream; inspect Unicode cmap formats 4/12/13 for nonzero glyph IDs.",
+  "cyrillicCore": "U+0400–045F",
+  "uzbekApostrophes": [
+    "U+02BB",
+    "U+02BC"
+  ],
+  "faces": [
+    {
+      "family": "Cormorant Garamond",
+      "style": "normal",
+      "weight": 400,
+      "cyrillicCore": true,
+      "missingCyrillicCore": [],
+      "uzbekApostrophes": true,
+      "fallbackForCyrillic": null,
+      "fallbackForUzbek": null
+    },
+    {
+      "family": "Cormorant Garamond",
+      "style": "italic",
+      "weight": 400,
+      "cyrillicCore": true,
+      "missingCyrillicCore": [],
+      "uzbekApostrophes": true,
+      "fallbackForCyrillic": null,
+      "fallbackForUzbek": null
+    },
+    {
+      "family": "Playfair Display",
+      "style": "normal",
+      "weight": 400,
+      "cyrillicCore": true,
+      "missingCyrillicCore": [],
+      "uzbekApostrophes": true,
+      "fallbackForCyrillic": null,
+      "fallbackForUzbek": null
+    },
+    {
+      "family": "Playfair Display",
+      "style": "italic",
+      "weight": 400,
+      "cyrillicCore": true,
+      "missingCyrillicCore": [],
+      "uzbekApostrophes": true,
+      "fallbackForCyrillic": null,
+      "fallbackForUzbek": null
+    },
+    {
+      "family": "Jost",
+      "style": "normal",
+      "weight": 400,
+      "cyrillicCore": false,
+      "missingCyrillicCore": [
+        "U+0402",
+        "U+0404",
+        "U+0405",
+        "U+0406",
+        "U+0407",
+        "U+0408",
+        "U+0409",
+        "U+040A",
+        "U+040B",
+        "U+040F",
+        "U+0452",
+        "U+0454",
+        "U+0455",
+        "U+0456",
+        "U+0457",
+        "U+0458",
+        "U+0459",
+        "U+045A",
+        "U+045B",
+        "U+045F"
+      ],
+      "uzbekApostrophes": false,
+      "fallbackForCyrillic": "Montserrat",
+      "fallbackForUzbek": "Montserrat"
+    },
+    {
+      "family": "Jost",
+      "style": "normal",
+      "weight": 500,
+      "cyrillicCore": false,
+      "missingCyrillicCore": [
+        "U+0402",
+        "U+0404",
+        "U+0405",
+        "U+0406",
+        "U+0407",
+        "U+0408",
+        "U+0409",
+        "U+040A",
+        "U+040B",
+        "U+040F",
+        "U+0452",
+        "U+0454",
+        "U+0455",
+        "U+0456",
+        "U+0457",
+        "U+0458",
+        "U+0459",
+        "U+045A",
+        "U+045B",
+        "U+045F"
+      ],
+      "uzbekApostrophes": false,
+      "fallbackForCyrillic": "Montserrat",
+      "fallbackForUzbek": "Montserrat"
+    }
+  ],
+  "fallbacks": [
+    {
+      "family": "Montserrat",
+      "style": "normal",
+      "weights": [
+        400,
+        500
+      ],
+      "cyrillicCore": true,
+      "uzbekApostrophes": true,
+      "files": [
+        {
+          "file": "../organic/montserrat-cyrillic-normal.woff2",
+          "sha256": "0b00fbd6edcc84cd5f77364bbeb06b75ed263c740061eba34511f1e2ac1a82d3"
+        },
+        {
+          "file": "../organic/montserrat-latin-ext-normal.woff2",
+          "sha256": "920711de9ae96c18970fa4faca73cd302b93ac5ed57ebeb6bfec2ddeff930082"
+        },
+        {
+          "file": "../organic/montserrat-latin-normal.woff2",
+          "sha256": "6438d7b8ea9c7c3992d5e2fd2afdb1ff948570a3ef0bedae76247b51632960ba"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "generatedAt": "2026-10-22T04:09:38.084Z",
+  "base": "http://127.0.0.1:4310",
+  "slug": "invite-49fbdf73e77b56c9891d3165",
+  "paidCalls": 0,
+  "checks": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "artworkInsideHero": true,
+      "artworkUrls": [
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6",
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6"
+      ],
+      "transform": "none",
+      "duplicateIds": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "rsvp",
+        "closing"
+      ],
+      "headings": [
+        "София& и Александр",
+        "Дорогиегости",
+        "19",
+        "До нашей встречи",
+        "Villa Botanica",
+        "Программа",
+        "Подтвердите участие",
+        "Разделите с нами этот день",
+        "До встречи"
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "artworkInsideHero": true,
+      "artworkUrls": [
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6",
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6"
+      ],
+      "transform": "none",
+      "duplicateIds": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "rsvp",
+        "closing"
+      ],
+      "headings": [
+        "София& и Александр",
+        "Дорогиегости",
+        "19",
+        "До нашей встречи",
+        "Villa Botanica",
+        "Программа",
+        "Подтвердите участие",
+        "Разделите с нами этот день",
+        "До встречи"
+      ]
+    },
+    {
+      "width": 430,
+      "scrollWidth": 430,
+      "artworkInsideHero": true,
+      "artworkUrls": [
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6",
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6"
+      ],
+      "transform": "none",
+      "duplicateIds": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "rsvp",
+        "closing"
+      ],
+      "headings": [
+        "София& и Александр",
+        "Дорогиегости",
+        "19",
+        "До нашей встречи",
+        "Villa Botanica",
+        "Программа",
+        "Подтвердите участие",
+        "Разделите с нами этот день",
+        "До встречи"
+      ]
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "artworkInsideHero": true,
+      "artworkUrls": [
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6",
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6"
+      ],
+      "transform": "none",
+      "duplicateIds": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "rsvp",
+        "closing"
+      ],
+      "headings": [
+        "София& и Александр",
+        "Дорогиегости",
+        "19",
+        "До нашей встречи",
+        "Villa Botanica",
+        "Программа",
+        "Подтвердите участие",
+        "Разделите с нами этот день",
+        "До встречи"
+      ]
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "artworkInsideHero": true,
+      "artworkUrls": [
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6",
+        "/api/platform/media/a87f2732-96bd-40d3-8465-e0843f379fa6"
+      ],
+      "transform": "none",
+      "duplicateIds": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "rsvp",
+        "closing"
+      ],
+      "headings": [
+        "София& и Александр",
+        "Дорогиегости",
+        "19",
+        "До нашей встречи",
+        "Villa Botanica",
+        "Программа",
+        "Подтвердите участие",
+        "Разделите с нами этот день",
+        "До встречи"
+      ]
+    }
+  ],
+  "noJavaScriptReadable": true,
+  "pageErrors": []
+}

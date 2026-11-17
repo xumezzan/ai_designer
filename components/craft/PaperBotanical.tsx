@@ -1,0 +1,13 @@
+/** Original line drawing, kept decorative so all invitation copy stays live. */
+export function PaperBotanical({ className = "" }: { className?: string }) {
+  return (
+    <svg className={`paper-botanical ${className}`} viewBox="0 0 160 240" fill="none" aria-hidden="true" focusable="false">
+      <g stroke="currentColor" strokeWidth=".85" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M74 226C75 175 86 116 111 28M83 163C60 144 44 119 33 88M94 117C115 100 133 79 143 55M104 78C88 60 78 39 76 17" />
+        <path d="M79 188C57 193 44 177 45 164C63 163 77 171 79 188ZM82 168C100 171 116 161 119 146C100 144 85 153 82 168ZM88 141C68 141 54 127 53 113C72 113 85 123 88 141ZM94 118C113 120 127 107 128 94C110 94 99 103 94 118ZM103 84C89 82 79 71 81 58C94 59 103 70 103 84ZM109 62C123 61 134 49 131 37C117 41 110 51 109 62ZM111 28C101 18 106 5 117 2C124 15 118 25 111 28Z" />
+        <path d="M51 127C35 130 20 119 20 107C37 105 48 115 51 127ZM40 106C24 104 15 93 17 81C32 82 40 93 40 106ZM33 88C43 76 42 63 32 57C21 70 25 82 33 88ZM123 88C141 88 150 76 148 65C134 66 126 75 123 88ZM143 55C133 47 135 35 145 30C153 41 149 50 143 55ZM86 48C69 49 61 38 63 27C77 28 84 37 86 48ZM76 17C66 10 67 2 75 0C82 6 80 13 76 17Z" />
+        <path d="m48 168 26 18m42-35-29 14m-31-48 30 21m39-40-29 17M20 111l28 14M20 85l18 18M84 62l17 18M129 41l-18 17M66 31l17 15" opacity=".45" />
+      </g>
+    </svg>
+  );
+}

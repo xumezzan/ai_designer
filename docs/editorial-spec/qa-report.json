@@ -1,0 +1,88 @@
+{
+  "responsive": [
+    {
+      "component": "arch",
+      "width": 320,
+      "document": 320
+    },
+    {
+      "component": "poster",
+      "width": 320,
+      "document": 320
+    },
+    {
+      "component": "botanical",
+      "width": 320,
+      "document": 320
+    },
+    {
+      "component": "folio",
+      "width": 320,
+      "document": 320
+    },
+    {
+      "component": "letter",
+      "width": 320,
+      "document": 320
+    },
+    {
+      "component": "arch",
+      "width": 390,
+      "document": 390
+    },
+    {
+      "component": "poster",
+      "width": 390,
+      "document": 390
+    },
+    {
+      "component": "botanical",
+      "width": 390,
+      "document": 390
+    },
+    {
+      "component": "folio",
+      "width": 390,
+      "document": 390
+    },
+    {
+      "component": "letter",
+      "width": 390,
+      "document": 390
+    },
+    {
+      "component": "arch",
+      "width": 430,
+      "document": 430
+    },
+    {
+      "component": "poster",
+      "width": 430,
+      "document": 430
+    },
+    {
+      "component": "botanical",
+      "width": 430,
+      "document": 430
+    },
+    {
+      "component": "folio",
+      "width": 430,
+      "document": 430
+    },
+    {
+      "component": "letter",
+      "width": 430,
+      "document": 430
+    }
+  ],
+  "checks": [
+    "Five independent native editorial compositions at 320, 390 and 430px; local fonts, declared grain and italic accents",
+    "All five keep swatches, calendar downloads, personalized name, RSVP steps/back values and unchanged native POST (locally intercepted)",
+    "Complete content and native form remain visible without JavaScript",
+    "Soft reveal and reduced-motion fallback",
+    "Desktop enhancement at 1440px"
+  ],
+  "errors": [],
+  "externalRequests": []
+}

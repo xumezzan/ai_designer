@@ -11,6 +11,9 @@ import "@/app/photos.css";
 import "@/app/atelier.css";
 import "@/app/physicality.css";
 import "@/app/material-scenes.css";
+import "@/app/organic-paper.css";
+import "@/app/editorial-fonts.css";
+import "@/app/editorial-invitation.css";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Материалы · пример приглашения", robots: { index: false, follow: false } };

@@ -1,0 +1,54 @@
+{
+  "title": "Амира",
+  "purpose": "greeting",
+  "headline": "С днём рождения, Амира!",
+  "templateId": "corporate",
+  "paletteId": "clay",
+  "fontPairId": "gallery",
+  "composition": {
+    "heroLayout": "minimal-card",
+    "photoShape": "rounded",
+    "surfaceStyle": "elevated-card",
+    "spacingScale": "balanced",
+    "typographyAccent": "uppercase-wide-tracking",
+    "decorConfig": {
+      "placement": "dividers",
+      "density": "subtle",
+      "opacity": 0.3
+    },
+    "sectionVariants": {
+      "countdown": "inline",
+      "program": "editorial-list",
+      "venue": "card",
+      "gallery": "grid",
+      "rsvp": "split"
+    }
+  },
+  "ornamentSetId": "editorial-rules",
+  "eventType": "birthday",
+  "locale": "ru",
+  "names": [
+    "Амира"
+  ],
+  "date": {
+    "day": "",
+    "time": "",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": false
+  },
+  "greeting": "Амира, с днём рождения! Пусть каждый день приносит тебе спокойствие, вдохновение и поводы улыбаться.",
+  "story": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно быть собой. Пусть впереди будет много счастливых открытий.",
+  "venue": {
+    "name": "",
+    "address": ""
+  },
+  "timeline": [],
+  "closing": "С теплом и самыми добрыми пожеланиями",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "closing"
+  ],
+  "media": []
+}

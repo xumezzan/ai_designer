@@ -1,0 +1,158 @@
+{
+  "endpoint": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Jost:wght@400;500&family=Playfair+Display:ital,wght@0,400;1,400&display=swap",
+  "cssSha256": "73db54cdd23f5a4ce5ca67eb66e22738125cec91f69bd2159b4267425017a75e",
+  "coverageBasis": "Google Fonts unicode-range; binary glyph verification recorded in glyph-coverage.json",
+  "coverage": [
+    {
+      "family": "Cormorant Garamond",
+      "style": "normal",
+      "weight": 400,
+      "cyrillicCore": true,
+      "uzbekApostrophes": true
+    },
+    {
+      "family": "Cormorant Garamond",
+      "style": "italic",
+      "weight": 400,
+      "cyrillicCore": true,
+      "uzbekApostrophes": true
+    },
+    {
+      "family": "Playfair Display",
+      "style": "normal",
+      "weight": 400,
+      "cyrillicCore": true,
+      "uzbekApostrophes": true
+    },
+    {
+      "family": "Playfair Display",
+      "style": "italic",
+      "weight": 400,
+      "cyrillicCore": true,
+      "uzbekApostrophes": true
+    },
+    {
+      "family": "Jost",
+      "style": "normal",
+      "weight": 400,
+      "cyrillicCore": true,
+      "uzbekApostrophes": true
+    },
+    {
+      "family": "Jost",
+      "style": "normal",
+      "weight": 500,
+      "cyrillicCore": true,
+      "uzbekApostrophes": true
+    }
+  ],
+  "files": [
+    {
+      "file": "cormorant-garamond-cyrillic-italic-400.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd58jD-jNM8A_6pUKz9ugk.woff2",
+      "bytes": 12736,
+      "sha256": "146e434a788515292ebaaa51aa0b7bf607bd48a3d76d17189d597789b6416a18"
+    },
+    {
+      "file": "cormorant-garamond-latin-ext-italic-400.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd58jD-htM8A_6pUKz9ugk.woff2",
+      "bytes": 20280,
+      "sha256": "550e19a8a021b89c7c279d1bf33aec3d30f254f3bf59cb9d913696841d689942"
+    },
+    {
+      "file": "cormorant-garamond-latin-italic-400.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3smX5slCNuHLi8bLeY9MK7whWMhyjYrGFEsdtdc62E6zd58jD-iNM8A_6pUKz9.woff2",
+      "bytes": 23660,
+      "sha256": "c80b489f34b4bb27a716682b8f8a5c3efec50fb8156e1088a43ed206003b6951"
+    },
+    {
+      "file": "cormorant-garamond-cyrillic-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_v86KnDOitk9IfqxUYT9.woff2",
+      "bytes": 12792,
+      "sha256": "c78038b0250df27142b969097d864285f16669b0682e1058a69af4fdf9a8512b"
+    },
+    {
+      "file": "cormorant-garamond-latin-ext-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_v86KnrOitk9IfqxUYT9.woff2",
+      "bytes": 19888,
+      "sha256": "d665c6081f3cded5179106c811bc18c4d7108379e7973ae62459362be75058fe"
+    },
+    {
+      "file": "cormorant-garamond-latin-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/cormorantgaramond/v21/co3umX5slCNuHLi8bLeY9MK7whWMhyjypVO7abI26QOD_v86KnTOitk9IfqxUQ.woff2",
+      "bytes": 22896,
+      "sha256": "982538ce965491bddd0cd96f81c7c694ce19a3f4af7efbc9316ead7820b34c14"
+    },
+    {
+      "file": "jost-cyrillic-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/jost/v20/92zatBhPNqw73oDd4jQmfxIC7w.woff2",
+      "bytes": 10140,
+      "sha256": "184c3af415cddd52af31cf70166bf351adb70b09e64fdb1948109192a26c2c0d"
+    },
+    {
+      "file": "jost-latin-ext-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/jost/v20/92zatBhPNqw73ord4jQmfxIC7w.woff2",
+      "bytes": 17204,
+      "sha256": "b2a539cd1f2bbf123e66bafa988bbd32249a7ba3335aec377a9fc1b37734b1ed"
+    },
+    {
+      "file": "jost-latin-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/jost/v20/92zatBhPNqw73oTd4jQmfxI.woff2",
+      "bytes": 26588,
+      "sha256": "235d8f8964bfdf105fc0c3e4c77b5e70f31bee1dad611d59318b5f2a5cb64d90"
+    },
+    {
+      "file": "playfair-display-cyrillic-italic-400.woff2",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_qiTXtXA-X-uE0qEE5Do.woff2",
+      "bytes": 12580,
+      "sha256": "ff04f888476de897ff83642b4afd7edf76aed79a4e9f0620e63f79ecb43d6549"
+    },
+    {
+      "file": "playfair-display-latin-ext-italic-400.woff2",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_qiTXt_A-X-uE0qEE5Do.woff2",
+      "bytes": 13684,
+      "sha256": "ac9c3bcc1848b07cf06fb1e1ff6159bb81404f9e0ed265ec0b7f1431cb3805f1"
+    },
+    {
+      "file": "playfair-display-latin-italic-400.woff2",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFRD-vYSZviVYUb_rj3ij__anPXDTnCjmHKM4nYO7KN_qiTXtHA-X-uE0qEEw.woff2",
+      "bytes": 21952,
+      "sha256": "ce3932af6f6a6c7321b6f27462213c432f0be6ef2e242d0adf7f8981562a961f"
+    },
+    {
+      "file": "playfair-display-cyrillic-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDTbtPK-F2qC0usEw.woff2",
+      "bytes": 11424,
+      "sha256": "d2d5be11d4e7504895877faa80cff31264ecb4711cc5507a03ec29e90153cc42"
+    },
+    {
+      "file": "playfair-display-latin-ext-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDZbtPK-F2qC0usEw.woff2",
+      "bytes": 12432,
+      "sha256": "14a61a78daa9f1468784ac5c78e39c0883fd65beb3854a77b6fc307dcb279b52"
+    },
+    {
+      "file": "playfair-display-latin-normal-400.woff2",
+      "source": "https://fonts.gstatic.com/s/playfairdisplay/v40/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtPK-F2qC0s.woff2",
+      "bytes": 21880,
+      "sha256": "57edb864a5b79ea8143aa35b89212f99ef63d150052bb6dbb912827e67fa61ba"
+    }
+  ],
+  "licenses": [
+    {
+      "file": "cormorant-garamond-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/OFL.txt",
+      "sha256": "60700d351cac4650c51f3f9db318d2a420f8b45052dba2715eb5fec41f0f6956"
+    },
+    {
+      "file": "playfair-display-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/playfairdisplay/OFL.txt",
+      "sha256": "566be814f8e96e93dfa16101331557eb6b5467e9e03f627c0910fe93ca12300e"
+    },
+    {
+      "file": "jost-LICENSE.txt",
+      "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/jost/OFL.txt",
+      "sha256": "1af3438a4d5f0ed2bdbc5751a5a67ebf6d537334161184b7fbb68503ef0ea0c5"
+    }
+  ]
+}

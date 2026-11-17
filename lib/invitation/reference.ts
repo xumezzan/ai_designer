@@ -2,7 +2,7 @@ import type { CompositionId } from "@/registry/keys";
 import type { DirectedAsset } from "@/lib/assets/crop";
 
 /** Authored web experiences need live code and supplied media, not a cover bitmap. */
-export const NATIVE_COMPOSITIONS: readonly CompositionId[] = ["cinematic", "portrait-story", "keepsake", "vow", "editorial-story"];
+export const NATIVE_COMPOSITIONS: readonly CompositionId[] = ["cinematic", "portrait-story", "keepsake", "vow", "editorial-story", "organic-paper"];
 export function isNativeComposition(id: CompositionId) { return NATIVE_COMPOSITIONS.includes(id); }
 
 /** Text can occupy an explicitly empty part of a protected crop. Otherwise it

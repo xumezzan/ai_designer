@@ -3,11 +3,13 @@ import type { SectionProps } from "./types";
 import { eventDate } from "@/lib/invitation/date";
 import { experienceLabels } from "@/lib/invitation/locale";
 import { typograph } from "@/lib/typography/ru";
+import { PaperBotanical } from "@/components/craft/PaperBotanical";
 
-export function Hero({ content, title, titleWrapper, nextTarget, guest, monogram }: SectionProps & { title: ReactNode; titleWrapper: (node: ReactNode) => ReactNode; nextTarget?: { id: string; label: string }; guest?: string; monogram: string }) {
+export function Hero({ content, title, titleWrapper, nextTarget, guest, monogram, paper = false }: SectionProps & { title: ReactNode; titleWrapper: (node: ReactNode) => ReactNode; nextTarget?: { id: string; label: string }; guest?: string; monogram: string; paper?: boolean }) {
   const date = eventDate(content);
   const t = (text: string) => typograph(text, content.locale);
   return <section className="invitation-hero" id="hero" aria-labelledby="hero-title" data-section="hero">
+    {paper && <PaperBotanical className="paper-hero-branch" />}
     <div className="hero-opening"><p data-level="small">{t(experienceLabels[content.locale][content.eventType])}</p><span className="hero-line" aria-hidden="true" /><span className="hero-edition" data-level="small">{date.year}</span></div>
     <div className="hero-imprint" aria-hidden="true"><span>{monogram}</span></div>
     <div className="hero-name-group">{titleWrapper(<h1 data-level="display" id="hero-title">{title}</h1>)}</div>

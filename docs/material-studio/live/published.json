@@ -1,0 +1,61 @@
+{
+  "title": "Лейла",
+  "purpose": "greeting",
+  "headline": "С днём рождения, Лейла",
+  "templateId": "nocturne",
+  "paletteId": "wine",
+  "fontPairId": "editorial",
+  "composition": {
+    "heroLayout": "fullscreen-cover",
+    "photoShape": "pill",
+    "surfaceStyle": "glassmorphism",
+    "spacingScale": "airy-gallery",
+    "typographyAccent": "italic-serif-accent",
+    "decorConfig": {
+      "placement": "dividers",
+      "density": "subtle",
+      "opacity": 0.28
+    },
+    "sectionVariants": {
+      "countdown": "inline",
+      "program": "editorial-list",
+      "venue": "stacked",
+      "gallery": "editorial",
+      "rsvp": "minimal"
+    }
+  },
+  "ornamentSetId": "editorial-rules",
+  "artDirection": {
+    "title": "Burgundy Silk Atelier",
+    "scene": "silk",
+    "layout": "immersive"
+  },
+  "eventType": "birthday",
+  "locale": "ru",
+  "names": [
+    "Лейла"
+  ],
+  "date": {
+    "day": "",
+    "time": "",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": false
+  },
+  "greeting": "Дорогая Лейла,\n\nЕсть дни, которые сами по себе звучат иначе — тише, теплее, будто весь свет решил собраться в одном месте. Сегодня именно такой день.\n\nПусть этот год будет щедрым на всё, что тебе по-настоящему нужно: на вдохновение, которое приходит неожиданно и остаётся надолго, на радость, которую не нужно объяснять, на пространство, где ты можешь быть собой — без спешки, без лишних слов.\n\nТы умеешь превращать обыденное в красивое — это редкое и настоящее умение. Пусть жизнь отвечает тебе тем же.",
+  "venue": {
+    "name": "",
+    "address": ""
+  },
+  "timeline": [],
+  "closing": "С теплом и восхищением — в этот день и во все остальные.",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "closing"
+  ],
+  "media": [],
+  "artwork": {
+    "id": "95a58dde-ce59-420d-9e5f-29b1fa5ac217",
+    "src": "/api/platform/media/95a58dde-ce59-420d-9e5f-29b1fa5ac217"
+  }
+}

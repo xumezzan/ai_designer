@@ -1,0 +1,960 @@
+{
+  "generatedAt": "2026-10-22T17:40:50.617Z",
+  "base": "http://127.0.0.1:4312",
+  "paidCalls": 0,
+  "blockedGenerationPosts": 0,
+  "apiChecks": [
+    {
+      "scenario": "wedding",
+      "invitationId": "e524ec08-95fc-45a8-8e95-41133828ef81",
+      "slug": "invite-8a768f7e8862ac42ba51251e",
+      "saveReload": true,
+      "publish": true,
+      "snapshotIsolated": true,
+      "rsvpPersistedAndEdited": true,
+      "foreignOriginRejected": true,
+      "disabledContentAbsent": null
+    },
+    {
+      "scenario": "birthday",
+      "invitationId": "55836236-90d8-4dc6-b37f-3b942c195bf6",
+      "slug": "invite-aa6bce07c050549e5cf44ee9",
+      "saveReload": true,
+      "publish": true,
+      "snapshotIsolated": true,
+      "rsvpPersistedAndEdited": true,
+      "foreignOriginRejected": true,
+      "disabledContentAbsent": true
+    },
+    {
+      "scenario": "anniversary",
+      "invitationId": "17b944db-cd71-44d3-bf2f-033f75930a2d",
+      "slug": "invite-49be66e6fdec8a68e552ed77",
+      "saveReload": true,
+      "publish": true,
+      "snapshotIsolated": true,
+      "rsvpPersistedAndEdited": true,
+      "foreignOriginRejected": true,
+      "disabledContentAbsent": null
+    }
+  ],
+  "pages": [
+    {
+      "key": "demo-classic-ru",
+      "width": 320,
+      "endpoint": "/dashboard/preview?template=classic&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-classic-ru",
+      "width": 390,
+      "endpoint": "/dashboard/preview?template=classic&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "screenshots": [
+        "demo-classic-ru-390-full.png",
+        "demo-classic-ru-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "demo-classic-ru",
+      "width": 430,
+      "endpoint": "/dashboard/preview?template=classic&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-classic-ru",
+      "width": 1280,
+      "endpoint": "/dashboard/preview?template=classic&locale=ru",
+      "isMobile": false,
+      "hasTouch": false,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 1280,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-botanical-ru",
+      "width": 320,
+      "endpoint": "/dashboard/preview?template=botanical&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-botanical-ru",
+      "width": 390,
+      "endpoint": "/dashboard/preview?template=botanical&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "screenshots": [
+        "demo-botanical-ru-390-full.png",
+        "demo-botanical-ru-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "demo-botanical-ru",
+      "width": 430,
+      "endpoint": "/dashboard/preview?template=botanical&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-botanical-ru",
+      "width": 1280,
+      "endpoint": "/dashboard/preview?template=botanical&locale=ru",
+      "isMobile": false,
+      "hasTouch": false,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 1280,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-nocturne-ru",
+      "width": 320,
+      "endpoint": "/dashboard/preview?template=nocturne&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-nocturne-ru",
+      "width": 390,
+      "endpoint": "/dashboard/preview?template=nocturne&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "screenshots": [
+        "demo-nocturne-ru-390-full.png",
+        "demo-nocturne-ru-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "demo-nocturne-ru",
+      "width": 430,
+      "endpoint": "/dashboard/preview?template=nocturne&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-nocturne-ru",
+      "width": 1280,
+      "endpoint": "/dashboard/preview?template=nocturne&locale=ru",
+      "isMobile": false,
+      "hasTouch": false,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 1280,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-heritage-ru",
+      "width": 320,
+      "endpoint": "/dashboard/preview?template=heritage&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [
+          "Алишер и Шахноза"
+        ],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-heritage-ru",
+      "width": 390,
+      "endpoint": "/dashboard/preview?template=heritage&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [
+          "Алишер и Шахноза"
+        ],
+        "textClippingCandidates": []
+      },
+      "screenshots": [
+        "demo-heritage-ru-390-full.png",
+        "demo-heritage-ru-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "demo-heritage-ru",
+      "width": 430,
+      "endpoint": "/dashboard/preview?template=heritage&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [
+          "Алишер и Шахноза"
+        ],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-heritage-ru",
+      "width": 1280,
+      "endpoint": "/dashboard/preview?template=heritage&locale=ru",
+      "isMobile": false,
+      "hasTouch": false,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 1280,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [
+          "Алишер и Шахноза"
+        ],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-sculpted-garden-ru",
+      "width": 320,
+      "endpoint": "/dashboard/preview?template=sculpted-garden&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": [
+          "До встречи"
+        ]
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-sculpted-garden-ru",
+      "width": 390,
+      "endpoint": "/dashboard/preview?template=sculpted-garden&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": [
+          "До встречи"
+        ]
+      },
+      "screenshots": [
+        "demo-sculpted-garden-ru-390-full.png",
+        "demo-sculpted-garden-ru-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "demo-sculpted-garden-ru",
+      "width": 430,
+      "endpoint": "/dashboard/preview?template=sculpted-garden&locale=ru",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": [
+          "До встречи"
+        ]
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-sculpted-garden-ru",
+      "width": 1280,
+      "endpoint": "/dashboard/preview?template=sculpted-garden&locale=ru",
+      "isMobile": false,
+      "hasTouch": false,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 1280,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": [
+          "До встречи"
+        ]
+      },
+      "failures": []
+    },
+    {
+      "key": "demo-sculpted-garden-uz-latn",
+      "width": 390,
+      "endpoint": "/dashboard/preview?template=sculpted-garden&locale=uz-latn",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": [
+          "Ko‘rishguncha"
+        ]
+      },
+      "screenshots": [
+        "demo-sculpted-garden-uz-latn-390-full.png",
+        "demo-sculpted-garden-uz-latn-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "published-wedding",
+      "width": 320,
+      "endpoint": "/i/invite-8a768f7e8862ac42ba51251e",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "rsvp",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [
+          "Ваш ответ"
+        ],
+        "textClippingCandidates": [
+          "До встречи"
+        ]
+      },
+      "failures": []
+    },
+    {
+      "key": "published-wedding",
+      "width": 390,
+      "endpoint": "/i/invite-8a768f7e8862ac42ba51251e",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "rsvp",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": [
+          "До встречи"
+        ]
+      },
+      "screenshots": [
+        "published-wedding-390-full.png",
+        "published-wedding-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "published-wedding",
+      "width": 430,
+      "endpoint": "/i/invite-8a768f7e8862ac42ba51251e",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "opening",
+        "greeting",
+        "story",
+        "date",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "rsvp",
+        "closing"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": [
+          "До встречи"
+        ]
+      },
+      "failures": []
+    },
+    {
+      "key": "published-birthday",
+      "width": 320,
+      "endpoint": "/i/invite-aa6bce07c050549e5cf44ee9",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "longNameUnbroken": true,
+      "failures": []
+    },
+    {
+      "key": "published-birthday",
+      "width": 390,
+      "endpoint": "/i/invite-aa6bce07c050549e5cf44ee9",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "longNameUnbroken": true,
+      "screenshots": [
+        "published-birthday-390-full.png",
+        "published-birthday-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "published-birthday",
+      "width": 430,
+      "endpoint": "/i/invite-aa6bce07c050549e5cf44ee9",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "longNameUnbroken": true,
+      "failures": []
+    },
+    {
+      "key": "published-anniversary",
+      "width": 320,
+      "endpoint": "/i/invite-49be66e6fdec8a68e552ed77",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 320,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    },
+    {
+      "key": "published-anniversary",
+      "width": 390,
+      "endpoint": "/i/invite-49be66e6fdec8a68e552ed77",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 390,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "screenshots": [
+        "published-anniversary-390-full.png",
+        "published-anniversary-390-hero.png"
+      ],
+      "failures": []
+    },
+    {
+      "key": "published-anniversary",
+      "width": 430,
+      "endpoint": "/i/invite-49be66e6fdec8a68e552ed77",
+      "isMobile": true,
+      "hasTouch": true,
+      "pageErrors": [],
+      "httpStatus": 200,
+      "documentWidth": 430,
+      "duplicateVisibleIds": [],
+      "brokenLoadedImages": [],
+      "missingAnchorTargets": [],
+      "sections": [
+        "hero",
+        "greeting",
+        "countdown",
+        "venue",
+        "timeline",
+        "dressCode",
+        "footer"
+      ],
+      "observations": {
+        "shortControls": [],
+        "textClippingCandidates": []
+      },
+      "failures": []
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "Uses authored local templates; paid AI generation and new generated artwork are not tested.",
+    "Chromium with reduced motion; real phones, Safari, animation quality and subjective visual quality need review.",
+    "Clipping candidates and small controls are observations that need manual review."
+  ],
+  "nativeNoJavaScript": {
+    "readable": true,
+    "formSubmitted": true,
+    "origin": "http://127.0.0.1:4312",
+    "httpStatus": 303,
+    "persisted": true,
+    "isMobile": true,
+    "hasTouch": true,
+    "pageErrors": [],
+    "screenshot": "native-rsvp-no-js-390.png"
+  },
+  "success": true
+}

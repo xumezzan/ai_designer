@@ -2,6 +2,7 @@ import { z } from "zod";
 import { Hex } from "./common";
 import { rsvpTarget } from "../invitation/links";
 import { VariantCount } from "./variantCount";
+import { StudioDesignPreference } from "./studioTemplate";
 
 /**
  * Deterministic event facts (`projects/<slug>/content.json`). The AI never
@@ -10,6 +11,7 @@ import { VariantCount } from "./variantCount";
 export const Content = z.object({
   slug: z.string(),
   locale: z.enum(["ru", "uz-latn", "en"]),
+  purpose: z.enum(["invitation", "greeting"]).optional(),
   eventType: z.enum([
     "wedding",
     "anniversary",
@@ -85,6 +87,7 @@ export const Content = z.object({
     .default([]),
 
   brief: z.string().optional(),
+  studioDesign: StudioDesignPreference.optional(),
   variantCount: VariantCount.optional(),
   refs: z.array(z.string()).default([]),
 }).superRefine((content, context) => {

@@ -16,10 +16,9 @@ export async function POST(request: Request) {
     if (slug === "demo") throw new StudioError("Создайте свой проект для генерации вариантов.", 403);
     let project = await projectStore.read(slug);
     if (project.revision !== revision || project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект изменился. Обновите страницу перед генерацией.", 409);
-    if (!project.content.brief?.trim()) throw new StudioError("Опишите желаемый стиль в поле «Пожелания к дизайну».");
-    if (!project.visionConfigured) throw new StudioError("Добавьте ANTHROPIC_API_KEY в .env.local и перезапустите сервер.", 503);
-    if (createVisual && !project.imagesConfigured) throw new StudioError("Добавьте OPENAI_API_KEY в .env.local и перезапустите сервер.", 503);
-    if (createVisual && project.content.refs.length > 16) throw new StudioError("Для нового визуала оставьте не больше 16 референсов.");
+    const manualTemplate = !project.content.brief?.trim() && project.content.studioDesign?.templateId && project.content.studioDesign.templateId !== "auto";
+    if (!project.content.brief?.trim() && !manualTemplate) throw new StudioError("Выберите авторский шаблон или опишите желаемый стиль.");
+    if (!project.visionConfigured && !manualTemplate) throw new StudioError("Добавьте ANTHROPIC_API_KEY в .env.local или выберите шаблон без описания для ручной сборки.", 503);
     // All live requests create one design, including clients with an old 3/5 preference.
     if (project.content.variantCount !== 1) {
       await projectStore.update(slug, { ...project.content, variantCount: 1 }, project.revision);
@@ -34,7 +33,8 @@ export async function POST(request: Request) {
       const data = await sharp(input).resize({ width: 768, height: 768, fit: "inside", withoutEnlargement: true }).flatten({ background: "#f3f0e9" }).jpeg({ quality: 80 }).toBuffer();
       return { base64: data.toString("base64") };
     }));
-    const result = await generateSeries(project.content, photos, references, undefined, { createVisual });
+    const recentDesigns = await projectStore.recentDesigns(slug);
+    const result = await generateSeries(project.content, photos, references, undefined, { createVisual: false, recentDesigns, curatedTemplates: true });
     const interpreted = applyBriefFacts(project.content, result.facts);
     if (JSON.stringify(interpreted) !== JSON.stringify(project.content)) {
       await projectStore.update(slug, interpreted, project.revision);

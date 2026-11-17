@@ -48,3 +48,9 @@ reference behaviour separately from our supported implementation and proposals.
   Keep the chosen design's type/material/light and give each role its own
   composition. Backgrounds belong to roles, never alternating child indexes.
   Empty optional blocks stay absent; pinned photo placements honour the owner.
+
+- Plan the visitor's route before choosing a template: one focal point in the
+  opening, distinct roles for the sections, and a clear guest action. Choose
+  the color roles and the reading surfaces before the ornament. Give real
+  copy the space it needs in normal flow; reserve overlaps for decoration.
+  Use the shared [art direction guidance](docs/platform-ai.md#art-direction-and-assembly).

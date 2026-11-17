@@ -6,6 +6,7 @@ import assets from "../../registry/font-assets.generated.json";
 import { typeSets } from "../../registry/typesets";
 import { supportsLocale } from "../../registry/fonts";
 import { typeSetSupportsLocale, typeSetStackFor } from "../../registry/typesets";
+import { displayTokenMeasure } from "../typography/displayFit";
 import { displayFontPreloads } from "./resources";
 
 const require = createRequire(import.meta.url);
@@ -100,5 +101,46 @@ describe("prepared fonts", () => {
     const stack = typeSetStackFor(typeSets.editorial!, "body");
     expect(stack.indexOf("Golos Text Fallback")).toBeLessThan(stack.indexOf("Cormorant Garamond"));
     for (const face of assets.families["golos-text"].faces) expect(face.unicodeRange).not.toContain("02BB");
+  });
+
+  it("preloads Bodoni Latin and the Cyrillic companion without a false Cyrillic face", () => {
+    const velvet = typeSets["velvet-noir"]!;
+    expect(supportsLocale(velvet.display, "ru")).toBe(false);
+    expect(typeSetSupportsLocale(velvet, "ru")).toBe(true);
+    expect(typeSetSupportsLocale(velvet, "uz-latn")).toBe(true);
+    expect(typeSetStackFor(velvet, "display")).toContain('"Cormorant Garamond"');
+    expect(displayFontPreloads(velvet.id, "ru")).toEqual([
+      "/font-assets/bodoni-moda-latin-600-normal.woff2",
+      "/font-assets/cormorant-garamond-cyrillic-600-normal.woff2",
+    ]);
+    expect(displayFontPreloads(velvet.id, "uz-latn")).toContain(
+      "/font-assets/cormorant-garamond-latin-600-normal.woff2",
+    );
+  });
+
+  it("leaves the Uzbek modifier letters to the intended companions", () => {
+    for (const id of ["manrope", "bodoni-moda"] as const) {
+      expect(assets.families[id].uzbekApostrophe).toBe(false);
+      for (const face of assets.families[id].faces) expect(face.unicodeRange).not.toMatch(/02BB|02BC/);
+    }
+    const botanical = typeSets["botanical-haute"]!;
+    expect(typeSetSupportsLocale(botanical, "ru")).toBe(true);
+    expect(typeSetSupportsLocale(botanical, "uz-latn")).toBe(true);
+    expect(typeSetStackFor(botanical, "body")).toContain('"Inter"');
+  });
+
+  it.each([
+    ["botanical-haute", "prata-cyrillic-400", "prata-latin-400"],
+    ["velvet-noir", "cormorant-garamond-cyrillic-600", "bodoni-moda-latin-600"],
+  ] as const)("%s fits a long heading with Cyrillic, Latin and an Uzbek modifier letter", (id, cyrillic, latin) => {
+    const sample = "WellingtonʻАлександровна";
+    const faces = [cyrillic, latin, "cormorant-garamond-latin-600"].map((asset) =>
+      fontFromBuffer(load("/font-assets/" + asset + "-normal.woff2")));
+    const advance = Array.from(sample).reduce((sum, character) => {
+      const code = character.codePointAt(0);
+      const font = faces.find((face) => face.hasGlyphForCodePoint(code))!;
+      return sum + font.glyphForCodePoint(code).advanceWidth / font.unitsPerEm;
+    }, 0);
+    expect(displayTokenMeasure(sample, id)).toBeGreaterThan(advance);
   });
 });

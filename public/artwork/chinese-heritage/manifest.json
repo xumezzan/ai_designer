@@ -1,0 +1,95 @@
+{
+  "source": "User-supplied Свадебное_приглашение_RU.html",
+  "sourceSha256": "eae3962bfbb6c9b4af8bb27317a239b8398d78659d16516c4d751126d9bfc12e",
+  "provenance": "Embedded decorative artwork from the user-provided invitation, reused for the requested implementation. Original bytes preserved; no generated additions.",
+  "assets": [
+    {
+      "file": "plum-branch.webp",
+      "role": "Upper-left floral branch; mirrored on opening cover",
+      "mimeType": "image/webp",
+      "bytes": 34646,
+      "sha256": "8a7dbff8a4d7b6f405c6cf0daa0f56a376b9484739cb96d3c1cfd68e9deb4aae",
+      "sourceOccurrences": 1,
+      "width": 530,
+      "height": 220,
+      "hasAlpha": true
+    },
+    {
+      "file": "hanging-blossom.webp",
+      "role": "Tall right-edge lattice and plum blossom",
+      "mimeType": "image/webp",
+      "bytes": 22692,
+      "sha256": "40d69fea37fbd36b61ed11c045c0c709a4e23323c600ecda0103a08682321fe3",
+      "sourceOccurrences": 1,
+      "width": 157,
+      "height": 510,
+      "hasAlpha": true
+    },
+    {
+      "file": "red-lantern.webp",
+      "role": "Decorative hanging lantern on hero and story arch",
+      "mimeType": "image/webp",
+      "bytes": 13464,
+      "sha256": "91f7ccaf3b4d8bbf791977d5dad1e120413c698cb7a5d745d236836372e60d81",
+      "sourceOccurrences": 2,
+      "width": 202,
+      "height": 468,
+      "hasAlpha": true
+    },
+    {
+      "file": "watercolor-garden.webp",
+      "role": "Wide garden panorama for lower hero, story, venue and footer",
+      "mimeType": "image/webp",
+      "bytes": 84816,
+      "sha256": "5901a284d317416076f1209978fb794fa08065ba17225df4f747fe95347fd724",
+      "sourceOccurrences": 4,
+      "width": 1122,
+      "height": 252,
+      "hasAlpha": false
+    },
+    {
+      "file": "floral-spray.webp",
+      "role": "Floral spray for event and RSVP corners",
+      "mimeType": "image/webp",
+      "bytes": 24946,
+      "sha256": "086e83c6369b489bd8cdb4c4aaef6a866519a04ecb4a72f80bb8dfe311095036",
+      "sourceOccurrences": 2,
+      "width": 267,
+      "height": 305,
+      "hasAlpha": true
+    },
+    {
+      "file": "gallery-plum.webp",
+      "role": "Decorative plum gallery image",
+      "mimeType": "image/webp",
+      "bytes": 81720,
+      "sha256": "7116ca7881adcbc3568c95173e7a1a83b3d936cf7a572fcc52c9b036bef8cc2d",
+      "sourceOccurrences": 1,
+      "width": 900,
+      "height": 560,
+      "hasAlpha": false
+    },
+    {
+      "file": "gallery-lantern.webp",
+      "role": "Decorative lantern gallery image",
+      "mimeType": "image/webp",
+      "bytes": 13292,
+      "sha256": "7779386970df7516c19942d95c831f6492bbfb39e2de18d6785e9da8cd01a872",
+      "sourceOccurrences": 1,
+      "width": 202,
+      "height": 468,
+      "hasAlpha": false
+    },
+    {
+      "file": "gallery-garden.webp",
+      "role": "Decorative garden gallery image",
+      "mimeType": "image/webp",
+      "bytes": 34794,
+      "sha256": "2617e375ebed434bfa92b77e3119af4384cbed8aa9c3ff33221b96ed9a79ccd2",
+      "sourceOccurrences": 1,
+      "width": 372,
+      "height": 412,
+      "hasAlpha": false
+    }
+  ]
+}

@@ -19,6 +19,7 @@ import { digest, rendererRevision } from "@/lib/qa/fingerprint";
 import { approvalProblem } from "@/lib/qa/policy";
 import { VisualRecord } from "@/lib/schema/visual";
 import { readGeneratedVisual } from "@/lib/artwork/generated";
+import { readRecentDesigns } from "@/lib/generation/history";
 
 export class StudioError extends Error {
   constructor(message: string, public status = 400) { super(message); }
@@ -232,6 +233,10 @@ export class ProjectStore {
       return { slug: dir.name, names: project.content.hosts.map((host) => host.name).join(" и "), date: project.content.date.start, day: project.content.date.day, timezone: project.content.date.timezone, venue: project.content.venue.name, count: project.generation || dir.name === "demo" ? project.concepts.length : 0, preview, updated: info.mtimeMs };
     }))).sort((a, b) => b.updated - a.updated);
   }
+  async recentDesigns(slug: string) {
+    this.directory(slug);
+    return readRecentDesigns(this.root, slug);
+  }
   async create(raw: unknown, templates?: Concept[]) {
     const content = validateContent(raw);
     const destination = this.directory(content.slug, true);
@@ -320,12 +325,12 @@ export class ProjectStore {
     return this.locked(slug, revision, async (content) => {
       const project = await this.read(slug);
       if (project.planRevision !== planRevision || project.generationRevision !== generationRevision) throw new StudioError("Проект или варианты изменились во время генерации. Обновите страницу и повторите.", 409);
-      if (!content.brief?.trim()) throw new StudioError("Опишите желаемый стиль перед генерацией.");
+      if (!content.brief?.trim() && !result.themes[0]?.studioTemplate) throw new StudioError("Опишите желаемый стиль перед генерацией.");
       if (result.themes.length !== (content.variantCount ?? 5) || (result.mode !== "exploration" && result.themes.some((theme) => sharedStyleSignature(theme) !== sharedStyleSignature(result.themes[0])))) throw new StudioError("Серия должна содержать выбранное количество композиций в одном стиле.");
       const expected = { ...result.themes[0], ...result.style, ornament: { ...result.style.ornament, placement: result.themes[0].ornament.placement } };
       if (result.mode !== "exploration" && sharedStyleSignature(result.themes[0]) !== sharedStyleSignature(expected)) throw new StudioError("Стиль вариантов не совпадает со стилем серии.");
       const photos = await readDirectedPhotos(content, project.assetPlan, this.directory(slug));
-      const validated = composeSeries({ mode: result.mode, style: result.style, variants: result.themes.map((theme) => ({ ...(result.mode === "exploration" ? { direction: artDirection(theme) } : {}), name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
+      const validated = composeSeries({ mode: result.mode, style: result.style, variants: result.themes.map((theme) => ({ ...(result.mode === "exploration" ? { direction: artDirection(theme) } : {}), studioTemplate: theme.studioTemplate, designSpec: theme.designSpec, name: theme.meta.name, rationale: theme.meta.rationale, layout: theme.layout, ornamentPlacement: theme.ornament.placement, photos: theme.photos ?? [] })) }, content.locale, photos);
       if (result.themes.some((theme, index) => sharedStyleSignature(theme) !== sharedStyleSignature(validated.themes[index]))) throw new StudioError("Вариант содержит изменения вне разрешённого художественного направления.");
       const visual = result.visual;
       const visualRef = validated.style.generatedVisual;
@@ -336,7 +341,7 @@ export class ProjectStore {
       } else if (visualRef && !await readGeneratedVisual(slug, visualRef.id, visualRef, this.root)) throw new StudioError("Визуал серии не найден.");
       const batchId = randomUUID();
       const concepts = validated.themes.map((theme, index) => ({ id: `variant-${batchId.slice(0, 8)}-${index + 1}`, version: "1", theme }));
-      const generation = Generation.parse({ mode: validated.mode, batchId, createdAt: new Date().toISOString(), brief: content.brief, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
+      const generation = Generation.parse({ mode: validated.mode, batchId, createdAt: new Date().toISOString(), brief: content.brief?.trim() || `Авторский шаблон: ${validated.style.name}.`, model: result.model, elapsedMs: result.elapsedMs, style: validated.style, adjustments: result.adjustments, references: result.references, concepts: concepts.map(({ id, version }) => ({ id, version })) });
       const pending = path.join(this.directory(slug), `.generation-${batchId}.json`);
       const created: string[] = [];
       let committed = false;

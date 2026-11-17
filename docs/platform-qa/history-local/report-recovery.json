@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-10-22T09:41:01.435Z",
+  "phase": "recovery",
+  "paidCalls": 0,
+  "checks": [
+    "A manual edit inside the autosave debounce survives recovered success; PATCH completes before GET",
+    "Reopened editor discovers a server-side running job with empty sessionStorage and no new POST",
+    "Discovered job completes via GET without a duplicate generation request"
+  ],
+  "errors": [],
+  "generationPosts": 1,
+  "generationGets": 6,
+  "invitationId": "9593896d-b22b-412a-a82d-46df7d90f3d4"
+}

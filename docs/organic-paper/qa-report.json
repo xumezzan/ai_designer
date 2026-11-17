@@ -1,0 +1,123 @@
+{
+  "checks": [
+    "Organic Paper remains one explicit design; five other compositions retain their own rendering",
+    "Local display/body fonts and 5% non-interactive paper texture",
+    "Swatch selection, live outfit preview and native calendar download",
+    "RSVP required name, focus, back navigation, retained values and native POST payload (intercepted locally)",
+    "Complete readable content and native RSVP without JavaScript",
+    "Envelope opening, one-time scroll reveal and reduced-motion fallback",
+    "Desktop layout at 1440px"
+  ],
+  "widths": [
+    {
+      "width": 320,
+      "concept": "letter",
+      "version": 2,
+      "document": 320
+    },
+    {
+      "width": 320,
+      "concept": "letter",
+      "version": 1,
+      "document": 320
+    },
+    {
+      "width": 320,
+      "concept": "poster",
+      "version": 1,
+      "document": 320
+    },
+    {
+      "width": 320,
+      "concept": "folio",
+      "version": 1,
+      "document": 320
+    },
+    {
+      "width": 320,
+      "concept": "arch",
+      "version": 1,
+      "document": 320
+    },
+    {
+      "width": 320,
+      "concept": "botanical",
+      "version": 1,
+      "document": 320
+    },
+    {
+      "width": 390,
+      "concept": "letter",
+      "version": 2,
+      "document": 390
+    },
+    {
+      "width": 390,
+      "concept": "letter",
+      "version": 1,
+      "document": 390
+    },
+    {
+      "width": 390,
+      "concept": "poster",
+      "version": 1,
+      "document": 390
+    },
+    {
+      "width": 390,
+      "concept": "folio",
+      "version": 1,
+      "document": 390
+    },
+    {
+      "width": 390,
+      "concept": "arch",
+      "version": 1,
+      "document": 390
+    },
+    {
+      "width": 390,
+      "concept": "botanical",
+      "version": 1,
+      "document": 390
+    },
+    {
+      "width": 430,
+      "concept": "letter",
+      "version": 2,
+      "document": 430
+    },
+    {
+      "width": 430,
+      "concept": "letter",
+      "version": 1,
+      "document": 430
+    },
+    {
+      "width": 430,
+      "concept": "poster",
+      "version": 1,
+      "document": 430
+    },
+    {
+      "width": 430,
+      "concept": "folio",
+      "version": 1,
+      "document": 430
+    },
+    {
+      "width": 430,
+      "concept": "arch",
+      "version": 1,
+      "document": 430
+    },
+    {
+      "width": 430,
+      "concept": "botanical",
+      "version": 1,
+      "document": 430
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

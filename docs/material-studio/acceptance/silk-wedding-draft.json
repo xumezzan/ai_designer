@@ -1,0 +1,66 @@
+{
+  "title": "София & Александр",
+  "purpose": "invitation",
+  "templateId": "classic",
+  "paletteId": "ivory",
+  "fontPairId": "ceremony",
+  "artDirection": {
+    "title": "Шёлк и винная каллиграфия",
+    "scene": "silk",
+    "layout": "editorial"
+  },
+  "eventType": "wedding",
+  "locale": "ru",
+  "names": [
+    "София",
+    "Александр"
+  ],
+  "date": {
+    "day": "2028-06-19",
+    "time": "18:00",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": true
+  },
+  "greeting": "Дорогие родные и друзья! Разделите с нами радость нашего свадебного дня.",
+  "story": "Из случайной встречи выросла наша история. Впереди новая глава, которую мы рады разделить с близкими.",
+  "venue": {
+    "name": "Сад встреч",
+    "address": "Ташкент, вымышленный адрес для локальной проверки",
+    "note": "Вымышленные данные QA."
+  },
+  "timeline": [
+    {
+      "time": "18:00",
+      "title": "Встреча гостей"
+    },
+    {
+      "time": "19:00",
+      "title": "Праздничный вечер"
+    }
+  ],
+  "dressCode": {
+    "title": "Свободный праздничный стиль",
+    "note": "Выбирайте то, в чём вам комфортно.",
+    "swatches": [
+      "#ADB89E",
+      "#E5DCCB"
+    ]
+  },
+  "closing": "С любовью, София и Александр",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "date",
+    "venue",
+    "timeline",
+    "dressCode",
+    "rsvp",
+    "closing"
+  ],
+  "media": [],
+  "artwork": {
+    "id": "42b7861d-7b43-491b-8aba-6377d08b28b8",
+    "src": "/api/platform/media/42b7861d-7b43-491b-8aba-6377d08b28b8"
+  }
+}

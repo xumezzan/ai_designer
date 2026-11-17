@@ -1,0 +1,282 @@
+{
+  "arch": {
+    "design_title": "Льняная арка",
+    "archetype": "ARCH_EDITORIAL",
+    "similarity_defense": "Арочный силуэт, ботаническая гравюра и спокойная льняная бумага.",
+    "canvas": {
+      "background_color": "#F5F2EB",
+      "text_color_primary": "#2C2A29",
+      "text_color_muted": "#756B60",
+      "accent_color": "#A28A68",
+      "noise_opacity": 0.05,
+      "paper_texture": "cotton_deckle"
+    },
+    "typography": {
+      "heading_font": "Cormorant Garamond",
+      "body_font": "Montserrat",
+      "heading_tracking": "tracking-tight",
+      "meta_tracking": "tracking-[0.18em]",
+      "italic_accent_words": [
+        "и",
+        "в саду",
+        "с вами"
+      ]
+    },
+    "composition_rules": {
+      "hero_alignment": "center",
+      "card_framing": "arch_portal",
+      "photo_treatment": {
+        "mask_type": "soft_arch",
+        "overlay_blend": "none",
+        "overlay_tint": null
+      },
+      "decorations": {
+        "wax_seal": {
+          "enabled": true,
+          "color": "#82624E",
+          "symbol": "monogram",
+          "position": "hero_top"
+        },
+        "foil_lines": {
+          "enabled": true,
+          "style": "double_concentric"
+        }
+      }
+    },
+    "component_manifest": {
+      "hero_layout_component": "arch",
+      "timeline_style": "minimal_thread",
+      "dresscode_style": "swatch_circles",
+      "rsvp_style": "classic_stationery_card"
+    },
+    "graphics_generation": {
+      "needed": false,
+      "prompt": "",
+      "placement": "framed_illustration"
+    }
+  },
+  "poster": {
+    "design_title": "Свободные поля",
+    "archetype": "RAW_ASYMMETRIC",
+    "similarity_defense": "Смещённая типографика, большой свободный край и оригинальная абстрактная гравюра.",
+    "canvas": {
+      "background_color": "#DEDCD5",
+      "text_color_primary": "#2C2A29",
+      "text_color_muted": "#756B60",
+      "accent_color": "#776451",
+      "noise_opacity": 0.035,
+      "paper_texture": "smooth_vellum"
+    },
+    "typography": {
+      "heading_font": "Playfair Display",
+      "body_font": "Jost",
+      "heading_tracking": "tracking-tighter",
+      "meta_tracking": "tracking-[0.22em]",
+      "italic_accent_words": [
+        "и",
+        "в саду",
+        "с вами"
+      ]
+    },
+    "composition_rules": {
+      "hero_alignment": "left_bleed",
+      "card_framing": "floating_minimal",
+      "photo_treatment": {
+        "mask_type": "rectangular_passepartout",
+        "overlay_blend": "none",
+        "overlay_tint": null
+      },
+      "decorations": {
+        "wax_seal": {
+          "enabled": false,
+          "color": "#82624E",
+          "symbol": "monogram",
+          "position": "hero_top"
+        },
+        "foil_lines": {
+          "enabled": true,
+          "style": "single_hairline"
+        }
+      }
+    },
+    "component_manifest": {
+      "hero_layout_component": "poster",
+      "timeline_style": "horizontal_steps",
+      "dresscode_style": "color_palette_pills",
+      "rsvp_style": "split_bottom_sheet"
+    },
+    "graphics_generation": {
+      "needed": false,
+      "prompt": "",
+      "placement": "framed_illustration"
+    }
+  },
+  "botanical": {
+    "design_title": "Лист гербария",
+    "archetype": "BOTANICAL_PLATE",
+    "similarity_defense": "Музейное паспарту с оливковой гравюрой, шалфейная бумага и программа в отдельных карточках.",
+    "canvas": {
+      "background_color": "#D5DDC8",
+      "text_color_primary": "#2C2A29",
+      "text_color_muted": "#59604E",
+      "accent_color": "#6D785C",
+      "noise_opacity": 0.06,
+      "paper_texture": "cold_press"
+    },
+    "typography": {
+      "heading_font": "Cormorant Garamond",
+      "body_font": "Montserrat",
+      "heading_tracking": "tracking-tight",
+      "meta_tracking": "tracking-[0.18em]",
+      "italic_accent_words": [
+        "и",
+        "в саду",
+        "с вами"
+      ]
+    },
+    "composition_rules": {
+      "hero_alignment": "center",
+      "card_framing": "double_fine_border",
+      "photo_treatment": {
+        "mask_type": "oval_portrait",
+        "overlay_blend": "none",
+        "overlay_tint": null
+      },
+      "decorations": {
+        "wax_seal": {
+          "enabled": true,
+          "color": "#6D785C",
+          "symbol": "botanical_branch",
+          "position": "rsvp_badge"
+        },
+        "foil_lines": {
+          "enabled": true,
+          "style": "dotted_editorial"
+        }
+      }
+    },
+    "component_manifest": {
+      "hero_layout_component": "botanical",
+      "timeline_style": "vertical_cards",
+      "dresscode_style": "fabric_cards",
+      "rsvp_style": "letterpress_form"
+    },
+    "graphics_generation": {
+      "needed": false,
+      "prompt": "",
+      "placement": "framed_illustration"
+    }
+  },
+  "folio": {
+    "design_title": "Письмо с вензелем",
+    "archetype": "RETRO_MONOGRAM",
+    "similarity_defense": "Полиграфический конверт, крупный вензель и сургуч на клапане из тёплой терракотовой бумаги.",
+    "canvas": {
+      "background_color": "#D3AD94",
+      "text_color_primary": "#2C2A29",
+      "text_color_muted": "#645045",
+      "accent_color": "#81523C",
+      "noise_opacity": 0.055,
+      "paper_texture": "cotton_deckle"
+    },
+    "typography": {
+      "heading_font": "Playfair Display",
+      "body_font": "Jost",
+      "heading_tracking": "tracking-tight",
+      "meta_tracking": "tracking-[0.18em]",
+      "italic_accent_words": [
+        "и",
+        "в саду",
+        "с вами"
+      ]
+    },
+    "composition_rules": {
+      "hero_alignment": "asymmetric_offset",
+      "card_framing": "raw_deckle_shadow",
+      "photo_treatment": {
+        "mask_type": "organic_edge",
+        "overlay_blend": "soft_light",
+        "overlay_tint": "#C5A880"
+      },
+      "decorations": {
+        "wax_seal": {
+          "enabled": true,
+          "color": "#895F47",
+          "symbol": "olive_wreath",
+          "position": "envelope_flap"
+        },
+        "foil_lines": {
+          "enabled": true,
+          "style": "single_hairline"
+        }
+      }
+    },
+    "component_manifest": {
+      "hero_layout_component": "folio",
+      "timeline_style": "minimal_thread",
+      "dresscode_style": "fabric_cards",
+      "rsvp_style": "letterpress_form"
+    },
+    "graphics_generation": {
+      "needed": false,
+      "prompt": "",
+      "placement": "framed_illustration"
+    }
+  },
+  "letter": {
+    "design_title": "Тихая типографика",
+    "archetype": "MINIMALIST_TYPOGRAPHIC",
+    "similarity_defense": "Крупные живые имена, строгая сетка, тонкие правила и небольшая графическая подпись на сланцевой бумаге.",
+    "canvas": {
+      "background_color": "#CCD8DB",
+      "text_color_primary": "#2C2A29",
+      "text_color_muted": "#566065",
+      "accent_color": "#637982",
+      "noise_opacity": 0.03,
+      "paper_texture": "smooth_vellum"
+    },
+    "typography": {
+      "heading_font": "Cormorant Garamond",
+      "body_font": "Jost",
+      "heading_tracking": "tracking-tighter",
+      "meta_tracking": "tracking-[0.18em]",
+      "italic_accent_words": [
+        "и",
+        "в саду",
+        "с вами"
+      ]
+    },
+    "composition_rules": {
+      "hero_alignment": "left_bleed",
+      "card_framing": "floating_minimal",
+      "photo_treatment": {
+        "mask_type": "rectangular_passepartout",
+        "overlay_blend": "none",
+        "overlay_tint": null
+      },
+      "decorations": {
+        "wax_seal": {
+          "enabled": false,
+          "color": "#82624E",
+          "symbol": "monogram",
+          "position": "hero_top"
+        },
+        "foil_lines": {
+          "enabled": true,
+          "style": "single_hairline"
+        }
+      }
+    },
+    "component_manifest": {
+      "hero_layout_component": "letter",
+      "timeline_style": "horizontal_steps",
+      "dresscode_style": "color_palette_pills",
+      "rsvp_style": "split_bottom_sheet"
+    },
+    "graphics_generation": {
+      "needed": false,
+      "prompt": "",
+      "placement": "framed_illustration"
+    }
+  }
+}

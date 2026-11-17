@@ -2,8 +2,9 @@ import { z } from "zod";
 import { Theme } from "./theme";
 import { safeId } from "./ids";
 import { DesignIntent } from "./visual";
+import { DesignSpec } from "./designSpec";
 
-export const SharedStyle = Theme.pick({ palette: true, typeSet: true, materialSet: true, artwork: true, generatedVisual: true, foil: true, motion: true, atmosphere: true, surface: true, finishing: true, typographyScale: true }).extend({
+export const SharedStyle = Theme.pick({ studioTemplate: true, palette: true, typeSet: true, materialSet: true, artwork: true, generatedVisual: true, foil: true, motion: true, atmosphere: true, surface: true, finishing: true, typographyScale: true }).extend({
   intent: DesignIntent.optional(),
   name: z.string().min(1).max(100),
   mood: z.array(z.string().min(1).max(60)).min(1).max(4),
@@ -16,6 +17,8 @@ export const ArtDirection = Theme.pick({ palette: true, typeSet: true, materialS
   ornament: Theme.shape.ornament.omit({ placement: true }).optional(),
 }).strict();
 export const Composition = z.object({
+  studioTemplate: Theme.shape.studioTemplate,
+  designSpec: DesignSpec.optional(),
   direction: ArtDirection.nullable().optional(),
   name: z.string().min(1).max(100),
   rationale: z.string().min(1).max(400),

@@ -1,0 +1,77 @@
+{
+  "title": "София & Александр",
+  "purpose": "invitation",
+  "templateId": "botanical",
+  "paletteId": "sage",
+  "fontPairId": "ceremony",
+  "composition": {
+    "heroLayout": "framed-arch",
+    "photoShape": "arch",
+    "surfaceStyle": "soft-gradient",
+    "spacingScale": "airy-gallery",
+    "typographyAccent": "italic-serif-accent",
+    "decorConfig": {
+      "placement": "corners",
+      "density": "rich",
+      "opacity": 0.28
+    },
+    "sectionVariants": {
+      "countdown": "date-led",
+      "program": "timeline",
+      "venue": "stacked",
+      "gallery": "editorial",
+      "rsvp": "card"
+    }
+  },
+  "ornamentSetId": "botanical-engraving",
+  "eventType": "wedding",
+  "locale": "ru",
+  "names": [
+    "София",
+    "Александр"
+  ],
+  "date": {
+    "day": "2028-06-19",
+    "time": "18:00",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": true
+  },
+  "greeting": "Дорогие родные и друзья! Разделите с нами радость нашего свадебного дня.",
+  "story": "Мы встретились весной и с тех пор бережно собираем общие воспоминания. Теперь начинается новая глава нашей истории.",
+  "venue": {
+    "name": "Сад встреч",
+    "address": "Ташкент, вымышленный адрес для локальной проверки",
+    "note": "Это вымышленные данные QA."
+  },
+  "timeline": [
+    {
+      "time": "18:00",
+      "title": "Встреча гостей"
+    },
+    {
+      "time": "19:00",
+      "title": "Праздничный вечер"
+    }
+  ],
+  "dressCode": {
+    "title": "Свободный праздничный стиль",
+    "note": "Выбирайте то, в чём вам комфортно.",
+    "swatches": [
+      "#ADB89E",
+      "#E5DCCB"
+    ]
+  },
+  "closing": "С любовью и предвкушением встречи, София и Александр",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "date",
+    "venue",
+    "timeline",
+    "dressCode",
+    "rsvp",
+    "closing"
+  ],
+  "media": []
+}

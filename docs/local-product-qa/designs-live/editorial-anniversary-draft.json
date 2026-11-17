@@ -1,0 +1,77 @@
+{
+  "title": "Дильноза & Джахонгир",
+  "purpose": "invitation",
+  "templateId": "editorial",
+  "paletteId": "champagne",
+  "fontPairId": "editorial",
+  "composition": {
+    "heroLayout": "split-editorial",
+    "photoShape": "sharp",
+    "surfaceStyle": "bordered-hairline",
+    "spacingScale": "airy-gallery",
+    "typographyAccent": "italic-serif-accent",
+    "decorConfig": {
+      "placement": "dividers",
+      "density": "subtle",
+      "opacity": 0.22
+    },
+    "sectionVariants": {
+      "countdown": "date-led",
+      "program": "editorial-list",
+      "venue": "split",
+      "gallery": "editorial",
+      "rsvp": "split"
+    }
+  },
+  "ornamentSetId": "editorial-rules",
+  "eventType": "anniversary",
+  "locale": "ru",
+  "names": [
+    "Дильноза",
+    "Джахонгир"
+  ],
+  "date": {
+    "day": "2028-06-19",
+    "time": "18:00",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": true
+  },
+  "greeting": "Дорогие близкие! Приглашаем вас на тёплый вечер в честь годовщины нашей семьи.",
+  "story": "Каждый совместный год складывается из маленьких забот, больших мечтаний и родных голосов. Спасибо, что вы рядом с нашей семьёй.",
+  "venue": {
+    "name": "Сад встреч",
+    "address": "Ташкент, вымышленный адрес для локальной проверки",
+    "note": "Это вымышленные данные QA."
+  },
+  "timeline": [
+    {
+      "time": "18:00",
+      "title": "Встреча гостей"
+    },
+    {
+      "time": "19:00",
+      "title": "Праздничный вечер"
+    }
+  ],
+  "dressCode": {
+    "title": "Свободный праздничный стиль",
+    "note": "Выбирайте то, в чём вам комфортно.",
+    "swatches": [
+      "#ADB89E",
+      "#E5DCCB"
+    ]
+  },
+  "closing": "С благодарностью за общие воспоминания, Дильноза и Джахонгир",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "date",
+    "venue",
+    "timeline",
+    "dressCode",
+    "rsvp",
+    "closing"
+  ],
+  "media": []
+}

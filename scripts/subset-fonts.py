@@ -47,4 +47,4 @@ for job in json.loads(Path(sys.argv[1]).read_text()):
             font.recalcTimestamp = False
             path = Path(job["output"]) / f'{job["id"]}-{language}-{weight}-normal.woff2'
             font.save(path)
-        print(f'{job["id"]} {weight}: three subsets, all available layout features retained', flush=True)
+        print(f'{job["id"]} {weight}: {len(job["ranges"])} subsets, all available layout features retained', flush=True)

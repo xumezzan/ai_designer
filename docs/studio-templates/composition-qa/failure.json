@@ -1,0 +1,309 @@
+{
+  "responsive": [
+    {
+      "fixture": 0,
+      "hero": "fullscreen-cover",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 1,
+      "hero": "split-editorial",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 2,
+      "hero": "framed-arch",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 3,
+      "hero": "typographic-poster",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 4,
+      "hero": "minimal-card",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 5,
+      "hero": "fullscreen-cover",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 6,
+      "hero": "split-editorial",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 7,
+      "hero": "framed-arch",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 8,
+      "hero": "typographic-poster",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 9,
+      "hero": "minimal-card",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 10,
+      "hero": "fullscreen-cover",
+      "withPhotos": true,
+      "heritage": true,
+      "width": 320,
+      "document": 320,
+      "overflow": []
+    },
+    {
+      "fixture": 0,
+      "hero": "fullscreen-cover",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 1,
+      "hero": "split-editorial",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 2,
+      "hero": "framed-arch",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 3,
+      "hero": "typographic-poster",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 4,
+      "hero": "minimal-card",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 5,
+      "hero": "fullscreen-cover",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 6,
+      "hero": "split-editorial",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 7,
+      "hero": "framed-arch",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 8,
+      "hero": "typographic-poster",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 9,
+      "hero": "minimal-card",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 10,
+      "hero": "fullscreen-cover",
+      "withPhotos": true,
+      "heritage": true,
+      "width": 390,
+      "document": 390,
+      "overflow": []
+    },
+    {
+      "fixture": 0,
+      "hero": "fullscreen-cover",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 1,
+      "hero": "split-editorial",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 2,
+      "hero": "framed-arch",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 3,
+      "hero": "typographic-poster",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 4,
+      "hero": "minimal-card",
+      "withPhotos": false,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 5,
+      "hero": "fullscreen-cover",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 6,
+      "hero": "split-editorial",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 7,
+      "hero": "framed-arch",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 8,
+      "hero": "typographic-poster",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 9,
+      "hero": "minimal-card",
+      "withPhotos": true,
+      "heritage": false,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    },
+    {
+      "fixture": 10,
+      "hero": "fullscreen-cover",
+      "withPhotos": true,
+      "heritage": true,
+      "width": 430,
+      "document": 430,
+      "overflow": []
+    }
+  ],
+  "checks": [
+    "Five Hero compositions with and without photos, six photo masks, five surfaces and all section variants at 320/390/430px; long editable text and pinned photos appear once"
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "fixtureCount": 11,
+  "failure": "AssertionError [ERR_ASSERTION]: [{\"channel\":\"invitation-studio\",\"type\":\"edit\",\"field\":\"headline\",\"text\":\"Отредактированный живой заголовок\"},{\"channel\":\"invitation-studio\",\"type\":\"edit\",\"field\":\"greeting\",\"text\":\"Первая строка\\n\\n\\n\\n\\nВторая строка\"},{\"channel\":\"invitation-studio\",\"type\":\"edit\",\"field\":\"greeting\",\"text\":\"Первая строка\\n\\n\\n\\n\\nВторая строка\"},{\"channel\":\"invitation-studio\",\"type\":\"edit\",\"field\":\"greeting\",\"text\":\"Первая строка\\n\\n\\n\\n\\nВторая строка\"},{\"channel\":\"invitation-studio\",\"type\":\"edit\",\"field\":\"greeting\",\"text\":\"Первая строка\\n\\n\\n\\n\\nВторая строка\"}]",
+  "url": "http://127.0.0.1:3154/preview/qa-composition-e123ab98/variant-c8ab66f3-1/2?embed=1&guest=%D0%90%D0%BB%D0%B8%D0%BD%D0%B0&studio=1"
+}

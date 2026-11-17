@@ -1,0 +1,20 @@
+{
+  "paidCalls": 0,
+  "checks": [
+    "Unauthenticated AI CTA resumes wizard after registration",
+    "Wizard has no horizontal overflow at 320,390,430",
+    "Reference uploads through real local media endpoint without adding it to guest gallery",
+    "502 outcome preserves requestId, five bounded GET polls, no automatic POST retry, form preserved",
+    "Real local server draft contains only entered names/date/time/venue; no invented address,timeline,guest gallery",
+    "Terminal failure shows provider reason, manual retry and saved-draft action",
+    "Close and reopen restores failed form and same request without auto retry",
+    "Only explicit retry after terminal failure creates new requestId"
+  ],
+  "screenshots": [
+    "/tmp/ai-wizard-ui-qa/mobile-390-brief.png",
+    "/tmp/ai-wizard-ui-qa/mobile-390-failed.png"
+  ],
+  "errors": [],
+  "postCount": 2,
+  "getCount": 7
+}

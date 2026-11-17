@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-10-22T09:46:37.945Z",
+  "phase": "artwork",
+  "paidCalls": 0,
+  "checks": [
+    "Before-generation and generated history cards independently preview their owner-uploaded artwork sources",
+    "Both artwork previews preserve live names, greeting and venue without PATCH, history mutation, paid generation or publication change"
+  ],
+  "errors": [],
+  "generationPosts": 0,
+  "generationGets": 2,
+  "invitationId": "bfc8fc16-4a20-4a1d-a1b9-863e9ffb62e2"
+}

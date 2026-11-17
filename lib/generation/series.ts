@@ -6,15 +6,32 @@ import { canonicalSectionOrder } from "@/lib/invitation/sections";
 import { heroGrade } from "@/lib/assets/crop";
 import { repairTheme, validateTheme, type Locale } from "@/lib/theme/validate";
 import type { GeneratedVisual } from "@/lib/schema/visual";
+import { assertDistinctDesigns, designIdentity } from "./diversity";
+import { compileDesignSpec } from "@/lib/design/spec";
 
 export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsset[], visualPlanned = false) {
   const series = DesignSeries.parse(raw);
+  // Compare and persist the placement the renderer will actually use. Owner pins
+  // cannot become an invisible diversity axis in an AI-declared photo role.
+  series.variants.forEach((variant) => {
+    variant.photos = variant.photos.map((placement) => {
+      const asset = photos.find((photo) => photo.asset.id === placement.id)?.asset;
+      const chosen = asset?.placementPinned && asset.placement ? asset.placement : placement;
+      return { ...placement, section: chosen.section, index: chosen.index,
+        position: ["hero", "greeting", "footer"].includes(chosen.section) ? "before" as const : placement.position };
+    });
+    for (const photo of variant.photos) {
+      const asset = photos.find((entry) => entry.asset.id === photo.id)?.asset;
+      if (asset?.placementPinned && !variant.layout.sectionOrder.includes(photo.section)) variant.layout.sectionOrder.push(photo.section);
+    }
+  });
   series.variants.forEach((variant) => { if (new Set(variant.layout.sectionOrder).size === variant.layout.sectionOrder.length) variant.layout.sectionOrder = canonicalSectionOrder(variant.layout.sectionOrder); });
   const mode = series.mode ?? "cohesive";
   if (mode === "cohesive" && series.variants.some((variant) => variant.direction)) throw new Error("Independent directions require exploration mode");
   if (mode === "exploration" && series.variants.some((variant) => !variant.direction)) throw new Error("Every exploration variant needs a complete palette and typeSet direction");
   if (new Set(series.variants.map((variant) => JSON.stringify({
     composition: variant.layout.composition,
+    designSpec: variant.designSpec,
     direction: mode === "exploration" ? variant.direction : undefined,
     // Stacked is already built into these presets and adds no visible variety.
     nameFlow: ["letter", "botanical"].includes(variant.layout.composition) ? variant.layout.nameFlow : "natural",
@@ -39,6 +56,7 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
     if (placements.filter((photo) => photo.section === "hero").length > 1) throw new Error("Only one photo may be placed in hero");
     const identity = mode === "exploration" ? variant.direction : undefined;
     const theme = {
+      studioTemplate: variant.studioTemplate ?? style.studioTemplate,
       palette: identity?.palette ?? common.palette, typeSet: identity?.typeSet ?? style.typeSet, materialSet: identity?.materialSet ?? style.materialSet, artwork: style.artwork, generatedVisual: style.generatedVisual, foil: identity?.foil ?? style.foil, motion: identity?.motion ?? style.motion,
       atmosphere: identity?.atmosphere ?? style.atmosphere, surface: identity?.surface ?? style.surface, finishing: identity?.finishing ?? style.finishing, typographyScale: identity?.typographyScale ?? style.typographyScale,
       meta: { name: variant.name, mood: style.mood, rationale: variant.rationale },
@@ -47,7 +65,8 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
     const options = { locale, hasHighQualityAsset: placements.some((photo) => photo.section === "hero") };
     const variationRepair = mode === "exploration" ? repairTheme(theme, options) : undefined;
     if (variationRepair) repaired.adjustments.push(...variationRepair.adjustments.map((adjustment) => `${variant.name}: ${adjustment}`));
-    const candidate = variationRepair?.value ?? theme;
+    const base = variationRepair?.value ?? theme;
+    const candidate = variant.designSpec ? compileDesignSpec(variant.designSpec, base as Theme) : base;
     const validated = validateTheme(candidate, options);
     if (!validated.ok) throw new Error(validated.errors.join("; "));
     return validated.theme;
@@ -57,15 +76,20 @@ export function composeSeries(raw: unknown, locale: Locale, photos: DirectedAsse
     if (new Set(themes.map(identity)).size !== themes.length) throw new Error("Exploration directions must differ in visible identity, including materials and typography");
     const scene = (theme: Theme) => JSON.stringify([theme.layout.preset, theme.layout.composition, theme.surface.texture, theme.finishing.type, theme.ornament.pack]);
     if (new Set(themes.map(scene)).size !== themes.length) throw new Error("Exploration needs different compositions or material scenes; recoloring the same design is not enough");
+    const identities = themes.map((theme) => designIdentity(theme, visualPlanned, style.intent?.artworkPrompt));
+    for (let index = 1; index < identities.length; index++) assertDistinctDesigns([identities[index]], identities.slice(0, index));
   }
-  return { ...(series.mode ? { mode } : {}), themes, style: { ...style, palette: common.palette }, adjustments: repaired.adjustments };
+  const resolvedStyle = series.variants[0].designSpec && themes.length === 1
+    ? { ...style, ...artDirection(themes[0]), artwork: themes[0].artwork, generatedVisual: themes[0].generatedVisual }
+    : { ...style, palette: common.palette };
+  return { ...(series.mode ? { mode } : {}), themes, style: resolvedStyle, adjustments: repaired.adjustments };
 }
 /** Canonical bounded overrides; server-issued artwork and photo safety never vary here. */
 export function artDirection(theme: Theme) {
-  return { palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } };
+  return { ...(theme.studioTemplate ? { studioTemplate: theme.studioTemplate } : {}), palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } };
 }
 export type GeneratedSeries = ReturnType<typeof composeSeries> & Pick<Generation, "model" | "elapsedMs" | "references"> & { visual?: GeneratedVisual; facts?: BriefFacts };
 
 export function sharedStyleSignature(theme: Theme) {
-  return JSON.stringify({ palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, artwork: theme.artwork, generatedVisual: theme.generatedVisual, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } });
+  return JSON.stringify({ studioTemplate: theme.studioTemplate, palette: theme.palette, typeSet: theme.typeSet, materialSet: theme.materialSet, artwork: theme.artwork, generatedVisual: theme.generatedVisual, foil: theme.foil, motion: theme.motion, atmosphere: theme.atmosphere, surface: theme.surface, finishing: theme.finishing, typographyScale: theme.typographyScale, ornament: { pack: theme.ornament.pack, density: theme.ornament.density, color: theme.ornament.color } });
 }

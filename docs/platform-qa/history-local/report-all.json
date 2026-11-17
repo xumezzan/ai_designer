@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-10-22T09:43:47.331Z",
+  "phase": "all",
+  "paidCalls": 0,
+  "checks": [
+    "A manual edit inside the autosave debounce survives recovered success; PATCH completes before GET",
+    "Reopened editor discovers a server-side running job with empty sessionStorage and no new POST",
+    "Discovered job completes via GET without a duplicate generation request",
+    "Manual design save persists a named history entry without changing the invitation revision",
+    "Selecting history previews in the actual iframe without a PATCH, draft revision change or publication",
+    "Cancelling historical preview resets the selected card and returns the current draft",
+    "Restore flushes the latest unsaved facts, changes only design, keeps the published snapshot and deduplicates rapid clicks",
+    "Automatic before-restore checkpoint supports durable undo without changing current facts or guest publication",
+    "Named history entries survive closing and reopening the editor",
+    "History and its controls fit 320/390/430px without horizontal overflow"
+  ],
+  "errors": [],
+  "generationPosts": 1,
+  "generationGets": 14,
+  "invitationId": "419f98c9-a69c-4016-9000-979f1a8e760e"
+}

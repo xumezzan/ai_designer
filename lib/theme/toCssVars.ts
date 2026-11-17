@@ -7,7 +7,6 @@ import type { Theme } from "../schema/theme";
 import { getTypeSet, typeSetStackFor, type TypeSetLevel } from "../../registry/typesets";
 import { getMaterialSet } from "../../registry/materials";
 import { getArtwork } from "../../registry/artwork";
-import { stackFor } from "../../registry/fonts";
 import { spaceScale, spaceVars } from "../layout/space";
 
 const ORNAMENT_COLOR_VAR = {
@@ -34,9 +33,9 @@ export function toCssVars(theme: Theme): Record<string, string> {
   if (!typeSet) {
     throw new Error(`Type set "${theme.typeSet}" is not registered`);
   }
-  vars["--font-display"] = stackFor(typeSet.display);
+  vars["--font-display"] = typeSetStackFor(typeSet, "display");
   vars["--font-body"] = typeSetStackFor(typeSet, "body");
-  vars["--font-caps"] = stackFor(typeSet.levels.caps.role === "display" ? typeSet.display : typeSet.body);
+  vars["--font-caps"] = typeSetStackFor(typeSet, typeSet.levels.caps.role === "display" ? "display" : "body");
   for (const level of Object.keys(typeSet.levels) as TypeSetLevel[]) {
     const spec = typeSet.levels[level];
     const name = levelVar(level);

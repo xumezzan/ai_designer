@@ -1,0 +1,264 @@
+@import "./organic-fonts.css";
+
+/* Mobile-first stationery. Scoped only to composition organic-paper; data stays in
+   the existing content/theme model and every studio editing hook stays live. */
+.paper-wax-seal { display: none; }
+.invitation.organic-paper { background: var(--bg); color: var(--ink); }
+.invitation.organic-paper .invitation-experience {
+  --paper-gold: #c5a880;
+  --paper-sage: #87917c;
+  --hairline: #d9cbb6;
+  --font-body: "Montserrat", "Golos Text", Arial, sans-serif;
+  --font-caps: var(--font-body);
+  --foil-color: #8b7353;
+  --craft-reveal-distance: 18px;
+  --craft-reveal-duration: 950ms;
+  --craft-reveal-ease: cubic-bezier(.16, 1, .3, 1);
+  --shadow-soft: 0 12px 38px rgba(50, 40, 30, .07);
+  background: var(--bg);
+  font-family: var(--font-body);
+}
+.invitation.organic-paper .invitation-surface { background: var(--bg); }
+.invitation.organic-paper .surface-frame::before {
+  z-index: 3;
+  background: url("/textures/organic-paper.svg") repeat;
+  opacity: .05;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.invitation.organic-paper :is(.grain-overlay, .physical-grain, .physical-vignette, .ambient-light, .surface-rails, .deckle-edge) { display: none; }
+.invitation.organic-paper .narrative-content { width: min(calc(100% - 40px), 1040px); padding-top: 24px; }
+.invitation.organic-paper [data-level="small"],
+.invitation.organic-paper [data-level="caps"] {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-feature-settings: "kern" 1;
+}
+.invitation.organic-paper [data-level="body"] { font-size: 11px; font-weight: 400; line-height: 2.1; letter-spacing: .18em; text-transform: uppercase; }
+.invitation.organic-paper [data-level="lead"] { font-size: 12px; font-weight: 400; line-height: 2; letter-spacing: .18em; text-transform: uppercase; }
+.invitation.organic-paper [data-level="display-sm"] { font-size: clamp(36px, 7vw, 56px); font-weight: 300; line-height: 1.12; letter-spacing: -.025em; }
+.invitation.organic-paper :is(h1, h2) { text-wrap: balance; }
+.invitation.organic-paper :is(section, footer) { scroll-margin-top: 24px; }
+.invitation.organic-paper :is(a, button, input) { -webkit-tap-highlight-color: transparent; }
+.invitation.organic-paper :focus-visible { outline: 2px solid var(--paper-sage); outline-offset: 5px; }
+
+/* The first screen is a physical, arched card, with a recessed border and a
+   backing sheet. Neither layer receives pointer events or obscures live text. */
+.invitation.organic-paper .hero-wrapper { margin: 0 0 26px; isolation: isolate; }
+.invitation.organic-paper .hero-stock { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.invitation.organic-paper .hero-stock-backing {
+  position: absolute;
+  inset: 8px -6px -9px 6px;
+  border-radius: 180px 180px 3px 3px;
+  background: #e8e4da;
+  border: 1px solid #e0d9ca;
+  transform: rotate(1.1deg);
+  box-shadow: 0 14px 36px rgba(50, 40, 30, .07);
+}
+.invitation.organic-paper .hero-stock-sheet {
+  position: absolute;
+  inset: 0;
+  border-radius: 180px 180px 2px 2px;
+  border: 1px solid #e2d9ca;
+  background: var(--surface);
+  box-shadow: 0 2px 3px rgba(50, 40, 30, .04), inset 0 1px 0 #fffdf9;
+  overflow: hidden;
+}
+.invitation.organic-paper .hero-stock-edge { display: block; position: absolute; inset: 13px; border: 1px solid var(--hairline); border-radius: 170px 170px 1px 1px; box-shadow: none; }
+.invitation.organic-paper .hero-stock-fibre { position: absolute; inset: 0; background: url("/textures/organic-paper.svg") repeat; opacity: .045; }
+.invitation.organic-paper :is(.hero-stock-signature, .hero-corners, .hero-wrapper > .ornament) { display: none; }
+.invitation.organic-paper[data-crafted="organic"] .invitation-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 730px;
+  padding: 88px 26px 30px;
+  text-align: center;
+}
+.invitation.organic-paper .paper-botanical { pointer-events: none; color: var(--paper-sage); }
+.invitation.organic-paper .paper-hero-branch { position: absolute; width: 68px; height: 102px; top: 35px; left: calc(50% - 34px); opacity: .8; transform: rotate(-18deg); }
+.invitation.organic-paper .hero-opening { justify-content: center; gap: 0; width: 100%; padding: 0; border: 0; margin: 63px 0 25px; }
+.invitation.organic-paper .hero-opening p { max-width: 23ch; color: var(--muted); font-size: 11px; letter-spacing: .23em; }
+.invitation.organic-paper :is(.hero-edition, .hero-line) { display: none; }
+.invitation.organic-paper .hero-imprint { display: none; }
+.invitation.organic-paper .hero-name-group { width: 100%; max-width: none; min-width: 0; margin: 0; }
+.invitation.organic-paper #hero-title { font-size: clamp(53px, 14.5vw, 80px); line-height: .97; font-weight: 300; letter-spacing: -.035em; }
+.invitation.organic-paper .hero-name-group h1 > :is(span, .foil-text) > span { display: block; }
+.invitation.organic-paper .hero-host { display: block; overflow-wrap: anywhere; }
+.invitation.organic-paper .hero-join { display: block; margin: 8px 0; color: var(--accent); font-size: .53em; font-weight: 300; font-style: italic; line-height: 1; }
+.invitation.organic-paper .hero-date { display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 15px; width: auto; margin: 30px 0 0; padding: 14px 0; border-block: 1px solid var(--hairline); }
+.invitation.organic-paper .hero-day { font-size: 44px; font-weight: 300; line-height: 1; }
+.invitation.organic-paper .hero-date-copy { text-align: left; gap: 2px; }
+.invitation.organic-paper .hero-date-copy [data-level="lead"] { font-family: var(--font-body); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+.invitation.organic-paper .hero-date-copy [data-level="body"] { color: var(--muted); font-size: 11px; letter-spacing: .08em; }
+.invitation.organic-paper .hero-place { align-items: center; margin: 20px 0 0; padding: 0; gap: 4px; max-width: 29ch; font-size: 11px; line-height: 1.7; }
+.invitation.organic-paper .hero-place > span:last-child { font-size: 11px; color: var(--muted); }
+.invitation.organic-paper .hero-personal { font-family: var(--font-display); font-size: 19px; font-style: italic; letter-spacing: 0; }
+.invitation.organic-paper .hero-next { justify-self: auto; align-self: center; display: flex; flex-direction: column; gap: 9px; width: auto; min-height: 44px; margin: 26px 0 0; border: 0; color: var(--muted); }
+.invitation.organic-paper .hero-next-label { font-size: 11px; letter-spacing: .18em; }
+.invitation.organic-paper .hero-next > span:last-child { width: 26px; height: 30px; border: 0; border-radius: 0; color: var(--accent); font-size: 20px; }
+
+/* Each role has its own rhythm; there are no alternating index backgrounds. */
+.invitation.organic-paper .invitation-section { margin: 0; padding: 62px 8px; border: 0; }
+.invitation.organic-paper .invitation-section h2 { max-width: none; margin-bottom: 24px; }
+.invitation.organic-paper .greeting-section { display: block; text-align: center; }
+.invitation.organic-paper .greeting-section h2 { max-width: 14ch; margin-inline: auto; font-style: italic; }
+.invitation.organic-paper .greeting-copy { max-width: 40ch; margin-inline: auto; }
+.invitation.organic-paper .greeting-copy p { font-family: var(--font-body); font-size: 11px; line-height: 2.1; letter-spacing: .18em; }
+.invitation.organic-paper .greeting-copy p:first-child { max-width: none; }
+.invitation.organic-paper .greeting-copy p + p { margin-top: 20px; }
+.invitation.organic-paper .countdown-section { display: block; border-block: 1px solid var(--hairline); padding-block: 38px; text-align: center; }
+.invitation.organic-paper .countdown-section h2 { font-size: 31px; max-width: none; margin: 0 0 25px; }
+.invitation.organic-paper .countdown-values { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; max-width: 440px; margin-inline: auto; gap: 8px; }
+.invitation.organic-paper .countdown-values > div { gap: 10px; }
+.invitation.organic-paper .countdown-values > div + div { border-left: 1px solid var(--hairline); }
+.invitation.organic-paper .countdown-values dd { font-size: clamp(32px, 9vw, 48px); font-weight: 300; line-height: 1; }
+.invitation.organic-paper .countdown-values dt { font-size: 11px; letter-spacing: .18em; color: var(--muted); }
+.invitation.organic-paper .venue-section { display: block; text-align: center; }
+.invitation.organic-paper .section-eyebrow { font-size: 11px; color: var(--muted); letter-spacing: .2em; margin-bottom: 18px; }
+.invitation.organic-paper .venue-heading h2 { max-width: 14ch; margin-inline: auto; }
+.invitation.organic-paper .venue-coordinates { font-size: 11px; color: var(--paper-sage); letter-spacing: .1em; }
+.invitation.organic-paper .venue-copy { padding: 27px 0 0; }
+.invitation.organic-paper .venue-copy > .section-eyebrow { display: none; }
+.invitation.organic-paper .venue-copy address { font-family: var(--font-body); font-size: 12px; line-height: 1.8; max-width: 32ch; margin: 0 auto 16px; }
+.invitation.organic-paper .venue-copy p { max-width: 38ch; margin-inline: auto; font-size: 12px; }
+.invitation.organic-paper .invitation-link { min-height: 48px; font-size: 11px; font-family: var(--font-body); letter-spacing: .18em; text-transform: uppercase; border-color: var(--paper-gold); padding: 10px 0; margin-top: 24px; transition: color 300ms, border-color 300ms; }
+.invitation.organic-paper .timeline-section { display: block; padding: 40px 16px 45px; background: #edece3; border: 1px solid #e3e2d5; }
+.invitation.organic-paper .timeline-heading { max-width: none; text-align: center; }
+.invitation.organic-paper .section-mark { display: block; width: 40px; height: 40px; margin: 0 auto 16px; color: var(--accent); }
+.invitation.organic-paper .timeline-list { max-width: 520px; margin-inline: auto; }
+.invitation.organic-paper .timeline-list li { position: relative; display: grid; grid-template-columns: 50px minmax(0, 1fr); gap: 26px; padding: 0 0 33px; border: 0; }
+.invitation.organic-paper .timeline-list li:last-child { padding-bottom: 0; }
+.invitation.organic-paper .timeline-list li::before { content: ""; position: absolute; width: 1px; left: 61px; top: 12px; bottom: -12px; background: var(--paper-gold); }
+.invitation.organic-paper .timeline-list li:last-child::before { bottom: calc(100% - 12px); }
+.invitation.organic-paper .timeline-list li::after { content: ""; position: absolute; left: 58px; top: 10px; width: 7px; height: 7px; border: 1px solid var(--accent); border-radius: 50%; background: #edece3; box-shadow: 0 0 0 4px #edece3; }
+.invitation.organic-paper .timeline-list time { font-family: var(--font-body); font-size: 11px; line-height: 2.2; letter-spacing: .05em; }
+.invitation.organic-paper .timeline-list h3 { font-family: var(--font-display); font-size: 25px; font-weight: 300; font-style: italic; line-height: 1.15; letter-spacing: -.01em; text-transform: none; }
+.invitation.organic-paper .timeline-list p { font-size: 11px; line-height: 1.9; margin-top: 8px; color: var(--muted); }
+.invitation.organic-paper .timeline-index { display: none; }
+.invitation.organic-paper .dress-section { display: block; text-align: center; padding-top: 70px; }
+.invitation.organic-paper .dress-section h2 { max-width: 15ch; margin-inline: auto; }
+.invitation.organic-paper .dress-section > p { max-width: 38ch; margin-inline: auto; font-size: 12px; }
+.invitation.organic-paper .dress-palette { margin-top: 30px; }
+.invitation.organic-paper .dress-palette-heading { justify-content: center; font-size: 11px; margin-bottom: 18px; }
+.invitation.organic-paper .dress-palette-heading > span:last-child { display: none; }
+.invitation.organic-paper .dress-swatches { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 4px; margin: 0; }
+.invitation.organic-paper .dress-swatches li { flex: 0 0 72px; }
+.invitation.organic-paper .dress-fabric { display: flex; flex-direction: column; align-items: center; width: 72px; min-height: 96px; padding: 6px 0; border: 0; background: transparent; border-radius: 0; cursor: pointer; transition: transform 450ms var(--craft-reveal-ease); }
+.invitation.organic-paper .dress-fabric .dress-swatch { display: block; width: 54px; height: 54px; border-radius: 50%; clip-path: none; background: var(--swatch); border: 1px solid rgba(50, 40, 30, .1); box-shadow: inset 2px 3px 6px rgba(255, 253, 249, .35), inset -2px -2px 5px rgba(50, 40, 30, .08), 0 5px 10px rgba(50, 40, 30, .07); transition: outline-color 300ms, box-shadow 300ms; outline: 1px solid transparent; outline-offset: 4px; }
+.invitation.organic-paper .dress-fabric .dress-swatch::after { inset: 0; border-radius: inherit; background: url("/textures/organic-paper.svg"); opacity: .1; }
+.invitation.organic-paper .dress-fabric[aria-pressed="true"] .dress-swatch { outline-color: var(--accent); }
+.invitation.organic-paper .dress-fabric-number { display: none; }
+.invitation.organic-paper .dress-fabric-name { display: block; margin-top: 14px; color: var(--muted); font-family: var(--font-body); font-size: 11px; line-height: 1.5; letter-spacing: .015em; }
+.invitation.organic-paper .dress-preview { display: flex; justify-content: center; align-items: center; text-align: left; gap: 17px; border-color: var(--hairline); max-width: 370px; margin: 24px auto 0; padding-top: 22px; }
+.invitation.organic-paper .dress-outfits { flex: 0 0 86px; width: 86px; height: 74px; }
+.invitation.organic-paper .dress-preview p { font-size: 11px; letter-spacing: .09em; color: var(--ink); }
+.invitation.organic-paper .dress-preview p span { font-size: 10px; text-transform: none; letter-spacing: .015em; color: var(--muted); }
+.invitation.organic-paper .wishes-section { border-top: 1px solid var(--hairline); text-align: center; }
+.invitation.organic-paper .wishes-section p { margin-inline: auto; }
+
+/* Reply stationery: a folded edge, a real native form and a decorative seal. */
+.invitation.organic-paper .rsvp-section { position: relative; display: block; margin: 15px 0 55px; padding: 40px 24px 28px; background: var(--surface); border: 1px solid #e3dbcf; box-shadow: var(--shadow-soft); }
+.invitation.organic-paper .rsvp-section::before { content: ""; position: absolute; inset: 8px; border: 1px solid #e7dece; pointer-events: none; }
+.invitation.organic-paper .rsvp-heading { text-align: center; }
+.invitation.organic-paper .rsvp-heading h2 { max-width: 12ch; margin: 0 auto 20px; font-size: 43px; font-style: italic; }
+.invitation.organic-paper .rsvp-flourish { display: none; }
+.invitation.organic-paper .paper-wax-seal { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 47% 53% 49% 51% / 51% 46% 54% 49%; margin: 0 auto 24px; background: #a9ad96; color: #4d5746; border: 1px solid #8d977e; box-shadow: inset 2px 3px 5px #c5c9b3, inset -2px -3px 5px #838c72, 0 5px 10px rgba(50, 40, 30, .07); transform: rotate(-9deg); }
+.invitation.organic-paper .paper-wax-seal > span { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #87917c; border-radius: 50%; font-family: var(--font-display); font-size: 22px; font-style: italic; letter-spacing: -.04em; text-shadow: 0 1px 0 #c3c8b1; }
+.invitation.organic-paper .rsvp-copy { padding: 0; }
+.invitation.organic-paper .rsvp-copy > p { font-size: 11px; text-align: center; max-width: none; line-height: 1.9; }
+.invitation.organic-paper .rsvp-copy > p + p { margin-top: 12px; }
+.invitation.organic-paper .rsvp-form { display: grid; gap: 20px; width: 100%; margin-top: 24px; }
+.invitation.organic-paper .rsvp-steps { color: var(--muted); font-size: 11px; border-bottom: 1px solid var(--hairline); padding-bottom: 12px; }
+.invitation.organic-paper .rsvp-form-step { display: grid; gap: 10px; }
+.invitation.organic-paper .rsvp-form-step[hidden] { display: none; }
+.invitation.organic-paper .rsvp-form label { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; line-height: 1.8; }
+.invitation.organic-paper .rsvp-form input:not([type="checkbox"]) { width: 100%; min-width: 0; min-height: 48px; padding: 10px 0; background: transparent; color: var(--ink); border: 0; border-bottom: 1px solid var(--hairline); border-radius: 0; font-family: var(--font-body); font-size: 16px; line-height: 1.5; transition: border-color 300ms; }
+.invitation.organic-paper .rsvp-form input:not([type="checkbox"]):focus { border-color: var(--accent); outline: none; box-shadow: 0 1px 0 var(--accent); }
+.invitation.organic-paper .rsvp-attendance { gap: 14px; min-height: 48px; cursor: pointer; }
+.invitation.organic-paper .rsvp-attendance input { appearance: none; flex: 0 0 22px; width: 22px; height: 22px; margin: 0; border: 1px solid #9c886f; border-radius: 2px; background: #ece3d6; box-shadow: inset 1px 1px 3px rgba(50, 40, 30, .07); cursor: pointer; }
+.invitation.organic-paper .rsvp-attendance input:checked { background: #8a7660 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='m6 12 4 4 8-9' fill='none' stroke='%23faf8f5' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat; }
+.invitation.organic-paper .rsvp-form-actions { display: flex; flex-direction: column; gap: 12px; }
+.invitation.organic-paper .invitation-button { position: relative; display: inline-flex; justify-content: space-between; align-items: center; gap: 16px; width: 100%; min-height: 56px; margin-top: 22px; padding: 16px 18px; background: #343932; color: #eee1cc; border: 1px solid #a89676; box-shadow: inset 0 0 0 3px #343932, inset 0 0 0 4px #73735c, 0 5px 12px rgba(50, 40, 30, .07); font-family: var(--font-body); font-size: 11px; line-height: 1.8; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; transition: background-color 350ms, box-shadow 350ms, translate 500ms var(--craft-reveal-ease), transform 500ms var(--craft-reveal-ease); }
+.invitation.organic-paper .invitation-button span { flex: 0 0 auto; font-size: 18px; }
+.invitation.organic-paper .rsvp-form-actions .invitation-button { margin: 0; }
+.invitation.organic-paper .rsvp-back { align-self: center; min-height: 44px; color: var(--muted); font-size: 11px; letter-spacing: .18em; cursor: pointer; }
+.invitation.organic-paper .invitation-calendar { width: 100%; margin-top: 10px; }
+.invitation.organic-paper .invitation-calendar summary { min-height: 48px; font-size: 11px; letter-spacing: .18em; color: var(--muted); }
+.invitation.organic-paper .calendar-options a { font-size: 11px; text-transform: none; letter-spacing: .04em; }
+.invitation.organic-paper .invitation-footer { display: block; padding: 22px 8px 50px; border: 0; text-align: center; }
+.invitation.organic-paper .invitation-footer > p:first-child { font-size: 44px; font-style: italic; }
+.invitation.organic-paper .invitation-footer > p { width: 100%; }
+.invitation.organic-paper .invitation-footer > p + p { font-family: var(--font-body); margin-top: 14px; font-size: 11px; font-style: normal; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+.invitation.organic-paper .footer-top { width: 44px; height: 44px; border-color: var(--hairline); color: var(--accent); font-size: 20px; margin-top: 27px; transition: transform 400ms var(--craft-reveal-ease); }
+
+/* The existing envelope interaction keeps its focus, Escape and swipe logic. */
+.invitation.organic-paper .invitation-cover { background: var(--bg); color: var(--ink); }
+.invitation.organic-paper .invitation-cover::backdrop { background: #f5f2eb; }
+.invitation.organic-paper .cover-leaf { background: var(--surface); box-shadow: var(--shadow-soft); }
+.invitation.organic-paper .cover-eyebrow { color: var(--muted); }
+.invitation.organic-paper .cover-envelope { border-color: var(--hairline); background: var(--surface); box-shadow: var(--shadow-soft); }
+.invitation.organic-paper .cover-monogram { color: var(--paper-sage); font-style: italic; }
+.invitation.organic-paper .cover-names { font-weight: 300; font-size: 44px; }
+.invitation.organic-paper .cover-open { background: #343932; color: #eee1cc; border: 1px solid var(--paper-gold); font-size: 11px; letter-spacing: .18em; }
+
+@media (hover: hover) and (pointer: fine) {
+  .invitation.organic-paper .dress-fabric:hover { transform: translateY(-4px); }
+  .invitation.organic-paper .invitation-button:hover { background: #454d40; transform: translateY(-2px); box-shadow: inset 0 0 0 3px #454d40, inset 0 0 0 4px #989277, 0 9px 18px rgba(50, 40, 30, .07); }
+  .invitation.organic-paper .invitation-link:hover { color: var(--paper-sage); border-color: var(--paper-sage); }
+  .invitation.organic-paper .footer-top:hover { transform: translateY(-3px); }
+}
+@media (min-width: 700px) {
+  .invitation.organic-paper .narrative-content { width: min(calc(100% - 96px), 1040px); padding-top: 54px; }
+  .invitation.organic-paper .hero-wrapper { max-width: 580px; margin-inline: auto; margin-bottom: 45px; }
+  .invitation.organic-paper[data-crafted="organic"] .invitation-hero { min-height: 850px; padding-inline: 55px; }
+  .invitation.organic-paper .hero-stock-sheet, .invitation.organic-paper .hero-stock-backing { border-radius: 290px 290px 2px 2px; }
+  .invitation.organic-paper .hero-stock-edge { inset: 18px; border-radius: 280px 280px 1px 1px; }
+  .invitation.organic-paper #hero-title { font-size: 92px; }
+  .invitation.organic-paper .paper-hero-branch { width: 80px; height: 120px; left: calc(50% - 40px); }
+  .invitation.organic-paper .hero-opening { margin-top: 75px; }
+  .invitation.organic-paper .hero-date { margin-top: 35px; }
+  .invitation.organic-paper .invitation-section { padding: 88px 44px; }
+  .invitation.organic-paper .greeting-section { max-width: 680px; margin-inline: auto; }
+  .invitation.organic-paper .countdown-section { padding: 45px 44px; }
+  .invitation.organic-paper .venue-section { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; text-align: left; align-items: center; }
+  .invitation.organic-paper .venue-heading h2 { margin-inline: 0; }
+  .invitation.organic-paper .venue-copy { padding: 0; }
+  .invitation.organic-paper .venue-copy :is(address, p) { margin-inline: 0; }
+  .invitation.organic-paper .timeline-section { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; padding: 65px 50px; }
+  .invitation.organic-paper .timeline-heading { text-align: left; }
+  .invitation.organic-paper .section-mark { margin-inline: 0; }
+  .invitation.organic-paper .timeline-list h3 { font-size: 30px; }
+  .invitation.organic-paper .dress-section { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "heading palette" "copy palette"; gap: 0 56px; text-align: left; }
+  .invitation.organic-paper .dress-section :is(h2, p) { margin-inline: 0; }
+  .invitation.organic-paper .dress-palette { margin-top: 0; }
+  .invitation.organic-paper .dress-swatches { gap: 12px; }
+  .invitation.organic-paper .rsvp-section { display: grid; grid-template-columns: .85fr 1.15fr; gap: 60px; max-width: 850px; margin: 20px auto 80px; padding: 55px; }
+  .invitation.organic-paper .rsvp-heading h2 { font-size: 55px; }
+  .invitation.organic-paper .rsvp-copy > p { text-align: left; }
+  .invitation.organic-paper .invitation-footer { padding-bottom: 70px; }
+
+}
+@media (max-width: 359px) {
+  .invitation.organic-paper .narrative-content { width: calc(100% - 32px); }
+  .invitation.organic-paper[data-crafted="organic"] .invitation-hero { padding-inline: 22px; min-height: 710px; }
+  .invitation.organic-paper .dress-swatches li, .invitation.organic-paper .dress-fabric { flex-basis: 60px; width: 60px; }
+  .invitation.organic-paper .dress-fabric .dress-swatch { width: 46px; height: 46px; }
+  .invitation.organic-paper .dress-fabric-name { font-size: 11px; }
+  .invitation.organic-paper .rsvp-section { padding-inline: 20px; }
+  .invitation.organic-paper .timeline-section { padding-inline: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .invitation.organic-paper [data-reveal] { opacity: 1; transform: none; }
+  .invitation.organic-paper :is(.dress-fabric, .invitation-button, .footer-top, .hero-next > span) { transform: none; translate: none; transition: none; }
+}
+@media (forced-colors: active) {
+  .invitation.organic-paper .rsvp-attendance input { appearance: auto; }
+  .invitation.organic-paper .invitation-button { border: 1px solid ButtonText; }
+}

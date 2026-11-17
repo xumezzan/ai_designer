@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-10-22T17:57:59.908Z",
+  "base": "http://127.0.0.1:4313",
+  "mode": "live-ai",
+  "expectedScenarios": 5,
+  "expectedPages": 20,
+  "generationPosts": 5,
+  "generationsSucceeded": 0,
+  "blockedBrowserGenerationPosts": 0,
+  "apiChecks": [],
+  "pages": [],
+  "failures": [
+    {
+      "scenario": "botanical-wedding",
+      "message": "botanical-wedding: AI_PLAN_FAILED\n+ actual - expected\n\n+ 'failed'\n- 'succeeded'\n"
+    },
+    {
+      "scenario": "deco-wedding",
+      "message": "deco-wedding: AI_PLAN_FAILED\n+ actual - expected\n\n+ 'failed'\n- 'succeeded'\n"
+    },
+    {
+      "scenario": "poster-birthday",
+      "message": "poster-birthday: AI_PLAN_FAILED\n+ actual - expected\n\n+ 'failed'\n- 'succeeded'\n"
+    },
+    {
+      "scenario": "editorial-anniversary",
+      "message": "editorial-anniversary: AI_PLAN_FAILED\n+ actual - expected\n\n+ 'failed'\n- 'succeeded'\n"
+    },
+    {
+      "scenario": "personal-greeting",
+      "message": "personal-greeting: AI_PLAN_FAILED\n+ actual - expected\n\n+ 'failed'\n- 'succeeded'\n"
+    },
+    {
+      "scenario": "harness",
+      "message": "Not all API scenarios completed\n\n0 !== 5\n"
+    }
+  ],
+  "designHistogram": {
+    "template": {},
+    "hero": {},
+    "font": {},
+    "surface": {}
+  },
+  "limitations": [
+    "One real generation endpoint request per fictional brief; provider billing and internal provider call counts are not inferred from HTTP success.",
+    "Schema validity, token diversity and passing browser assertions do not establish that a design is beautiful. Review the saved mobile pages visually.",
+    "Chromium emulates mobile touch at 320, 390 and 430 pixels. Physical phones, Safari, normal-motion animation and production hosting are not tested.",
+    "The editorial anniversary intentionally has no photograph; personal photo upload, cropping and photographic art direction are not exercised.",
+    "Small controls and text clipping candidates are reported as observations for visual review."
+  ],
+  "success": false
+}

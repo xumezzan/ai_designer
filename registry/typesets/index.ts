@@ -34,6 +34,8 @@ export interface TypeSet {
   description: string;
   /** registry/fonts.ts ids. */
   display: string;
+  /** Verified per-glyph fallback for scripts or signs absent from the display face. */
+  displayGlyphFallback?: string;
   body: string;
   /** Explicit same-pair fallback for glyphs absent from the body source. */
   bodyGlyphFallback?: string;
@@ -44,7 +46,7 @@ export interface TypeSet {
 
 export function typeSetStackFor(typeSet: TypeSet, role: "display" | "body"): string {
   return stackFor(role === "display" ? typeSet.display : typeSet.body,
-    role === "body" ? typeSet.bodyGlyphFallback : undefined);
+    role === "body" ? typeSet.bodyGlyphFallback : typeSet.displayGlyphFallback);
 }
 
 export function typeSetSupportsLocale(
@@ -52,7 +54,8 @@ export function typeSetSupportsLocale(
   locale: "ru" | "uz-latn" | "en",
 ): boolean {
   return (
-    supportsLocale(typeSet.display, locale) &&
+    (supportsLocale(typeSet.display, locale) ||
+      !!(typeSet.displayGlyphFallback && supportsLocale(typeSet.displayGlyphFallback, locale))) &&
     (supportsLocale(typeSet.body, locale) ||
       !!(typeSet.bodyGlyphFallback && supportsLocale(typeSet.bodyGlyphFallback, locale)))
   );
@@ -177,8 +180,61 @@ export function getTypeSet(id: TypeSetId): TypeSet | undefined {
   return typeSets[id];
 }
 
-// These are different letterforms, not weight variations of the same serif.
 const base = typeSets.editorial!;
+const modernEditorial: TypeSet = {
+  ...base,
+  id: "modern-editorial",
+  name: "Modern Editorial",
+  description: "Cormorant Garamond headlines with Inter for prose and details.",
+  body: "inter",
+  bodyGlyphFallback: undefined,
+  measure: 58,
+  levels: {
+    ...base.levels,
+    display: { ...base.levels.display, size: "clamp(3.125rem, 1.5rem + 7.5vw, 6rem)", leading: 1.02 },
+    lead: { size: "clamp(1.125rem, 1rem + 0.6vw, 1.375rem)", tracking: "-0.015em", leading: 1.5, weight: 500 },
+    body: { size: "1rem", tracking: "0", leading: 1.65, weight: 400 },
+    small: { size: "0.8125rem", tracking: "0.01em", leading: 1.5, weight: 500 },
+    caps: { size: "0.75rem", role: "body", tracking: "0.14em", leading: 1.45, weight: 600 },
+  },
+};
+typeSets["modern-editorial"] = modernEditorial;
+
+typeSets["botanical-haute"] = {
+  ...modernEditorial,
+  id: "botanical-haute",
+  name: "Botanical Haute",
+  description: "Prata with a Cormorant Garamond glyph fallback, and Manrope with Inter for Uzbek modifier letters.",
+  display: "prata",
+  displayGlyphFallback: "cormorant-garamond",
+  body: "manrope",
+  bodyGlyphFallback: "inter",
+  measure: 56,
+  levels: {
+    ...modernEditorial.levels,
+    display: { size: "clamp(2.75rem, 1.6rem + 6vw, 5.25rem)", tracking: "-0.028em", leading: 1.1, weight: 400 },
+    displaySm: { size: "clamp(1.75rem, 1.4rem + 2vw, 2.75rem)", tracking: "-0.018em", leading: 1.18, weight: 400 },
+  },
+};
+
+typeSets["velvet-noir"] = {
+  ...modernEditorial,
+  id: "velvet-noir",
+  name: "Velvet Noir",
+  description: "Bodoni Moda with Cormorant Garamond for Cyrillic and missing Uzbek glyphs, and Montserrat for prose.",
+  display: "bodoni-moda",
+  displayGlyphFallback: "cormorant-garamond",
+  body: "montserrat",
+  measure: 55,
+  levels: {
+    ...modernEditorial.levels,
+    display: { size: "clamp(2.875rem, 1.55rem + 7vw, 6rem)", tracking: "-0.025em", leading: 1.06, weight: 600 },
+    displaySm: { size: "clamp(1.875rem, 1.35rem + 2.6vw, 3rem)", tracking: "-0.015em", leading: 1.13, weight: 600 },
+    caps: { ...modernEditorial.levels.caps, tracking: "0.16em" },
+  },
+};
+
+// These use different display letterforms.
 for (const [id, name, display, weight, size, leading] of [
   ["modernist", "Modernist", "unbounded", 500, "clamp(2.1rem, 5.7vw, 5.5rem)", 1.14],
   ["poetic", "Poetic", "prata", 400, "clamp(2.8rem, 7.5vw, 7rem)", 1.16],
@@ -187,6 +243,7 @@ for (const [id, name, display, weight, size, leading] of [
 ] as const) {
   typeSets[id] = {
     ...base, id, name, display, bodyGlyphFallback: "cormorant-garamond",
+    displayGlyphFallback: id === "poetic" || id === "gallery" ? "cormorant-garamond" : undefined,
     description: `${name}: ${display} with quiet Golos body text; a distinct authored typographic voice.`,
     levels: {
       ...base.levels,

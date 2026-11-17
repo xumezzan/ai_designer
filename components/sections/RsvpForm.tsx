@@ -27,7 +27,9 @@ export function RsvpForm({ target, locale, askGuestCount, guest }: { target: str
       {askGuestCount && <><label data-level="body" htmlFor="guest-count">{copy.guests}</label><input id="guest-count" type="number" name="guests" min={1} max={20} defaultValue={1} required disabled={step === 0} /></>}
     </div>
     <div className="rsvp-form-actions">
-      {step === 0 ? <button className="invitation-button" data-level="small" type="button" onClick={next} data-magnetic>{experience.next}<span aria-hidden="true">→</span></button> : <button className="invitation-button" data-level="small" type="submit" data-magnetic>{copy.reply}<span aria-hidden="true">↗</span></button>}
+      {/* Distinct keys prevent the Continue click from submitting when React
+          replaces its button with Confirm after a return to the first step. */}
+      {step === 0 ? <button key="continue" className="invitation-button" data-level="small" type="button" onClick={next} data-magnetic>{experience.next}<span aria-hidden="true">→</span></button> : <button key="confirm" className="invitation-button" data-level="small" type="submit" data-magnetic>{copy.reply}<span aria-hidden="true">↗</span></button>}
       {step === 1 && <button className="rsvp-back" data-level="small" type="button" onClick={() => { setStep(0); requestAnimationFrame(() => name.current?.focus()); }}>{experience.back}</button>}
     </div>
   </form>;

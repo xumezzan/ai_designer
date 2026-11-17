@@ -1,5 +1,72 @@
 # Invitation Studio
 
+## Taklif customer MVP
+
+Open `/` or `/dashboard` for the customer workspace. Phase 1 adds accounts,
+owner-scoped drafts, eight authored design families, photo uploads, live
+preview, explicit publication at `/i/[slug]`, and stored RSVP with response
+export. The interface supports Russian and Uzbek Latin. No AI key or payment
+provider is required for manual editing. Existing studio projects remain intact.
+
+**AI website creation:** the brief wizard supports weddings, birthdays,
+anniversaries, corporate events, engagements and other occasions. Choose an
+invitation or a personal greeting without an event. Server-side Anthropic
+planning selects a registered template, palette, font pair, ornament and bounded
+composition for the complete page. Names and copy remain editable HTML.
+`ANTHROPIC_API_KEY` enables native designs; `OPENAI_API_KEY` additionally enables
+original `sculpted-garden` artwork when the brief explicitly calls for sculptural
+botanical relief. Keys never reach the browser. Each generation makes at most
+one image request; native designs make none.
+The persistent per-owner daily limit defaults to three attempts
+(`PLATFORM_AI_DAILY_LIMIT`, range 1–20). Generation failures preserve the draft
+and its published snapshot. See [AI workflow](docs/platform-ai.md).
+
+The editor's **Versions** tab keeps a persistent design history. It can preview
+and restore AI designs or manually saved appearance checkpoints after reopening
+the studio. Restoring affects only the authored template, palette, fonts and
+artwork, composition and ornament; current purpose, event facts, copy, photographs and the live guest publication
+remain intact. History operations do not call an AI provider. See
+[design history](docs/platform-design-history.md).
+
+The local MVP stores private customer data under `.platform-data/`, configurable
+with `PLATFORM_DATA_DIR`. Run one persistent Node process with a writable disk;
+do not deploy this file adapter to serverless hosting or multiple replicas.
+Production builds close legacy operator routes, including `/studio`; use the
+development server locally for the historical studio. See
+[architecture, scope, PostgreSQL plan and limitations](docs/platform-mvp.md).
+
+Run `npm run dev` and open `http://localhost:3000`. Verification commands remain
+`npm test`, `npm run typecheck`, `npm run lint`, and `npm run build`.
+For the real HTTP regression suite, start a **separate** local server with
+`PLATFORM_DATA_DIR` pointing to an empty temporary directory, then run
+`PLATFORM_QA_BASE_URL=http://localhost:3100 node scripts/platform-http-smoke.mjs`.
+Add `PLATFORM_QA_PRODUCTION=1` when checking a production build. The smoke suite
+creates fictional accounts and archived invitations in that isolated directory.
+
+Chinese Heritage adds the owner's red-envelope invitation as an editable
+composition in both the customer workspace and historical studio. Its original
+decorative art is stored locally; names, dates, sections, photos and guest
+responses use the application's data model. See
+[the implementation and verification notes](docs/chinese-heritage/README.md).
+Use `PLATFORM_QA_TEMPLATE=heritage` to exercise this design in the HTTP suite.
+
+## Historical operator studio
+
+**Current creation path: authored templates.** New `/api/generate` requests
+select one of seven complete studio compositions, with exactly three approved
+palettes and compatible local font pairs per template. The model selects IDs;
+the renderer owns composition, materials, decoration, spacing and motion.
+Choose an explicit template without a brief to assemble it without an AI call.
+The editor preserves the brief and lets the current invitation switch between
+its approved palettes as immutable versions. View `/templates` for the authored
+collection. Native asset families include a style bible; request-time image
+generation is disabled for the catalog. Existing themes, artwork and older
+generation contracts remain readable. Details and browser evidence:
+[authored catalog](./docs/studio-templates/README.md).
+
+The historical renderer and generation milestones below describe the existing
+version library; the catalog above is the default for all new studio requests.
+
 Internal, single-user tool for generating web invitations for events (weddings,
 anniversaries, corporate evenings) for the Uzbekistan and CIS market. The design description, mood and optional references become one finished design with original artwork and a complete mobile composition; it is
 approved, refined in plain language, and published at a link.

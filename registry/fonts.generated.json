@@ -507,6 +507,40 @@
         "uzbekApostrophe": true
       },
       "faceCount": 96
+    },
+    {
+      "name": "Inter",
+      "source": "google-css2",
+      "weights": [
+        400
+      ],
+      "weightRange": null,
+      "support": {
+        "cyrillic": true,
+        "cyrillicCodepoints": 256,
+        "cyrillicCoverage": [
+          "U+400-4FF"
+        ],
+        "latinExt": true,
+        "uzbekApostrophe": true
+      },
+      "faceCount": 14
+    },
+    {
+      "name": "Bodoni Moda",
+      "source": "google-css2",
+      "weights": [
+        400
+      ],
+      "weightRange": null,
+      "support": {
+        "cyrillic": false,
+        "cyrillicCodepoints": 0,
+        "cyrillicCoverage": [],
+        "latinExt": true,
+        "uzbekApostrophe": true
+      },
+      "faceCount": 8
     }
   ]
 }

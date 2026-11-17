@@ -1,0 +1,153 @@
+{
+  "generatedAt": "2026-10-22T18:00:59.197Z",
+  "mode": "read-only-existing-fixture-font-recheck",
+  "generationPosts": 0,
+  "pages": [
+    {
+      "scenario": "botanical-wedding",
+      "width": 320,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "botanical-wedding",
+      "width": 390,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "botanical-wedding",
+      "width": 430,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "botanical-wedding",
+      "width": 1280,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "deco-wedding",
+      "width": 320,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "deco-wedding",
+      "width": 390,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "deco-wedding",
+      "width": 430,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "deco-wedding",
+      "width": 1280,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "poster-birthday",
+      "width": 320,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "poster-birthday",
+      "width": 390,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "poster-birthday",
+      "width": 430,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "poster-birthday",
+      "width": 1280,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "editorial-anniversary",
+      "width": 320,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "editorial-anniversary",
+      "width": 390,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "editorial-anniversary",
+      "width": 430,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "editorial-anniversary",
+      "width": 1280,
+      "checks": 24,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "personal-greeting",
+      "width": 320,
+      "checks": 10,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "personal-greeting",
+      "width": 390,
+      "checks": 10,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "personal-greeting",
+      "width": 430,
+      "checks": 10,
+      "failures": [],
+      "initiallyUnloaded": 0
+    },
+    {
+      "scenario": "personal-greeting",
+      "width": 1280,
+      "checks": 10,
+      "failures": [],
+      "initiallyUnloaded": 0
+    }
+  ],
+  "success": true,
+  "negativeGuard": {
+    "missingPrimaryFamilyDetected": true,
+    "descriptor": "normal 400 98px \"QA Missing Webfont\"",
+    "returnedFaces": 0
+  }
+}

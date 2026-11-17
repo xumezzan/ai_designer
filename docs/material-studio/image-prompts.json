@@ -1,0 +1,32 @@
+{
+  "mode": "built-in imagegen",
+  "projectAssets": true,
+  "transparency": false,
+  "processing": "Whole image converted to WebP quality 90; no cropping or retouching",
+  "assets": [
+    {
+      "id": "silk",
+      "file": "public/artwork/material-studio/silk.webp",
+      "bytes": 268864,
+      "width": 1024,
+      "height": 1536,
+      "prompt": "Create an original premium full-bleed WEBSITE BACKGROUND ART ASSET, portrait 2:3. Not a website mockup. Macro editorial photograph of real champagne silk and ivory satin, long sculptural folds flowing diagonally from the upper right down to lower left, one translucent organza veil in foreground, rich material weave, believable soft studio daylight from upper left, deep contact shadows inside folds and luminous pearlescent highlights. Sophisticated fashion-house invitation art direction, warm oyster/cream/soft antique gold, photographic material richness rather than a flat color. The central-left middle area is calm luminous ivory silk where separate live dark typography will be added by code. Fabric fills every edge of the image; no table, no card, no invitation sheet, no frame, no people, no letters, no text, no logos. Composition itself feels bespoke and restrained, sweeping light and shadow, no generic vector shapes or gradients. This is a high fidelity usable web background, not an image of a browser."
+    },
+    {
+      "id": "porcelain",
+      "file": "public/artwork/material-studio/porcelain.webp",
+      "bytes": 289164,
+      "width": 1024,
+      "height": 1536,
+      "prompt": "Create an original luxurious full-bleed WEBSITE BACKGROUND ART ASSET, portrait 2:3. Tactile ivory porcelain bas-relief with a huge exquisitely sculpted magnolia blossom entering from the lower right, small sculpted stems and petals disappearing into a warm plaster wall, monumental carved folds at the far upper left. Macro material detail: matte ceramic softness, tiny handmade surface variations, petals have actual thickness, edges and deep ambient occlusion, long soft angled daylight shadows. Quiet museum installation photographed by a fine art architectural photographer. Pearl ivory, warm limestone, subtle blush within shadows, one restrained brass stem detail. Upper center and middle left have calm unadorned porcelain for live dark text. Rich 3D material depth, not a botanical drawing, not a flat paper texture. Surface extends edge to edge, no card object, no picture border, no envelope, no table, no people, no lettering, no UI, no watermark. Separate artwork only, not a mockup of a webpage."
+    },
+    {
+      "id": "night-garden",
+      "file": "public/artwork/material-studio/night-garden.webp",
+      "bytes": 273508,
+      "width": 1024,
+      "height": 1536,
+      "prompt": "Create an original sophisticated cinematic full-bleed WEBSITE BACKGROUND ART ASSET, portrait 2:3. An immersive nocturnal secret garden, intensely deep emerald-black foliage, giant glossy magnolia leaves in close foreground around the lower corners, several luminous ivory flowers on the right edge, dark indigo pool reflections at bottom, soft shafts of moonlight and a tiny warm candlelike bokeh in the distance. Art direction is luxury evening celebration in a real atmospheric garden, photographic depth of field and painterly restrained darkness, not fantasy clip art. Upper-left through central area is beautifully calm dark forest atmosphere for separate live cream typography, with rich foliage depth emerging around edges. Side light on waxy leaves makes visible tactile highlights and curved thickness. Entire canvas is the world of the garden, no framed picture or card. No table, no people, no lettering, no numbers, no UI, no logo, no geometric symbols, no neon or oversaturated glow. Vertical composition for a mobile luxury website, artwork only."
+    }
+  ]
+}

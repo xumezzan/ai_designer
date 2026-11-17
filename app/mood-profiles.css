@@ -1,0 +1,296 @@
+.studio-template[data-mood-profile] {
+  /* Keep the cover's top margin inside the colored canvas. */
+  display: flow-root;
+}
+.studio-template[data-mood-profile] .studio-composition-opening::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: var(--mood-cover-art) right center / cover no-repeat;
+  mask-image: linear-gradient(to bottom, #000 78%, transparent);
+  opacity: .23;
+  pointer-events: none;
+}
+.studio-template.theme-editorial::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: url("/textures/organic-paper.svg") repeat;
+  opacity: .09;
+  pointer-events: none;
+}
+.studio-template[data-mood-profile] :is(h1, h2, h3) {
+  text-wrap: balance;
+}
+.studio-template[data-mood-profile] p[data-level="body"] {
+  text-wrap: pretty;
+}
+.studio-template[data-mood-profile] .greeting-copy p:first-child {
+  font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 3vw, 1.1875rem);
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+.studio-template[data-mood-profile] .timeline-heading {
+  display: block;
+  max-width: none;
+}
+.studio-template[data-mood-profile] :is(.studio-template-slot, .platform-opening-photo, .platform-gallery figure, .directed-photo, .rsvp-section, input, textarea, .footer-top) {
+  border-radius: var(--mood-radius);
+}
+.studio-template[data-mood-profile] :is(.invitation-button, .platform-rsvp-submit, .dress-fabric, .hero-next > span:last-child) {
+  border-radius: var(--mood-button-radius);
+}
+.studio-template.theme-editorial :is(.studio-template-slot, .platform-opening-photo, .platform-gallery figure, .directed-photo, .rsvp-section, input, textarea, .footer-top, .invitation-button, .platform-rsvp-submit, .dress-fabric, .hero-next > span:last-child) {
+  box-shadow: none;
+}
+.studio-template[data-mood-profile] :is(.platform-opening-photo, .platform-gallery figure) {
+  border: 1px solid var(--studio-rule);
+  overflow: clip;
+}
+.studio-template.theme-editorial .studio-template-slot-rsvp {
+  background: var(--surface);
+}
+.studio-template[data-mood-profile] :is(.platform-rsvp-fields, .rsvp-form) :is(input:not([type="radio"], [type="checkbox"]), textarea),
+.studio-template[data-mood-profile] .platform-rsvp-attendance label {
+  border-color: var(--mood-control-line, var(--accent));
+}
+.studio-template[data-mood-profile] .studio-composition-native-mark,
+.studio-template[data-mood-profile] .studio-composition-hero-facts:empty {
+  display: none;
+}
+.studio-template.theme-editorial .studio-composition-opening[data-hero-layout="split-editorial"] {
+  --studio-hero-space: clamp(3rem, 9vw, 7rem);
+}
+.studio-template.theme-editorial .studio-composition-opening[data-hero-layout="split-editorial"]:not([data-has-photo]) .studio-composition-hero-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+.studio-template.theme-editorial .studio-composition-opening[data-hero-layout="split-editorial"] .studio-composition-hero-grid {
+  padding-block: clamp(1.5rem, 5vw, 4rem);
+}
+.studio-template.theme-editorial .studio-composition-opening[data-hero-layout="split-editorial"] #hero-title {
+  font-size: clamp(2.75rem, 11vw, 6rem);
+  letter-spacing: -.035em;
+}
+.studio-template.theme-editorial .studio-composition-opening[data-hero-layout="split-editorial"] .studio-composition-hero-media {
+  padding-top: 0;
+}
+@media (max-width: 599px) {
+  .studio-template.theme-editorial .studio-composition-opening[data-hero-layout="split-editorial"] .studio-composition-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Botanical Haute. Tint the page with a linen wash and keep blur to the RSVP. */
+.studio-template.theme-botanical::before,
+.studio-template.theme-noir::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.studio-template.theme-botanical::before {
+  background:
+    radial-gradient(ellipse 36rem 45rem at 7% 8rem, color-mix(in srgb, var(--accent-alt) 25%, transparent), transparent),
+    radial-gradient(ellipse 36rem 55rem at 100% 36rem, color-mix(in srgb, var(--accent) 19%, transparent), transparent),
+    radial-gradient(ellipse 45rem 60rem at 82% 87%, color-mix(in srgb, var(--accent-alt) 21%, transparent), transparent);
+}
+.studio-template.theme-botanical .studio-composition-opening[data-hero-layout="framed-arch"] {
+  border-radius: var(--mood-radius);
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  padding-block: clamp(64px, 12vw, 114px) 44px;
+  box-shadow: var(--studio-shadow);
+}
+.studio-template.theme-botanical .studio-composition-opening[data-hero-layout="framed-arch"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: url("/textures/organic-paper.svg") repeat;
+  opacity: .08;
+  pointer-events: none;
+}
+.studio-template.theme-botanical .studio-composition-decor[data-decor-placement="corners"] {
+  inset: clamp(10px, 3vw, 22px);
+  color: var(--accent-alt);
+}
+.studio-template.theme-botanical .studio-composition-opening[data-hero-layout="framed-arch"] #hero-title {
+  font-size: clamp(40px, 11vw, 79px);
+  line-height: 1.1;
+}
+.studio-template.theme-botanical .studio-composition-hero-facts {
+  grid-template-columns: minmax(0, 1fr);
+}
+.studio-template.theme-botanical [data-photo-shape="rounded"] .directed-photo,
+.studio-template.theme-botanical .countdown-values > div {
+  border-radius: var(--mood-radius);
+}
+.studio-template.theme-botanical[data-studio-composition] .studio-template-slot-rsvp,
+.studio-template.theme-noir[data-studio-composition] .studio-template-slot-rsvp {
+  margin-inline: clamp(12px, 3vw, 36px);
+  padding: clamp(24px, 6vw, 64px);
+  background: var(--surface);
+  border: 1px solid var(--studio-rule);
+  box-shadow: var(--studio-shadow);
+}
+@supports (backdrop-filter: blur(12px)) {
+  .studio-template.theme-botanical[data-studio-composition] .studio-template-slot-rsvp {
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: blur(12px);
+  }
+}
+.studio-template.theme-botanical :is(button, a, input, textarea, summary):focus-visible,
+.studio-template.theme-botanical .platform-rsvp-attendance label:focus-within {
+  outline-color: var(--ink);
+}
+
+/* Velvet Noir. Keep the gold concentrated on the opening and the main action. */
+.studio-template.theme-noir::before {
+  background:
+    radial-gradient(ellipse 36rem 36rem at 50% 22rem, color-mix(in srgb, var(--accent) 14%, transparent), transparent),
+    radial-gradient(ellipse 34rem 35rem at 50% 86%, color-mix(in srgb, var(--accent) 5%, transparent), transparent);
+}
+.studio-template.theme-noir .studio-composition-opening[data-hero-layout="fullscreen-cover"] {
+  margin: 12px 12px 0;
+  padding: clamp(48px, 8vw, 94px) clamp(24px, 7vw, 72px) 42px;
+  min-height: calc(100svh - 12px);
+  text-align: center;
+}
+.studio-template.theme-noir .studio-composition-decor[data-decor-placement="frame"] {
+  inset: 0;
+  border-radius: var(--mood-radius);
+}
+.studio-template.theme-noir .studio-composition-decor[data-decor-placement="frame"] > span {
+  margin-top: 9px;
+  background: transparent;
+}
+.studio-template.theme-noir .studio-composition-opening[data-hero-layout="fullscreen-cover"] #hero-title {
+  font-size: clamp(40px, 12vw, 96px);
+  line-height: 1.05;
+  letter-spacing: -.028em;
+}
+.studio-template.theme-noir .studio-composition-opening .studio-composition-eyebrow {
+  border: 0;
+}
+.studio-template.theme-noir .studio-composition-opening .studio-template-eyebrow {
+  color: var(--accent);
+}
+.studio-template.theme-noir .studio-composition-hero-facts {
+  justify-items: center;
+}
+.studio-template.theme-noir .studio-composition-hero-facts > :only-child {
+  grid-column: 1 / -1;
+}
+.studio-template.theme-noir .studio-composition-hero-actions .invitation-calendar {
+  margin-inline: auto;
+}
+.studio-template.theme-noir .platform-opening-photo {
+  box-shadow: var(--studio-shadow);
+}
+.studio-template.theme-noir .hero-next > span:last-child {
+  border-color: var(--accent-alt);
+}
+.studio-template.theme-noir :is(.invitation-button, .platform-rsvp-submit) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.studio-template[data-mood-profile]:not(.theme-editorial, .theme-botanical, .theme-noir) .invitation-footer > [data-level="display-sm"] {
+  width: min(100%, 24ch);
+  margin-inline: auto;
+  font-size: clamp(24px, 7.5vw, 36px);
+  text-wrap: balance;
+}
+
+.studio-template.theme-champagne-letter .studio-composition-opening[data-hero-layout="minimal-card"] {
+  box-shadow: var(--studio-shadow);
+}
+.studio-template.theme-champagne-letter .studio-composition-decor[data-decor-placement="frame"] > span {
+  background: var(--surface);
+}
+
+.studio-template.theme-rose-portrait .studio-composition-opening[data-hero-layout="split-editorial"] .studio-composition-hero-grid {
+  background: var(--surface);
+  padding: clamp(16px, 4vw, 40px);
+}
+.studio-template.theme-rose-portrait .studio-composition-opening[data-hero-layout="split-editorial"]:not([data-has-photo]) .studio-composition-hero-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+.studio-template.theme-rose-portrait .studio-composition-hero-media .platform-opening-photo {
+  padding: 8px;
+  box-shadow: var(--studio-shadow);
+}
+@media (max-width: 599px) {
+  .studio-template.theme-rose-portrait .studio-composition-opening[data-hero-layout="split-editorial"] .studio-composition-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .studio-template.theme-rose-portrait .studio-composition-opening[data-hero-layout="split-editorial"] .studio-composition-hero-media {
+    grid-column: 1;
+    padding-top: 0;
+  }
+}
+
+.studio-template.theme-forest-herbarium .studio-composition-opening[data-hero-layout="fullscreen-cover"] {
+  background: radial-gradient(ellipse at 50% 10%, var(--surface), var(--bg) 72%);
+  text-align: center;
+}
+.studio-template.theme-forest-herbarium .studio-composition-opening[data-hero-layout="fullscreen-cover"] .studio-composition-decor[data-decor-placement="corners"] > span {
+  width: clamp(70px, 20vw, 160px);
+  height: clamp(70px, 20vw, 160px);
+}
+.studio-template.theme-forest-herbarium .studio-composition-opening[data-hero-layout="fullscreen-cover"] .studio-composition-hero-facts {
+  justify-items: center;
+}
+
+.studio-template.theme-cobalt-poster .studio-composition-opening[data-hero-layout="typographic-poster"] {
+  background: linear-gradient(153deg, var(--surface) 65%, var(--bg) 65%);
+}
+.studio-template.theme-cobalt-poster .studio-composition-opening[data-hero-layout="typographic-poster"] .studio-composition-native-mark {
+  display: flex;
+}
+.studio-template.theme-cobalt-poster .invitation-footer > [data-level="display-sm"] {
+  font-family: var(--font-body);
+  font-weight: var(--fw-body);
+}
+.studio-template.theme-cobalt-poster .studio-composition-opening[data-hero-layout="typographic-poster"] .studio-template-name-line:not(:first-child) {
+  position: relative;
+  padding-inline-start: 24px;
+}
+.studio-template.theme-cobalt-poster .studio-composition-opening[data-hero-layout="typographic-poster"] .studio-template-join {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: .45em;
+  margin: 0;
+  font-size: min(.45em, 16px);
+}
+@supports (font-size: 1cqi) {
+  .studio-template.theme-cobalt-poster .studio-composition-opening[data-hero-layout="typographic-poster"] .studio-template-name-line:not(:first-child) {
+    font-size: min(1em, calc((100cqi - 26px) / var(--studio-name-measure, 1)));
+  }
+}
+
+.studio-template.theme-slate-programme .studio-composition-opening[data-hero-layout="minimal-card"] {
+  border-inline-start: 4px solid var(--accent);
+  text-align: start;
+}
+.studio-template.theme-slate-programme .studio-composition-opening[data-hero-layout="minimal-card"] .studio-composition-hero-facts {
+  justify-items: start;
+}
+
+.studio-template.theme-wine-deco .studio-composition-opening[data-hero-layout="framed-arch"] {
+  background: radial-gradient(ellipse at 50% 12%, var(--surface), var(--bg) 80%);
+}
+.studio-template.theme-wine-deco .studio-composition-opening[data-hero-layout="framed-arch"] .studio-composition-decor[data-decor-placement="frame"] {
+  inset: 9px;
+  border-radius: inherit;
+}
+.studio-template.theme-wine-deco .studio-composition-opening[data-hero-layout="framed-arch"] .studio-composition-decor[data-decor-placement="frame"] > span {
+  margin-top: 0;
+  background: transparent;
+}

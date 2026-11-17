@@ -1,0 +1,77 @@
+{
+  "title": "Малика & Тимур",
+  "purpose": "invitation",
+  "templateId": "nocturne",
+  "paletteId": "ink",
+  "fontPairId": "poetic",
+  "composition": {
+    "heroLayout": "fullscreen-cover",
+    "photoShape": "pill",
+    "surfaceStyle": "glassmorphism",
+    "spacingScale": "balanced",
+    "typographyAccent": "oversized-display",
+    "decorConfig": {
+      "placement": "frame",
+      "density": "subtle",
+      "opacity": 0.3
+    },
+    "sectionVariants": {
+      "countdown": "tiles",
+      "program": "cards",
+      "venue": "split",
+      "gallery": "filmstrip",
+      "rsvp": "minimal"
+    }
+  },
+  "ornamentSetId": "deco-lines",
+  "eventType": "wedding",
+  "locale": "ru",
+  "names": [
+    "Малика",
+    "Тимур"
+  ],
+  "date": {
+    "day": "2028-06-19",
+    "time": "18:00",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": true
+  },
+  "greeting": "Дорогие близкие! В этот вечер мы хотим быть рядом с теми, кто дорог нашему сердцу.",
+  "story": "Из случайного знакомства выросли дружба, доверие и любовь. Мы рады начать наш семейный путь вместе с вами.",
+  "venue": {
+    "name": "Сад встреч",
+    "address": "Ташкент, вымышленный адрес для локальной проверки",
+    "note": "Это вымышленные данные QA."
+  },
+  "timeline": [
+    {
+      "time": "18:00",
+      "title": "Встреча гостей"
+    },
+    {
+      "time": "19:00",
+      "title": "Праздничный вечер"
+    }
+  ],
+  "dressCode": {
+    "title": "Свободный праздничный стиль",
+    "note": "Выбирайте то, в чём вам комфортно.",
+    "swatches": [
+      "#ADB89E",
+      "#E5DCCB"
+    ]
+  },
+  "closing": "До встречи в нашем особенном вечере! Малика и Тимур",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "date",
+    "venue",
+    "timeline",
+    "dressCode",
+    "rsvp",
+    "closing"
+  ],
+  "media": []
+}

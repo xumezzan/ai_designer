@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-10-22T09:46:40.553Z",
+  "phase": "history",
+  "paidCalls": 0,
+  "checks": [
+    "Manual design save persists a named history entry without changing the invitation revision",
+    "Selecting history previews in the actual iframe without a PATCH, draft revision change or publication",
+    "Cancelling historical preview resets the selected card and returns the current draft",
+    "Restore flushes the latest unsaved facts, changes only design, keeps the published snapshot and deduplicates rapid clicks",
+    "Automatic before-restore checkpoint supports durable undo without changing current facts or guest publication",
+    "Named history entries survive closing and reopening the editor",
+    "History and its controls fit 320/390/430px without horizontal overflow"
+  ],
+  "errors": [],
+  "generationPosts": 0,
+  "generationGets": 6,
+  "invitationId": "6d69d299-6133-4b44-8691-265a1ba3b92f"
+}

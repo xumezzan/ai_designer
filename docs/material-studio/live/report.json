@@ -1,0 +1,33 @@
+{
+  "generatedAt": "2026-10-23T06:25:10.008Z",
+  "mode": "one-real-material-generation",
+  "base": "http://127.0.0.1:4315",
+  "generationPosts": 1,
+  "success": true,
+  "invitationId": "e89972ee-2fdf-4376-8b63-1f3060856e2f",
+  "requestId": "2b12eaab-a439-4278-bf2b-6cba005b8e9b",
+  "jobStatus": "succeeded",
+  "slug": "invite-26857eb74a12d833ff3ea320",
+  "url": "http://127.0.0.1:4315/i/invite-26857eb74a12d833ff3ea320",
+  "design": {
+    "templateId": "nocturne",
+    "paletteId": "wine",
+    "fontPairId": "editorial",
+    "artDirection": {
+      "title": "Burgundy Silk Atelier",
+      "scene": "silk",
+      "layout": "immersive"
+    },
+    "artwork": {
+      "id": "95a58dde-ce59-420d-9e5f-29b1fa5ac217",
+      "src": "/api/platform/media/95a58dde-ce59-420d-9e5f-29b1fa5ac217"
+    }
+  },
+  "assertions": {
+    "newOwnedArtwork": true,
+    "suppliedFactsPreserved": true,
+    "personalCopyFilled": true,
+    "published": true,
+    "noPostRetry": true
+  }
+}

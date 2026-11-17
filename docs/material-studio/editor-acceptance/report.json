@@ -1,0 +1,24 @@
+{
+  "generatedAt": "2026-10-23T06:21:54.465Z",
+  "base": "http://127.0.0.1:4315",
+  "mode": "real-material-editor-autosave",
+  "providerGenerationPosts": 0,
+  "blockedBrowserGenerationPosts": 0,
+  "externalRequests": [],
+  "pageErrors": [],
+  "assertions": {
+    "selectorChangesActualPreview": true,
+    "layoutAutosavedWithoutOtherChanges": true,
+    "reopenPreservesLayoutAndArtwork": true,
+    "originalLayoutRestored": true,
+    "publishedSnapshotUnchanged": true
+  },
+  "failures": [],
+  "limitations": [
+    "One fictional owner and authored silk greeting fixture; no AI provider is invoked.",
+    "Chromium desktop editor at 1280px with reduced motion. Physical phones and Safari are not tested."
+  ],
+  "invitationId": "c0a5e11e-b2f6-4822-9e1a-9c841cbc264d",
+  "slug": "invite-fc600ccba6bf7526fa0016f4",
+  "success": true
+}

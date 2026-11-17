@@ -1,6 +1,8 @@
 import { z } from "zod";
 import { Hex } from "./common";
 import { VisualRef } from "./visual";
+import { DesignSpec } from "./designSpec";
+import { StudioTemplate } from "./studioTemplate";
 import {
   LAYOUT_IDS,
   COMPOSITION_IDS,
@@ -70,6 +72,9 @@ export const TypographyScale = z.object({
 }).strict().default({});
 
 export const Theme = z.object({
+  studioTemplate: StudioTemplate.optional(),
+  // Optional v2 art-direction contract; old stored invitations remain valid.
+  designSpec: DesignSpec.optional(),
   meta: z.object({
     name: z.string(),
     mood: z.array(z.string()).max(4),

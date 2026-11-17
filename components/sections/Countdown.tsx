@@ -4,8 +4,9 @@ import type { Content } from "@/lib/schema/content";
 import { remainingTime } from "@/lib/invitation/date";
 import { labels } from "@/lib/invitation/locale";
 import { typograph } from "@/lib/typography/ru";
+import { FittedHeadingText } from "@/components/primitives/FittedHeadingText";
 
-export function Countdown({ date, locale, initialNow }: { date: Content["date"]; locale: Content["locale"]; initialNow: number }) {
+export function Countdown({ date, locale, initialNow, heading, headingMeasure }: { date: Content["date"]; locale: Content["locale"]; initialNow: number; heading?: string; headingMeasure?: number }) {
   const [now, setNow] = useState(initialNow);
   useEffect(() => {
     let timer: ReturnType<typeof setInterval> | undefined;
@@ -24,9 +25,9 @@ export function Countdown({ date, locale, initialNow }: { date: Content["date"];
   const copy = labels[locale];
   if (!date.showCountdown) return null;
   return <section id="countdown" className="invitation-section countdown-section" data-section="countdown" aria-labelledby="countdown-title">
-    <h2 id="countdown-title" data-level="display-sm">{typograph(copy.countdown, locale)}</h2>
+    <h2 id="countdown-title" data-level="display-sm" data-fit-display={headingMeasure !== undefined || undefined}><FittedHeadingText measure={headingMeasure}>{typograph(heading || copy.countdown, locale)}</FittedHeadingText></h2>
     <p className="countdown-status" aria-live="polite" data-level="body">{remaining.arrived ? copy.arrived : ""}</p>
-    <dl className="countdown-values" role="timer" aria-live="off" aria-label={copy.countdown}>
+    <dl className="countdown-values" role="timer" aria-live="off" aria-label={heading || copy.countdown}>
       {(["days", "hours", "minutes", "seconds"] as const).map((unit) => <div key={unit}><dt data-level="small">{copy[unit]}</dt><dd data-level="display-sm">{String(remaining[unit]).padStart(2, "0")}</dd></div>)}
     </dl>
   </section>;

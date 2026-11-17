@@ -1,0 +1,1970 @@
+{
+  "generatedAt": "2026-10-23T06:27:34.508Z",
+  "base": "http://127.0.0.1:4315",
+  "mode": "read-only-existing-material-scenes",
+  "generationPosts": 0,
+  "blockedBrowserGenerationPosts": 0,
+  "externalRequests": [],
+  "expectedScenarios": 3,
+  "expectedPages": 13,
+  "apiChecks": [
+    {
+      "scenario": "silk-wedding",
+      "title": "Шёлк и винная каллиграфия",
+      "purpose": "invitation",
+      "names": [
+        "София",
+        "Александр"
+      ],
+      "invitationId": "5a7ca756-20bd-4064-b8f0-519013edefee",
+      "slug": "invite-758c987c942f036275f2c1a3",
+      "design": {
+        "templateId": "classic",
+        "paletteId": "ivory",
+        "fontPairId": "ceremony",
+        "artDirection": {
+          "title": "Шёлк и винная каллиграфия",
+          "scene": "silk",
+          "layout": "editorial"
+        },
+        "artwork": {
+          "id": "42b7861d-7b43-491b-8aba-6377d08b28b8",
+          "src": "/api/platform/media/42b7861d-7b43-491b-8aba-6377d08b28b8"
+        }
+      },
+      "assertions": {
+        "ownedMediaUploaded": true,
+        "saveReload": true,
+        "factsPreserved": true,
+        "privateManagementTitleSanitized": true,
+        "published": true,
+        "historyIncludesArtDirectionAndArtwork": true,
+        "restorePreservesLatestFacts": true,
+        "publishedSnapshotIsolated": true,
+        "greetingWithoutEventFacts": null
+      },
+      "assertionsSource": "../acceptance/report.json",
+      "currentAssertions": {
+        "publicSnapshotUnchanged": true
+      }
+    },
+    {
+      "scenario": "night-garden-birthday",
+      "title": "Ночной сад и свет",
+      "purpose": "invitation",
+      "names": [
+        "Александра-Екатерина Константиновна"
+      ],
+      "invitationId": "86037c34-bdc7-403b-8d2b-f500bda777c0",
+      "slug": "invite-bcaf09fef10fa8ab5676cbca",
+      "design": {
+        "templateId": "nocturne",
+        "paletteId": "ink",
+        "fontPairId": "poetic",
+        "artDirection": {
+          "title": "Ночной сад и свет",
+          "scene": "night-garden",
+          "layout": "immersive"
+        },
+        "artwork": {
+          "id": "f57ddffe-1367-4d10-95d1-db3a698184c8",
+          "src": "/api/platform/media/f57ddffe-1367-4d10-95d1-db3a698184c8"
+        }
+      },
+      "assertions": {
+        "ownedMediaUploaded": true,
+        "saveReload": true,
+        "factsPreserved": true,
+        "privateManagementTitleSanitized": true,
+        "published": true,
+        "historyIncludesArtDirectionAndArtwork": true,
+        "restorePreservesLatestFacts": true,
+        "publishedSnapshotIsolated": true,
+        "greetingWithoutEventFacts": null
+      },
+      "assertionsSource": "../acceptance/report.json",
+      "currentAssertions": {
+        "publicSnapshotUnchanged": true
+      }
+    },
+    {
+      "scenario": "porcelain-greeting",
+      "title": "Фарфоровое поздравление",
+      "purpose": "greeting",
+      "names": [
+        "Амира"
+      ],
+      "headline": "С днём рождения, Амира!",
+      "invitationId": "82798bba-bf6d-4af5-aa8b-4a9868e528e4",
+      "slug": "invite-d295acafb9165598f0b7a4e5",
+      "design": {
+        "templateId": "editorial",
+        "paletteId": "clay",
+        "fontPairId": "editorial",
+        "artDirection": {
+          "title": "Фарфоровое поздравление",
+          "scene": "porcelain",
+          "layout": "keepsake"
+        },
+        "artwork": {
+          "id": "f45f86db-e63d-4ad5-93af-1aa2d80dc6c0",
+          "src": "/api/platform/media/f45f86db-e63d-4ad5-93af-1aa2d80dc6c0"
+        }
+      },
+      "assertions": {
+        "ownedMediaUploaded": true,
+        "saveReload": true,
+        "factsPreserved": true,
+        "privateManagementTitleSanitized": true,
+        "published": true,
+        "historyIncludesArtDirectionAndArtwork": true,
+        "restorePreservesLatestFacts": true,
+        "publishedSnapshotIsolated": true,
+        "greetingWithoutEventFacts": true
+      },
+      "assertionsSource": "../acceptance/report.json",
+      "currentAssertions": {
+        "publicSnapshotUnchanged": true
+      }
+    }
+  ],
+  "pages": [
+    {
+      "scenario": "silk-wedding",
+      "width": 320,
+      "mode": "standard",
+      "endpoint": "/i/invite-758c987c942f036275f2c1a3",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Приглашение на свадьбу",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 73.6px \"Cormorant Garamond\"",
+          "text": "София&Александр",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 33px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья! Разделите с нами радость нашего свадебного дня.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 33px \"Cormorant Garamond\"",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Из случайной встречи выросла наша история. Впереди новая глава, которую мы рады ",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 29px \"Cormorant Garamond\"",
+          "text": "До нашего дня",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 33px \"Cormorant Garamond\"",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 33px \"Cormorant Garamond\"",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 38px \"Cormorant Garamond\"",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 16px \"EB Garamond\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 11px \"EB Garamond\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 34px \"Cormorant Garamond\"",
+          "text": "С любовью, София и Александр",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "silk",
+        "layout": "editorial"
+      },
+      "documentWidth": 320,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "София&Александр"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/42b7861d-7b43-491b-8aba-6377d08b28b8",
+        "http://127.0.0.1:4315/textures/organic-paper.svg"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": []
+    },
+    {
+      "scenario": "silk-wedding",
+      "width": 390,
+      "mode": "standard",
+      "endpoint": "/i/invite-758c987c942f036275f2c1a3",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Приглашение на свадьбу",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 89.7px \"Cormorant Garamond\"",
+          "text": "София&Александр",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 36.66px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья! Разделите с нами радость нашего свадебного дня.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 36.66px \"Cormorant Garamond\"",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Из случайной встречи выросла наша история. Впереди новая глава, которую мы рады ",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 29px \"Cormorant Garamond\"",
+          "text": "До нашего дня",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 36.66px \"Cormorant Garamond\"",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 36.66px \"Cormorant Garamond\"",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 38px \"Cormorant Garamond\"",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 16px \"EB Garamond\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 11px \"EB Garamond\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 35.1px \"Cormorant Garamond\"",
+          "text": "С любовью, София и Александр",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "silk",
+        "layout": "editorial"
+      },
+      "documentWidth": 390,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "София&Александр"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/42b7861d-7b43-491b-8aba-6377d08b28b8",
+        "http://127.0.0.1:4315/textures/organic-paper.svg"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": [],
+      "screenshots": [
+        "silk-wedding-390-full.png",
+        "silk-wedding-390-hero.png"
+      ]
+    },
+    {
+      "scenario": "silk-wedding",
+      "width": 430,
+      "mode": "standard",
+      "endpoint": "/i/invite-758c987c942f036275f2c1a3",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Приглашение на свадьбу",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 98.9px \"Cormorant Garamond\"",
+          "text": "София&Александр",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 40.42px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья! Разделите с нами радость нашего свадебного дня.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 40.42px \"Cormorant Garamond\"",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Из случайной встречи выросла наша история. Впереди новая глава, которую мы рады ",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 29px \"Cormorant Garamond\"",
+          "text": "До нашего дня",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 40.42px \"Cormorant Garamond\"",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 40.42px \"Cormorant Garamond\"",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 38px \"Cormorant Garamond\"",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 16px \"EB Garamond\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 11px \"EB Garamond\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 38.7px \"Cormorant Garamond\"",
+          "text": "С любовью, София и Александр",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "silk",
+        "layout": "editorial"
+      },
+      "documentWidth": 430,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "София&Александр"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/42b7861d-7b43-491b-8aba-6377d08b28b8",
+        "http://127.0.0.1:4315/textures/organic-paper.svg"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": []
+    },
+    {
+      "scenario": "silk-wedding",
+      "width": 1280,
+      "mode": "standard",
+      "endpoint": "/i/invite-758c987c942f036275f2c1a3",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Приглашение на свадьбу",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 150px \"Cormorant Garamond\"",
+          "text": "София&Александр",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 54px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Дорогие родные и друзья! Разделите с нами радость нашего свадебного дня.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 54px \"Cormorant Garamond\"",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Из случайной встречи выросла наша история. Впереди новая глава, которую мы рады ",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 29px \"Cormorant Garamond\"",
+          "text": "До нашего дня",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 54px \"Cormorant Garamond\"",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 54px \"Cormorant Garamond\"",
+          "text": "Этот вечер",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 54px \"Cormorant Garamond\"",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 15px \"EB Garamond\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 300 38px \"Cormorant Garamond\"",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 16px \"EB Garamond\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 11px \"EB Garamond\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"EB Garamond\"",
+          "descriptor": "normal 400 10px \"EB Garamond\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 60px \"Cormorant Garamond\"",
+          "text": "С любовью, София и Александр",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "silk",
+        "layout": "editorial"
+      },
+      "documentWidth": 1280,
+      "touchDevice": {
+        "maxTouchPoints": 0,
+        "coarsePointer": false
+      },
+      "liveHeadings": [
+        "София&Александр"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/42b7861d-7b43-491b-8aba-6377d08b28b8",
+        "http://127.0.0.1:4315/textures/organic-paper.svg"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": [],
+      "screenshots": [
+        "silk-wedding-1280-hero.png"
+      ]
+    },
+    {
+      "scenario": "night-garden-birthday",
+      "width": 320,
+      "mode": "standard",
+      "endpoint": "/i/invite-bcaf09fef10fa8ab5676cbca",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Приглашение на день рождения",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 60px Prata",
+          "text": "Александра-Екатерина Константиновна",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 36px Prata",
+          "text": "Дорогие друзья",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "Дорогие друзья! Буду рада отпраздновать день рождения в вашей компании.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 33px Prata",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Пусть этот вечер будет наполнен музыкой, тихими разговорами и дорогими сердцу лю",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "До праздника",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 54px Prata",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 33px Prata",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 46px Prata",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 16px \"Golos Text\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 11px \"Golos Text\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 34px Prata",
+          "text": "До встречи на празднике! Александра-Екатерина",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "night-garden",
+        "layout": "immersive"
+      },
+      "documentWidth": 320,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "Александра-Екатерина Константиновна"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f57ddffe-1367-4d10-95d1-db3a698184c8"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": []
+    },
+    {
+      "scenario": "night-garden-birthday",
+      "width": 390,
+      "mode": "standard",
+      "endpoint": "/i/invite-bcaf09fef10fa8ab5676cbca",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Приглашение на день рождения",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 70.2px Prata",
+          "text": "Александра-Екатерина Константиновна",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 36px Prata",
+          "text": "Дорогие друзья",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "Дорогие друзья! Буду рада отпраздновать день рождения в вашей компании.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 36.66px Prata",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Пусть этот вечер будет наполнен музыкой, тихими разговорами и дорогими сердцу лю",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "До праздника",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 54px Prata",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 36.66px Prata",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 46px Prata",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 16px \"Golos Text\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 11px \"Golos Text\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 35.1px Prata",
+          "text": "До встречи на празднике! Александра-Екатерина",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "night-garden",
+        "layout": "immersive"
+      },
+      "documentWidth": 390,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "Александра-Екатерина Константиновна"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f57ddffe-1367-4d10-95d1-db3a698184c8"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": [],
+      "screenshots": [
+        "night-garden-birthday-390-full.png",
+        "night-garden-birthday-390-hero.png"
+      ]
+    },
+    {
+      "scenario": "night-garden-birthday",
+      "width": 430,
+      "mode": "standard",
+      "endpoint": "/i/invite-bcaf09fef10fa8ab5676cbca",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Приглашение на день рождения",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 77.4px Prata",
+          "text": "Александра-Екатерина Константиновна",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 36px Prata",
+          "text": "Дорогие друзья",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "Дорогие друзья! Буду рада отпраздновать день рождения в вашей компании.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 40.42px Prata",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Пусть этот вечер будет наполнен музыкой, тихими разговорами и дорогими сердцу лю",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "До праздника",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 54px Prata",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 40.42px Prata",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 46px Prata",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 16px \"Golos Text\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 11px \"Golos Text\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 38.7px Prata",
+          "text": "До встречи на празднике! Александра-Екатерина",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "night-garden",
+        "layout": "immersive"
+      },
+      "documentWidth": 430,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "Александра-Екатерина Константиновна"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f57ddffe-1367-4d10-95d1-db3a698184c8"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": []
+    },
+    {
+      "scenario": "night-garden-birthday",
+      "width": 1280,
+      "mode": "standard",
+      "endpoint": "/i/invite-bcaf09fef10fa8ab5676cbca",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Приглашение на день рождения",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 110px Prata",
+          "text": "Александра-Екатерина Константиновна",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 36px Prata",
+          "text": "Дорогие друзья",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "Дорогие друзья! Буду рада отпраздновать день рождения в вашей компании.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Самое важное",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 54px Prata",
+          "text": "Наша история",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Пусть этот вечер будет наполнен музыкой, тихими разговорами и дорогими сердцу лю",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 26px Prata",
+          "text": "До праздника",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Место встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 54px Prata",
+          "text": "Сад встреч",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Детали встречи",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Вымышленные данные QA.",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 54px Prata",
+          "text": "План праздника",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 54px Prata",
+          "text": "Свободный праздничный стиль",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Выбирайте то, в чём вам комфортно.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Идея образа · ШалфейНажмите на оттенок, который вам ближе",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "Будем ждать вашего ответа",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 46px Prata",
+          "text": "Разделите с нами этот день",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 16px \"Golos Text\"",
+          "text": "Пожалуйста, сообщите, сможете ли вы прийти. Это поможет нам позаботиться о каждо",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 11px \"Golos Text\"",
+          "text": "Ваш ответ увидит организатор мероприятия.",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "До скорой встречи",
+          "loaded": true
+        },
+        {
+          "family": "Prata",
+          "descriptor": "normal 400 60px Prata",
+          "text": "До встречи на празднике! Александра-Екатерина",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "night-garden",
+        "layout": "immersive"
+      },
+      "documentWidth": 1280,
+      "touchDevice": {
+        "maxTouchPoints": 0,
+        "coarsePointer": false
+      },
+      "liveHeadings": [
+        "Александра-Екатерина Константиновна"
+      ],
+      "dateTimes": [
+        "2028-06-19T13:00:00.000Z",
+        "2028-06-19T13:00:00.000Z"
+      ],
+      "nativeRsvpForms": 1,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f57ddffe-1367-4d10-95d1-db3a698184c8"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": [],
+      "screenshots": [
+        "night-garden-birthday-1280-hero.png"
+      ]
+    },
+    {
+      "scenario": "porcelain-greeting",
+      "width": 320,
+      "mode": "standard",
+      "endpoint": "/i/invite-d295acafb9165598f0b7a4e5",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С днём рождения",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 56px \"Cormorant Garamond\"",
+          "text": "С днём рождения, Амира!",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 14px \"Golos Text\"",
+          "text": "Амира",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 33px \"Cormorant Garamond\"",
+          "text": "С тёплыми пожеланиями",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Амира, с днём рождения! Пусть каждый день дарит вдохновение, радость и поводы ул",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "То, что нас объединяет",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 33px \"Cormorant Garamond\"",
+          "text": "Дорогие сердцу моменты",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно бы",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С любовью",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 34px \"Cormorant Garamond\"",
+          "text": "С теплом и самыми добрыми пожеланиями",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "porcelain",
+        "layout": "keepsake"
+      },
+      "documentWidth": 320,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "С днём рождения, Амира!"
+      ],
+      "dateTimes": [],
+      "nativeRsvpForms": 0,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f45f86db-e63d-4ad5-93af-1aa2d80dc6c0"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": []
+    },
+    {
+      "scenario": "porcelain-greeting",
+      "width": 390,
+      "mode": "standard",
+      "endpoint": "/i/invite-d295acafb9165598f0b7a4e5",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С днём рождения",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 62.4px \"Cormorant Garamond\"",
+          "text": "С днём рождения, Амира!",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 14px \"Golos Text\"",
+          "text": "Амира",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 36.66px \"Cormorant Garamond\"",
+          "text": "С тёплыми пожеланиями",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Амира, с днём рождения! Пусть каждый день дарит вдохновение, радость и поводы ул",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "То, что нас объединяет",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 36.66px \"Cormorant Garamond\"",
+          "text": "Дорогие сердцу моменты",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно бы",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С любовью",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 35.1px \"Cormorant Garamond\"",
+          "text": "С теплом и самыми добрыми пожеланиями",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "porcelain",
+        "layout": "keepsake"
+      },
+      "documentWidth": 390,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "С днём рождения, Амира!"
+      ],
+      "dateTimes": [],
+      "nativeRsvpForms": 0,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f45f86db-e63d-4ad5-93af-1aa2d80dc6c0"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": [],
+      "screenshots": [
+        "porcelain-greeting-390-full.png",
+        "porcelain-greeting-390-hero.png"
+      ]
+    },
+    {
+      "scenario": "porcelain-greeting",
+      "width": 430,
+      "mode": "standard",
+      "endpoint": "/i/invite-d295acafb9165598f0b7a4e5",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С днём рождения",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 68.8px \"Cormorant Garamond\"",
+          "text": "С днём рождения, Амира!",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 14px \"Golos Text\"",
+          "text": "Амира",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 40.42px \"Cormorant Garamond\"",
+          "text": "С тёплыми пожеланиями",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Амира, с днём рождения! Пусть каждый день дарит вдохновение, радость и поводы ул",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "То, что нас объединяет",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 40.42px \"Cormorant Garamond\"",
+          "text": "Дорогие сердцу моменты",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно бы",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С любовью",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 38.7px \"Cormorant Garamond\"",
+          "text": "С теплом и самыми добрыми пожеланиями",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "porcelain",
+        "layout": "keepsake"
+      },
+      "documentWidth": 430,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "С днём рождения, Амира!"
+      ],
+      "dateTimes": [],
+      "nativeRsvpForms": 0,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f45f86db-e63d-4ad5-93af-1aa2d80dc6c0"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": []
+    },
+    {
+      "scenario": "porcelain-greeting",
+      "width": 1280,
+      "mode": "standard",
+      "endpoint": "/i/invite-d295acafb9165598f0b7a4e5",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С днём рождения",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 100px \"Cormorant Garamond\"",
+          "text": "С днём рождения, Амира!",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 14px \"Golos Text\"",
+          "text": "Амира",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 54px \"Cormorant Garamond\"",
+          "text": "С тёплыми пожеланиями",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Амира, с днём рождения! Пусть каждый день дарит вдохновение, радость и поводы ул",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "То, что нас объединяет",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 54px \"Cormorant Garamond\"",
+          "text": "Дорогие сердцу моменты",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно бы",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С любовью",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 60px \"Cormorant Garamond\"",
+          "text": "С теплом и самыми добрыми пожеланиями",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "porcelain",
+        "layout": "keepsake"
+      },
+      "documentWidth": 1280,
+      "touchDevice": {
+        "maxTouchPoints": 0,
+        "coarsePointer": false
+      },
+      "liveHeadings": [
+        "С днём рождения, Амира!"
+      ],
+      "dateTimes": [],
+      "nativeRsvpForms": 0,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f45f86db-e63d-4ad5-93af-1aa2d80dc6c0"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": [],
+      "screenshots": [
+        "porcelain-greeting-1280-hero.png"
+      ]
+    },
+    {
+      "scenario": "porcelain-greeting",
+      "width": 390,
+      "mode": "no-javascript",
+      "endpoint": "/i/invite-d295acafb9165598f0b7a4e5",
+      "pageErrors": [],
+      "consoleErrors": [],
+      "failures": [],
+      "httpStatus": 200,
+      "visibleFontChecks": [
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С днём рождения",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 62.4px \"Cormorant Garamond\"",
+          "text": "С днём рождения, Амира!",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 14px \"Golos Text\"",
+          "text": "Амира",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 36.66px \"Cormorant Garamond\"",
+          "text": "С тёплыми пожеланиями",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 26px \"Cormorant Garamond\"",
+          "text": "Амира, с днём рождения! Пусть каждый день дарит вдохновение, радость и поводы ул",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "То, что нас объединяет",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 600 36.66px \"Cormorant Garamond\"",
+          "text": "Дорогие сердцу моменты",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 15px \"Golos Text\"",
+          "text": "Желаю смелости для новых замыслов, времени для себя и людей, с которыми можно бы",
+          "loaded": true
+        },
+        {
+          "family": "\"Golos Text\"",
+          "descriptor": "normal 400 10px \"Golos Text\"",
+          "text": "С любовью",
+          "loaded": true
+        },
+        {
+          "family": "\"Cormorant Garamond\"",
+          "descriptor": "normal 400 35.1px \"Cormorant Garamond\"",
+          "text": "С теплом и самыми добрыми пожеланиями",
+          "loaded": true
+        }
+      ],
+      "renderedDesign": {
+        "scene": "porcelain",
+        "layout": "keepsake"
+      },
+      "documentWidth": 390,
+      "touchDevice": {
+        "maxTouchPoints": 1,
+        "coarsePointer": true
+      },
+      "liveHeadings": [
+        "С днём рождения, Амира!"
+      ],
+      "dateTimes": [],
+      "nativeRsvpForms": 0,
+      "calendarLinks": [],
+      "duplicateIds": [],
+      "brokenImages": [],
+      "missingAnchorTargets": [],
+      "materialSources": [
+        "/api/platform/media/f45f86db-e63d-4ad5-93af-1aa2d80dc6c0"
+      ],
+      "brokenHeadingWords": [],
+      "textClippingCandidates": [],
+      "screenshots": [
+        "porcelain-greeting-390-no-js-full.png",
+        "porcelain-greeting-390-no-js-hero.png"
+      ]
+    }
+  ],
+  "failures": [],
+  "sourceReport": "../acceptance/report.json",
+  "limitations": [
+    "Authored fixtures with original supplied material artwork; no AI generation endpoint or provider is invoked.",
+    "Chromium with reduced motion at 320, 390, 430 and 1280 pixels; physical phones, Safari and normal-motion animations are not tested.",
+    "The greeting is also inspected with JavaScript disabled. Browser assertions establish integration and readability; visual quality requires reviewing the saved complete mobile pages.",
+    "All names, event facts, accounts and drafts are fictional and remain in the isolated local test store."
+  ],
+  "success": true
+}

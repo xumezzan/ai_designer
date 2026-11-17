@@ -8,7 +8,9 @@ import type { Content } from "@/lib/schema/content";
 import type { Project } from "@/lib/studio/store";
 import type { AssetPlan } from "@/lib/schema/assetPlan";
 import { unusedAsset } from "@/lib/assets/crop";
-import { directions, directionFor } from "@/lib/studio/directions";
+import { StudioTemplatePicker } from "./StudioTemplatePicker";
+import { studioTemplates, studioPalettes } from "@/registry/studioTemplates";
+import type { StudioPaletteId } from "@/lib/schema/studioTemplate";
 import { InvitationCanvas } from "./InvitationCanvas";
 import { editCanvasText } from "@/lib/studio/live";
 import { AssetDirector } from "./AssetDirector";
@@ -50,9 +52,10 @@ async function responseData(response: Response) {
   return data;
 }
 
-export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.imagesConfigured), visionConfigured = Boolean(initial?.visionConfigured) }: { initial?: Project; imagesConfigured?: boolean; visionConfigured?: boolean }) {
+export function ProjectEditor({ initial, visionConfigured = Boolean(initial?.visionConfigured) }: { initial?: Project; imagesConfigured?: boolean; visionConfigured?: boolean }) {
   const router = useRouter();
   const [content, setContent] = useState<Content>(initial ? { ...initial.content, variantCount: 1 } : blank);
+  const [eventTypePinned, setEventTypePinned] = useState(Boolean(initial));
   const [editorMode, setEditorMode] = useState(Boolean(initial?.generation) && initial?.content.slug !== "demo");
   const [tool, setTool] = useState("content");
   const [activeId, setActiveId] = useState(initial?.approval?.conceptId ?? initial?.concepts[0]?.id ?? "");
@@ -75,7 +78,6 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
   const [refiningId, setRefiningId] = useState("");
   const [checkingId, setCheckingId] = useState("");
   const [generating, setGenerating] = useState(false);
-  const [createVisual, setCreateVisual] = useState(imagesConfigured);
   const [elapsed, setElapsed] = useState(0);
   const [planRevision, setPlanRevision] = useState(initial?.planRevision ?? "");
   const [assetPlan, setAssetPlan] = useState(initial?.assetPlan ?? { assets: [], unifiedTreatment: "none" as const });
@@ -152,7 +154,7 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
     window.addEventListener("keydown", key);
     return () => window.removeEventListener("keydown", key);
   });
-  const visualOptions = <div className="studio-visual-options"><label><input type="checkbox" checked={createVisual} disabled={busy || !imagesConfigured} onChange={(event) => setCreateVisual(event.target.checked)} /> Иллюстрация, если она нужна дизайну</label><p className="studio-help">{imagesConfigured ? "Типографика, декор и эффекты собираются как сайт. Для иллюстрированной композиции создаётся один визуал. Текст остаётся редактируемым." : "Типографика, декор и эффекты собираются как сайт. Создание иллюстраций пока не подключено."}</p>{content.refs.length > 16 && <p className="studio-notice">Для иллюстрации оставьте не больше 16 референсов.</p>}</div>;
+  const visualOptions = <p className="studio-help">Используем готовые шрифты, фактуры и декоративные наборы выбранного шаблона. Тексты, фотографии и данные события можно менять в редакторе.</p>;
   useEffect(() => {
     const handler = (event: BeforeUnloadEvent) => { if (dirty || planDirty) { event.preventDefault(); } };
     const navigation = (event: MouseEvent) => {
@@ -178,13 +180,13 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
     return () => window.clearInterval(timer);
   }, [generating, refiningId, checkingId]);
 
-  async function designAction(concept: Project["concepts"][number], version: string, action: DesignAction, instruction?: string, qaOverride?: boolean) {
+  async function designAction(concept: Project["concepts"][number], version: string, action: DesignAction, instruction?: string, qaOverride?: boolean, templatePatch?: { paletteId: StudioPaletteId }) {
     if (busy || savingRef.current || readOnly || dirty || planDirty) return false;
     setBusy(true); setError(""); setMessage("");
     if (action === "refine") setRefiningId(concept.id);
     if (action === "qa") setCheckingId(concept.id);
     try {
-      const data = await responseData(await fetch(`/api/${action}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: content.slug, conceptId: concept.id, version, fromVersion: version, instruction, qaOverride, revision, planRevision, generationRevision, approvalRevision }) }));
+      const data = await responseData(await fetch(`/api/${action}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ slug: content.slug, conceptId: concept.id, version, fromVersion: version, instruction, templatePatch, qaOverride, revision, planRevision, generationRevision, approvalRevision }) }));
       setConcepts(data.concepts); setGeneration(data.generation); setGenerationRevision(data.generationRevision);
       setApproval(data.approval); setApprovalRevision(data.approvalRevision);
       setApprovalQa(data.approvalQa ?? null);
@@ -235,14 +237,13 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
 
   async function generate() {
     if (busy || savingRef.current || readOnly || !validateSetup()) return;
-    if (createVisual && content.refs.length > 16) { setError("Для иллюстрации оставьте до 16 референсов или выключите её создание."); return; }
-    if (!content.brief?.trim()) { setError("Выберите настроение или опишите пожелания к дизайну."); return; }
+    if (!content.brief?.trim() && (!content.studioDesign || content.studioDesign.templateId === "auto")) { setError("Выберите авторский шаблон или опишите пожелания к дизайну."); return; }
     setBusy(true); setGenerating(true); setError(""); setMessage("");
     let createdSlug = "";
     try {
       const snapshot = await persistSetup();
       if (!savedSlug) createdSlug = snapshot.slug;
-      const data = await responseData(await fetch("/api/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...snapshot, createVisual }) }));
+      const data = await responseData(await fetch("/api/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...snapshot, createVisual: false }) }));
       setConcepts(data.concepts); setGeneration(data.generation); setGenerationRevision(data.generationRevision);
       setApproval(data.approval); setApprovalRevision(data.approvalRevision); setViewVersions({});
       setApprovalQa(data.approvalQa ?? null);
@@ -312,16 +313,18 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
     } catch (error) { setError((error as Error).message); }
     finally { setBusy(false); }
   }
+  const manualTemplate = !content.brief?.trim() && content.studioDesign?.templateId && content.studioDesign.templateId !== "auto";
   const name = content.headline || content.hosts.map((host) => host.name).filter(Boolean).join(" и ") || "Новое событие";
-  const direction = directionFor(content.brief);
   const active = concepts.find((concept) => concept.id === activeId) ?? concepts[0];
   const canvasConcept = active ? { ...active, version: viewVersions[active.id] ?? active.version } : null;
   const checkedActive = active ? { ...active, history: active.history?.map((entry) => ({ ...entry, ...(entry.qa ? { qa: { ...entry.qa, stale: entry.qa.stale || entry.qa.report.contentRevision !== revision || entry.qa.report.planRevision !== planRevision } } : {}) })) } : null;
+  const currentTemplate = active?.theme.studioTemplate;
+  const currentRecipe = currentTemplate ? studioTemplates.find((item) => item.id === currentTemplate.id) : undefined;
   const canvasMode = editorMode && Boolean(canvasConcept);
   void historyTick;
   return <main className={`studio-main studio-editor ${canvasMode ? "studio-canvas-editor" : "studio-idea-editor"}`} data-tool={tool}>
     <div className="studio-editor-top"><Link className="studio-back" href="/studio">← Проекты</Link><div className="studio-save"><span>{generating ? `Создаём приглашение · ${elapsed} с` : busy || saving ? "Сохраняем…" : dirty || planDirty ? "Есть изменения" : savedSlug ? "Сохранено" : "Новый проект"}</span>{!readOnly && <button className="studio-secondary" type="button" disabled={busy || saving} onClick={() => { void save(); }}>Сохранить черновик</button>}</div></div>
-    <div className="studio-page-heading"><div><h1>{readOnly ? "Примеры приглашений" : savedSlug ? name : "Одно приглашение. Ваша идея."}</h1><p className="studio-subtitle">{readOnly ? "Посмотрите готовые примеры или создайте своё приглашение." : canvasMode ? "Нажмите на текст в приглашении или выберите блок слева. Изменения сохраняются автоматически." : "Расскажите о событии и дизайне. Прикрепите референс — создадим одно цельное приглашение."}</p></div>{readOnly && <Link className="studio-primary" href="/studio/new">Создать своё</Link>}</div>
+    <div className="studio-page-heading"><div><h1>{readOnly ? "Примеры приглашений" : savedSlug ? name : "Одно приглашение. Ваша идея."}</h1><p className="studio-subtitle">{readOnly ? "Посмотрите готовые примеры или создайте своё приглашение." : canvasMode ? "Нажмите на текст в приглашении или выберите блок слева. Изменения сохраняются автоматически." : "Выберите авторский шаблон или опишите настроение — подберём композицию и палитру для вашего события."}</p></div>{readOnly && <Link className="studio-primary" href="/studio/new">Создать своё</Link>}</div>
     <div role="status" aria-live="polite" className={message ? "studio-notice" : ""}>{message}</div>{error && <div className="studio-error" role="alert">{error}</div>}
     {canvasMode && <div className="studio-canvas-toolbar"><div className="studio-tool-tabs" role="group" aria-label="Инструменты редактора">{[["content", "Текст и блоки"], ["design", "Дизайн"], ["media", "Фото"], ["variants", "Версии"]].map(([id, label]) => <button type="button" key={id} aria-pressed={tool === id} onClick={() => setTool(id)}>{label}</button>)}</div><div className="studio-history-actions"><button type="button" aria-label="Отменить изменение" title="Отменить · Ctrl/⌘ Z" disabled={busy || !history.current.length} onClick={() => undo()}>↶</button><button type="button" aria-label="Повторить изменение" title="Повторить · Ctrl/⌘ Shift Z" disabled={busy || !future.current.length} onClick={() => undo(true)}>↷</button><Link className="studio-secondary" href={`/preview/${content.slug}/${canvasConcept!.id}/${canvasConcept!.version}`} target="_blank">Предпросмотр ↗</Link></div></div>}
     <input hidden ref={uploadInput} type="file" accept="image/jpeg,image/png,image/webp" multiple onChange={(e) => { void upload(e.target.files); }} />
@@ -329,9 +332,10 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
       <div className="studio-setup" data-selected-field={selectedField}>
         <form id="event-form" noValidate onSubmit={save}><fieldset disabled={readOnly || busy}>
           <section className="studio-panel studio-mood" hidden={canvasMode && tool !== "design"}><div className="studio-section-title"><span className="studio-step">✧</span><div><h2>{canvasMode ? "Идея и стиль" : "С чего начнём?"}</h2><p>Расскажите, каким вы видите приглашение</p></div></div>
-            <Field label="Опишите приглашение" hint="Опишите цвета, атмосферу, материалы и детали. Например: камерная свадьба, шалфейный шёлк, крупные имена и лёгкий цветочный узор."><textarea aria-label="Опишите приглашение" className="studio-idea-input" rows={5} maxLength={10000} value={content.brief ?? ""} placeholder="Хочу нежное приглашение с ощущением шёлка, светлыми цветами и красивой типографикой…" onChange={(e) => update({ brief: e.target.value || undefined })} /></Field>
-            <details className="studio-vibe-picker"><summary>Выбрать вайб <span>Необязательно</span></summary><div className="studio-directions" role="group" aria-label="Настроение приглашения">{directions.map((item) => <button type="button" key={item.id} aria-pressed={direction?.id === item.id} onClick={() => { update({ brief: item.brief }); }}><span className="studio-direction-swatch" style={{ background: item.bg, color: item.ink }}><span style={{ color: item.accent }}>Aa</span><i aria-hidden="true" /></span><strong>{item.name}</strong><small>{item.note}</small>{direction?.id === item.id && <span className="studio-direction-check" aria-hidden="true">✓</span>}</button>)}</div></details>
-            {direction?.id === "physical" && <a className="studio-material-examples" href="/materials" target="_blank" rel="noopener noreferrer">Посмотреть материалы и движение ↗</a>}
+            <Field label="Тип события"><select aria-label="Тип события" value={content.eventType} onChange={(e) => { setEventTypePinned(true); update({ eventType: e.target.value as Content["eventType"] }); }}>{Object.entries(eventTypes).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></Field>
+            <Field label="Опишите приглашение" hint="Необязательно, если выбран шаблон. Опишите настроение и цвета: камерная свадьба, молочная бумага, крупные имена и одна гравюрная ветвь."><textarea aria-label="Опишите приглашение" className="studio-idea-input" rows={5} maxLength={10000} value={content.brief ?? ""} placeholder="Хочу спокойное приглашение на тёплой бумаге, с крупными именами и выразительной типографикой…" onChange={(e) => update({ brief: e.target.value || undefined })} /></Field>
+            <StudioTemplatePicker value={content.studioDesign} onChange={(studioDesign) => { const template = studioTemplates.find((item) => item.id === studioDesign.templateId); update({ studioDesign, ...(!eventTypePinned && !content.brief?.trim() && !content.hosts.some((host) => host.name.trim()) && !content.headline?.trim() && !content.date.start && !content.date.day && template ? { eventType: template.eventTypes[0] } : {}) }); }} />
+            {currentTemplate && currentRecipe && canvasMode && <div className="studio-template-palettes" role="group" aria-label="Палитра текущего приглашения"><p>Палитра текущей версии v{active!.version}</p>{currentRecipe.paletteIds.map((paletteId) => <button type="button" key={paletteId} disabled={busy || dirty || planDirty || paletteId === currentTemplate.paletteId || canvasConcept?.version !== active!.version} aria-pressed={paletteId === currentTemplate.paletteId} onClick={() => { void designAction(active!, active!.version, "refine", `Палитра: ${studioPalettes[paletteId].name}.`, undefined, { paletteId }); }}><span aria-hidden="true" style={{ background: studioPalettes[paletteId].bg, boxShadow: `inset 0 0 0 5px ${studioPalettes[paletteId].accent}` }} />{studioPalettes[paletteId].name}</button>)}</div>}
           </section>
           <section className="studio-panel studio-reference-start" hidden={canvasMode && tool !== "design"}><div className="studio-media-heading"><div><h2>Референсы</h2><p className="studio-help">Приглашения, цвета и фактуры, которые вам нравятся</p></div><span className="studio-draft-label">Необязательно</span></div><button type="button" aria-label="Добавить референсы" className="studio-reference-drop" disabled={busy || saving} onClick={() => { uploadKind.current = "reference"; uploadInput.current?.click(); }}><span aria-hidden="true">＋</span><strong>Добавить референсы</strong><small>JPG, PNG, WebP · до 15 МБ</small></button>{content.refs.length > 0 && <div className="studio-reference-grid">{content.refs.map((src, index) => <figure key={src}><Image unoptimized width={160} height={160} src={src} alt={`Референс ${index + 1}`} /><button type="button" aria-label={`Удалить референс ${index + 1}`} disabled={busy || saving} onClick={() => { void remove(src); }}>×</button></figure>)}</div>}<details className="studio-generation-options"><summary>Настройки создания</summary>{visualOptions}</details></section>
           <details className="studio-disclosure studio-essential studio-facts" data-studio-inspector="hero venue date" open={canvasMode} hidden={canvasMode && tool !== "content"}><summary><span>Данные события</span><small>Можно заполнить позже</small></summary><div className="studio-disclosure-body"><div className="studio-section-title"><div><h2>Ваше событие</h2><p>Что, когда и где</p></div></div><div className="studio-fields">
@@ -361,7 +365,6 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
 
             </div></div></details>
             <details className="studio-disclosure"><summary><span>Другие настройки</span><small>Язык и карта</small></summary><div className="studio-disclosure-body"><div className="studio-fields">
-            <Field label="Тип события"><select value={content.eventType} onChange={(e) => update({ eventType: e.target.value as Content["eventType"] })}>{Object.entries(eventTypes).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></Field>
             <Field label="Язык приглашения"><select value={content.locale} onChange={(e) => update({ locale: e.target.value as Content["locale"] })}><option value="ru">Русский</option><option value="uz-latn">O‘zbekcha</option><option value="en">English</option></select></Field>
             <Field label="Заголовок вместо имён" hint="Необязательно. Например, «Вечер в кругу близких»." wide><input data-studio-input="headline" value={content.headline ?? ""} maxLength={200} onChange={(e) => update({ headline: e.target.value || undefined })} /></Field>
             {!savedSlug && <Field label="Адрес проекта" hint="Необязательно: латиница, цифры и дефисы. Если оставить пустым, адрес создастся автоматически." wide><input pattern="[a-z0-9][a-z0-9-]{0,63}" value={content.slug} placeholder="rustam-amina" onChange={(e) => update({ slug: e.target.value })} /></Field>}
@@ -400,7 +403,7 @@ export function ProjectEditor({ initial, imagesConfigured = Boolean(initial?.ima
         {generation && generation.brief !== content.brief && <p className="studio-help">Настроение изменилось. Создайте новые дизайны, чтобы применить его.</p>}
       </section>
     </div>
-        {!readOnly && (!canvasMode || tool === "design") && <div className="studio-create-bar"><div className="studio-create-inner"><button type="button" className="studio-primary" disabled={busy || saving || !visionConfigured} onClick={() => { void generate(); }}><span aria-hidden="true">✧</span>{generating ? `Создаём приглашение · ${elapsed} с` : concepts.length ? "Создать заново" : "Создать приглашение"}<span aria-hidden="true">→</span></button><p>{generating ? "Это займёт несколько минут. Данные уже сохранены." : "Один дизайн · оригинальная композиция по референсу"}</p>{!visionConfigured && <p>Генерация пока не подключена. Можно сохранить черновик.</p>}</div></div>}
+        {!readOnly && (!canvasMode || tool === "design") && <div className="studio-create-bar"><div className="studio-create-inner"><button type="button" className="studio-primary" disabled={busy || saving || (!visionConfigured && !manualTemplate)} onClick={() => { void generate(); }}><span aria-hidden="true">✧</span>{generating ? `Создаём приглашение · ${elapsed} с` : concepts.length ? "Создать заново" : "Создать приглашение"}<span aria-hidden="true">→</span></button><p>{generating ? "Это займёт несколько минут. Данные уже сохранены." : "Авторский шаблон · палитра по вашему описанию"}</p>{!visionConfigured && <p>Для сборки без ИИ выберите шаблон и оставьте описание пустым.</p>}</div></div>}
     <dialog ref={dialog} aria-labelledby="studio-dialog-title" className="studio-preview-dialog" onCancel={() => setModal(null)} onClose={() => setModal(null)}><div className="studio-dialog-heading"><h2 id="studio-dialog-title">{modal?.theme.meta.name}</h2>{modal && <Link href={`/preview/${content.slug}/${modal.id}/${modal.version}`} target="_blank">Открыть отдельно ↗</Link>}<button type="button" autoFocus aria-label="Закрыть предпросмотр" onClick={() => setModal(null)}>×</button></div>{modal && <iframe title={`Полный предпросмотр: ${modal.theme.meta.name}`} src={`/preview/${content.slug}/${modal.id}/${modal.version}?embed=1&saved=${previewKey}`} sandbox="allow-scripts allow-same-origin" />}</dialog>
   </main>;
 }

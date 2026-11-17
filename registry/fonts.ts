@@ -3,9 +3,9 @@
  *
  * Measured facts (weights, subset support) come only from
  * `registry/fonts.generated.json`, the output of `scripts/check-fonts.ts` —
- * never from memory. A face that fails the Cyrillic check does not enter the
- * registry. Judgment fields (roles, classification, fallbacks) are assigned by
- * hand on top of the measurements.
+ * never from memory. Faces without Cyrillic are admitted only when deliberately
+ * prepared for use with a verified companion. Judgment fields (roles,
+ * classification, fallbacks) are assigned by hand on top of the measurements.
  *
  * Local licensed faces are registered in LOCAL_FONTS and loaded with
  * `@font-face` from `public/fonts/` (gitignored — see public/fonts/README.md).
@@ -50,6 +50,7 @@ const ROLES: Record<string, FontRole[]> = {
   "cormorant-garamond": ["display"],
   "cormorant-infant": ["display"],
   "playfair-display": ["display"],
+  "bodoni-moda": ["display"],
   prata: ["display"],
   forum: ["display"],
   "tenor-sans": ["display"],
@@ -61,6 +62,7 @@ const ROLES: Record<string, FontRole[]> = {
   "pt-serif": ["body"],
   "noto-serif-display": ["display"],
   "golos-text": ["body"],
+  inter: ["body"],
   onest: ["body"],
   manrope: ["body"],
   jost: ["body"],
@@ -76,6 +78,7 @@ const CLASSIFICATION: Record<string, FontClass> = {
   "cormorant-garamond": "serif",
   "cormorant-infant": "serif",
   "playfair-display": "serif",
+  "bodoni-moda": "serif",
   prata: "serif",
   forum: "serif",
   "tenor-sans": "sans",
@@ -87,6 +90,7 @@ const CLASSIFICATION: Record<string, FontClass> = {
   "pt-serif": "serif",
   "noto-serif-display": "serif",
   "golos-text": "sans",
+  inter: "sans",
   onest: "sans",
   manrope: "sans",
   jost: "sans",
@@ -129,9 +133,9 @@ export const LOCAL_FONTS: FontEntry[] = [
 function fromGenerated(): FontEntry[] {
   const entries: FontEntry[] = [];
   for (const f of generated.families) {
-    // A face that fails the check does not enter the registry.
-    if (f.source === "unmeasured" || !f.support.cyrillic) continue;
     const id = fontId(f.name);
+    const managed = assets.families[id as keyof typeof assets.families];
+    if (f.source === "unmeasured" || (!f.support.cyrillic && !managed)) continue;
     entries.push({
       id,
       family: f.name,
@@ -142,10 +146,9 @@ function fromGenerated(): FontEntry[] {
       classification: CLASSIFICATION[id] ?? "serif",
       support: {
         cyrillic: f.support.cyrillic,
-        latinExt: id in assets.families ? assets.families[id as keyof typeof assets.families].latinExt : f.support.latinExt,
+        latinExt: managed?.latinExt ?? f.support.latinExt,
         // Actual source glyphs take precedence over advertised CSS ranges.
-        uzbekApostrophe: id in assets.families ?
-          assets.families[id as keyof typeof assets.families].uzbekApostrophe : f.support.uzbekApostrophe,
+        uzbekApostrophe: managed?.uzbekApostrophe ?? f.support.uzbekApostrophe,
       },
       licensed: true,
       licenseNote: "SIL Open Font License via Google Fonts",

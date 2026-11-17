@@ -1,0 +1,52 @@
+{
+  "generatedAt": "2026-10-23T04:31:38.019Z",
+  "base": "http://127.0.0.1:4312",
+  "mode": "authored-fixtures",
+  "expectedScenarios": 5,
+  "expectedPages": 20,
+  "generationPosts": 0,
+  "generationsSucceeded": 0,
+  "blockedBrowserGenerationPosts": 0,
+  "apiChecks": [],
+  "pages": [],
+  "failures": [
+    {
+      "scenario": "botanical-wedding",
+      "message": "POST /api/platform/invitations: HTTP 400: {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Проверьте поля формы\",\"fields\":[{\"path\":\"draft.fontPairId\",\"message\":\"Invalid enum value. Expected 'editorial' | 'classic' | 'modern' | 'romantic', received 'ceremony'\"},{\"path\":\"draft\",\"message\":\"Unrecognized key(s) in object: 'purpose', 'ornamentSetId', 'composition'\"}]}}"
+    },
+    {
+      "scenario": "deco-wedding",
+      "message": "POST /api/platform/invitations: HTTP 400: {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Проверьте поля формы\",\"fields\":[{\"path\":\"draft.paletteId\",\"message\":\"Invalid enum value. Expected 'ivory' | 'sage' | 'midnight' | 'rose' | 'cinnabar', received 'ink'\"},{\"path\":\"draft.fontPairId\",\"message\":\"Invalid enum value. Expected 'editorial' | 'classic' | 'modern' | 'romantic', received 'poetic'\"},{\"path\":\"draft\",\"message\":\"Unrecognized key(s) in"
+    },
+    {
+      "scenario": "poster-birthday",
+      "message": "POST /api/platform/invitations: HTTP 400: {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Проверьте поля формы\",\"fields\":[{\"path\":\"draft.templateId\",\"message\":\"Invalid enum value. Expected 'classic' | 'botanical' | 'nocturne' | 'heritage' | 'sculpted-garden', received 'modern'\"},{\"path\":\"draft.paletteId\",\"message\":\"Invalid enum value. Expected 'ivory' | 'sage' | 'midnight' | 'rose' | 'cinnabar', received 'terracotta'\"},{\"path\":\"draft.fontP"
+    },
+    {
+      "scenario": "editorial-anniversary",
+      "message": "POST /api/platform/invitations: HTTP 400: {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Проверьте поля формы\",\"fields\":[{\"path\":\"draft.templateId\",\"message\":\"Invalid enum value. Expected 'classic' | 'botanical' | 'nocturne' | 'heritage' | 'sculpted-garden', received 'editorial'\"},{\"path\":\"draft\",\"message\":\"Unrecognized key(s) in object: 'purpose', 'ornamentSetId', 'composition'\"}]}}"
+    },
+    {
+      "scenario": "personal-greeting",
+      "message": "POST /api/platform/invitations: HTTP 400: {\"error\":{\"code\":\"VALIDATION_ERROR\",\"message\":\"Проверьте поля формы\",\"fields\":[{\"path\":\"draft.templateId\",\"message\":\"Invalid enum value. Expected 'classic' | 'botanical' | 'nocturne' | 'heritage' | 'sculpted-garden', received 'corporate'\"},{\"path\":\"draft.paletteId\",\"message\":\"Invalid enum value. Expected 'ivory' | 'sage' | 'midnight' | 'rose' | 'cinnabar', received 'clay'\"},{\"path\":\"draft.fontPair"
+    },
+    {
+      "scenario": "harness",
+      "message": "Not all API scenarios completed\n\n0 !== 5\n"
+    }
+  ],
+  "designHistogram": {
+    "template": {},
+    "hero": {},
+    "font": {},
+    "surface": {}
+  },
+  "limitations": [
+    "Authored registry-compatible fixtures test integration and responsive rendering. They do not test AI selection, new artwork or real AI design quality.",
+    "Schema validity, token diversity and passing browser assertions do not establish that a design is beautiful. Review the saved mobile pages visually.",
+    "Chromium emulates mobile touch at 320, 390 and 430 pixels. Physical phones, Safari, normal-motion animation and production hosting are not tested.",
+    "The editorial anniversary intentionally has no photograph; personal photo upload, cropping and photographic art direction are not exercised.",
+    "Small controls and text clipping candidates are reported as observations for visual review."
+  ],
+  "success": false
+}

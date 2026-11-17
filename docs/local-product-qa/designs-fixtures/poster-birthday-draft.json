@@ -1,0 +1,76 @@
+{
+  "title": "Александра-Екатерина Константиновна",
+  "purpose": "invitation",
+  "templateId": "modern",
+  "paletteId": "terracotta",
+  "fontPairId": "modernist",
+  "composition": {
+    "heroLayout": "typographic-poster",
+    "photoShape": "sharp",
+    "surfaceStyle": "flat",
+    "spacingScale": "compact-poster",
+    "typographyAccent": "oversized-display",
+    "decorConfig": {
+      "placement": "background-pattern",
+      "density": "subtle",
+      "opacity": 0.3
+    },
+    "sectionVariants": {
+      "countdown": "inline",
+      "program": "cards",
+      "venue": "split",
+      "gallery": "filmstrip",
+      "rsvp": "minimal"
+    }
+  },
+  "ornamentSetId": "graphic-ribbon",
+  "eventType": "birthday",
+  "locale": "ru",
+  "names": [
+    "Александра-Екатерина Константиновна"
+  ],
+  "date": {
+    "day": "2028-06-19",
+    "time": "18:00",
+    "timezone": "Asia/Tashkent",
+    "showCountdown": true
+  },
+  "greeting": "Дорогие друзья! Буду рада отпраздновать день рождения в вашей компании.",
+  "story": "Ещё один год подарил много открытий. Давайте встретим новый вместе — с музыкой, разговорами и любимыми людьми.",
+  "venue": {
+    "name": "Сад встреч",
+    "address": "Ташкент, вымышленный адрес для локальной проверки",
+    "note": "Это вымышленные данные QA."
+  },
+  "timeline": [
+    {
+      "time": "18:00",
+      "title": "Встреча гостей"
+    },
+    {
+      "time": "19:00",
+      "title": "Праздничный вечер"
+    }
+  ],
+  "dressCode": {
+    "title": "Свободный праздничный стиль",
+    "note": "Выбирайте то, в чём вам комфортно.",
+    "swatches": [
+      "#ADB89E",
+      "#E5DCCB"
+    ]
+  },
+  "closing": "До встречи на празднике! Александра-Екатерина",
+  "enabledSections": [
+    "opening",
+    "greeting",
+    "story",
+    "date",
+    "venue",
+    "timeline",
+    "dressCode",
+    "rsvp",
+    "closing"
+  ],
+  "media": []
+}

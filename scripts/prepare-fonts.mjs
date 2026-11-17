@@ -96,10 +96,10 @@ for (const family of config.families) {
     uzbekApostrophe: [0x02bb, 0x02bc].every((codepoint) => sourceFont.hasGlyphForCodePoint(codepoint)),
     latinExt: [..."ĀāĂăĄąĒēĪīŌōŪū"].every((character) => sourceFont.hasGlyphForCodePoint(character.codePointAt(0))), faces: [] };
   for (const weight of family.weights) for (const subset of config.subsets) {
+    const unicodeRange = family.ranges[subset];
+    if (!unicodeRange) continue;
     const filename = `${family.id}-${subset}-${weight}-normal.woff2`;
     const buffer = readFileSync(`${output}/${filename}`);
-    const unicodeRange = family.ranges[subset];
-    if (!unicodeRange) throw new Error(`No unicode-range for ${filename}`);
     const font = fontFromBuffer(buffer);
     const metrics = fallbackMetrics(font, fallback);
     const path = `/font-assets/${filename}`;

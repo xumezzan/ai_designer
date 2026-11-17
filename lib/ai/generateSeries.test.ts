@@ -5,9 +5,58 @@ import { Content } from "@/lib/schema/content";
 import { fixtureSeries } from "@/lib/generation/fixture";
 import { generateSeries } from "./generateSeries";
 import sharp from "sharp";
+import { composeSeries } from "@/lib/generation/series";
+import { designIdentity } from "@/lib/generation/diversity";
 const content = Content.parse(JSON.parse(await readFile("projects/demo/content.json", "utf8")));
 const input = { ...content, variantCount: 5, brief: "Великий Гэтсби, ар-деко, тёмный фон и золото" };
 const message = (output: unknown) => ({ id: "msg_test", type: "message", role: "assistant", model: "claude-sonnet-4-6", content: [{ type: "tool_use", id: "tool_test", name: "emit_design_series", input: output }], stop_reason: "tool_use", stop_sequence: null, usage: { input_tokens: 1, output_tokens: 1 } });
+test("a recoloured recent design is corrected before accepting a distinct composition", async () => {
+  const previous = designIdentity(composeSeries(fixtureSeries, "ru", []).themes[0]);
+  let calls = 0;
+  let retry = "";
+  let context: { recentDesigns?: unknown } = {};
+  const sdk = new Anthropic({ apiKey: "test-only", maxRetries: 0, fetch: async (_url, options) => {
+    calls++;
+    const request = JSON.parse(String(options?.body));
+    context = JSON.parse(request.messages[0].content[0].text);
+    if (calls === 2) retry = JSON.stringify(request.messages);
+    const raw = structuredClone(fixtureSeries);
+    raw.variants = raw.variants.slice(0, 1);
+    raw.style.palette.accent = "#738BA1";
+    if (calls === 2) { raw.style.typeSet = "poetic"; raw.variants[0].layout.composition = "poster"; }
+    return Response.json(message(raw));
+  } });
+  const result = await generateSeries({ ...input, variantCount: 1 }, [], [], sdk, { recentDesigns: [previous] });
+  expect(calls).toBe(2);
+  expect(context.recentDesigns).toEqual([previous]);
+  expect(result.themes[0].layout.composition).toBe("poster");
+  expect(retry).toContain("TWO visible axes");
+});
+test("repeated designs fail after one correction without a paid image request", async () => {
+  const previous = designIdentity(composeSeries(fixtureSeries, "ru", [], true).themes[0], true);
+  const raw = structuredClone(fixtureSeries);
+  raw.variants = raw.variants.slice(0, 1);
+  const transport = vi.fn(async () => Response.json(message(raw)));
+  const image = vi.fn<typeof fetch>(async () => { throw new Error("A rejected design must not request an image"); });
+  vi.stubGlobal("fetch", image);
+  try {
+    const sdk = new Anthropic({ apiKey: "test-only", maxRetries: 0, fetch: transport });
+    await expect(generateSeries({ ...input, variantCount: 1 }, [], [], sdk, { createVisual: true, recentDesigns: [previous] })).rejects.toMatchObject({ status: 502, message: expect.stringContaining("слишком похож") });
+    expect(transport).toHaveBeenCalledTimes(2);
+    expect(image).not.toHaveBeenCalled();
+  } finally { vi.unstubAllGlobals(); }
+});
+test("Organic Paper is a native design even when image generation is enabled", async () => {
+  const raw = structuredClone(fixtureSeries);
+  raw.variants = raw.variants.slice(0, 1);
+  raw.variants[0].layout.composition = "organic-paper";
+  raw.variants[0].ornamentPlacement = [];
+  raw.style.ornament.pack = "none";
+  const sdk = new Anthropic({ apiKey: "test-only", maxRetries: 0, fetch: async () => Response.json(message(raw)) });
+  const result = await generateSeries({ ...input, variantCount: 1 }, [], [], sdk, { createVisual: true });
+  expect(result.themes[0].layout.composition).toBe("organic-paper");
+  expect(result.visual).toBeUndefined();
+});
 test("real SDK transport sends the brief and JPEG references with one forced series tool", async () => {
   let request: Record<string, unknown> = {};
   const sdk = new Anthropic({ apiKey: "test-key", maxRetries: 0, fetch: async (_url, options) => { request = JSON.parse(String(options?.body)); return Response.json(message(fixtureSeries)); } });

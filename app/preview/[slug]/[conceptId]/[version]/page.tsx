@@ -13,6 +13,9 @@ import "@/app/physicality.css";
 import "@/app/material-scenes.css";
 import { guestName } from "@/lib/invitation/guest";
 import "@/app/demo/demo.css";
+import "@/app/organic-paper.css";
+import "@/app/editorial-fonts.css";
+import "@/app/editorial-invitation.css";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Приглашение · предпросмотр", robots: { index: false, follow: false } };

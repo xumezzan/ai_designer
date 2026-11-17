@@ -25,3 +25,6 @@ projects/*/media/
 # Event projects are local client data; retain only the committed demonstration.
 projects/*/
 !projects/demo/
+
+# Local SaaS accounts, sessions, invitations, guest responses and private media.
+.platform-data/

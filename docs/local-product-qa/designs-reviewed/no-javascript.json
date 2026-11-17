@@ -1,0 +1,29 @@
+{
+  "base": "http://127.0.0.1:4314",
+  "mode": "read-only-no-javascript",
+  "publishedSnapshotsAfterLocalStoreCopy": 5,
+  "pages": [
+    {
+      "scenario": "personal-greeting",
+      "width": 320,
+      "readable": true,
+      "noEventActions": true,
+      "noOverflow": true
+    },
+    {
+      "scenario": "personal-greeting",
+      "width": 390,
+      "readable": true,
+      "noEventActions": true,
+      "noOverflow": true
+    },
+    {
+      "scenario": "personal-greeting",
+      "width": 1280,
+      "readable": true,
+      "noEventActions": true,
+      "noOverflow": true
+    }
+  ],
+  "success": true
+}
